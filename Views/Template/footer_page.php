@@ -9,6 +9,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script>
+      const base_url = "<?php echo base_url();?>"
+    </script>
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

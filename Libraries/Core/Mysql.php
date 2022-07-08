@@ -10,6 +10,18 @@
             $this->conexion = new Conexion;
             $this->conexion = $this->conexion->conexion();
         }
+
+        // DEVOLVER TODOS LOS REGISTROS
+
+        public function selectAll(string $query)
+        {
+            $this->strquery = $query;
+            $result = $this->conexion->query($this->strquery);
+            while ($item = mysqli_fetch_assoc($result)) {
+                $array[] = $item;
+            }
+            return $array;
+        }
     }
     
 
