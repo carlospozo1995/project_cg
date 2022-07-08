@@ -21,9 +21,6 @@
           <div class="col-12">
 
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
-              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -73,6 +70,7 @@
                     <td>6</td>
                     <td>A</td>
                   </tr>
+                  
                   <tr>
                     <td>Trident</td>
                     <td>Internet Explorer 7</td>

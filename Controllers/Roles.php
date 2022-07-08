@@ -12,7 +12,7 @@
             $data['page_tag'] = 'Sistema';
             $data['page_title'] = 'Empresa - Roles';
             // $data['page_title'] = 'Créditos GUAMAN - Roles';
-            $data['page_name'] = 'Roles usuario';
+            $data['page_name'] = 'Roles';
             $this->views->getView($this, "roles", $data);
         }
     }
