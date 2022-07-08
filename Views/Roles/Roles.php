@@ -6,8 +6,9 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-6 add-new-mc">
             <h1><?= $data['page_name'] ?></h1>
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Nuevo</button>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -15,7 +16,7 @@
 
     <!-- Main content -->
     <section class="content">
-      
+
     </section>
     <!-- /.content -->
   </div>

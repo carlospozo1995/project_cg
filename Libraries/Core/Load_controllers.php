@@ -14,7 +14,7 @@
             echo "no existe el methodo " . $method;
         }
     }else{
-        echo "no existe el controlador";
+        echo "no existe el controlador " . $controller;
     }
 
 ?>

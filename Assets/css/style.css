@@ -1,8 +1,28 @@
+:root{
+    /* --cg_one: #0004D5; */
+    --cg_one: #1CA9E1;
+    --gTwo: #FE0000;
+    --gThree: rgb(56, 56, 56);
+}
+
+
+
+
 .aside-mc{
-    background-color: #0004D5;
+    background-color: var(--cg_one);
+}
+
+.logocg-mc{
+    background: #fff;
 }
 
 .title-s-mc{
-    color: black;
+    margin-left: 1rem;
+    color: var(--gThree);
     font-weight: 500;
+}
+
+.add-new-mc{
+    display: flex;
+    gap: 5px;
 }

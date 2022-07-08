@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title><?= $data['page_title'] ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,7 +46,8 @@
 
             <p>
               Alexander Pierce - Web Developer
-              <small>Member since Nov. 2012</small>
+              <small><?= fecha(); ?></small>
+              <!-- <small><?= date("F j, Y, g:i a"); ?></small> -->
             </p>
           </li>
           <!-- Menu Body -->

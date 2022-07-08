@@ -10,6 +10,40 @@
         return BASE_URL."Assets/";
     }
 
+    function fecha(){
+        $dia = date("d");
+        $mes = date("m");
+        $año = date("Y");
+
+        $dia_semana = [
+            "Monday"=>"Lunes",
+            "Tuesday"=>"Martes",
+            "Wednesday"=>"Miercoles",
+            "Thursday"=>"Jueves",
+            "Friday"=>"Viernes",
+            "Saturday"=>"Sabado",
+            "Sunday"=>"Domingo",
+        ];
+
+        $mes_año = [
+            "01"=>"Enero",
+            "02"=>"Febrero",
+            "03"=>"Marzo",
+            "04"=>"Abril",
+            "05"=>"Mayo",
+            "06"=>"Junio",
+            "07"=>"julio",
+            "08"=>"Agosto",
+            "09"=>"Septiembre",
+            "10"=>"Octubre",
+            "11"=>"Noviembre",
+            "12"=>"Diciembre",
+        ];
+
+        $fecha_final = $dia_semana[date("l")]." ".$dia." de ".$mes_año[$mes]." del ".$año."<br>".date("g:i a");
+        return$fecha_final;
+    }
+
     // RETORNA LOS DIFERENTES TEMPLATES
 
     function headerPage($data=""){
