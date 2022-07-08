@@ -177,7 +177,6 @@
     </aside>
     <!-- /.control-sidebar -->
   </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
