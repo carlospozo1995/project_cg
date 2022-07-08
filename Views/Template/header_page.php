@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-bs4/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-responsive/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-buttons/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/adminlte.min.css">
   <!-- My style -->
@@ -47,7 +51,6 @@
             <p>
               Alexander Pierce - Web Developer
               <small><?= fecha(); ?></small>
-              <!-- <small><?= date("F j, Y, g:i a"); ?></small> -->
             </p>
           </li>
           <!-- Menu Body -->
