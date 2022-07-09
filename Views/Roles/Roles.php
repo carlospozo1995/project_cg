@@ -13,7 +13,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -463,6 +463,7 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
+      
     </section>
     <!-- /.content -->
   </div>
