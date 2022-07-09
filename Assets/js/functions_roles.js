@@ -1,4 +1,5 @@
 //LOAD DATA TABLE ROLES
+
 var tableRoles;
 document.addEventListener('DOMContentLoaded', function () {
     tableRoles = $("#tableRoles").DataTable({
@@ -35,5 +36,3 @@ document.addEventListener('DOMContentLoaded', function () {
 $("#btnNewRol").click(function openModal() {
     $('#modalFormRol').modal('show');
 })
-
-

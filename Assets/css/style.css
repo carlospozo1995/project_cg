@@ -1,8 +1,8 @@
 :root{
     /* --cg_one: #0004D5; */
     --cg_one: #1CA9E1;
-    --gTwo: #FE0000;
-    --gThree: rgb(56, 56, 56);
+    --cg_two: #FE0000;
+    --cg_three: rgb(56, 56, 56);
 }
 
 
@@ -18,7 +18,7 @@
 
 .title-s-mc{
     margin-left: 1rem;
-    color: var(--gThree);
+    color: var(--cg_three);
     font-weight: 500;
 }
 
@@ -26,3 +26,41 @@
     display: flex;
     gap: 5px;
 }
+
+
+/* ACOMODANDO POSICION ELEMENTOS DATATABLE */
+.dataTables_wrapper{
+    flex-direction: column;
+    display: flex;
+    position: relative;
+}
+
+.dataTables_length{
+    order: 1;
+    text-align: right !important;
+}
+
+.dt-buttons{
+   order: 3;
+   width: max-content;
+   position: absolute;
+}
+
+.dataTables_filter{
+    order: 2;
+    width: max-content;
+    position: absolute;
+}
+
+.table_roles{
+    order: 4;
+}
+
+.dataTables_info{
+    order: 5;
+}
+
+.dataTables_paginate{
+    order: 6;
+}
+/* -------------------------------------- */

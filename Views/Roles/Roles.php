@@ -26,8 +26,7 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body">
-                <div id="example1_wrapper"></div>
-                <table id="tableRoles" class="table table-bordered table-striped">
+                <table id="tableRoles" class="table_roles table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>ID</th>
