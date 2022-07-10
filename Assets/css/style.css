@@ -34,10 +34,6 @@
     color: #fff;
 }
 
-.notselectOption-mc{
-    display: none;
-}
-
 /* ACOMODANDO POSICION ELEMENTOS DATATABLE */
 .dataTables_wrapper{
     flex-direction: column;

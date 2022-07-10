@@ -137,12 +137,16 @@ function deleteRol() {
                 confirmButtonText: 'Si, eliminar!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log("eliminado")
-                    Swal.fire(
-                        'Eliminado!',
-                        'El rol ha sido eliminado.',
-                        'success'
-                    )
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url + 'Roles/delRol/';
+                    var strData = "idRol=" + idRol; 
+                    request.open("POST", ajaxUrl, true);
+                    request.send();
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'El rol ha sido eliminado.',
+                    //     'success'
+                    // )
                 }
               })
         })
