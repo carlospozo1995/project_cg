@@ -48,26 +48,20 @@
             $strDescripcion = strClean($_POST['txtDescripcion']);
             $intStatus = intval($_POST['listStatus']);
 
-            if ($intIdrol == 0) {
+            if (empty($intIdrol)) {
                 // ROL CREATE
                 $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
                 $option = 1;
             }else{
-                // ROL UPDATE
-
-                // $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
-                $request_rol =1;
-                $option = 2;
+                $request_rol = 1;
+                $option= 2;
             }
-
             if ($request_rol > 0) {
                 if ($option == 1) {
                     $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                }else {
+                    $arrResponse = array('status' => true, 'msg' => 'Dato actualizado correctamente.');
                 }
-                else{
-                    $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                }
-                
             }else if($request_rol == "existe"){
                 $arrResponse = array('status' => false, 'msg' => 'El rol a ingresar ya existe.');
             }else{
@@ -79,10 +73,10 @@
 
         public function getRol(int $idRol)
         {
-            $intIdRol = intval(strClean($idRol));
+            $intIdrol = intval(strClean($idRol));
 
             if ($idRol > 0) {
-                $arrRol = $this->model->selectRol($intIdRol);
+                $arrRol = $this->model->selectRol($intIdrol);
                 if (empty($arrRol)) {
                     $arrResponse = array("status" => false, "msg" => "Registro no encontrado");
                 }else{

@@ -38,10 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
         "bDestroy":true,
         "order":[[0,"asc"]],
         initComplete: function(){
-            btnEditRol();
+            btnEditRol()
         },
     });
 })
+
 
 
 // INSERT NEW ROL
