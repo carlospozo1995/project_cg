@@ -53,13 +53,31 @@ formNewRol.onsubmit = function (e) {
 
     if (strNombre == "" || strDescripcion == "" || intStatus == "") {
         Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+    }else{
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url + 'Roles/setRol';
+        var formData = new FormData(formNewRol);
+        request.open("POST", ajaxUrl, true);
+        request.send(formData);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                var objData = JSON.parse(request.responseText);
+                
+                if (objData.status) {
+                    $('#modalFormRol').modal('hide');
+                    formNewRol.reset();
+                    Swal.fire("Roles de usuario", objData.msg, "success");
+                    tableRoles.ajax.reload(function () {
+                        
+                    });
+                }else{
+                    Swal.fire("Error", objData.msg, "error");
+                }
+            }
+        }
     }
+    
 
-    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url + 'Roles/setRol';
-    var formData = new FormData(formNewRol);
-    request.open("POST", ajaxUrl, true);
-    request.send(formData);
 }
 
 

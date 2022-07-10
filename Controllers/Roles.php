@@ -48,9 +48,18 @@
             $strDescripcion = strClean($_POST['txtDescripcion']);
             $intStatus = intval($_POST['listStatus']);
 
-            if ($intIdrol == 0) {
+            if (empty($intIdrol)) {
                 $request_newRol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+
+                if ($request_newRol > 0) {
+                    $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                }else if($request_newRol == "existe"){
+                    $arrResponse = array('status' => false, 'msg' => 'El rol a ingresar ya existe.');
+                }else{
+                    $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
+                }
             }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
 
     }

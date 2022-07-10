@@ -17,10 +17,25 @@
         {
             $this->strquery = $query;
             $result = $this->conexion->query($this->strquery);
+            $data = array();
             while ($item = mysqli_fetch_assoc($result)) {
-                $array[] = $item;
+                $data[] = $item;
             }
-            return $array;
+            return $data;
+        }
+
+        // INSERTAR DATOS EN DATABASE
+
+        public function insert(string $query)
+        {
+            $this->strquery = $query;
+            $insert = $this->conexion->query($this->strquery);
+            if ($insert) {
+                $lastId = mysqli_insert_id($this->conexion);
+            }else{
+                $lastId = "";
+            }
+            return $lastId ;
         }
     }
     
