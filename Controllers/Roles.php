@@ -30,9 +30,9 @@
                 // BTN PERMISOS DELETE EDIT
 
             $arrRoles[$i]['actions']= '<div class="text-center">
-                                            <button type="button" class="btn btn-secondary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Permisos"><i class="fas fa-key"></i></button>
-                                            <button type="button" class="btn btn-primary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
+                                            <button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Permisos"><i class="fas fa-key"></i></button>
+                                            <button type="button" class="btnEditRol btn btn-primary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btnDeleteRol btn btn-danger btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
                                        </div>' ;
             }
 
@@ -48,20 +48,52 @@
             $strDescripcion = strClean($_POST['txtDescripcion']);
             $intStatus = intval($_POST['listStatus']);
 
-            if (empty($intIdrol)) {
-                $request_newRol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+            if ($intIdrol == 0) {
+                // ROL CREATE
+                $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+                $option = 1;
+            }else{
+                // ROL UPDATE
 
-                if ($request_newRol > 0) {
+                // $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
+                $request_rol =1;
+                $option = 2;
+            }
+
+            if ($request_rol > 0) {
+                if ($option == 1) {
                     $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
-                }else if($request_newRol == "existe"){
-                    $arrResponse = array('status' => false, 'msg' => 'El rol a ingresar ya existe.');
-                }else{
-                    $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
                 }
+                else{
+                    $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                }
+                
+            }else if($request_rol == "existe"){
+                $arrResponse = array('status' => false, 'msg' => 'El rol a ingresar ya existe.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function getRol(int $idRol)
+        {
+            $intIdRol = intval(strClean($idRol));
+
+            if ($idRol > 0) {
+                $arrRol = $this->model->selectRol($intIdRol);
+                if (empty($arrRol)) {
+                    $arrResponse = array("status" => false, "msg" => "Registro no encontrado");
+                }else{
+                    $arrResponse = array("status" => true, "data" => $arrRol);
+                }   
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+            die();
         }
 
     }
+
 
 ?>

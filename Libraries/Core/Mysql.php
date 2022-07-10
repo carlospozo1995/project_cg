@@ -11,7 +11,7 @@
             $this->conexion = $this->conexion->conexion();
         }
 
-        // DEVOLVER TODOS LOS REGISTROS
+        // DEVOLVER TODOS DATOS
 
         public function selectAll(string $query)
         {
@@ -24,18 +24,41 @@
             return $data;
         }
 
-        // INSERTAR DATOS EN DATABASE
-
+        // INSERTAR DATOS
         public function insert(string $query)
         {
             $this->strquery = $query;
-            $insert = $this->conexion->query($this->strquery);
-            if ($insert) {
+            $result = $this->conexion->query($this->strquery);
+            if ($result) {
                 $lastId = mysqli_insert_id($this->conexion);
             }else{
                 $lastId = "";
             }
             return $lastId ;
+        }
+
+        // DEVOLVER UN DATO
+
+        public function select(string $query)
+        {
+            $this->strquery = $query;
+            $result = $this->conexion->query($this->strquery);
+            
+            $data = array();
+            while ($item = mysqli_fetch_assoc($result)) {
+                $data[] = $item;
+            }
+            return $data[0];
+        }
+
+        // ACTUALIZAR UN DATO
+
+        public function update(string $query)
+        {
+            $this->strquery = $query;
+            $result = $this->conexion->query($this->strquery);
+            
+            return $result;
         }
     }
     

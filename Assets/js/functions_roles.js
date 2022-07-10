@@ -1,8 +1,13 @@
 // OPEN MODAL NEW ROL
 $("#btnNewRol").click(function () {
+    document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
+    document.querySelector(".modal-title").innerHTML = "Nuevo Rol";
+    document.getElementById("btnSubmitRol").classList.replace("bg-success", "btn-primary");
+    document.querySelector(".btnText").innerHTML = "Guardar";
+    formNewRol.reset();
+
     $('#modalFormRol').modal('show');
 })
-
 
 //LOAD DATA TABLE ROLES
 var tableRoles;
@@ -33,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "bDestroy":true,
         "order":[[0,"asc"]],
         initComplete: function(){
-            
+            btnEditRol();
         },
     });
 })
@@ -68,7 +73,7 @@ formNewRol.onsubmit = function (e) {
                     formNewRol.reset();
                     Swal.fire("Roles de usuario", objData.msg, "success");
                     tableRoles.ajax.reload(function () {
-                        
+                        btnEditRol();
                     });
                 }else{
                     Swal.fire("Error", objData.msg, "error");
@@ -76,8 +81,45 @@ formNewRol.onsubmit = function (e) {
             }
         }
     }
-    
+}
 
+function btnEditRol() {
+    var btnEditRol = document.querySelectorAll(".btnEditRol");
+    btnEditRol.forEach(function (btnEdit) {
+        btnEdit.addEventListener('click', function () {
+
+            document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+            document.querySelector(".modal-title").innerHTML = "Actualizar Rol";
+            document.getElementById("btnSubmitRol").classList.replace("btn-primary", "bg-success");
+            document.querySelector(".btnText").innerHTML = "Actualizar";
+
+            var idRol = this.getAttribute('rl');
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxetUser = base_url + 'Roles/getRol/' + idRol;
+            request.open("GET", ajaxetUser, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+
+                    if (objData.status) {
+                        document.getElementById("idRol").value = objData.data.idrol;
+                        document.getElementById("txtNombre").value = objData.data.nombrerol;
+                        document.getElementById("txtDescripcion").value = objData.data.descripcion;
+                        document.getElementById("listStatus").value = objData.data.status;
+
+                        $('#modalFormRol').modal('show');
+                    }else{
+                        Swal.fire("Error", objData.msg, "error");
+                    }
+                }
+            }
+
+
+            
+        })
+    })
 }
 
 

@@ -13,8 +13,8 @@
 
         public function selectRoles()
         {
-            $sql = "SELECT  * FROM project_cg.roles WHERE status != 0";
-            $request = $this->selectAll($sql);
+            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0";
+            $request = $this->selectAll($sql_all_rol);
             return $request;
         }
 
@@ -40,6 +40,34 @@
 
             return $return;
         }
+
+        public function selectRol(int $idRol)
+        {
+            $this->intIdrol = $idRol;
+            $sql_select_rol = "SELECT * FROM project_cg.roles WHERE idrol = $this->intIdrol";
+
+            $request = $this->select($sql_select_rol);
+            return $request;
+        }
+
+        // public function updateRol(int $idRol, string $nameRol, string $descripcion, int $status)
+        // {   
+        //     $this->intIdrol = $idRol;
+        //     $this->strRol = $nameRol;
+        //     $this->strDescripcion = $descripcion;
+        //     $this->intStatus = $status;
+
+        //     $sql_all_rol = "SELECT * FROM project_cg.roles WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
+        //     $request = $this->selectAll($sql_all_rol);
+
+        //     if (empty($request)) {
+        //             $sql_update_rol = "UPDATE project_cg.roles SET nombrerol = '$this->strRol', descripcion = $this->strDescripcion, status = $this->intStatus";
+        //             $request = $this->update($sql_update_rol);
+        //     }else{
+        //         $request = "existe";
+        //     }
+        //     return $request;
+        // }
 
     }
 

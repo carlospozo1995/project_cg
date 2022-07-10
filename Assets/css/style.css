@@ -4,10 +4,7 @@
     --cg_two: #FE0000;
     --cg_three: rgb(56, 56, 56);
 }
-
-
-
-
+/* ----------------------------------- */
 .aside-mc{
     background-color: var(--cg_one);
 }
@@ -27,6 +24,19 @@
     gap: 5px;
 }
 
+.headerRegister-mc{
+    background: var(--cg_one);
+    color: #fff;
+}
+
+.headerUpdate-mc{
+    background: rgb(68, 212, 116);
+    color: #fff;
+}
+
+.notselectOption-mc{
+    display: none;
+}
 
 /* ACOMODANDO POSICION ELEMENTOS DATATABLE */
 .dataTables_wrapper{
