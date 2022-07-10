@@ -53,7 +53,7 @@
                 $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
                 $option = 1;
             }else{
-                $request_rol = 1;
+                $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
                 $option= 2;
             }
             if ($request_rol > 0) {
