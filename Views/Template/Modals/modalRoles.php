@@ -10,21 +10,23 @@
             <div class="modal-body">
                 <div class="card card-primary">
                 <!-- form start -->
-                    <form id="formRol" name="formRol">
+                    <form id="formNewRol" name="formNewRol">
+                        <input type="hidden" id="idRol" name="idRol" value="">
+
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="txtNombre">Nombre</label>
-                                <input type="text" class="form-control" placeholder="Nombre del rol" id="txtNombre" name="txtNombre" required="">
+                                <input type="text" class="form-control" placeholder="Nombre del rol" id="txtNombre" name="txtNombre" >
                             </div>
 
                             <div class="form-group">
                                 <label for="textDescripcion">Descripción</label>
-                                <textarea class="form-control" rows="3" placeholder="Descripción del rol" id="txtDescripcion" name="txtDescripcion" required=""></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Descripción del rol" id="txtDescripcion" name="txtDescripcion" ></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="listStatus">Status Rol</label>
-                                <select class="form-control" id="listStatus" name="listStatus" required="">
+                                <select class="form-control" id="listStatus" name="listStatus" >
                                     <option value="1">Activo</option>
                                     <option value="2">Inactivo</option>
                                 </select>

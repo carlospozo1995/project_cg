@@ -13,6 +13,11 @@
             return $request;
         }
 
+        public function insertRol(string $nameRol, string $descripcion, int $status)
+        {
+            $sql_exists_rol = ""
+        }
+
     }
 
 ?>

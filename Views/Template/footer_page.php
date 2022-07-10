@@ -15,6 +15,10 @@
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?php echo media(); ?>js/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo media(); ?>js/plugins/toastr/toastr.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?php echo media(); ?>js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo media(); ?>js/plugins/datatables-bs4/dataTables.bootstrap4.min.js"></script>
