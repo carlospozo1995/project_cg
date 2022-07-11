@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
         "bDestroy":true,
         "order":[[0,"asc"]],
         initComplete: function(){
-            btnEditRol()
+            editRol();
+            deleteRol();
         },
     });
 })
@@ -74,7 +75,8 @@ formNewRol.onsubmit = function (e) {
                     formNewRol.reset();
                     Swal.fire("Roles de usuario", objData.msg, "success");
                     tableRoles.ajax.reload(function () {
-                        btnEditRol();
+                        editRol();
+                        deleteRol();
                     });
                 }else{
                     Swal.fire("Error", objData.msg, "error");
@@ -84,7 +86,7 @@ formNewRol.onsubmit = function (e) {
     }
 }
 
-function btnEditRol() {
+function editRol() {
     var btnEditRol = document.querySelectorAll(".btnEditRol");
     btnEditRol.forEach(function (btnEdit) {
         btnEdit.addEventListener('click', function () {
@@ -116,11 +118,34 @@ function btnEditRol() {
                     }
                 }
             }
-
-
-            
         })
     })
 }
 
+function deleteRol() {
+    var btnDeleteRol = document.querySelectorAll(".btnDeleteRol");
+    btnDeleteRol.forEach(function (btnDelRol) {
+        btnDelRol.addEventListener("click", function () {
+            var idRol = this.getAttribute("rl");
+            Swal.fire({
+                title: 'Eliminar Rol',
+                text: "Realmente quiere eliminar el rol!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("eliminado")
+                    Swal.fire(
+                        'Eliminado!',
+                        'El rol ha sido eliminado.',
+                        'success'
+                    )
+                }
+              })
+        })
+    })
+}
 
