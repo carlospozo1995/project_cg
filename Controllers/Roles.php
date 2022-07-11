@@ -54,13 +54,14 @@
                 $option = 1;
             }else{
                 $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
-                $option= 2;
+                $option=2;
             }
+
             if ($request_rol > 0) {
                 if ($option == 1) {
                     $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
-                }else {
-                    $arrResponse = array('status' => true, 'msg' => 'Dato actualizado correctamente.');
+                }else{
+                    $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                 }
             }else if($request_rol == "existe"){
                 $arrResponse = array('status' => false, 'msg' => 'El rol a ingresar ya existe.');

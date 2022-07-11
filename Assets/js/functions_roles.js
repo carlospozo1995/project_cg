@@ -1,5 +1,6 @@
 // OPEN MODAL NEW ROL
 $("#btnNewRol").click(function () {
+    document.getElementById("idRol").value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
     document.querySelector(".modal-title").innerHTML = "Nuevo Rol";
     document.getElementById("btnSubmitRol").classList.replace("bg-success", "btn-primary");
@@ -42,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     });
 })
-
 
 
 // INSERT NEW ROL
