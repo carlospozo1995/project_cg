@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: project_cg
 -- ------------------------------------------------------
--- Server version	5.7.33
+-- Server version	5.7.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -85,7 +85,7 @@ CREATE TABLE `roles` (
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,43 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador','Administrador - Todos los permisos',2),(2,'Supervisor','Supervisor - La mayoria de los permisos',0),(3,'Suplente','Suplente - Permisos restringidos',1),(4,'Vendedor','Vendedor - No tiene permisos',2);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
+  `identificacion` varchar(30) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `nombres` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `apellidos` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `telefono` bigint(20) NOT NULL,
+  `email_user` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `password` varchar(25) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `toke` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `rolid` bigint(20) NOT NULL,
+  `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idusuario`),
+  KEY `rolid` (`rolid`),
+  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'0706715653','Carlos Andres','Pozo Ramirez',994603678,'admincarlos','0994603678carlos','qwerty123',1,'2022-07-11 21:48:37',1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -106,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-07  9:23:46
+-- Dump completed on 2022-07-11 23:47:19
