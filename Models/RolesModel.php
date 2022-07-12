@@ -70,7 +70,28 @@
             return $request;
         }
 
-        
+        public function deleteRol(int $idRol)
+        {
+            $this->intIdrol = $idRol;
+            $sql_exists_user_rol = "SELECT * FROM project_cg.usuario WHERE rolid = $this->intIdrol";
+            $request = $this->selectAll($sql_exists_user_rol);
+
+            if (empty($request)) {
+                $sql_update_status_rol = "UPDATE project_cg.roles SET status = 0 WHERE idrol = $this->intIdrol";
+                
+                $request = $this->update($sql_update_status_rol);
+
+                if ($request) {
+                    $request = "ok";
+                }
+                else{
+                    $request = "error";
+                }
+            }else{
+                $request = "existe";
+            }
+            return $request;
+        }
     }
 
 ?>
