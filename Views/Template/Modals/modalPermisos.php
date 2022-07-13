@@ -12,7 +12,20 @@
             <div class="modal-body">
                 <form action="" id="formPermisos" name="formPermisos">
                     <input type="hidden" id="rolid" name="rolid" value="<?= $data['rolid'] ?>">
-                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <head>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Módulo</th>
+                                    <th>Ver</th>
+                                    <th>Crear</th>
+                                    <th>Actualizar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </head>
+                        </table>
+                    </div>
                 </form>
             </div>
 
