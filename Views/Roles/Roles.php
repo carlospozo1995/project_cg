@@ -2,7 +2,12 @@
   headerPage($data); 
   getModal("modalRoles", $data);
 ?>
-  
+
+  <!-- CONTAINER MODAL PERMISOS -->
+  <div id="contentModalPermisos"></div>
+  <!-- ------------------------ -->
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

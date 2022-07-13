@@ -186,6 +186,13 @@ function permisos() {
             var ajaxetUser = base_url + 'Permisos/getPermisosRol/' + idRol;
             request.open("GET", ajaxetUser, true);
             request.send();
-        })
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    document.getElementById("contentModalPermisos").innerHTML = request.responseText;
+                    $('.modalPermisos').modal('show');
+                }    
+            }
+        });
     });
 }
