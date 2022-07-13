@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: project_cg
 -- ------------------------------------------------------
--- Server version	5.7.24
+-- Server version	5.7.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `modulos` (
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idmodulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` VALUES (1,'Sistema','Página principal - Sistema',1),(2,'Usuarios','Usuarios del sistema',1),(3,'Productos','Todos los productos',1);
 /*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +86,7 @@ CREATE TABLE `roles` (
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador','Administrador - Todos los permisos',2),(2,'Supervisor','Supervisor - La mayoria de los permisos',0),(3,'Suplente','Suplente - Permisos restringidos',1),(4,'Vendedor','Vendedor - No tiene permisos',2);
+INSERT INTO `roles` VALUES (1,'Administrador','Administrador - Todos los permisos',1),(2,'Supervisor','Supervisor - La mayoria de los permisos',1),(3,'Suplente','Suplente - Permisos restringidos',1),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',2);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-11 23:47:19
+-- Dump completed on 2022-07-12 23:37:19
