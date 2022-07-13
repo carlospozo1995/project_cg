@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initComplete: function(){
             editRol();
             deleteRol();
+            permisos();
         },
     });
 })
@@ -77,6 +78,7 @@ formNewRol.onsubmit = function (e) {
                     tableRoles.ajax.reload(function () {
                         editRol();
                         deleteRol();
+                        permisos();
                     });
                 }else{
                     Swal.fire("Error", objData.msg, "error");
@@ -156,6 +158,7 @@ function deleteRol() {
                                     tableRoles.ajax.reload(function () {
                                         editRol();
                                         deleteRol();
+                                        permisos();
                                     });
                                 }else{
                                     Swal.fire(
@@ -172,3 +175,17 @@ function deleteRol() {
     });
 }
 
+
+function permisos() {
+    var btnPermisos = document.querySelectorAll(".btnPermisosRol");
+
+    btnPermisos.forEach(function (btnPermiso) {
+        btnPermiso.addEventListener('click', function () {
+            var idRol = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxetUser = base_url + 'Permisos/getPermisosRol/' + idRol;
+            request.open("GET", ajaxetUser, true);
+            request.send();
+        })
+    });
+}
