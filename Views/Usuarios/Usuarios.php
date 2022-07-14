@@ -1,12 +1,7 @@
 <?php 
   headerPage($data); 
-  getModal("modalRoles", $data);
+  getModal("modalUsuarios", $data);
 ?>
-
-  <!-- CONTAINER MODAL PERMISOS -->
-  <div id="contentModalPermisos"></div>
-  <!-- ------------------------ -->
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -16,7 +11,7 @@
         <div class="row mb-2">
           <div class="col-sm-6 add-new-mc">
             <h1><?= $data['page_name'] ?></h1>
-            <button type="button" class="btn btn-primary" id="btnNewRol"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <button type="button" class="btn btn-primary" id="btnNewUser"><i class="fas fa-plus-circle"></i> Nuevo</button>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -31,19 +26,22 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="tableRoles" class="table_order table table-bordered table-striped">
+                <table id="tableUsuarios" class="table_order table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                     <!-- <th>Acciones</th> -->
                   </tr>
                   </thead>
                   <tbody>
-                    <!-- CALL DATABASE ROLES WITH JS -->
+                    <!-- CALL DATABASE USUARIOS WITH JS -->
                   </tbody>
                 </table>
               </div>

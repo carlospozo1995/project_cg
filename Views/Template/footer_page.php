@@ -36,8 +36,23 @@
 <script src="<?php echo media(); ?>js/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
-<!-- Functions Roles -->
-<script src="<?php echo media(); ?>js/functions_roles.js"></script>
+
+<?php
+    switch ($data['page_name']) {
+        case 'Roles':
+?>
+        <!-- Functions Roles -->
+        <script src="<?php echo media(); ?>js/functions_roles.js"></script>
+<?php
+            break;
+        case 'Usuarios':
+?>
+        <!-- Functions Usuarios -->
+        <script src="<?php echo media(); ?>js/functions_usuarios.js"></script>
+<?php           
+            break;
+    }
+?>
 
 </body>
 </html>
