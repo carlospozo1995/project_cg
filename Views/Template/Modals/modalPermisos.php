@@ -14,7 +14,7 @@
                     <input type="hidden" id="rolid" name="rolid" value="<?= $data['rolid'] ?>">
                     <div class="table-responsive">
                         <table class="table">
-                            <head>
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Módulo</th>
@@ -23,15 +23,57 @@
                                     <th>Actualizar</th>
                                     <th>Eliminar</th>
                                 </tr>
-                            </head>
+                            </thead>
+                            <tbody>
+
+                                <?php
+                                
+                                    $no = 1;
+                                    $modulos = $data['modulo'];
+                                    for ($i=0; $i < count($modulos); $i++) { 
+                                        $permisos = $modulos[$i]['permisos'];
+                                        $verCheck = $permisos['ver'] == 1 ? " checked " : "";
+                                        $crearCheck = $permisos['crear'] == 1 ? " checked " : "";
+                                        $actualizarCheck = $permisos['actualizar'] == 1 ? " checked " : "";
+                                        $eliminarCheck = $permisos['eliminar'] == 1 ? " checked " : "";
+
+                                        $idModulo = $modulos[$i]['idmodulo'];
+                                
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= $no; ?>
+                                        <input type="hidden" name="modulos[<?= $i; ?>][idmodulo]" value="<?= $idModulo ?>">
+                                    </td>
+                                    <td><?= $modulos[$i]['titulo']; ?></td>
+                                    <td>
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                    </td>
+                                </tr>
+                                <?php
+                                    $no++;
+                                    // CIERRE DEL CICLO FOR
+                                    }
+
+                                ?>
+                        </tbody>
                         </table>
                     </div>
-                </form>
-            </div>
 
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="text-center">
+                        <button class="btn btn-success" type="submit"><i class="fas fa-check-circle"></i> Guardar</button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Salir</button>
+                    </div>
+                </form>
             </div>
 
         </div>

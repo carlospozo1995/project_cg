@@ -32,6 +32,8 @@
 <script src="<?php echo media(); ?>js/plugins/datatables-buttons/buttons.html5.min.js"></script>
 <script src="<?php echo media(); ?>js/plugins/datatables-buttons/buttons.print.min.js"></script>
 <script src="<?php echo media(); ?>js/plugins/datatables-buttons/buttons.colVis.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="<?php echo media(); ?>js/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 <!-- Functions Roles -->

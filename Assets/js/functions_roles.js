@@ -190,9 +190,16 @@ function permisos() {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     document.getElementById("contentModalPermisos").innerHTML = request.responseText;
+                    
+                    $("input[data-bootstrap-switch]").each(function(){
+                        $(this).bootstrapSwitch('state', $(this).prop('checked'));
+                    })
+  
                     $('.modalPermisos').modal('show');
                 }    
             }
         });
     });
 }
+
+

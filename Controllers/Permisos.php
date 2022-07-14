@@ -45,6 +45,7 @@
                 $arrIdPermiso['modulo'] = $arrModulos;
                 return getModal("modalPermisos", $arrIdPermiso);
             }
+            die();
         }
     }
 
