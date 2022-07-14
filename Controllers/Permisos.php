@@ -47,6 +47,37 @@
             }
             die();
         }
+
+        public function setPermisos()
+        {
+            if ($_POST) {
+                $intRolid = intval($_POST['rolid']);
+                $modulos = $_POST['modulos'];
+
+                $this->model->deletePermisos($intRolid);
+
+                foreach ($modulos as $key => $value) {
+                    $idModulo = $value['idmodulo'];
+
+                    $ver = empty($value['ver']) ? 0 : 1;
+                    $crear = empty($value['crear']) ? 0 : 1;
+                    $actualizar = empty($value['actualizar']) ? 0 : 1;
+                    $eliminar = empty($value['eliminar']) ? 0 : 1;
+
+                    $requestPermiso = $this->model->insertPermisos($intRolid, $idModulo, $ver, $crear, $actualizar, $eliminar);
+
+                }
+
+                if ($requestPermiso > 0) {
+                    $arrResponse = array("status" => true, "msg" => "Permisos asignados correctamente.");
+                }else{
+                    $arrResponse = array("status" => false, "msg" => "No es posible asignar los permisos.");
+                }
+
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
     }
 
 ?>

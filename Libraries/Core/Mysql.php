@@ -60,6 +60,15 @@
             
             return $result;
         }
+    
+        // BORRAR DATO 
+        public function delete(string $query)
+        {
+            $this->strquery = $query;
+            $result = $this->conexion->query($this->strquery);
+            
+            return $result;
+        }
     }
     
 

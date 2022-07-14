@@ -13,7 +13,6 @@
                 <form action="" id="formPermisos" name="formPermisos">
                     <input type="hidden" id="rolid" name="rolid" value="<?= $data['rolid'] ?>">
                     <div class="table-responsive">
-                        <?php dep($data);?>
                         <table class="table">
                             <thead>
                                 <tr>

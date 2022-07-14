@@ -28,8 +28,29 @@
             $request = $this->selectAll($sql_permisos);
             return $request;
         }
-    }
 
-    
+        public function deletePermisos(int $rolid)
+        {
+           $this->intRolid = $rolid;
+
+           $sql_deletePermiso = "DELETE FROM  project_cg.permisos WHERE rolid = $this->intRolid";
+           $request = $this->delete($sql_deletePermiso);
+           return $request;
+        }
+
+        public function insertPermisos(int $rolid, int $idmodulo, int $ver, int $crear, int $actualizar, int $eliminar)
+        {
+            $this->intRolid = $rolid;
+            $this->intModuloid = $idmodulo;
+            $this->ver = $ver;
+            $this->crear = $crear;
+            $this->actualizar = $actualizar; 
+            $this->eliminar = $eliminar;
+
+            $sql_update_permisos = "INSERT INTO project_cg.permisos(rolid, moduloid, ver, crear, actualizar, eliminar) VALUES($this->intRolid, $this->intModuloid, $this->ver, $this->crear, $this->actualizar, $this->eliminar)";
+            $request = $this->insert($sql_update_permisos);
+            return $request;
+        }
+    }
 
 ?>

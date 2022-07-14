@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             editRol();
             deleteRol();
             permisos();
+            savePermisos;
         },
     });
 })
@@ -196,10 +197,42 @@ function permisos() {
                     })
   
                     $('.modalPermisos').modal('show');
+                    document.getElementById("formPermisos").addEventListener('submit', savePermisos, false);
                 }    
             }
         });
     });
+}
+
+function savePermisos(e) {
+    e.preventDefault();
+    
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url + 'Permisos/setPermisos';
+    var formElement = document.getElementById("formPermisos");
+    var formData  = new FormData(formElement);
+    request.open("POST", ajaxUrl, true);
+    request.send(formData);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var objData = JSON.parse(request.responseText);
+        
+            if (objData.status) {
+                Swal.fire(
+                    'Permisos de usuario',
+                    objData.msg,
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Error',
+                    objData.msg,
+                    'error'
+                );
+            }
+        }
+    }
 }
 
 
