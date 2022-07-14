@@ -14,6 +14,13 @@
             parent::__construct();        
         }
         
+        public function selectRoles(int $idrol)
+        {
+            $sql_modulos = "SELECT * FROM project_cg.roles WHERE idrol = $idrol";
+            $request = $this->selectAll($sql_modulos);
+            return $request;
+        }
+
         public function selectModulos()
         {
             $sql_modulos = "SELECT * FROM project_cg.modulos WHERE status != 0";

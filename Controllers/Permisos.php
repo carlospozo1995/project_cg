@@ -10,6 +10,8 @@
         {
             $rolid = intval($idrol);
             if ($rolid > 0) {
+                // TODOS LOS DATOS DE LA TABLA ROLES
+                $arrRoles = $this->model->selectRoles($rolid);
 
                 // TODOS LOS DATOS DE LA TABLA MODULOS
                 $arrModulos = $this->model->selectModulos();
@@ -43,6 +45,7 @@
                 }
 
                 $arrIdPermiso['modulo'] = $arrModulos;
+                $arrIdPermiso['rolTitulo'] = $arrRoles;
                 return getModal("modalPermisos", $arrIdPermiso);
             }
             die();

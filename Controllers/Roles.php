@@ -22,9 +22,9 @@
 
             for ($i=0; $i < count($arrRoles); $i++) { 
                 if ($arrRoles[$i]['status'] == 1) {
-                    $arrRoles[$i]['status'] = '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>';
+                    $arrRoles[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
                 }else{
-                    $arrRoles[$i]['status'] = '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                    $arrRoles[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                 }
 
                 // BTN PERMISOS DELETE EDIT

@@ -192,9 +192,11 @@ function permisos() {
                 if (request.readyState == 4 && request.status == 200) {
                     document.getElementById("contentModalPermisos").innerHTML = request.responseText;
                     
+                    // SWITCH OFF/ON
                     $("input[data-bootstrap-switch]").each(function(){
                         $(this).bootstrapSwitch('state', $(this).prop('checked'));
-                    })
+                    });
+                    // -----------------------------
   
                     $('.modalPermisos').modal('show');
                     document.getElementById("formPermisos").addEventListener('submit', savePermisos, false);

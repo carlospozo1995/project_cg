@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Permisos - Roles de Usuario</h4>
+                <h4 class="modal-title">Permisos - Roles de Usuario - <?= $data['rolTitulo'][0]['nombrerol'] ?></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,15 +13,15 @@
                 <form action="" id="formPermisos" name="formPermisos">
                     <input type="hidden" id="rolid" name="rolid" value="<?= $data['rolid'] ?>">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-bordered">
+                            <thead class="table-primary">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Módulo</th>
-                                    <th>Ver</th>
-                                    <th>Crear</th>
-                                    <th>Actualizar</th>
-                                    <th>Eliminar</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Módulo</th>
+                                    <th class="text-center">Ver</th>
+                                    <th class="text-center">Crear</th>
+                                    <th class="text-center">Actualizar</th>
+                                    <th class="text-center">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,21 +41,21 @@
                                 
                                 ?>
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <?= $no; ?>
                                         <input type="hidden" name="modulos[<?= $i; ?>][idmodulo]" value="<?= $idModulo ?>">
                                     </td>
-                                    <td><?= $modulos[$i]['titulo']; ?></td>
-                                    <td>
+                                    <td class="text-center"><?= $modulos[$i]['titulo']; ?></td>
+                                    <td class="text-center">
                                         <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][ver]" <?= $verCheck ?> data-on-color="success">
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][crear]" <?= $crearCheck ?> data-on-color="success">
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][actualizar]" <?= $actualizarCheck ?> data-on-color="success">
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][eliminar]" <?= $eliminarCheck ?> data-on-color="success">
                                     </td>
                                 </tr>
