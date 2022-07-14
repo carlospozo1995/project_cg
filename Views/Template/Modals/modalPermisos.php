@@ -13,6 +13,7 @@
                 <form action="" id="formPermisos" name="formPermisos">
                     <input type="hidden" id="rolid" name="rolid" value="<?= $data['rolid'] ?>">
                     <div class="table-responsive">
+                        <?php dep($data);?>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -47,16 +48,16 @@
                                     </td>
                                     <td><?= $modulos[$i]['titulo']; ?></td>
                                     <td>
-                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][ver]" <?= $verCheck ?> data-on-color="success">
                                     </td>
                                     <td>
-                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][crear]" <?= $crearCheck ?> data-on-color="success">
                                     </td>
                                     <td>
-                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][actualizar]" <?= $actualizarCheck ?> data-on-color="success">
                                     </td>
                                     <td>
-                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" data-on-color="success">
+                                        <input type="checkbox" data-bootstrap-switch data-off-color="secondary" name="modulos[<?= $i; ?>][eliminar]" <?= $eliminarCheck ?> data-on-color="success">
                                     </td>
                                 </tr>
                                 <?php
