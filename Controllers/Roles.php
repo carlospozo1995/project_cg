@@ -41,6 +41,19 @@
             die();
         }
 
+        public function getSelectRoles()
+        {
+            $htmlOptions = "";
+            $arrRoles = $this->model->selectRoles();
+            if (count($arrRoles) > 0) {
+                for ($i=0; $i < count($arrRoles); $i++) { 
+                    $htmlOptions .= '<option value="'.$arrRoles[$i]['idrol'].'">'.$arrRoles[$i]['nombrerol'].'</option>' ;
+                }
+            }
+            echo $htmlOptions;
+            die();
+        }
+
         public function setRol()
         {
             $intIdrol = intval($_POST['idRol']);

@@ -58,7 +58,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="listRolid">Rol del usuario</label>
-                                        <select class="form-control" id="listRolid" name="listRolid">
+                                        <select style="width:100%" class="form-control" id="listRolid" name="listRolid">
                                         </select>
                                     </div>
                                 </div>
@@ -82,7 +82,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             
                         </div>
                         <!-- /.card-body -->
@@ -100,3 +99,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
