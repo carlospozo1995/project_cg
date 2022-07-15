@@ -23,3 +23,5 @@ formNewUser.onsubmit = function (e) {
         console.log("campos llenos")
     }
 }
+
+// $('.select2').select2()

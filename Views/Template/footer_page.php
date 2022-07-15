@@ -34,6 +34,8 @@
 <script src="<?php echo media(); ?>js/plugins/datatables-buttons/buttons.colVis.min.js"></script>
 <!-- Bootstrap Switch -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
+<!-- Bootstrap Select2 -->
+<script src="<?php echo media(); ?>js/plugins/bootstrap-select/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 

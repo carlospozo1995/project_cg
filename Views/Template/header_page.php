@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-bs4/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-responsive/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-buttons/buttons.bootstrap4.min.css">
+  <!-- Bootstrap-Select2 -->
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/bootstrap-select/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/bootstrap-select/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/adminlte.min.css">
   <!-- My style -->
