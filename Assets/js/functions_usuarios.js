@@ -24,4 +24,11 @@ formNewUser.onsubmit = function (e) {
     }
 }
 
+function rolesUsuario() {
+    var ajaxUrl = base_url + 'Roles/getSelectRoles';
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    request.open('GET', ajaxUrl, true);
+    request.send();
+}
+
 // $('.select2').select2()
