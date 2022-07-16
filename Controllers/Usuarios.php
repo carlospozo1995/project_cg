@@ -17,6 +17,11 @@
             $this->views->getView($this, "usuarios", $data);
         }
 
+        public function setUsers()
+        {
+            dep($_POST);
+        }
+
     }
 
 ?>

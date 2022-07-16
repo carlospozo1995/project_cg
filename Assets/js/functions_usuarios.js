@@ -1,3 +1,8 @@
+window.addEventListener('load', function () {
+    rolesUsuario();
+},false);
+
+
 document.getElementById("btnNewUser").addEventListener("click", function () {
     $("#modalFormUser").modal("show");
 });
@@ -7,20 +12,22 @@ var formNewUser = document.getElementById("formNewUser");
 formNewUser.onsubmit = function (e) {
     e.preventDefault();
 
-    var idUser = document.getElementById("idUser").value;
     var strCedula = document.getElementById("txtCedula").value;
     var strNombre = document.getElementById("txtNombres").value;
     var strApellido = document.getElementById("txtApellidos").value;
     var intTelefono = document.getElementById("txtTelefono").value;
     var strEmail = document.getElementById("txtEmail").value;
-    var intRol = document.getElementById("listRolid").value;
-    var intStatus = document.getElementById("listStatus").value;
+    var intTipoUsuario = document.getElementById("listRolid").value;
     var strPassword = document.getElementById("txtPassword").value;
 
-    if (strCedula == "" || strNombre == "" || strApellido == "" || intTelefono == "" || strEmail == "" || intRol == "" || intStatus == "" || strPassword == "") {
+    if (strCedula == "" || strNombre == "" || strApellido == "" || intTelefono == "" || strEmail == "" || intTipoUsuario == "" || strPassword == "") {
         Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
     }else{
-        console.log("campos llenos")
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url + 'Usuarios/setUsers';
+        var formData = new FormData(formNewUser);
+        request.open("POST", ajaxUrl, true);
+        request.send(formData);
     }
 }
 
@@ -29,6 +36,14 @@ function rolesUsuario() {
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     request.open('GET', ajaxUrl, true);
     request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            document.getElementById("listRolid").innerHTML = request.responseText;
+            document.getElementById("listRolid").value = 1;
+            $("#listRolid").select2();
+        }
+    }
 }
 
 // $('.select2').select2()
