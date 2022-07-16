@@ -19,7 +19,19 @@
 
         public function setUsers()
         {
-            dep($_POST);
+            // $intIduser = intval($_POST['idUser']);
+            // $strIdentificacion = strClean($_POST['txtCedula']);
+            // $strNombres = strClean($_POST['txtNombres']);
+            // $strApellidos = strClean($_POST['txtApellidos']);
+            // $intTelefono = intval(strClean($_POST['txtTelefono']));
+            // $strEmail = strClean(_($_POST['txtEmail']));
+            // $intRoluser = intval($_POST['listRolid']);
+            // $intStatus = intval($_POST['listStatus']);
+            // $strPassword = $_POST['txtPassword'];
+
+
+            
+            
         }
 
     }
