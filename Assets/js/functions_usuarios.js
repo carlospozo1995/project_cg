@@ -45,5 +45,3 @@ function rolesUsuario() {
         }
     }
 }
-
-// $('.select2').select2()

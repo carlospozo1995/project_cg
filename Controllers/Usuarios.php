@@ -19,19 +19,21 @@
 
         public function setUsers()
         {
-            // $intIduser = intval($_POST['idUser']);
-            // $strIdentificacion = strClean($_POST['txtCedula']);
-            // $strNombres = strClean($_POST['txtNombres']);
-            // $strApellidos = strClean($_POST['txtApellidos']);
-            // $intTelefono = intval(strClean($_POST['txtTelefono']));
-            // $strEmail = strClean(_($_POST['txtEmail']));
-            // $intRoluser = intval($_POST['listRolid']);
-            // $intStatus = intval($_POST['listStatus']);
-            // $strPassword = $_POST['txtPassword'];
+            if ($_POST) {
+                $intUserid = intval($_POST['idUser']);
+                $strCedula = strClean($_POST['txtCedula']);
+                $strNombres = strClean($_POST['txtNombres']);
+                $strApellidos = strClean($_POST['txtApellidos']);
+                $intTelefono = intval($_POST['txtTelefono']);
+                $strEmail = strClean($_POST['txtEmail']);
+                $intRoluser = intval($_POST['listRolid']);
+                $intStatus = intval($_POST['listStatus']);
+                $strPassword = md5($_POST['txtPassword']);
 
-
-            
-            
+                if (empty($intUserid)) {
+                    $this->model->insertUser($strCedula, $strNombres, $strApellidos, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                }
+            }
         }
 
     }
