@@ -12,19 +12,20 @@ var formNewUser = document.getElementById("formNewUser");
 formNewUser.onsubmit = function (e) {
     e.preventDefault();
 
-    var strCedula = document.getElementById("txtCedula").value;
-    var strNombre = document.getElementById("txtNombres").value;
-    var strApellido = document.getElementById("txtApellidos").value;
+    var strIdentificacion = document.getElementById("txtIdentificacion").value;
+    var strNombre = document.getElementById("txtNombre").value;
+    var strApellido = document.getElementById("txtApellido").value;
     var intTelefono = document.getElementById("txtTelefono").value;
     var strEmail = document.getElementById("txtEmail").value;
     var intTipoUsuario = document.getElementById("listRolid").value;
     var strPassword = document.getElementById("txtPassword").value;
 
-    if (strCedula == "" || strNombre == "" || strApellido == "" || intTelefono == "" || strEmail == "" || intTipoUsuario == "" || strPassword == "") {
+    if (strIdentificacion == "" || strNombre == "" || strApellido == "" || intTelefono == "" || strEmail == "" || intTipoUsuario == "") {
         Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+        return false;
     }else{
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = base_url + 'Usuarios/setUsers';
+        var ajaxUrl = base_url + 'Usuarios/setUsuario';
         var formData = new FormData(formNewUser);
         request.open("POST", ajaxUrl, true);
         request.send(formData);

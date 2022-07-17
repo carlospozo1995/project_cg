@@ -11,15 +11,15 @@
                 <div class="card card-primary">
                 <!-- form start -->
                     <form id="formNewUser" name="formNewUser">
-                        <input type="hidden" id="idUser" name="idUser" value="">
+                        <input type="hidden" id="idUsuario" name="idUsuario" value="">
 
                         <div class="card-body">
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="txtCedula">Identificación</label>
-                                        <input type="text" class="form-control" id="txtCedula" name="txtCedula">
+                                        <label for="txtIdentificacion">Identificación</label>
+                                        <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" required>
                                     </div>
                                 </div>
                             </div>
@@ -27,14 +27,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="txtNombres">Nombres</label>
-                                        <input type="text" class="form-control" id="txtNombres" name="txtNombres">
+                                        <label for="txtNombre">Nombre</label>
+                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="txtApellidos">Apellidos</label>
-                                        <input type="text" class="form-control" id="txtApellidos" name="txtApellidos">
+                                        <label for="txtApellido">Apellido</label>
+                                        <input type="text" class="form-control" id="txtApellido" name="txtApellido" required>
                                     </div>
                                 </div>
                             </div>
@@ -43,13 +43,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtTelefono">Teléfono</label>
-                                        <input type="text" class="form-control" id="txtTelefono" name="txtTelefono">
+                                        <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtEmail">Email</label>
-                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" required>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="listRolid">Rol del usuario</label>
-                                        <select style="width:100%" class="form-control" id="listRolid" name="listRolid">
+                                        <select style="width:100%" class="form-control" id="listRolid" name="listRolid" required>
                                         </select>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="listStatus">Status Usuario</label>
-                                        <select class="form-control" id="listStatus" name="listStatus">
+                                        <select class="form-control" id="listStatus" name="listStatus" required>
                                             <option value="1">Activo</option>
                                             <option value="2">Inactivo</option>
                                         </select>

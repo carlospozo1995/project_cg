@@ -17,23 +17,29 @@
             $this->views->getView($this, "usuarios", $data);
         }
 
-        public function setUsers()
+        public function setUsuario()
         {
             if ($_POST) {
-                $intUserid = intval($_POST['idUser']);
-                $strCedula = strClean($_POST['txtCedula']);
-                $strNombres = strClean($_POST['txtNombres']);
-                $strApellidos = strClean($_POST['txtApellidos']);
-                $intTelefono = intval($_POST['txtTelefono']);
-                $strEmail = strClean($_POST['txtEmail']);
-                $intRoluser = intval($_POST['listRolid']);
-                $intStatus = intval($_POST['listStatus']);
-                $strPassword = md5($_POST['txtPassword']);
+                
 
-                if (empty($intUserid)) {
-                    $this->model->insertUser($strCedula, $strNombres, $strApellidos, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus'])) {
+                    $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+                }else{
+                    // $intUserid = intval($_POST['idUsuario']);
+                    $strIdentificacion = intval($_POST['txtIndentificacion']);
+                    $strNombre = ucwords(strClean($_POST['txtNombre']));
+                    $strApellido = ucwords(strClean($_POST['txtApellido']));
+                    $intTelefono = intval(strClean($_POST['txtTelefono']));
+                    $strEmail = strClean($_POST['txtEmail']);
+                    $intRoluser = intval(strClean($_POST['listRolid']));
+                    $intStatus = intval(strClean($_POST['listStatus']));
+
+                    $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+                
+                    $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus);
                 }
             }
+            die();
         }
 
     }
