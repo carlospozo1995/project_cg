@@ -29,6 +29,23 @@ formNewUser.onsubmit = function (e) {
         var formData = new FormData(formNewUser);
         request.open("POST", ajaxUrl, true);
         request.send(formData);
+        // request.onreadystatechange =function () {
+        //     if (request.readyState == 4 && request.status == 200) {
+        //         var objData = JSON.parse(request.responseText);
+        //         if (objData.status) {
+        //             $("#modalFormUser").modal("hide");
+        //             formNewUser.reset();
+        //             Swal.fire("Usuarios", objData.msg, "success");
+        //             tableUsuarios.ajax.reload(function () {
+                    
+        //             });
+        //         }else{
+        //             Swal.fire("Error", objData.msg, "error");
+        //         }
+        //     }else{
+        //         console.log("error");
+        //     }
+        // }
     }
 }
 
