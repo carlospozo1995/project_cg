@@ -35,11 +35,11 @@
                     $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
                 
                     $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
-
+                    
                     if ($request_user > 0) {
-                        echo "exito";
+                        echo "dato ingresado";
                     }else{
-                        echo "fracaso";
+                        echo "dato no ingresado";
                     }
 
                     // if ($request_user > 0) {

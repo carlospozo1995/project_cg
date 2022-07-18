@@ -31,7 +31,7 @@
 
             $return = 0;
 
-            $sql_exists_user = "SELECT * FROM project_cg.usuario WHERE identificacion = '{$this->strIdentificacion}' OR email_user = '{$this-> strEmail}'";
+            $sql_exists_user = "SELECT * FROM project_cg.usuario WHERE email_user = '{$this->strEmail}' OR identificacion = '{$this->strIdentificacion}'";
 
             $request = $this->selectAll($sql_exists_user);
            
