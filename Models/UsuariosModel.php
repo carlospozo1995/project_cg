@@ -39,9 +39,20 @@
                 $sql_insert_user = "INSERT INTO project_cg.usuario(identificacion, nombres, apellidos, telefono, email_user, password, rolid, status) VALUES('$this->strIdentificacion', '$this->strNombre', '$this->strApellido', $this->intTelefono, '$this->strEmail', '$this->strPassword', $this->intUserRol, $this->intStatus)";
                 
                 $request = $this->insert($sql_insert_user);
-                return $request;
+                $return = $request;
             }else{
-                $return = "existe";
+                // ---------------------------------
+                $sql_compare_exists = "SELECT   IF(con.joinidentificacion LIKE '%".$this->strIdentificacion."%') AS identificaciones,
+                                                IF(con.joinemail_user LIKE '%".$this->strEmail."%') AS correos
+                                                FROM (SELECT GROUP_CONCAT(identificacion) AS joinidentificacion, 
+                                                             GROUP_CONCAT(email_user) AS joinemail_user FROM project_cg.usuario 
+                                                             WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
+                $request = $this->compare($sql_compare_exists);
+
+                // ---------------------------------
+
+
+                // $return = "existe";
             }
             return $return;
         }
