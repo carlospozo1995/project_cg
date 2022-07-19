@@ -114,15 +114,15 @@ CREATE TABLE `usuario` (
   `apellidos` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `telefono` bigint(20) NOT NULL,
   `email_user` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `password` varchar(25) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `toke` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `toke` varchar(80) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `rolid` bigint(20) NOT NULL,
   `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idusuario`),
   KEY `rolid` (`rolid`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,6 +131,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'070671565-3','Carlos','Pozo',994603678,'carlospozo95@gmail.com','bc7b99afe79a3eef8626846555026d38e0ca7ebfd020f2e4a30781871687e592',NULL,1,'2022-07-18 21:34:43',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-14  7:18:11
+-- Dump completed on 2022-07-18 22:17:22
