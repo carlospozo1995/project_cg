@@ -40,11 +40,10 @@
                 
                 $request = $this->insert($sql_insert_user);
                 return $request;
+            }else{
+                $return = "existe";
             }
-            // else{
-            //     $return = "existe";
-            // }
-            // return $return;
+            return $return;
         }
     }
 

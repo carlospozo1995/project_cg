@@ -24,7 +24,7 @@
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 }else{
                     // $intUserid = intval($_POST['idUsuario']);
-                    $strIdentificacion = intval($_POST['txtIdentificacion']);
+                    $strIdentificacion = strClean($_POST['txtIdentificacion']);
                     $strNombre = ucwords(strClean($_POST['txtNombre']));
                     $strApellido = ucwords(strClean($_POST['txtApellido']));
                     $intTelefono = intval(strClean($_POST['txtTelefono']));
@@ -35,22 +35,16 @@
                     $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
                 
                     $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
-                    
-                    if ($request_user > 0) {
-                        echo "dato ingresado";
-                    }else{
-                        echo "dato no ingresado";
-                    }
 
-                    // if ($request_user > 0) {
-                    //     $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
-                    // }else if ($request_user == "existe"){
-                    //     $arrResponse = array("status" => false, "msg" => "!Atención! El email o la identificación ya existen, ingrese otro.");
-                    // }else{
-                    //     $arrResponse = array("status" => false, "msg" => "No es posible ingresar los datos.");
-                    // }
+                    if ($request_user > 0) {
+                        $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
+                    }else if ($request_user == "existe"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! El email o la identificación ya existen, ingrese otro.");
+                    }else{
+                        $arrResponse = array("status" => false, "msg" => "No es posible ingresar los datos.");
+                    }
                 }
-                // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
             die();
         }
