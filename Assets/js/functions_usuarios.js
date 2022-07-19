@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
     rolesUsuario();
+    showPassword();
 },false);
 
 
@@ -60,4 +61,24 @@ function rolesUsuario() {
             $("#listRolid").select2();
         }
     }
+}
+
+function showPassword() {
+    var inputPassword = document.getElementById('txtPassword');
+    var iconEye = document.querySelector('.show-password');
+
+    iconEye.addEventListener('click', function (e) {
+        var eye = e.target;
+        if (eye.classList.contains('show-password')) {
+            eye.classList.remove('show-password');
+            eye.classList.remove('fa-eye-slash');
+            eye.classList.add('fa-eye');            
+            inputPassword.type = 'text';
+        }else{
+            eye.classList.remove('fa-eye');
+            eye.classList.add('fa-eye-slash');
+            eye.classList.add('show-password');
+            inputPassword.type = 'password';
+        }
+    })
 }

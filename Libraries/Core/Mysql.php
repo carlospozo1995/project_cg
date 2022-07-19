@@ -70,7 +70,7 @@
             return $result;
         }
 
-        public function compare(string $query)
+        public function concat(string $query)
         {
             $this->strquery = $query;
             $result = $this->conexion->query($this->strquery);

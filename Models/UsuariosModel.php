@@ -41,27 +41,22 @@
                 $request = $this->insert($sql_insert_user);
                 $return = $request;
             }else{
-                // ---------------------------------
-                $sql_compare_exists = "SELECT   IF(con.joinidentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
-                                                IF(con.joinemail_user LIKE '%".$this->strEmail."%',1,0) AS correos
-                                                FROM (SELECT GROUP_CONCAT(identificacion) AS joinidentificacion, 
-                                                             GROUP_CONCAT(email_user) AS joinemail_user FROM project_cg.usuario 
+                $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
+                                                IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos
+                                                FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, 
+                                                             GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario 
                                                              WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
-                $request = $this->compare($sql_compare_exists);
+                $request = $this->concat($sql_exists);
                
                 if(!empty($request)){
                     if($request['identificaciones'] && $request['correos']){
-                        $return = "existendos";
+                        $return = "Existe correo e identificacion";
                     }elseif ($request['identificaciones']) {
-                        $return = "identificacionExiste"; 
+                        $return = "Existe identificacion"; 
                     }elseif ($request['correos']) {
-                        $return = "correoExiste";
+                        $return = "Existe correo";
                     }
                 }   
-                // ---------------------------------
-
-
-                // $return = "existe";
             }
             return $return;
         }

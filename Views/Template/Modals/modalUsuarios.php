@@ -76,9 +76,12 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <label for="txtNombre">Contraseña</label>
-                                        <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+                                        <div class="eye-show-mc">
+                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+                                            <span title="Mostrar" class="container-eye-mc"><i class="fas fa-eye-slash show-password"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

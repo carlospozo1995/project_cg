@@ -34,6 +34,17 @@
     color: #fff;
 }
 
+/* MOSTRAR Y OCULTAR CONTRASEÑA */
+.eye-show-mc{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.container-eye-mc{
+    cursor: pointer;
+}
+
 /* ACOMODANDO POSICION ELEMENTOS DATATABLE */
 .dataTables_wrapper{
     flex-direction: column;

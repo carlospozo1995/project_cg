@@ -24,7 +24,7 @@
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 }else{
                     // $intUserid = intval($_POST['idUsuario']);
-                    $strIdentificacion = strClean($_POST['txtIdentificacion']);
+                    $strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
                     $strNombre = ucwords(strClean($_POST['txtNombre']));
                     $strApellido = ucwords(strClean($_POST['txtApellido']));
                     $intTelefono = intval(strClean($_POST['txtTelefono']));
@@ -38,24 +38,15 @@
 
                     if ($request_user > 0) {
                         $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
-                    }else if ($request_user == "existendos"){
-                        $arrResponse = array("status" => false, "msg" => "!Atención! El email y la identificación ya existen, ingrese otros por favor.");
-                    }else if ($request_user == "identificacionExiste"){
-                        $arrResponse = array("status" => false, "msg" => "!Atención! La identificación ya existe, ingrese otro por favor.");
-                    }else if ($request_user == "correoExiste"){
-                        $arrResponse = array("status" => false, "msg" => "!Atención! El email ya existe, ingrese otro por favor.");
+                    }else if ($request_user == "Existe correo e identificacion"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! La identificación y el correo ya existen. Intentelo de nuevo por favor.");
+                    }else if ($request_user == "Existe identificacion"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! La identificación ya existe. Intentelo de nuevo por favor.");
+                    }else if ($request_user == "Existe correo"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! El email ya existe. Intentelo de nuevo por favor.");
                     }else{
                         $arrResponse = array("status" => false, "msg" => "No es posible ingresar los datos.");
                     }
-
-                    
-                    // if ($request_user > 0) {
-                    //     $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
-                    // }else if ($request_user == "existe"){
-                    //     $arrResponse = array("status" => false, "msg" => "!Atención! El email o la identificación ya existen, ingrese otro.");
-                    // }else{
-                    //     $arrResponse = array("status" => false, "msg" => "No es posible ingresar los datos.");
-                    // }
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
