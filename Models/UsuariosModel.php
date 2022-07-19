@@ -42,13 +42,22 @@
                 $return = $request;
             }else{
                 // ---------------------------------
-                $sql_compare_exists = "SELECT   IF(con.joinidentificacion LIKE '%".$this->strIdentificacion."%') AS identificaciones,
-                                                IF(con.joinemail_user LIKE '%".$this->strEmail."%') AS correos
+                $sql_compare_exists = "SELECT   IF(con.joinidentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
+                                                IF(con.joinemail_user LIKE '%".$this->strEmail."%',1,0) AS correos
                                                 FROM (SELECT GROUP_CONCAT(identificacion) AS joinidentificacion, 
                                                              GROUP_CONCAT(email_user) AS joinemail_user FROM project_cg.usuario 
                                                              WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
                 $request = $this->compare($sql_compare_exists);
-
+               
+                if(!empty($request)){
+                    if($request['identificaciones'] && $request['correos']){
+                        $return = "existendos";
+                    }elseif ($request['identificaciones']) {
+                        $return = "identificacionExiste"; 
+                    }elseif ($request['correos']) {
+                        $return = "correoExiste";
+                    }
+                }   
                 // ---------------------------------
 
 
