@@ -103,3 +103,54 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+
+<div class="modal fade" id="modalViewUser">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Datos del usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                <!-- Table data user -->
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Identificación</td>
+                                <td id="celidentificacion">54656465</td>
+                            </tr>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td id="celNombre">Carlos</td>
+                            </tr>
+                            <tr>
+                                <td>Apellidos:</td>
+                                <td id="celApellido">Pozo</td>
+                            </tr>
+                            <tr>
+                                <td>teléfono:</td>
+                                <td id="celtelefono"></td>
+                            </tr>
+                            <tr>
+                                <td>Email(Usuario):</td>
+                                <td>Admin</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

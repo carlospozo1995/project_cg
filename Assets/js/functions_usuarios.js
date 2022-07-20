@@ -175,7 +175,11 @@ function viewUser() {
     btnViewUser.forEach(function (btnView) {
         btnView.addEventListener('click', function () {
             var idUser = this.getAttribute('us');
-            
+            $('#modalViewUser').modal('show');
+            // var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            // var urlUser = base_url + 'Usuarios/viewUsuario/' + idRol;
+            // request.open("POST", urlUser, true);
+            // request.send();
         })
     })
 }
