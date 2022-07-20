@@ -23,7 +23,7 @@
                 if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus'])) {
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 }else{
-                    // $intUserid = intval($_POST['idUsuario']);
+                    $intUserid = intval($_POST['idUsuario']);
                     $strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
                     $strNombre = ucwords(strClean($_POST['txtNombre']));
                     $strApellido = ucwords(strClean($_POST['txtApellido']));
@@ -32,12 +32,26 @@
                     $intRoluser = intval(strClean($_POST['listRolid']));
                     $intStatus = intval(strClean($_POST['listStatus']));
 
-                    $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+                    
                 
-                    $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                    if (empty($intUserid)) {
+                        // USER CREATE
+                        $option = 1;
+                        $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+                        $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                    }else{
+                        // UPDATE USER
+                        $option = 2;
+                        $strPassword = empty($_POST['txtPassword']) ? '' : hash("SHA256", $_POST['txtPassword']);
+                        $request_user = $this->model->updateUser($intUserid, $strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                    }
 
                     if ($request_user > 0) {
-                        $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
+                        if ($option == 1) {
+                            $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
+                        }else{
+                            $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente.");
+                        }
                     }else if ($request_user == "Existe correo e identificacion"){
                         $arrResponse = array("status" => false, "msg" => "!Atención! La identificación y el correo ya existen. Intentelo de nuevo por favor.");
                     }else if ($request_user == "Existe identificacion"){

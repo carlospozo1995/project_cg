@@ -85,7 +85,6 @@ formNewUser.onsubmit = function (e) {
                     formNewUser.reset();
                     Swal.fire("Usuarios", objData.msg, "success");
                     tableUsers.ajax.reload(function () {
-                        $(".dtr-control");
                         viewUser();
                         editUser();
                     });
@@ -144,30 +143,34 @@ function editUser() {
             document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
             document.getElementById("btnSubmitUser").classList.replace("btn-primary", "bg-success");
             document.querySelector(".btnText").innerHTML = "Actualizar";
-            $('#modalFormUser').modal('show');
+            
 
-            // var idRol = this.getAttribute('rl');
-            // var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            // var ajaxetUser = base_url + 'Roles/getRol/' + idRol;
-            // request.open("GET", ajaxetUser, true);
-            // request.send();
+            var idUser = this.getAttribute('us');
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxetUser = base_url + 'Usuarios/viewUsuario/' + idUser;
+            request.open("GET", ajaxetUser, true);
+            request.send();
 
-            // request.onreadystatechange = function () {
-            //     if (request.readyState == 4 && request.status == 200) {
-            //         var objData = JSON.parse(request.responseText);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
 
-            //         if (objData.status) {
-            //             document.getElementById("idRol").value = objData.data.idrol;
-            //             document.getElementById("txtNombre").value = objData.data.nombrerol;
-            //             document.getElementById("txtDescripcion").value = objData.data.descripcion;
-            //             document.getElementById("listStatus").value = objData.data.status;
-
-            //             $('#modalFormRol').modal('show');
-            //         }else{
-            //             Swal.fire("Error", objData.msg, "error");
-            //         }
-            //     }
-            // }
+                    if (objData.status) {
+                        document.getElementById("idUsuario").value = objData.data.idusuario;
+                        document.getElementById("txtIdentificacion").value = objData.data.identificacion;
+                        document.getElementById("txtNombre").value = objData.data.nombres;
+                        document.getElementById("txtApellido").value = objData.data.apellidos;
+                        document.getElementById("txtTelefono").value = objData.data.telefono;
+                        document.getElementById("txtEmail").value = objData.data.email_user;
+                        document.getElementById("listRolid").value = objData.data.idrol;
+                        document.getElementById("listStatus").value = objData.data.status;
+                        $("#listRolid").select2();
+                        // var strPassword = document.getElementById("txtPassword").value;
+                        $('#modalFormUser').modal('show');
+                    }
+                }
+                
+            }
         })
     })
 }

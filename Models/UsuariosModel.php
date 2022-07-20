@@ -77,6 +77,55 @@
             $request = $this->select( $sql_select_user);
             return $request;
         }
+
+        public function updateUser(int $iduser, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, int $rolUser, int $status, string $password)
+        {
+            $this->intIdUsuario = $iduser;
+            $this->strIdentificacion = $identificacion;
+            $this->strNombre = $nombre;
+            $this->strApellido = $apellido;
+            $this->intTelefono = $telefono;
+            $this->strEmail = $email;
+            $this->intUserRol = $rolUser;
+            $this->intStatus = $status;
+            $this->strPassword = $password;
+
+            $sql_exists_user = "SELECT * FROM project_cg.usuario WHERE (identificacion = '{$this->strIdentificacion}' AND idusuario != $this->intIdUsuario) OR (email_user = '{$this-> strEmail}' AND idusuario != $this->intIdUsuario)";
+            $request = $this->selectAll($sql_exists_user);
+
+            if (empty($request)) {
+               if () {
+                # code...
+               }
+            }else{
+               
+            }
+
+            // if (empty($request)) {
+            //     $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword', rolid = $this->intUserRol, status 
+            //     = $this->intStatus WHERE idusuario = $this->intIdUsuario";
+
+            //     $request = $this->update($sql_update_user);
+            // }else{
+            //     $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
+            //                                     IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos
+            //                                     FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, 
+            //                                                  GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario 
+            //                                                  WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
+            //     $request = $this->concat($sql_exists);
+               
+            //     if(!empty($request)){
+            //         if($request['identificaciones'] && $request['correos']){
+            //             $return = "Existe correo e identificacion";
+            //         }elseif ($request['identificaciones']) {
+            //             $return = "Existe identificacion"; 
+            //         }elseif ($request['correos']) {
+            //             $return = "Existe correo";
+            //         }
+            //     }   
+            // }
+            // return $return;
+        }
     }
 
 ?>
