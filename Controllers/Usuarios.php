@@ -12,7 +12,7 @@
             $data['page_id'] = 4;
             $data['page_tag'] = 'Sistema';
             $data['page_title'] = 'Empresa - Usuarios';
-            // $data['page_title'] = 'Créditos GUAMAN - Roles';
+            // $data['page_title'] = 'Créditos GUAMAN - Usuarios';
             $data['page_name'] = 'Usuarios';
             $this->views->getView($this, "usuarios", $data);
         }
@@ -50,6 +50,31 @@
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
+            die();
+        }
+
+        public function getUsuarios()
+        {
+            $arrUsers = $this->model->selectUsers();
+
+            for ($i=0; $i < count($arrUsers); $i++) { 
+                if ($arrUsers[$i]['status'] == 1) {
+                    $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                }else{
+                    $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                }
+
+                // BTN PERMISOS DELETE EDIT
+
+            $arrUsers[$i]['actions']= '<div class="text-center">
+                                            <button type="button" class="btnViewUser btn btn-secondary btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Ver"><i class="fas fa-eye"></i></button>
+                                            <button type="button" class="btnEditUser btn btn-primary btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btnDeleteUser btn btn-danger btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
+                                       </div>' ;
+            }
+
+
+            echo json_encode($arrUsers, JSON_UNESCAPED_UNICODE);
             die();
         }
 

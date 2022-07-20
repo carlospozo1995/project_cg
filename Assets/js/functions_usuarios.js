@@ -3,10 +3,56 @@ window.addEventListener('load', function () {
     showPassword();
 },false);
 
-
+// OPEN MODAL USERS
 document.getElementById("btnNewUser").addEventListener("click", function () {
+    document.getElementById("idUsuario").value = "";
+    document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
+    document.querySelector(".modal-title").innerHTML = "Nuevo Usuario";
+    document.getElementById("btnSubmitUser").classList.replace("bg-success", "btn-primary");
+    document.querySelector(".btnText").innerHTML = "Guardar";
+    formNewUser.reset();
     $("#modalFormUser").modal("show");
 });
+
+//LOAD DATA TABLE USERS
+var tableUsers;
+document.addEventListener('DOMContentLoaded', function () {
+    tableUsers = $("#tableUsuarios").DataTable({
+        "aProcessing": true,
+        "aServerSide":true,
+        "language":{
+            "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+        },
+        "ajax":{
+            "url": base_url + "/Usuarios/getUsuarios",
+            "dataSrc":"",
+        },
+        "columns":[
+            {"data":"idusuario"},
+            {"data":"nombres"},
+            {"data":"apellidos"},
+            {"data":"email_user"},
+            {"data":"telefono"},
+            {"data":"nombrerol"},
+            {"data":"status"},
+            {"data":"actions"},
+        ],
+        "responsive": true,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "dom": 'lBfrtip',
+        "buttons": [
+            "copy", "csv", "excel", "pdf", "print", "colvis"
+        ],
+        "bDestroy":true,
+        "order":[[0,"asc"]],
+        initComplete: function(){
+            viewUser();
+            editUser();
+            // deleteRol();
+            // savePermisos;
+        },
+    });
+})
 
 var formNewUser = document.getElementById("formNewUser");
 
@@ -37,8 +83,10 @@ formNewUser.onsubmit = function (e) {
                     $("#modalFormUser").modal("hide");
                     formNewUser.reset();
                     Swal.fire("Usuarios", objData.msg, "success");
-                    tableUsuarios.ajax.reload(function () {
-                    
+                    tableUsers.ajax.reload(function () {
+                        $(".dtr-control");
+                        viewUser();
+                        editUser();
                     });
                 }else{
                     Swal.fire("Error", objData.msg, "error");
@@ -48,6 +96,7 @@ formNewUser.onsubmit = function (e) {
     }
 }
 
+// MOSTAR ROLES EN EL SELECT DEL MODAL NEW USERS
 function rolesUsuario() {
     var ajaxUrl = base_url + 'Roles/getSelectRoles';
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -63,6 +112,7 @@ function rolesUsuario() {
     }
 }
 
+// MOSTRAR Y OCULTAR CONTRASEÑA
 function showPassword() {
     var inputPassword = document.getElementById('txtPassword');
     var iconEye = document.querySelector('.show-password');
@@ -80,5 +130,52 @@ function showPassword() {
             eye.classList.add('show-password');
             inputPassword.type = 'password';
         }
+    })
+}
+
+function editUser() {
+    var btnEditUser = document.querySelectorAll(".btnEditUser");
+    btnEditUser.forEach(function (btnEdit) {
+        btnEdit.addEventListener('click', function () {
+
+            document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+            document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
+            document.getElementById("btnSubmitUser").classList.replace("btn-primary", "bg-success");
+            document.querySelector(".btnText").innerHTML = "Actualizar";
+            $('#modalFormUser').modal('show');
+
+            // var idRol = this.getAttribute('rl');
+            // var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            // var ajaxetUser = base_url + 'Roles/getRol/' + idRol;
+            // request.open("GET", ajaxetUser, true);
+            // request.send();
+
+            // request.onreadystatechange = function () {
+            //     if (request.readyState == 4 && request.status == 200) {
+            //         var objData = JSON.parse(request.responseText);
+
+            //         if (objData.status) {
+            //             document.getElementById("idRol").value = objData.data.idrol;
+            //             document.getElementById("txtNombre").value = objData.data.nombrerol;
+            //             document.getElementById("txtDescripcion").value = objData.data.descripcion;
+            //             document.getElementById("listStatus").value = objData.data.status;
+
+            //             $('#modalFormRol').modal('show');
+            //         }else{
+            //             Swal.fire("Error", objData.msg, "error");
+            //         }
+            //     }
+            // }
+        })
+    })
+}
+
+function viewUser() {
+    var btnViewUser = document.querySelectorAll('.btnViewUser');
+    btnViewUser.forEach(function (btnView) {
+        btnView.addEventListener('click', function () {
+            var idUser = this.getAttribute('us');
+            
+        })
     })
 }

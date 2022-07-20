@@ -41,12 +41,12 @@
                 $request = $this->insert($sql_insert_user);
                 $return = $request;
             }else{
-                $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
+                $sql_exists_user = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
                                                 IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos
                                                 FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, 
                                                              GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario 
                                                              WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
-                $request = $this->concat($sql_exists);
+                $request = $this->concat($sql_exists_user);
                
                 if(!empty($request)){
                     if($request['identificaciones'] && $request['correos']){
@@ -59,6 +59,14 @@
                 }   
             }
             return $return;
+        }
+
+        public function selectUsers()
+        {
+            $sql_select_user = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, u.status, r.nombrerol FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.status !=  0";
+
+            $request = $this->selectAll($sql_select_user);
+            return $request;
         }
     }
 

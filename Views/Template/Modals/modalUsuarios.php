@@ -90,7 +90,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button id="btnSubmitRol" type="submit" class="btn btn-primary btnText">Guardar</button>
+                            <button id="btnSubmitUser" type="submit" class="btn btn-primary btnText">Guardar</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>

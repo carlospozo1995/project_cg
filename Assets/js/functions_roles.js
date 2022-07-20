@@ -138,40 +138,40 @@ function deleteRol() {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, eliminar!'
-              }).then((result) => {
-                    if (result.isConfirmed) {
-                        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                        var ajaxUrl = base_url + 'Roles/delRol/';
-                        var strData = "idRol=" + idRol; 
-                        request.open("POST", ajaxUrl, true);
-                        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        request.send(strData);
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url + 'Roles/delRol/';
+                    var strData = "idRol=" + idRol; 
+                    request.open("POST", ajaxUrl, true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
 
-                        request.onreadystatechange = function () {
-                            if (request.readyState == 4 && request.status == 200) {
-                                var objData = JSON.parse(request.responseText);
-                                if(objData.status){
-                                    Swal.fire(
-                                        'Eliminado!',
-                                        objData.msg,
-                                        'success'
-                                    );
-                                    tableRoles.ajax.reload(function () {
-                                        editRol();
-                                        deleteRol();
-                                        permisos();
-                                    });
-                                }else{
-                                    Swal.fire(
-                                        'Atención!',
-                                        objData.msg,
-                                        'error'
-                                    );
-                                }
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.status){
+                                Swal.fire(
+                                    'Eliminado!',
+                                    objData.msg,
+                                    'success'
+                                );
+                                tableRoles.ajax.reload(function () {
+                                    editRol();
+                                    deleteRol();
+                                    permisos();
+                                });
+                            }else{
+                                Swal.fire(
+                                    'Atención!',
+                                    objData.msg,
+                                    'error'
+                                );
                             }
                         }
                     }
-              });
+                }
+            });
         });
     });
 }
