@@ -24,7 +24,7 @@
     gap: 5px;
 }
 
-.headerRegister-mc{
+.headerRegister-mc, .header-primary-mc{
     background: var(--cg_one);
     color: #fff;
 }

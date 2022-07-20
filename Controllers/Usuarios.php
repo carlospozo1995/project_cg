@@ -78,6 +78,21 @@
             die();
         }
 
+        public function viewUsuario(int $idUser)
+        {
+            $idusuario = intval($idUser);
+            if ($idusuario > 0) {
+                $arrUser = $this->model->selectUsuario($idusuario);
+                if (empty($arrUser)) {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                }else{
+                    $arrResponse = array('status' => true, 'data' => $arrUser);
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
+
     }
 
 ?>

@@ -63,9 +63,18 @@
 
         public function selectUsers()
         {
-            $sql_select_user = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, u.status, r.nombrerol FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.status !=  0";
+            $sql_select_users = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, u.status, r.nombrerol FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.status !=  0";
 
-            $request = $this->selectAll($sql_select_user);
+            $request = $this->selectAll($sql_select_users);
+            return $request;
+        }
+
+        public function selectUsuario(int $idusuario)
+        {
+            $this->intIdUsuario = $idusuario;
+            
+            $sql_select_user = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, r.idrol, r.nombrerol, u.status, DATE_FORMAT(u.datecreate, '%d-%m-%Y') AS fechaRegistro FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.idusuario = $this->intIdUsuario";
+            $request = $this->select( $sql_select_user);
             return $request;
         }
     }

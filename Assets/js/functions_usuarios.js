@@ -1,6 +1,7 @@
 window.addEventListener('load', function () {
     rolesUsuario();
     showPassword();
+    viewUser();
 },false);
 
 // OPEN MODAL USERS
@@ -133,6 +134,7 @@ function showPassword() {
     })
 }
 
+// EDITAR USUARIO
 function editUser() {
     var btnEditUser = document.querySelectorAll(".btnEditUser");
     btnEditUser.forEach(function (btnEdit) {
@@ -170,16 +172,39 @@ function editUser() {
     })
 }
 
+// VER DATOS DEL USUARIO
 function viewUser() {
     var btnViewUser = document.querySelectorAll('.btnViewUser');
     btnViewUser.forEach(function (btnView) {
         btnView.addEventListener('click', function () {
+
             var idUser = this.getAttribute('us');
-            $('#modalViewUser').modal('show');
-            // var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            // var urlUser = base_url + 'Usuarios/viewUsuario/' + idRol;
-            // request.open("POST", urlUser, true);
-            // request.send();
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var urlUser = base_url + 'Usuarios/viewUsuario/' + idUser;
+            request.open("GET", urlUser, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+
+                    if (objData.status) {
+                        var statuUser = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                        
+                        document.getElementById("celIdentificacion").innerHTML = objData.data.identificacion;
+                        document.getElementById("celNombre").innerHTML = objData.data.nombres;
+                        document.getElementById("celApellido").innerHTML = objData.data.apellidos;
+                        document.getElementById("celTelefono").innerHTML = objData.data.telefono;
+                        document.getElementById("celEmailUser").innerHTML = objData.data.email_user;
+                        document.getElementById("celTipoUsuario").innerHTML = objData.data.nombrerol;
+                        document.getElementById("celEstado").innerHTML = statuUser;
+                        document.getElementById("celFecharegistro").innerHTML = objData.data.fechaRegistro;
+                        $('#modalViewUser').modal('show');
+                    }else{
+                        Swal.fire("Error", objData.msg, "error");
+                    }  
+                }
+            }
         })
     })
 }

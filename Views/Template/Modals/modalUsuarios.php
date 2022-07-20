@@ -108,7 +108,7 @@
 <div class="modal fade" id="modalViewUser">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header header-primary-mc">
                 <h4 class="modal-title">Datos del usuario</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -120,34 +120,44 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Identificación</td>
-                                <td id="celidentificacion">54656465</td>
+                                <td>Identificación:</td>
+                                <td id="celIdentificacion"></td>
                             </tr>
                             <tr>
-                                <td>Nombre:</td>
-                                <td id="celNombre">Carlos</td>
+                                <td>Nombres:</td>
+                                <td id="celNombre"></td>
                             </tr>
                             <tr>
                                 <td>Apellidos:</td>
-                                <td id="celApellido">Pozo</td>
+                                <td id="celApellido"></td>
                             </tr>
                             <tr>
                                 <td>teléfono:</td>
-                                <td id="celtelefono"></td>
+                                <td id="celTelefono"></td>
                             </tr>
                             <tr>
                                 <td>Email(Usuario):</td>
-                                <td>Admin</td>
+                                <td id="celEmailUser"></td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>Tipo Usuario:</td>
+                                <td id="celTipoUsuario"></td>
+                            </tr>
+                            <tr>
+                                <td>Estado:</td>
+                                <td id="celEstado"></td>
+                            </tr>
+                            <tr>
+                                <td>Fecha registro:</td>
+                                <td id="celFecharegistro"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
         </div>
         <!-- /.modal-content -->
     </div>
