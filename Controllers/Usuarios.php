@@ -32,17 +32,17 @@
                     $intRoluser = intval(strClean($_POST['listRolid']));
                     $intStatus = intval(strClean($_POST['listStatus']));
 
-                    
-                
                     if (empty($intUserid)) {
                         // USER CREATE
                         $option = 1;
                         $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+
                         $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
                     }else{
                         // UPDATE USER
                         $option = 2;
                         $strPassword = empty($_POST['txtPassword']) ? '' : hash("SHA256", $_POST['txtPassword']);
+
                         $request_user = $this->model->updateUser($intUserid, $strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
                     }
 

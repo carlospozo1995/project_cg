@@ -94,37 +94,30 @@
             $request = $this->selectAll($sql_exists_user);
 
             if (empty($request)) {
-               if () {
-                # code...
-               }
+                if ($this->strPassword != '') {
+                    $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword', rolid = $this->intUserRol, status = $this->intStatus WHERE idusuario = $this->intIdUsuario";
+        
+                    
+                }else{
+                    $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', rolid = $this->intUserRol, status = $this->intStatus WHERE idusuario = $this->intIdUsuario";
+                }
+                    $request = $this->update($sql_update_user);
             }else{
-               
+                $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correosFROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
+
+                $request_exists = $this->concat($sql_exists);
+                
+                if(!empty($request_exists)){
+                    if($request_exists['identificaciones'] && $request_exists['correos']){
+                        $request = "Existe correo e identificacion";
+                    }elseif ($request_exists['identificaciones']) {
+                        $request = "Existe identificacion"; 
+                    }elseif ($request_exists['correos']) {
+                        $request = "Existe correo";
+                    }
+                }   
             }
-
-            // if (empty($request)) {
-            //     $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword', rolid = $this->intUserRol, status 
-            //     = $this->intStatus WHERE idusuario = $this->intIdUsuario";
-
-            //     $request = $this->update($sql_update_user);
-            // }else{
-            //     $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
-            //                                     IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos
-            //                                     FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, 
-            //                                                  GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario 
-            //                                                  WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
-            //     $request = $this->concat($sql_exists);
-               
-            //     if(!empty($request)){
-            //         if($request['identificaciones'] && $request['correos']){
-            //             $return = "Existe correo e identificacion";
-            //         }elseif ($request['identificaciones']) {
-            //             $return = "Existe identificacion"; 
-            //         }elseif ($request['correos']) {
-            //             $return = "Existe correo";
-            //         }
-            //     }   
-            // }
-            // return $return;
+            return $request;
         }
     }
 
