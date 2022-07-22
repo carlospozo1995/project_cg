@@ -102,35 +102,27 @@
 
                 $request = $this->update($sql_update_user);
             }else{
-// -----------------------------------------------------------------------
-                $exist_mail = 0;
-                $exist_identidicacion = 0;
-                $email_form = $this->strEmail;
-                $identificacion_form = $this->strIdentificacion;
-                array_map(function($record) use ($email_form, $identificacion_form, &$exist_mail,&$exist_identidicacion){
-                    if($record["email_user"] == $email_form){
-                        // dep("entró");
-                        $exist_mail = 1;
-                    }
-                    if($record["identificacion"] == $identificacion_form){
-                        // dep("entró1");
-                        $exist_identidicacion = 1;
-                    }
-                },$request);
-                // dep($request);
-                if($exist_identidicacion && $exist_mail){
-                    // dep("ambos");
-                    $request = "Existe correo e identificacion";
-                }
-                else if($exist_identidicacion ){
-                    // dep("identificacion");
-                    $request = "Existe identificacion"; 
-                }
-                else if($exist_mail){
-                    // dep("email");
-                    $request = "Existe correo";
-                }
+                $idenValidate = false;
+                $emailValidate = false;
                 
+                array_filter($request, function ($data) use(&$idenValidate, &$emailValidate)
+                {
+                    if ($data['identificacion'] == $this->strIdentificacion) {
+                        $idenValidate = true;
+                    }
+                    if ($data['email_user'] == $this->strEmail) {
+                        $emailValidate = true;
+                    }
+                });
+
+                if ($idenValidate && $emailValidate) {
+                    $request = "Existe correo e identificacion";
+                }elseif ($idenValidate) {
+                    $request = "Existe identificacion"; 
+                }elseif ($emailValidate) {
+                    $request = "Existe correo"; 
+                }
+
             }
             return $request;
         }
