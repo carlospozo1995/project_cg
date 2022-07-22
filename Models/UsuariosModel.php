@@ -102,34 +102,35 @@
 
                 $request = $this->update($sql_update_user);
             }else{
-                
-                // dep($request);
-                foreach ($request as $key => $value) {
-
-                    $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$value['identificacion']."%',1,0) AS identificaciones,IF(con.joinEmail_user LIKE '%".$value['email_user']."%',1,0) AS correos FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario WHERE identificacion = '".$value['identificacion']."' OR email_user = '".$value['email_user']."') AS con";
-
-                    $request_exists = $this->concat($sql_exists);
-                    // dep($request_exists);
-                    for ($i=0; $i< count($request_exists) ; $i++) { 
-                        dep($request_exists[$i]);
+// -----------------------------------------------------------------------
+                $exist_mail = 0;
+                $exist_identidicacion = 0;
+                $email_form = $this->strEmail;
+                $identificacion_form = $this->strIdentificacion;
+                array_map(function($record) use ($email_form, $identificacion_form, &$exist_mail,&$exist_identidicacion){
+                    if($record["email_user"] == $email_form){
+                        // dep("entró");
+                        $exist_mail = 1;
                     }
+                    if($record["identificacion"] == $identificacion_form){
+                        // dep("entró1");
+                        $exist_identidicacion = 1;
+                    }
+                },$request);
+                // dep($request);
+                if($exist_identidicacion && $exist_mail){
+                    // dep("ambos");
+                    $request = "Existe correo e identificacion";
+                }
+                else if($exist_identidicacion ){
+                    // dep("identificacion");
+                    $request = "Existe identificacion"; 
+                }
+                else if($exist_mail){
+                    // dep("email");
+                    $request = "Existe correo";
                 }
                 
-
-                // $sql_exists = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, GROUP_CONCAT(email_user) AS joinEmail_user FROM project_cg.usuario WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
-
-                // $request_exists = $this->concat($sql_exists);
-                // $request = dep($request_exists);
-                
-                // if(!empty($request_exists)){
-                //     if($request_exists['identificaciones'] && $request_exists['correos']){
-                //         $request = "Existe correo e identificacion";
-                //     }elseif ($request_exists['identificaciones']) {
-                //         $request = "Existe identificacion"; 
-                //     }elseif ($request_exists['correos']) {
-                //         $request = "Existe correo";
-                //     }
-                // }   
             }
             return $request;
         }
