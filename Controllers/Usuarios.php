@@ -24,7 +24,7 @@
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 }else{
                     $intUserid = intval($_POST['idUsuario']);
-                    $strIdentificacion = intval(strClean($_POST['txtIdentificacion']));
+                    $strIdentificacion = strClean($_POST['txtIdentificacion']);
                     $strNombre = ucwords(strClean($_POST['txtNombre']));
                     $strApellido = ucwords(strClean($_POST['txtApellido']));
                     $intTelefono = intval(strClean($_POST['txtTelefono']));
