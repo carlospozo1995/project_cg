@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
+        "iDisplayLength":2,
         initComplete: function(){
             editRol();
             deleteRol();

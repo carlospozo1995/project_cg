@@ -83,7 +83,7 @@
             $arrUsers[$i]['actions']= '<div class="text-center">
                                             <button type="button" class="btnViewUser btn btn-secondary btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Ver"><i class="fas fa-eye"></i></button>
                                             <button type="button" class="btnEditUser btn btn-primary btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btnDeleteUser btn btn-danger btn-sm" us="'.$arrUsers[$i]['idusuario'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
+                                            <button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" us="'.$arrUsers[$i]['idusuario'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
                                        </div>' ;
             }
 
@@ -105,6 +105,19 @@
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
             die();
+        }
+
+        public function delUser(int $idUser)
+        {
+            $intUser = intval($idUser);
+            $request_user = $this->model->deleteUser($intUser);
+            
+            if ($request_user == "ok"){
+                $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el usuario.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
 
     }

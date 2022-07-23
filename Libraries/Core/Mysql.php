@@ -80,6 +80,14 @@
             }
             return $data[0];   
         }
+
+        // RESETEAR CONTEO ID TABLE
+        public function resetDT(string $query)
+        {
+            $this->strquery = $query;
+            $result = $this->conexion->query($this->strquery);
+            return  $result;
+        }
     }
     
 

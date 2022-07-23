@@ -2,6 +2,7 @@ window.addEventListener('load', function () {
     rolesUsuario();
     showPassword();
     viewUser();
+    deleteUser();
 },false);
 
 // OPEN MODAL USERS
@@ -45,12 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
             "copy", "csv", "excel", "pdf", "print", "colvis"
         ],
         "bDestroy":true,
+        "iDisplayLength":1,
         "order":[[0,"asc"]],
         initComplete: function(){
             viewUser();
             editUser();
-            // deleteRol();
-            // savePermisos;
+            deleteUser();
+            rolesUsuario();
         },
     });
 })
@@ -87,6 +89,7 @@ formNewUser.onsubmit = function (e) {
                     tableUsers.ajax.reload(function () {
                         viewUser();
                         editUser();
+                        deleteUser();
                     });
                 }else{
                     Swal.fire("Error", objData.msg, "error");
@@ -210,4 +213,57 @@ function viewUser() {
             }
         })
     })
+}
+
+// ELIMINAR USUARIO
+
+function deleteUser() {
+    var btnDeleteUser = document.querySelectorAll('.btnDeleteUser');
+    btnDeleteUser.forEach(btnDelete => {
+        btnDelete.addEventListener('click', function () {
+            var idUser = this.getAttribute('us');
+            var nombreUser = this.getAttribute('nb');
+            Swal.fire({
+                title: 'Eliminar Usuario',
+                text: "Realmente quiere eliminar el usuario "+nombreUser+" !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url + 'Usuarios/delUser/' + idUser;
+                    request.open("POST", ajaxUrl, true);
+                    request.send();
+
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4 && request.status == 200) {
+                            var objData = JSON.parse(request.responseText);
+
+                            if(objData.status){
+                                Swal.fire(
+                                    'Eliminado!',
+                                    objData.msg,
+                                    'success'
+                                );
+                                tableUsers.ajax.reload(function () {
+                                    viewUser();
+                                    editUser();
+                                    deleteUser();
+                                });
+                            }else{
+                                Swal.fire(
+                                    'Atención!',
+                                    objData.msg,
+                                    'error'
+                                );
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
 }

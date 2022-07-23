@@ -126,6 +126,29 @@
             }
             return $request;
         }
+
+        public function deleteUser(int $idusuario)
+        {
+            $this->intIdUsuario = $idusuario;
+            $sql_delete_user = "DELETE FROM project_cg.usuario WHERE idusuario = $this->intIdUsuario";
+            $request = $this->delete($sql_delete_user);
+
+            if ($request) {
+                $sql_reset_one = "SET @autoiduser=0";
+                $this->resetDT($sql_reset_one);
+                
+                $sql_reset_dos = "UPDATE project_cg.usuario SET idusuario = (@autoiduser := @autoiduser + 1)";
+                $this->resetDT($sql_reset_dos);
+
+                $sql_reset_three = "ALTER TABLE project_cg.usuario AUTO_INCREMENT = 1";
+                $this->resetDT($sql_reset_three);
+                
+                $request = "ok";
+            }else{
+                $request = "error";
+            }
+            return $request;
+        }
     }
 
 ?>
