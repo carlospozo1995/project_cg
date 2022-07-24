@@ -195,10 +195,8 @@ function editUser(idUsuario) {
 
 
 // ELIMINAR USUARIO
-function deleteUser(idUsuario, nbUsuario) {
-    
+function deleteUser(idUsuario) {
     var idUser = idUsuario;
-    // var nombreUser = nbUsuario;
     Swal.fire({
         title: 'Eliminar Usuario',
         // text: "Realmente quiere eliminar el usuario "+nombreUser+" !",

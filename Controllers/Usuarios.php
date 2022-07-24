@@ -79,14 +79,12 @@
                 }
 
                 // BTN PERMISOS DELETE EDIT
-
-            $arrUsers[$i]['actions']= '<div class="text-center">
-                                            <button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>
-                                            <button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btnDeleteUser btn btn-danger btn-sm" onclick="deleteUser('.$arrUsers[$i]['idusuario'].','.$arrUsers[$i]['nombres'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>
-                                       </div>' ;
+                $arrUsers[$i]['actions']= ' <div class="text-center">
+                                                <button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>
+                                                <button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
+                                                <button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>
+                                            </div>' ;
             }
-// '.$arrUsers[$i]['nombres'].'
 
             echo json_encode($arrUsers, JSON_UNESCAPED_UNICODE);
             die();
