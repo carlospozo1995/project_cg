@@ -8,6 +8,11 @@ document.getElementById("btnNewUser").addEventListener("click", function () {
     $("#listRolid").select2("val", "1");
     formNewUser.reset();
     $("#modalFormUser").modal("show");
+    let valid = document.querySelectorAll(".valid");
+    valid.forEach(function (valid) {
+        valid.classList.remove("is-invalid");
+        valid.classList.remove("is-valid");
+    })
 });
 
 //LOAD DATA TABLE USERS
@@ -163,7 +168,11 @@ function editUser(idUsuario) {
     document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
     document.getElementById("btnSubmitUser").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
-    
+    let valid = document.querySelectorAll(".valid");
+    valid.forEach(function (valid) {
+        valid.classList.remove("is-invalid");
+        valid.classList.remove("is-valid");
+    })
 
     var idUser = idUsuario;
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

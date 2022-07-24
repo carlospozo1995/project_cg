@@ -28,13 +28,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtNombre">Nombre</label>
-                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" required>
+                                        <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtApellido">Apellido</label>
-                                        <input type="text" class="form-control" id="txtApellido" name="txtApellido" required>
+                                        <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required>
                                     </div>
                                 </div>
                             </div>
@@ -43,13 +43,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtTelefono">Teléfono</label>
-                                        <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" required>
+                                        <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtEmail">Email</label>
-                                        <input type="email" class="form-control" id="txtEmail" name="txtEmail" required>
+                                        <input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required>
                                     </div>
                                 </div>
                             </div>

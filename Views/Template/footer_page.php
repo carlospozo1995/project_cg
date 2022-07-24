@@ -11,7 +11,7 @@
 <!-- jQuery -->
 <script>
       const base_url = "<?php echo base_url();?>"
-    </script>
+</script>
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -38,6 +38,7 @@
 <script src="<?php echo media(); ?>js/plugins/select2/select2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
+<script src="<?php echo media(); ?>js/functions.js"></script>
 
 <?php
     switch ($data['page_name']) {
@@ -55,6 +56,5 @@
             break;
     }
 ?>
-
 </body>
 </html>
