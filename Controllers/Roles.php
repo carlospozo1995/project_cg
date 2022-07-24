@@ -28,12 +28,11 @@
                 }
 
                 // BTN PERMISOS DELETE EDIT
-
-            $arrRoles[$i]['actions']= '<div class="text-center">
-                                            <button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Permisos"><i class="fas fa-key"></i></button>
-                                            <button type="button" class="btnEditRol btn btn-primary btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btnDeleteRol btn btn-danger btn-sm" rl="'.$arrRoles[$i]['idrol'].'" tilte="Eliminar"><i class="fas fa-trash"></i></button>
-                                       </div>' ;
+                $arrRoles[$i]['actions']=   '<div class="text-center">
+                                                <button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" onclick="permisos('.$arrRoles[$i]['idrol'].')" tilte="Permisos"><i class="fas fa-key"></i></button>
+                                                <button type="button" class="btnEditRol btn btn-primary btn-sm" onclick="editRol('.$arrRoles[$i]['idrol'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
+                                                <button type="button" class="btnDeleteRol btn btn-danger btn-sm" onclick="deleteRol('.$arrRoles[$i]['idrol'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>
+                                            </div>' ;
             }
 
 
