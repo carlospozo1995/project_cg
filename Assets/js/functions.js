@@ -18,7 +18,7 @@ function testText(txtString) {
 }
 
 function testEntero(intCant) {
-    var intCantidad = new RegExp(/^([0-9])*$/);
+    var intCantidad = new RegExp(/^([0-9]{7,10})$/);
     if (intCantidad.test(intCant)){
         return true;
     }else{
@@ -27,7 +27,7 @@ function testEntero(intCant) {
 }
 
 function emailValidate(email) {
-    var stringEmail = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})+$/);
+    var stringEmail = new RegExp(/^(([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4}))*$/);
     if (stringEmail.test(email) == false){
         return false;
     }else{
@@ -44,10 +44,7 @@ function validText() {
                 this.classList.add('is-invalid');
             }else{
                 this.classList.remove('is-invalid');
-                this.classList.add('is-valid');
-                if(inputValue == ''){
-                    this.classList.remove('is-valid');
-                }
+                valid(this, inputValue);
             }
         });
     });
@@ -62,6 +59,7 @@ function validNumber() {
                 this.classList.add('is-invalid');
             }else{
                 this.classList.remove('is-invalid');
+                valid(this, inputValue);
             }
         });
     });
@@ -73,14 +71,10 @@ function validEmail() {
         validEmail.addEventListener('keyup', function () {
             let inputValue = this.value;
             if (!emailValidate(inputValue)) {
-                this.classList.add('is-invalid')
-                if (inputValue == "") {
-                    this.classList.remove('is-invalid');
-                    this.classList.remove('is-valid');
-                };
+                this.classList.add('is-invalid');
             }else{
                 this.classList.remove('is-invalid');
-                this.classList.add('is-valid');
+                valid(this, inputValue);
             }
         });
     });
@@ -91,3 +85,10 @@ window.addEventListener('load', function () {
     validNumber();
     validEmail();
 }, false)
+
+function valid(data, input) {
+    data.classList.add('is-valid');
+    if(input == ''){
+        data.classList.remove('is-valid');
+    }
+}

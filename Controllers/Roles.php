@@ -46,7 +46,9 @@
             $arrRoles = $this->model->selectRoles();
             if (count($arrRoles) > 0) {
                 for ($i=0; $i < count($arrRoles); $i++) { 
-                    $htmlOptions .= '<option value="'.$arrRoles[$i]['idrol'].'">'.$arrRoles[$i]['nombrerol'].'</option>' ;
+                    if ($arrRoles[$i]['status'] == 1) {
+                        $htmlOptions .= '<option value="'.$arrRoles[$i]['idrol'].'">'.$arrRoles[$i]['nombrerol'].'</option>' ;
+                    }
                 }
             }
             echo $htmlOptions;

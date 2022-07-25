@@ -8,11 +8,7 @@ document.getElementById("btnNewUser").addEventListener("click", function () {
     $("#listRolid").select2("val", "1");
     formNewUser.reset();
     $("#modalFormUser").modal("show");
-    let valid = document.querySelectorAll(".valid");
-    valid.forEach(function (valid) {
-        valid.classList.remove("is-invalid");
-        valid.classList.remove("is-valid");
-    })
+    validFocus();
 });
 
 //LOAD DATA TABLE USERS
@@ -66,6 +62,14 @@ document.addEventListener('DOMContentLoaded', function () {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
             return false;
         }else{
+            let elementsValid = document.getElementsByClassName("valid");
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains("is-invalid")) {
+                    Swal.fire("Atención", "Por favor asegúrese de no tener campos en rojo.", "error");
+                    return false;
+                }
+            }
+
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + 'Usuarios/setUsuario';
             var formData = new FormData(formNewUser);
@@ -168,11 +172,7 @@ function editUser(idUsuario) {
     document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
     document.getElementById("btnSubmitUser").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
-    let valid = document.querySelectorAll(".valid");
-    valid.forEach(function (valid) {
-        valid.classList.remove("is-invalid");
-        valid.classList.remove("is-valid");
-    })
+    validFocus();
 
     var idUser = idUsuario;
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -194,7 +194,6 @@ function editUser(idUsuario) {
                 document.getElementById("listRolid").value = objData.data.idrol;
                 document.getElementById("listStatus").value = objData.data.status;
                 $("#listRolid").select2();
-                // var strPassword = document.getElementById("txtPassword").value;
                 $('#modalFormUser').modal('show');
             }
         }
@@ -202,13 +201,11 @@ function editUser(idUsuario) {
     }
 }
 
-
 // ELIMINAR USUARIO
 function deleteUser(idUsuario) {
     var idUser = idUsuario;
     Swal.fire({
         title: 'Eliminar Usuario',
-        // text: "Realmente quiere eliminar el usuario "+nombreUser+" !",
         text: "Realmente quiere eliminar el usuario!",
         icon: 'warning',
         showCancelButton: true,
@@ -244,5 +241,14 @@ function deleteUser(idUsuario) {
                 }
             }
         }
+    });
+}
+
+// VALIDAR EL FOCUS DE LOS INPUTS
+function validFocus() {
+    let valid = document.querySelectorAll(".valid");
+    valid.forEach(function (valid) {
+        valid.classList.remove("is-invalid");
+        valid.classList.remove("is-valid");
     });
 }

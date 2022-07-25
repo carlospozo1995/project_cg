@@ -43,7 +43,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtTelefono">Teléfono</label>
-                                        <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required>
+                                        <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required ">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
