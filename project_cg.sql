@@ -61,7 +61,7 @@ CREATE TABLE `permisos` (
   KEY `moduloid` (`moduloid`),
   CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulos` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-INSERT INTO `permisos` VALUES (1,1,1,0,0,0,0),(2,1,2,1,1,1,1),(3,1,3,1,1,1,1),(4,2,1,0,0,0,0),(5,2,2,1,1,1,0),(6,2,3,1,1,1,0);
+INSERT INTO `permisos` VALUES (1,1,1,0,0,0,0),(2,1,2,1,1,1,1),(3,1,3,1,1,1,1),(4,2,1,0,0,0,0),(5,2,2,1,1,1,0),(6,2,3,1,1,1,0),(7,6,1,1,1,1,0),(8,6,2,0,0,0,0),(9,6,3,0,0,0,0);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `roles` (
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador','Administrador - Todos los permisos',1),(2,'Supervisor','Supervisor - La mayoria de los permisos',1),(3,'Suplente','Suplente - Permisos restringidos',2),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',1);
+INSERT INTO `roles` VALUES (1,'Administrador','Administrador Todos los permisos',1),(2,'Supervisor','Supervisor  La mayoria de los permisos',1),(3,'Suplente','Suplente - Permisos restringidos',2),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',1),(6,'Comprador','lcaocakns',0);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idusuario`),
   KEY `rolid` (`rolid`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'070671565-3','Carlos','Pozo',994603678,'carlospozo95@gmail.com','bc7b99afe79a3eef8626846555026d38e0ca7ebfd020f2e4a30781871687e592',NULL,1,'2022-07-18 21:34:43',2);
+INSERT INTO `usuario` VALUES (1,'123','Uno','Uno',5465646,'uno@uno.com','b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194',NULL,1,'2022-07-23 18:54:53',1),(2,'456','Dos','Dos',1234567891,'do@do.com','f6956462a52cb200a4dde6402eec36fe01dd8983443b7747a741ad39fde403cb',NULL,2,'2022-07-23 21:28:01',1),(3,'789','Tres','Tres',365465465,'tres@tres.com','5059e121f9b01139c944a959f203fb3a7d12d0afdacd4be06dc3916738fa68ac',NULL,3,'2022-07-24 14:20:02',1),(4,'100','Cuatro','Cuatro',9654656,'cuatro@cuatro.com','d6a7c166cd71184165d4718264914f2c4cfce950f65d57b732515d9716cdf279',NULL,4,'2022-07-24 14:24:16',1),(5,'1100','Cinco','Cinco',6845461625,'cinco@cinco.com','a3d43368e6fa45eb0508395ed586ddbae62bc87782df5a416498803b32bc7607',NULL,5,'2022-07-24 14:26:06',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -144,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-18 22:17:22
+-- Dump completed on 2022-07-24 20:44:26
