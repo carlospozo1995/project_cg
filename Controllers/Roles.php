@@ -13,6 +13,7 @@
             $data['page_title'] = 'Empresa - Roles';
             // $data['page_title'] = 'Créditos GUAMAN - Roles';
             $data['page_name'] = 'Roles';
+            $data['page_functions_js'] = 'functions_roles.js';
             $this->views->getView($this, "roles", $data);
         }
 

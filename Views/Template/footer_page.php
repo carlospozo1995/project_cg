@@ -39,22 +39,6 @@
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 <script src="<?php echo media(); ?>js/functions.js"></script>
-
-<?php
-    switch ($data['page_name']) {
-        case 'Roles':
-?>
-        <!-- Functions Roles -->
-        <script src="<?php echo media(); ?>js/functions_roles.js"></script>
-<?php
-            break;
-        case 'Usuarios':
-?>
-        <!-- Functions Usuarios -->
-        <script src="<?php echo media(); ?>js/functions_usuarios.js"></script>
-<?php           
-            break;
-    }
-?>
+<script src="<?php echo media(); ?>js/<?= $data['page_functions_js'] ?>"></script>
 </body>
 </html>
