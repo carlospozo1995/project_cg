@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo media(); ?>css/style.css">
@@ -24,13 +24,13 @@
     <div class="card card-outline card-primary login-content">
       <div class="card-body login">
         
-        <form class="login-form" action="" method="">
+        <form class="login-form" action="" name="formLogin" id="formLogin">
           <div class="card-header text-center">
             <a href="" class="h3"><b>INICIAR SESION</b></a>
           </div>
 
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" name="txtEmail" class="form-control" placeholder="Email" id="txtEmail">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -39,7 +39,7 @@
           </div>
 
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" name="txtPassword" id="txtPassword">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Sign In</button>
             </div>
           </div>
         </form>
@@ -82,12 +82,10 @@
             </div>
 
             <p class="mt-3 mb-1">
-              <a href="#" data-toggle="flip">Login</a>
+              <a href="#" data-toggle="flip"><i class="fas fa-arrow-left"></i> Login</a>
             </p>
           </div>
         </form>
-        
-        
 
       </div>
       <!-- /.card-body -->
@@ -96,11 +94,15 @@
   </div>
 <!-- /.login-box -->
 
-
 <!-- jQuery -->
+<script>
+      const base_url = "<?php echo base_url();?>"
+</script>
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?php echo media(); ?>js/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 <script src="<?php echo media(); ?>js/<?= $data['page_functions_js'] ?>"></script>

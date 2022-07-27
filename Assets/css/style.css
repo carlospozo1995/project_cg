@@ -92,7 +92,7 @@
     min-height: 250px; 
 }
 
-.login-form ,.forget-form{
+.login .login-form ,.login .forget-form{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -108,7 +108,7 @@
     -o-transition:all 0.5s ease-in-out;
 }
 
-.forget-form {
+.login .forget-form {
     opacity: 0;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
