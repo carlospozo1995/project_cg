@@ -1,9 +1,9 @@
 <?php
-
     class Login extends Controller{
 
         public function __construct()
         {
+            session_start();
             parent::__construct();
         }
         
@@ -29,6 +29,15 @@
 
                     if (empty($requestUser)){
                         $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña son incorrectos');
+                    }else{
+                        $arrData = $requestUser;
+                        if ($arrData['status'] == 1) {
+                            $_SESSION['idUser'] = $arrData['idusuario'];
+                            $_SESSION['login'] = true;
+                            $arrResponse = array('status' => true, 'msg' => 'ok');
+                        }else{
+                            $arrResponse = array('status' => false, 'msg' => 'El usuario esta inactivo');
+                        }
                     }
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

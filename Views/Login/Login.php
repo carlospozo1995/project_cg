@@ -13,7 +13,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/fontawesome-free/css/all.min.css">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/sweetalert2/sweetalert2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo media(); ?>css/style.css">

@@ -20,7 +20,17 @@ document.addEventListener('DOMContentLoaded', function(){
                 var ajaxUrl = base_url + 'Login/loginUser';
                 var formData = new FormData(formLogin);
                 request.open("POST", ajaxUrl, true);
-                request.send(formData); 
+                request.send(formData);
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+                        var objData = JSON.parse(request.responseText);
+                        if (objData.status) {
+                            
+                        }else{
+                            Swal.fire("Error", objData.msg, "warning");
+                        }
+                    }
+                }
             }
         });
     }
