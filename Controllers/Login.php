@@ -19,10 +19,21 @@
 
         public function loginUser()
         {
-            $strEmail = strClean($_POST['txtEmail']);
-            $strPassword = $_POST['txtPassword'];
+            if($_POST){
+                if (empty($_POST['txtEmail']) || empty($_POST['txtPassword'])) {
+                    $arrResponse = array('status' => false, 'msg' => 'Error de datos.');
+                }else{
+                    $strEmail = strtolower(strClean($_POST['txtEmail']));
+                    $strPassword = hash("SHA256", $_POST['txtPassword']);
+                    $requestUser = $this->model->loginUser($strEmail, $strPassword);
 
-            
+                    if (empty($requestUser)){
+                        $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña son incorrectos');
+                    }
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+
         }
     }
 

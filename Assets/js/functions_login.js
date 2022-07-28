@@ -20,9 +20,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 var ajaxUrl = base_url + 'Login/loginUser';
                 var formData = new FormData(formLogin);
                 request.open("POST", ajaxUrl, true);
-                request.send(formData);
+                request.send(formData); 
             }
-            
-        })
+        });
     }
 }, false);

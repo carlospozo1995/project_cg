@@ -47,8 +47,13 @@
             $data = array();
             while ($item = mysqli_fetch_assoc($result)) {
                 $data[] = $item;
+
             }
-            return $data[0];
+            if (empty($data)) {
+                return $data;
+            }else{
+                return $data[0];
+            }
         }
 
         // ACTUALIZAR UN DATO
