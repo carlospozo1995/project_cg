@@ -22,14 +22,20 @@ document.addEventListener('DOMContentLoaded', function(){
                 request.open("POST", ajaxUrl, true);
                 request.send(formData);
                 request.onreadystatechange = function () {
-                    if (request.readyState == 4 && request.status == 200) {
+                    
+                    if (request.readyState != 4) return;
+                    if (request.status == 200) {
                         var objData = JSON.parse(request.responseText);
                         if (objData.status) {
-                            
+                            window.location = base_url + "sistema";
                         }else{
-                            Swal.fire("Error", objData.msg, "warning");
+                            Swal.fire("Atención", objData.msg, "warning");
+                            strPassword = document.getElementById("txtPassword").value = "";
                         }
+                    }else{
+                        Swal.fire("Atención", "Error en el proceso", "error");
                     }
+                    return false;
                 }
             }
         });

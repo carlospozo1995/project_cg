@@ -137,3 +137,7 @@
     -ms-transform: rotateY(0deg);
     -o-transform: rotateY(0deg);
 }
+
+.user-header{
+    height: max-content !important;
+}
