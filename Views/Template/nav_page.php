@@ -10,12 +10,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="align-items:center;">
         <div class="image">
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <span>Alexander Pierce</span>
+          <span><?= $_SESSION['userData']['nombres'] ?></span>
+          <span><?= $_SESSION['userData']['apellidos'] ?></span>
+          <p style="margin-bottom: 0px;"><?= $_SESSION['userData']['nombrerol'] ?></p>
         </div>
       </div>
 
