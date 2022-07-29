@@ -62,13 +62,13 @@
 
         <!-- ------------------------------- -->
 
-        <form action="" method="" class="forget-form">
+        <form action="" id="formResetPass" name="formResetPass" class="forget-form">
           <div class="card-header text-center">
             <a href="" class="h4"><b>REINICIAR CONTRASEÑA</b></a>
           </div>
 
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" class="form-control" id="txtResetEmail" name="txtResetEmail" placeholder="Email">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>

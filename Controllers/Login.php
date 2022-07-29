@@ -51,6 +51,13 @@
             }
 
         }
+
+        public function resetPass()
+        {
+            if ($_POST) {
+                $strEmail = strtolower(strClean($_POST['txtResetEmail']));
+            }
+        }
     }
 
 

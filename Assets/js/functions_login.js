@@ -40,4 +40,27 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     }
+
+    if (document.getElementById('formResetPass')) {
+        let formResetPass = document.getElementById('formResetPass');
+
+        formResetPass.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let strEmail = document.getElementById("txtResetEmail").value;
+
+            if (strEmail == "") {
+                Swal.fire("Por favor", "Escribe tu correo electrónico.", "error");
+                return false;
+            }else{
+                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP');
+                var ajaxUrl = base_url + 'Login/resetPass';
+                var formData = new FormData(formResetPass);
+                request.open("POST", ajaxUrl, true);
+                request.send(formData);
+                request.onreadystatechange = function () {
+                    
+                }
+            }
+        });
+    }
 }, false);

@@ -15,8 +15,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <span><?= $_SESSION['userData']['nombres'] ?></span>
-          <span><?= $_SESSION['userData']['apellidos'] ?></span>
+          <span><?= $_SESSION['userData']['nombres']." ".$_SESSION['userData']['apellidos'] ?></span>
           <p style="margin-bottom: 0px;"><?= $_SESSION['userData']['nombrerol'] ?></p>
         </div>
       </div>
