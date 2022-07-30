@@ -55,8 +55,33 @@
         public function resetPass()
         {
             if ($_POST) {
-                $strEmail = strtolower(strClean($_POST['txtResetEmail']));
+
+                if (empty($_POST['txtResetEmail'])){
+                    $arrResponse = array('status' => false, 'msg' => 'Error de datos.');
+                }else{
+                    $token = token();
+                    $strEmail = strtolower(strClean($_POST['txtResetEmail']));
+                    $arrData = $this->model->getUserEmail($strEmail);
+
+                    if (empty($arrData)){
+                        $arrResponse = array('status' => false, 'msg' => 'El usuario ha recuperar la contraseña no existe.');
+                    }else{
+                        $idUser = $arrData['idusuario'];
+                        $nameUser = $arrData['nombres'].' '.$arrData['apellidos'];
+
+                        $url_recovery = base_url().'login/confirmUser/'.$strEmail.'/'.$token;
+                        $requestUpdate = $this->model->setTokenUser($idUser, $token);
+                    
+                        if($requestUpdate){
+                            $arrResponse = array('status' => true, 'msg' => 'Se ha enviado un mensaje a tu cuenta de correo para restablecer tu contraseña.');
+                        }else{
+                            $arrResponse = array('status' => false, 'msg' => 'No es posible realizar el proceso intentalo mas tarde.');
+                        }
+                    }
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
+            die();
         }
     }
 

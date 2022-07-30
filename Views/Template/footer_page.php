@@ -39,6 +39,14 @@
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 <script src="<?php echo media(); ?>js/functions.js"></script>
+<?php
+
+    if ($data['page_functions_js']) {
+?>
 <script src="<?php echo media(); ?>js/<?= $data['page_functions_js'] ?>"></script>
+<?php
+    }
+
+?>
 </body>
 </html>

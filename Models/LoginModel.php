@@ -31,6 +31,26 @@
             $request = $this->select($sql_search_rol);
             return $request;
         }
+
+        public function getUserEmail(string $email)
+        {
+            $this->strUsuario = $email;
+            $sql_get_email_user = "SELECT idusuario, nombres, apellidos, status FROM project_cg.usuario WHERE email_user = '$this->strUsuario' AND status = 1";
+
+            $request = $this->select($sql_get_email_user);
+            return $request;
+        }
+
+        public function setTokenUser(int $idUser, string $token)
+        {
+            $this->intIdUsuario = $idUser;
+            $this->strToken = $token;
+
+            $sql_update_token_user = "UPDATE project_cg.usuario SET toke = '$this->strToken' WHERE idusuario = $this->intIdUsuario";
+
+            $request = $this->update($sql_update_token_user);
+            return $request;
+        }
     }
 
 ?>

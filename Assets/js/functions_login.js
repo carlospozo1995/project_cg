@@ -58,7 +58,31 @@ document.addEventListener('DOMContentLoaded', function(){
                 request.open("POST", ajaxUrl, true);
                 request.send(formData);
                 request.onreadystatechange = function () {
-                    
+                    if (request.readyState != 4) return;
+                    if (request.status == 200) {
+                        var objData = JSON.parse(request.responseText);
+
+                        if (objData.status){
+                            Swal.fire({
+                                title:'',
+                                text:objData.msg,
+                                icon:'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Aceptar'
+                            }).then((result) => {
+                                if (result.isConfirmed){
+                                    window.location = base_url + "login";
+                                }
+                            });
+                        }else{
+                            Swal.fire("Atención", objData.msg, "warning");
+                        }
+                    }else{
+                        Swal.fire("Atención", "Error en el proceso.", "error");
+                    }
+                    return false;
                 }
             }
         });
