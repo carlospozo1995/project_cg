@@ -70,6 +70,7 @@
                         $nameUser = $arrData['nombres'].' '.$arrData['apellidos'];
 
                         $url_recovery = base_url().'login/confirmUser/'.$strEmail.'/'.$token;
+                        // dep($url_recovery);
                         $requestUpdate = $this->model->setTokenUser($idUser, $token);
                     
                         if($requestUpdate){
@@ -82,6 +83,25 @@
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
             die();
+        }
+
+        public function confirmUser(string $params)
+        {   
+            if (empty($params)) {
+                header('Location:' . base_url());
+            }else{
+                $arrParams =  explode(',', $params);
+                $strEmail = $arrParams[0];
+                $strToken = $arrParams[1];
+            }
+            
+            $data['page_tag'] = 'Login';
+            $data['page_title'] = 'Cambiar contraseña';
+            $data['page_name'] = 'Login';
+            $data['idusuario'] = 1;
+            // $data['page_title'] = 'Créditos GUAMAN - Login';
+            // $data['page_functions_js'] = 'functions_login.js';
+            $this->views->getView($this, "reset_password", $data);
         }
     }
 
