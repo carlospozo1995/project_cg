@@ -25,13 +25,15 @@
 
                 <form action="" id="formCambiarPass" name="formCambiarPass">
                     <div class="card-header text-center">
-                        <a href="" class="h3"><b>Cambiar contraseña</b></a>
+                        <a href="" class="h3"><b><?= $data['page_name'] ?></b></a>
                     </div>
+
+                    <div class="text-center m-2"><i onclick="showPassword(this)" class="fas fa-eye-slash"></i></div>
 
                     <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $data['idusuario'] ?>" required>
 
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="Nueva contraseña" required>
+                        <input type="password" class="form-control inputReset" id="txtPassword" name="txtPassword" placeholder="Nueva contraseña" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -40,7 +42,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="txtPasswordConfirm" name="txtPasswordConfirm" placeholder="Confirmar contraseña" required>
+                        <input type="password" class="form-control inputReset" id="txtPasswordConfirm" name="txtPasswordConfirm" placeholder="Confirmar contraseña" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

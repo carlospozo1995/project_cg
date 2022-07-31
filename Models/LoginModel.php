@@ -51,6 +51,16 @@
             $request = $this->update($sql_update_token_user);
             return $request;
         }
+
+        public function getUsuario(string $email, string $token)
+        {
+            $this->strUsuario = $email;
+            $this->strToken = $token;
+
+            $sql_select_user = "SELECT idusuario FROM project_cg.usuario WHERE email_user = '$this->strUsuario' AND toke = '$this->strToken' AND status = 1"; 
+            $request = $this->select($sql_select_user);
+            return $request;
+        }
     }
 
 ?>

@@ -88,20 +88,28 @@
         public function confirmUser(string $params)
         {   
             if (empty($params)) {
-                header('Location:' . base_url());
+                header('Location:' . base_url() . 'login');
+                // header('Location:' . base_url());
             }else{
                 $arrParams =  explode(',', $params);
-                $strEmail = $arrParams[0];
-                $strToken = $arrParams[1];
+                $strEmail = strClean($arrParams[0]);
+                $strToken = strClean($arrParams[1]);
+
+                $arrResponse = $this->model->getUsuario($strEmail, $strToken);
+                if (empty($arrResponse)) {
+                    header('Location:' . base_url() . 'login');
+                // header('Location:' . base_url());
+                }else{
+                    $data['page_tag'] = 'Login';
+                    $data['page_title'] = 'Cambiar contraseña';
+                    $data['page_name'] = 'Cambiar contraseña';
+                    $data['idusuario'] = $arrResponse['idusuario'];
+                    // $data['page_title'] = 'Créditos GUAMAN - Login';
+                    $data['page_functions_js'] = 'functions_login.js';
+                    $this->views->getView($this, "reset_password", $data);
+                }
             }
-            
-            $data['page_tag'] = 'Login';
-            $data['page_title'] = 'Cambiar contraseña';
-            $data['page_name'] = 'Login';
-            $data['idusuario'] = 1;
-            // $data['page_title'] = 'Créditos GUAMAN - Login';
-            // $data['page_functions_js'] = 'functions_login.js';
-            $this->views->getView($this, "reset_password", $data);
+            die();
         }
     }
 

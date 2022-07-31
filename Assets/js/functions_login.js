@@ -5,6 +5,7 @@ $('.login-content [data-toggle="flip"]').click(function() {
 });
 
 document.addEventListener('DOMContentLoaded', function(){
+
     if (document.getElementById("formLogin")) {
         let formLogin = document.getElementById("formLogin");
         formLogin.addEventListener("submit", function (e) {
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     if (document.getElementById('formResetPass')) {
+        
         let formResetPass = document.getElementById('formResetPass');
 
         formResetPass.addEventListener('submit', function (e) {
@@ -74,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             }).then((result) => {
                                 if (result.isConfirmed){
                                     window.location = base_url + "login";
+                                    // window.location = base_url;
                                 }
                             });
                         }else{
@@ -87,4 +90,46 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     }
+
+    if (document.getElementById('formCambiarPass')) {
+        let formCambiarPass = document.getElementById('formCambiarPass');
+        formCambiarPass.addEventListener('submit', function (e) {
+           e.preventDefault();
+           let password = document.getElementById("txtPassword").value;
+           let confirmPassword  = document.getElementById("txtPasswordConfirm").value;
+
+            if (password == '' || confirmPassword == '') {
+                Swal.fire("Por favor", "Rellene los campos pedidos.", "error");
+                return false;
+            }else{
+                if (password !== confirmPassword){
+                    Swal.fire("Por favor", "Los campos deben ser iguales.", "error");
+                return false;
+                }else{
+                    
+                }
+            }
+        });
+    }
+
+    
+    
 }, false);
+
+// SHOW PASSWORD
+function showPassword(obj) {
+    let inputPass = document.querySelectorAll('.inputReset');
+    if (obj.classList.contains('fa-eye-slash')) {
+        obj.classList.remove('fa-eye-slash');
+        obj.classList.add('fa-eye');
+        inputPass.forEach(function (input) {
+            input.type = 'text';
+        });
+    }else{
+        obj.classList.add('fa-eye-slash');
+        obj.classList.remove('fa-eye');
+        inputPass.forEach(function (input) {
+            input.type = 'password';
+        });
+    }
+}
