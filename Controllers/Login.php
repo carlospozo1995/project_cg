@@ -104,11 +104,43 @@
                     $data['page_title'] = 'Cambiar contraseña';
                     $data['page_name'] = 'Cambiar contraseña';
                     $data['idusuario'] = $arrResponse['idusuario'];
+                    $data['email'] = $strEmail;
+                    $data['token'] = $strToken;
                     // $data['page_title'] = 'Créditos GUAMAN - Login';
                     $data['page_functions_js'] = 'functions_login.js';
                     $this->views->getView($this, "reset_password", $data);
                 }
             }
+            die();
+        }
+
+        public function setPassword()
+        {
+            if($_POST){
+                if(empty($_POST['idUsuario']) || empty($_POST['txtEmail']) || empty($_POST['txtToken']) ||empty($_POST['txtPassword']) || empty($_POST['txtPasswordConfirm'])){
+                    $arrResponse = array('status' => false, 'msg' => 'Error de datos.');
+                }else{
+                    $intIdUsuario = intval($_POST['idUsuario']);
+                    $strEmail = strClean($_POST['txtEmail']);
+                    $strToken = strClean($_POST['txtToken']);
+                    $strPassword = $_POST['txtPassword'];
+                    $strPasswordConfirm = $_POST['txtPasswordConfirm'];
+
+                    if($strPassword != $strPasswordConfirm){
+                        $arrResponse = array('status' => false, 'msg' => 'Las contraseñas deben ser iguales.');
+                    }else{
+                        $arrResponseUser = $this->model->getUsuario($strEmail, $strToken);
+                        if(empty($arrResponseUser)){
+                            $arrResponse = array('status' => false, 'msg' => 'Error de datos.');
+                        }else{
+                            $strPassword = hash("SHA256", $strPassword);
+                            $requestPass = $this->model->insertPassword($intIdUsuario, $strPassword);
+                        }
+                    }
+                }
+            }
+
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             die();
         }
     }

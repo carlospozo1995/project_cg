@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 Swal.fire("Por favor", "Ingrese el usuario y la contraseña.", "error");
                 return false;
             }else{
-                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP');
+                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                 var ajaxUrl = base_url + 'Login/loginUser';
                 var formData = new FormData(formLogin);
                 request.open("POST", ajaxUrl, true);
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 Swal.fire("Por favor", "Escribe tu correo electrónico.", "error");
                 return false;
             }else{
-                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : ActiveXObject('Microsoft.XMLHTTP');
+                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                 var ajaxUrl = base_url + 'Login/resetPass';
                 var formData = new FormData(formResetPass);
                 request.open("POST", ajaxUrl, true);
@@ -97,16 +97,32 @@ document.addEventListener('DOMContentLoaded', function(){
            e.preventDefault();
            let password = document.getElementById("txtPassword").value;
            let confirmPassword  = document.getElementById("txtPasswordConfirm").value;
+           let idUsuario = document.getElementById('idUsuario').value;
 
             if (password == '' || confirmPassword == '') {
                 Swal.fire("Por favor", "Rellene los campos pedidos.", "error");
                 return false;
             }else{
+                if (password.length < 5) {
+                    Swal.fire("Por favor", "La contraseña debe tener un mínimo de 5 caracteres.", "info");
+                    return false;
+                }
+
                 if (password !== confirmPassword){
-                    Swal.fire("Por favor", "Los campos deben ser iguales.", "error");
-                return false;
-                }else{
-                    
+                    Swal.fire("Por favor", "Las contraseñas deben ser iguales.", "error");
+                    return false;
+                }
+
+                var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                var ajaxUrl = base_url + 'Login/setPassword';
+                var formData = new FormData(formCambiarPass);
+                request.open('POST', ajaxUrl, true);
+                request.send(formData);
+                request.onreadystatechange = function () {
+                    if (request.readyState !=4) return;
+                    if (request.status == 200){
+                        
+                    }
                 }
             }
         });

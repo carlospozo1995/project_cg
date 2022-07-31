@@ -31,6 +31,8 @@
                     <div class="text-center m-2"><i onclick="showPassword(this)" class="fas fa-eye-slash"></i></div>
 
                     <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $data['idusuario'] ?>" required>
+                    <input type="hidden" id="txtEmail" name="txtEmail" value="<?= $data['email'] ?>" required>
+                    <input type="hidden" id="txtToken" name="txtToken" value="<?= $data['token'] ?>" required>
 
                     <div class="input-group mb-3">
                         <input type="password" class="form-control inputReset" id="txtPassword" name="txtPassword" placeholder="Nueva contraseña" required>
