@@ -61,6 +61,16 @@
             $request = $this->select($sql_select_user);
             return $request;
         }
+
+        public function insertPassword(int $idUser, string $password)
+        {
+            $this->intIdUsuario = $idUser;
+            $this->strPassword = $password;
+
+            $sql_update_password = "UPDATE project_cg.usuario SET password = '$this->strPassword', toke = null WHERE idusuario = $this->intIdUsuario";
+            $request = $this->update($sql_update_password);
+            return $request;
+        }
     }
 
 ?>

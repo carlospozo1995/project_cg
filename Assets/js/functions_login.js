@@ -69,10 +69,8 @@ document.addEventListener('DOMContentLoaded', function(){
                                 title:'',
                                 text:objData.msg,
                                 icon:'success',
-                                showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Aceptar'
+                                confirmButtonText: 'Ok'
                             }).then((result) => {
                                 if (result.isConfirmed){
                                     window.location = base_url + "login";
@@ -104,12 +102,12 @@ document.addEventListener('DOMContentLoaded', function(){
                 return false;
             }else{
                 if (password.length < 5) {
-                    Swal.fire("Por favor", "La contraseña debe tener un mínimo de 5 caracteres.", "info");
+                    Swal.fire("Atención", "La contraseña debe tener un mínimo de 5 caracteres.", "info");
                     return false;
                 }
 
                 if (password !== confirmPassword){
-                    Swal.fire("Por favor", "Las contraseñas deben ser iguales.", "error");
+                    Swal.fire("Atención", "Las contraseñas deben ser iguales.", "error");
                     return false;
                 }
 
@@ -121,8 +119,30 @@ document.addEventListener('DOMContentLoaded', function(){
                 request.onreadystatechange = function () {
                     if (request.readyState !=4) return;
                     if (request.status == 200){
+                        var objData = JSON.parse(request.responseText);
                         
+                        if (objData.status){
+                            Swal.fire({
+                                title:'',
+                                text:objData.msg,
+                                icon:'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Iniciar sesión',
+                                closeOnConfirm:false,
+                            }).then((result) => {
+                                if (result.isConfirmed){
+                                    window.location = base_url + "login";
+                                }else{
+                                    window.location = base_url + "login";
+                                }
+                            });
+                        }else{
+                            Swal.fire("Atención", objData.msg, "warning");
+                        }
+                    }else{
+                        Swal.fire("Atención", "Error en el proceso.", "error");
                     }
+                    return false;
                 }
             }
         });

@@ -135,6 +135,12 @@
                         }else{
                             $strPassword = hash("SHA256", $strPassword);
                             $requestPass = $this->model->insertPassword($intIdUsuario, $strPassword);
+
+                            if($requestPass){
+                                $arrResponse = array('status' => true, 'msg' => 'La contraseña ha sido actualizada con éxito.');
+                            }else{
+                                $arrResponse = array('status' => false, 'msg' => 'No es posible realizar el proceso intentelo mas tarde.');
+                            }
                         }
                     }
                 }
