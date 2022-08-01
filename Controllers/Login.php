@@ -72,12 +72,12 @@
                         $url_recovery = base_url().'login/confirmUser/'.$strEmail.'/'.$token;
                         $requestUpdate = $this->model->setTokenUser($idUser, $token);
 
-                        $dataUser = array('nameUser' => $nameUser,
-                                          'email' => $strEmail,
-                                          'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
-                                          'ulr_recovery' => $url_recovery);    
+                        // $dataUser = array('nameUser' => $nameUser,
+                        //                   'email' => $strEmail,
+                        //                   'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
+                        //                   'ulr_recovery' => $url_recovery);    
                                           
-                        $sendEmail = sendEmail($dataUser, 'email_resetPassword');
+                        // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
                     
                         if($requestUpdate){
                             $arrResponse = array('status' => true, 'msg' => 'Se ha enviado un mensaje a tu cuenta de correo para restablecer tu contraseña.');

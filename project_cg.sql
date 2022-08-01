@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: project_cg
 -- ------------------------------------------------------
--- Server version	5.7.24
+-- Server version	5.7.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -96,7 +96,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador','Administrador Todos los permisos',1),(2,'Supervisor','Supervisor  La mayoria de los permisos',1),(3,'Suplente','Suplente - Permisos restringidos',2),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',1),(6,'Comprador','lcaocakns',0);
+INSERT INTO `roles` VALUES (1,'Administrador','Administrador Todos los permisos',1),(2,'Supervisor','Supervisor  La mayoria de los permisos',1),(3,'Suplente','Suplente  Permisos restringidos',1),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',1),(6,'Comprador','lcaocakns',0);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `usuario` (
   `telefono` bigint(20) NOT NULL,
   `email_user` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `toke` varchar(80) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `toke` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `rolid` bigint(20) NOT NULL,
   `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1',
@@ -131,7 +131,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'123','Uno','Uno',5465646,'uno@uno.com','b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194',NULL,1,'2022-07-23 18:54:53',1),(2,'456','Dos','Dos',1234567891,'do@do.com','f6956462a52cb200a4dde6402eec36fe01dd8983443b7747a741ad39fde403cb',NULL,2,'2022-07-23 21:28:01',1),(3,'789','Tres','Tres',365465465,'tres@tres.com','5059e121f9b01139c944a959f203fb3a7d12d0afdacd4be06dc3916738fa68ac',NULL,3,'2022-07-24 14:20:02',1),(4,'100','Cuatro','Cuatro',9654656,'cuatro@cuatro.com','d6a7c166cd71184165d4718264914f2c4cfce950f65d57b732515d9716cdf279',NULL,4,'2022-07-24 14:24:16',1),(5,'1100','Cinco','Cinco',6845461625,'cinco@cinco.com','a3d43368e6fa45eb0508395ed586ddbae62bc87782df5a416498803b32bc7607',NULL,5,'2022-07-24 14:26:06',1);
+INSERT INTO `usuario` VALUES (1,'123','Carlos','Pozo',994603678,'carlospozo95@gmail.com','ff0575e07695d3adcc00bbbab5551e53387c65809d76be3ce8e1896d266df8aa',NULL,1,'2022-07-23 18:54:53',1),(2,'456','Dos','Dos',1234567891,'do@do.com','3052a0fced2e42e8e725fd0cad429da9aa6430fdd2f9a4b3c744021534048d13',NULL,2,'2022-07-23 21:28:01',1),(3,'789','Tres','Tres',365465465,'tres@tres.com','b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194',NULL,3,'2022-07-24 14:20:02',1),(4,'100','Cuatro','Cuatro',9654656,'cuatro@cuatro.com','76041c530ce73f870e2dc8263bdac7b8d8e818711090f19b49778757be9f5fa6',NULL,4,'2022-07-24 14:24:16',1),(5,'1100','Cinco','Cinco',6845461625,'cinco@cinco.com','383c9d639d9f2f1dfa5325be5c7c01050e4052c8e29ad09aa9065dedaf6793e0',NULL,5,'2022-07-24 14:26:06',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -144,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-24 20:44:26
+-- Dump completed on 2022-08-01 14:22:41
