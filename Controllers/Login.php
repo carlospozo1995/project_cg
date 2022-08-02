@@ -78,10 +78,13 @@
                         //                   'url_recovery' => $url_recovery);    
                                           
                         
+                        ob_start();
+                        require_once("Views/Template/Email/email_resetPassword.php");
+                        $mensaje = ob_get_clean();
                     
                         if($requestUpdate){
                             // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
-                            $sendEmail = sendMail2($strEmail,'ejemplo', 'html', $url_recovery);
+                            $sendEmail = sendMail2($strEmail,'ejemplo', $mensaje, $url_recovery);
 
                             if($sendEmail){
                                 $arrResponse = array('status' => true, 'msg' => 'Se ha enviado un mensaje a tu cuenta de correo para restablecer tu contraseña.');

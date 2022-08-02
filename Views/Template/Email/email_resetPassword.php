@@ -85,24 +85,24 @@
 			<tr>
 				<td>
 					<div class="x_sgwrap x_title_blue">
-						<h1><?= NOMBRE_PROYECTO ?></h1>
+						<h1>hola</h1>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div class="x_sgwrap">
-						<p>Hola <?= $data['nameUser']; ?></p>
+						<p>Hola</p>
 					</div>
-					<p>Solicitud de acceso para el usuario: <strong><?= $data['email']; ?></strong></p>
+					<p>Solicitud de acceso para el usuario: <strong></strong></p>
 					<p>Has solicitado los datos de tu usuario, accede al enlace de abajo para confirmar tu contraseña. </p>
 					<p class="x_text_white">
-					<a href="<?= $data['url_recovery']; ?>" target="_blank" class="x_button_link x_link_blue">Confirmar datos</a>
+					<a href="<?= $url_recovery; ?>" target="_blank" class="x_button_link x_link_blue">Confirmar datos</a>
 					</p>
 					<br>
 					<p>Si no te funciona el botón puedes copiar y pegar la siguiente dirección en tu navegador.</p>
-					<span><?= $data['url_recovery']; ?></span>
-					<p class="x_title_gray"><a href="<?= SITIO_WEB; ?>" target="_blanck"><?= SITIO_WEB; ?></a></p>
+					<span><?= $url_recovery; ?></span>
+					<p class="x_title_gray"><a href="#" target="_blanck">SITIO_WEB</a></p>
 				</td>
 			</tr>
 		</tbody>
