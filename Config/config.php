@@ -27,7 +27,9 @@
     // define('SITIO_WEB', 'wwe.carlos.com');
     // --------------------------------------------
 
-    
+    define('MAIL_HOST', 'smtp.gmail.com');
+    define('MAIL_USERNAME', 'carlospozo95@gmail.com');
+    define('MAIL_PASSWORD', 'yxxlljautvthwecm');
     // --------------------------------------------
     // define('MAIL_PORT', '465');
     // define('MAIL_HOST', 'smtp.gmail.com');

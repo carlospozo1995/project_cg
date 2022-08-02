@@ -79,9 +79,9 @@
                         //                   'url_recovery' => $url_recovery);                            
                         // --------------------------------------------1            
                         
-                        ob_start();
-                        require_once("Views/Template/Email/email_resetPassword.php");
-                        $mensaje = ob_get_clean();
+                        // ob_start();
+                        // require_once("Views/Template/Email/email_resetPassword.php");
+                        // $mensaje = ob_get_clean();
                     
                         if($requestUpdate){
                             
@@ -89,7 +89,7 @@
                             // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
                             // --------------------------------------------1
 
-                            
+                            $sendEmail = sendMail($strEmail);
                             // --------------------------------------------
                             // $sendEmail = sendMail2($strEmail,'ejemplo', $mensaje, $url_recovery);
                             // --------------------------------------------
