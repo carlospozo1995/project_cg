@@ -89,7 +89,7 @@
                             // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
                             // --------------------------------------------1
 
-                            $sendEmail = sendMail($dataUser, 'email_resetPassword');
+                            $sendEmail = sendMail();
                             // --------------------------------------------
                             // $sendEmail = sendMail2($strEmail,'ejemplo', $mensaje, $url_recovery);
                             // --------------------------------------------

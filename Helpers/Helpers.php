@@ -178,45 +178,8 @@
     // }
     // --------------------------------------------1
 
-    function sendMail($data, $template){
-        require_once 'Libraries/Include/PHPMailer/src/PHPMailer.php';
-        require_once 'Libraries/Include/PHPMailer/src/Exception.php';
-        // use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-        $emailDestino = $data['email'];
-        $nameDestino = $data['nameUser'];
-        $asuntoMail = $data['asunto'];
-
-        ob_start();
-        require_once("Views/Template/Email/".$template.".php");
-        $mensaje = ob_get_clean();
-
-        $mail = new PHPMailer();
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = MAIL_HOST;                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = MAIL_USERNAME;                     //SMTP username
-        $mail->Password   = MAIL_PASSWORD;                               //SMTP password
-        $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    
-        //Recipients
-        $mail->setFrom('carlospozo95@gmail.com', 'Project_cg');
-        $mail->addAddress($emailDestino, $nameDestino);
-    
-        //Attachments
-        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-    
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asuntoMail;
-        $mail->Body    = $mensaje;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-    
-        return $mail->send();
+    function sendMail(){
+        return "hola";
     }
 
     // --------------------------------------------
