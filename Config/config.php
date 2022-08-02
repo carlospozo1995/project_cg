@@ -1,12 +1,12 @@
 <?php
 
-    define("BASE_URL", "https://project-cg.000webhostapp.com/project_cg/");
+    define("BASE_URL", "http://localhost/carlos/project_cg/");
 
     // VAR A CONEXIO BASE DE DATOS
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'id19356340_project_cg');
-    define('DB_USER', 'id19356340_carlospozo1995');
-    define('DB_PASSWORD', 'uB9tx_/HUHZtTJ#P');
+    define('DB_NAME', 'project_cg');
+    define('DB_USER', 'root');
+    define('DB_PASSWORD', '');
     define('DB_CHARSET', 'utf8');
 
     // ZONA HORARIA
