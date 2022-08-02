@@ -69,6 +69,7 @@
         require_once($view_modal);
     }
 
+    // --------------------------------------------1
     // // ENVIO DE CORREOS
     // function sendEmail($data, $template){
     //     $asunto = $data['asunto'];
@@ -86,6 +87,7 @@
     //     $send = mail($emailDestino, $asunto, $mensaje, $de);
     //     return $send;
     // }
+    // --------------------------------------------1
 
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
@@ -154,39 +156,40 @@
         return $cantidad;
     }
     
-    function sendMail2($to, $subject, $body, $attachments=array()){
-        require_once 'Libraries/phpMailer/PHPMailerAutoload.php';
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->SMTPAuth = true;
-        $mail->CharSet = 'UTF-8';
-        $mail->Port = MAIL_PORT; 
-        $mail->Host = MAIL_HOST; 
-        $mail->Username = MAIL_USERNAME; 
-        $mail->Password = MAIL_PASSWORD;     
-        $mail->From = MAIL_CORREO; 
-        $mail->FromName = MAIL_NOMBRE;         
-        $mail->SMTPAutoTLS = false;   
-        $mail->SMTPSecure = 'ssl'; 
-        if(is_array($to) && count($to) > 0){
-            foreach ($to as $keymail => $valuemail) {
-            $mail->AddAddress($valuemail);
-            }
-        }
-        else{
-            $mail->AddAddress($to);
-        }
-        $mail->IsHTML(true); 
-        $mail->Subject = $subject; 
-        $mail->Body = $body; 
-        // if (!empty($attachments) && is_array($attachments)){
-        //     foreach($attachments as $attachment){
-        //         if (file_exists($attachment["ruta"])){
-        //             $mail->AddAttachment($attachment["ruta"], $attachment["archivo"]);
-        //         }
-        //     }
-        // }          
-        return $mail->send();
-    }
-
+    // --------------------------------------------
+    // function sendMail2($to, $subject, $body, $attachments=array()){
+    //     require_once 'Libraries/phpMailer/PHPMailerAutoload.php';
+    //     $mail = new PHPMailer();
+    //     $mail->IsSMTP();
+    //     $mail->SMTPAuth = true;
+    //     $mail->CharSet = 'UTF-8';
+    //     $mail->Port = MAIL_PORT; 
+    //     $mail->Host = MAIL_HOST; 
+    //     $mail->Username = MAIL_USERNAME; 
+    //     $mail->Password = MAIL_PASSWORD;     
+    //     $mail->From = MAIL_CORREO; 
+    //     $mail->FromName = MAIL_NOMBRE;         
+    //     $mail->SMTPAutoTLS = false;   
+    //     $mail->SMTPSecure = 'ssl'; 
+    //     if(is_array($to) && count($to) > 0){
+    //         foreach ($to as $keymail => $valuemail) {
+    //         $mail->AddAddress($valuemail);
+    //         }
+    //     }
+    //     else{
+    //         $mail->AddAddress($to);
+    //     }
+    //     $mail->IsHTML(true); 
+    //     $mail->Subject = $subject; 
+    //     $mail->Body = $body; 
+    //     // if (!empty($attachments) && is_array($attachments)){
+    //     //     foreach($attachments as $attachment){
+    //     //         if (file_exists($attachment["ruta"])){
+    //     //             $mail->AddAttachment($attachment["ruta"], $attachment["archivo"]);
+    //     //         }
+    //     //     }
+    //     // }          
+    //     return $mail->send();
+    // }
+    // --------------------------------------------
 ?>
