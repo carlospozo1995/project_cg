@@ -73,10 +73,10 @@
                         $requestUpdate = $this->model->setTokenUser($idUser, $token);
 
                         // --------------------------------------------1
-                        // $dataUser = array('nameUser' => $nameUser,
-                        //                   'email' => $strEmail,
-                        //                   'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
-                        //                   'url_recovery' => $url_recovery);                            
+                        $dataUser = array('nameUser' => $nameUser,
+                                          'email' => $strEmail,
+                                          'asunto' => 'Recuperar contrseña - Project_cg',
+                                          'url_recovery' => $url_recovery);                            
                         // --------------------------------------------1            
                         
                         // ob_start();
@@ -89,7 +89,7 @@
                             // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
                             // --------------------------------------------1
 
-                            $sendEmail = sendMail($strEmail);
+                            $sendEmail = sendMail($dataUser, 'email_resetPassword');
                             // --------------------------------------------
                             // $sendEmail = sendMail2($strEmail,'ejemplo', $mensaje, $url_recovery);
                             // --------------------------------------------

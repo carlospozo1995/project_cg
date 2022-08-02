@@ -158,45 +158,65 @@
     
     // ENVIO DE CORREOS
 
-    function sendMail($to){
+    // --------------------------------------------1
+    // // ENVIO DE CORREOS
+    // function sendEmail($data, $template){
+    //     $asunto = $data['asunto'];
+    //     $emailDestino = $data['email'];
+    //     $proyecto = NOMBRE_REMITENTE;
+    //     $remitente = EMAIL_REMITENTE;
+
+    //     // ENVIO DE CORREO
+    //     $de = "MIME-Version: 1.0\r\n";
+    //     $de .= "Content-type: text/html; charset=UTF-8\r\n";
+    //     $de .= "From: {$proyecto} <{$remitente}>\r\n";
+    //     ob_start();
+    //     require_once("Views/Template/Email/".$template.".php");
+    //     $mensaje = ob_get_clean();
+    //     $send = mail($emailDestino, $asunto, $mensaje, $de);
+    //     return $send;
+    // }
+    // --------------------------------------------1
+
+    function sendMail($data, $template){
         require_once 'Libraries/Include/PHPMailer/src/PHPMailer.php';
         require_once 'Libraries/Include/PHPMailer/src/Exception.php';
+        // use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+        $emailDestino = $data['email'];
+        $nameDestino = $data['nameUser'];
+        $asuntoMail = $data['asunto'];
+
+        ob_start();
+        require_once("Views/Template/Email/".$template.".php");
+        $mensaje = ob_get_clean();
 
         $mail = new PHPMailer();
-        try {
-            //Server settings
-            $mail->SMTPDebug = 0;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = MAIL_HOST;                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = MAIL_USERNAME;                     //SMTP username
-            $mail->Password   = MAIL_PASSWORD;                               //SMTP password
-            $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
-            //Recipients
-            $mail->setFrom('carlospozo95@gmail.com', '');
-            $mail->addAddress($to, '');            //Name is optional
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
-        
-            //Attachments
-            $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-            $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-        
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-        return $mailer;
+        $mail->SMTPDebug = 0;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = MAIL_HOST;                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = MAIL_USERNAME;                     //SMTP username
+        $mail->Password   = MAIL_PASSWORD;                               //SMTP password
+        $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    
+        //Recipients
+        $mail->setFrom('carlospozo95@gmail.com', 'Project_cg');
+        $mail->addAddress($emailDestino, $nameDestino);
+    
+        //Attachments
+        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $asuntoMail;
+        $mail->Body    = $mensaje;
+        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    
+        return $mail->send();
     }
 
     // --------------------------------------------
