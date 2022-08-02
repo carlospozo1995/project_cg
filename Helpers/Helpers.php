@@ -154,25 +154,8 @@
         return $cantidad;
     }
     
-    // function sendEmail($data, $template){
-    //     $asunto = $data['asunto'];
-    //     $emailDestino = $data['email'];
-    //     $proyecto = NOMBRE_REMITENTE;
-    //     $remitente = EMAIL_REMITENTE;
-
-    //     // ENVIO DE CORREO
-    //     $de = "MIME-Version: 1.0\r\n";
-    //     $de .= "Content-type: text/html; charset=UTF-8\r\n";
-    //     $de .= "From: {$proyecto} <{$remitente}>\r\n";
-    //     ob_start();
-    //     require_once("Views/Template/Email/".$template.".php");
-    //     $mensaje = ob_get_clean();
-    //     $send = mail($emailDestino, $asunto, $mensaje, $de);
-    //     return $send;
-    // } return $send;
-
     function sendMail2($to, $subject, $body, $attachments=array()){
-        require_once RUTA_INCLUDES.'/phpMailer/PHPMailerAutoload.php';
+        require_once 'Libraries/phpMailer/PHPMailerAutoload.php';
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
@@ -196,13 +179,13 @@
         $mail->IsHTML(true); 
         $mail->Subject = $subject; 
         $mail->Body = $body; 
-        if (!empty($attachments) && is_array($attachments)){
-            foreach($attachments as $attachment){
-            if (file_exists($attachment["ruta"])){
-                $mail->AddAttachment($attachment["ruta"], $attachment["archivo"]);
-            }
-            }
-        }          
+        // if (!empty($attachments) && is_array($attachments)){
+        //     foreach($attachments as $attachment){
+        //         if (file_exists($attachment["ruta"])){
+        //             $mail->AddAttachment($attachment["ruta"], $attachment["archivo"]);
+        //         }
+        //     }
+        // }          
         return $mail->send();
     }
 
