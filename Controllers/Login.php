@@ -72,15 +72,21 @@
                         $url_recovery = base_url().'login/confirmUser/'.$strEmail.'/'.$token;
                         $requestUpdate = $this->model->setTokenUser($idUser, $token);
 
-                        // $dataUser = array('nameUser' => $nameUser,
-                        //                   'email' => $strEmail,
-                        //                   'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
-                        //                   'ulr_recovery' => $url_recovery);    
+                        $dataUser = array('nameUser' => $nameUser,
+                                          'email' => $strEmail,
+                                          'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
+                                          'url_recovery' => $url_recovery);    
                                           
-                        // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
+                        
                     
                         if($requestUpdate){
-                            $arrResponse = array('status' => true, 'msg' => 'Se ha enviado un mensaje a tu cuenta de correo para restablecer tu contraseña.');
+                            $sendEmail = sendEmail($dataUser, 'email_resetPassword');
+
+                            if($sendEmail){
+                                $arrResponse = array('status' => true, 'msg' => 'Se ha enviado un mensaje a tu cuenta de correo para restablecer tu contraseña.');
+                            }else{
+                                $arrResponse = array('status' => false, 'msg' => 'No es posible realizar el proceso intentalo mas tarde.');
+                            }
                         }else{
                             $arrResponse = array('status' => false, 'msg' => 'No es posible realizar el proceso intentalo mas tarde.');
                         }

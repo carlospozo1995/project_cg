@@ -18,4 +18,9 @@
 
     // SIMBOLO DE LA MONEDA
     const SMONEY = "$";
+
+    define('NOMBRE_REMITENTE', 'Proyecto');
+    define('EMAIL_REMITENTE', 'carlos@carlos.com');
+    define('NOMBRE_PROYECTO', 'Proyecto');
+    define('SITIO_WEB', 'wwe.carlos.com');
 ?>
