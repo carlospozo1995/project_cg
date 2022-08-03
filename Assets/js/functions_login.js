@@ -4,6 +4,7 @@ $('.login-content [data-toggle="flip"]').click(function() {
     return false;
 });
 
+let loading = document.getElementById('loading'); 
 document.addEventListener('DOMContentLoaded', function(){
 
     if (document.getElementById("formLogin")) {
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 Swal.fire("Por favor", "Ingrese el usuario y la contraseña.", "error");
                 return false;
             }else{
+                loading.style.display = 'flex';
                 var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                 var ajaxUrl = base_url + 'Login/loginUser';
                 var formData = new FormData(formLogin);
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     }else{
                         Swal.fire("Atención", "Error en el proceso", "error");
                     }
+                    loading.style.display = 'none';
                     return false;
                 }
             }
@@ -54,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 Swal.fire("Por favor", "Escribe tu correo electrónico.", "error");
                 return false;
             }else{
+                loading.style.display = 'flex';
                 var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                 var ajaxUrl = base_url + 'Login/resetPass';
                 var formData = new FormData(formResetPass);
@@ -83,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     }else{
                         Swal.fire("Atención", "Error en el proceso.", "error");
                     }
+                    loading.style.display = 'none';
                     return false;
                 }
             }
@@ -101,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 Swal.fire("Por favor", "Rellene los campos pedidos.", "error");
                 return false;
             }else{
+        
                 if (password.length < 5) {
                     Swal.fire("Atención", "La contraseña debe tener un mínimo de 5 caracteres.", "info");
                     return false;
@@ -110,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     Swal.fire("Atención", "Las contraseñas deben ser iguales.", "error");
                     return false;
                 }
-
+                loading.style.display = 'flex';
                 var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                 var ajaxUrl = base_url + 'Login/setPassword';
                 var formData = new FormData(formCambiarPass);
@@ -142,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     }else{
                         Swal.fire("Atención", "Error en el proceso.", "error");
                     }
+                    loading.style.display = 'none';
                     return false;
                 }
             }

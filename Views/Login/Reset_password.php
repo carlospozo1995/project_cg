@@ -23,6 +23,12 @@
         <div class="card card-outline card-primary">
             <div class="card-body">
 
+                <div id="loading" class="loading-login-mc">
+                    <div>
+                        <img src="<?= media(); ?>images/loading.gif" alt="">
+                    </div>
+                </div>
+
                 <form action="" id="formCambiarPass" name="formCambiarPass">
                     <div class="card-header text-center">
                         <a href="" class="h3"><b><?= $data['page_name'] ?></b></a>

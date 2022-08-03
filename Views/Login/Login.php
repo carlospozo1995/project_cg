@@ -23,7 +23,11 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary login-content">
       <div class="card-body login">
-        
+        <div id="loading" class="loading-login-mc">
+          <div>
+            <img src="<?= media(); ?>images/loading.gif" alt="">
+          </div>
+        </div>
         <form class="login-form" action="" name="formLogin" id="formLogin">
           <div class="card-header text-center">
             <a href="" class="h3"><b>INICIAR SESION</b></a>

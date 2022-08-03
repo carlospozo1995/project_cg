@@ -141,3 +141,19 @@
 .user-header{
     height: max-content !important;
 }
+
+/* LOADING LOGIN */
+
+.loading-login-mc{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index:1;
+    background-color: rgba(254, 254, 255, .65);
+    display: none;
+}
