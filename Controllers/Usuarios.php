@@ -10,6 +10,8 @@
             if (empty($_SESSION['login'])){
                 header("Location: ".base_url()."login");
             }
+
+            getPermisos(2);
         }
 
         public function usuarios()

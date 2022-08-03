@@ -121,6 +121,27 @@
         }
     }
 
+    function getPermisos(int $idModulo){
+        require_once 'Models/PermisosModel.php';
+        $objPermisos = new PermisosModel();
+
+        $idRol = $_SESSION['userData']['idrol'];
+        $arrPermisos = $objPermisos->permisosModulo($idRol);  
+
+        $permisos = "";
+        $permisosMod = "";
+
+        if (count($arrPermisos) > 0) {
+            $permisos = $arrPermisos;
+            $permisosMod = isset($arrPermisos[$idModulo]) ? $arrPermisos[$idModulo] : "";
+            // dep($permisosMod);
+        }
+
+        $_SESSION['permisos'] = $permisos;
+        $_SESSION['permisosMod'] = $permisosMod;
+          
+    }
+
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
