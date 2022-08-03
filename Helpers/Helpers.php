@@ -205,8 +205,8 @@
             $mail->SMTPAuth   = true;                                   
             $mail->Username   = MAIL_USERNAME;                     
             $mail->Password   = MAIL_PASSWORD;                               
-            $mail->SMTPSecure = 'tls';            
-            $mail->Port       = 587;                                    
+            $mail->SMTPSecure = 'ssl';            
+            $mail->Port       = 465;                                    
 
             //Recipients
             $mail->setFrom('carlospozo95@gmail.com');
