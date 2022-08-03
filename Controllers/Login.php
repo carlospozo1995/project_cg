@@ -4,8 +4,8 @@
         public function __construct()
         {
             session_start();
-            if (isset($_SESSION['login'])){
-                header("Location: ".base_url()."sistema");
+            if (isset($_SESSION['login'])) {
+                header('Location: '.base_url().'sistema');
             }
             parent::__construct();
         }
