@@ -85,7 +85,7 @@
 			<tr>
 				<td>
 					<div class="x_sgwrap x_title_blue">
-						<h1>hola</h1>
+						<h1><?= NOMBRE_EMPRESA ?></h1>
 					</div>
 				</td>
 			</tr>
@@ -102,7 +102,7 @@
 					<br>
 					<p>Si no te funciona el botón puedes copiar y pegar la siguiente dirección en tu navegador.</p>
 					<span><?= $recovery; ?></span>
-					<p class="x_title_gray"><a href="#" target="_blanck">SITIO_WEB</a></p>
+					<p class="x_title_gray"><a href="<?= WEB_EMPRESA ?>" target="_blanck"><?= WEB_EMPRESA ?></a></p>
 				</td>
 			</tr>
 		</tbody>

@@ -69,25 +69,57 @@
         require_once($view_modal);
     }
 
-    // --------------------------------------------1
     // // ENVIO DE CORREOS
-    // function sendEmail($data, $template){
-    //     $asunto = $data['asunto'];
-    //     $emailDestino = $data['email'];
-    //     $proyecto = NOMBRE_REMITENTE;
-    //     $remitente = EMAIL_REMITENTE;
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
-    //     // ENVIO DE CORREO
-    //     $de = "MIME-Version: 1.0\r\n";
-    //     $de .= "Content-type: text/html; charset=UTF-8\r\n";
-    //     $de .= "From: {$proyecto} <{$remitente}>\r\n";
-    //     ob_start();
-    //     require_once("Views/Template/Email/".$template.".php");
-    //     $mensaje = ob_get_clean();
-    //     $send = mail($emailDestino, $asunto, $mensaje, $de);
-    //     return $send;
-    // }
-    // --------------------------------------------1
+    function sendMail($data, $template){
+        require 'Libraries/Include/PHPMailer/src/Exception.php';
+        require 'Libraries/Include/PHPMailer/src/PHPMailer.php';
+        require 'Libraries/Include/PHPMailer/src/SMTP.php';
+
+        $nameUser = $data['nameUser'];
+        $mailUser = $data['email'];
+        $recovery = $data['url_recovery'];
+        $asunto = utf8_decode($data['asunto']);
+        
+        ob_start();
+        require_once("Views/Template/Email/".$template.".php");
+        $message = ob_get_clean();
+
+        $mail = new PHPMailer();
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      
+            $mail->isSMTP();                                            
+            $mail->Host       = MAIL_HOST;                     
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = MAIL_USERNAME;                     
+            $mail->Password   = MAIL_PASSWORD;                               
+            $mail->SMTPSecure = 'ssl';            
+            $mail->Port       = 465;                                    
+
+            //Recipients
+            $mail->setFrom(MAIL_USERNAME);
+            $mail->addAddress($mailUser, $nameUser);
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    
+
+            //Content
+            $mail->isHTML(true);                                  
+            $mail->Subject = $asunto;
+            $mail->Body    = $message;
+            // $mail->AltBody = strip_tags();
+
+            return $mail->send();
+            
+        } catch (Exception $e) {
+            echo $mail->ErrorInfo;
+        }
+    }
 
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
@@ -177,57 +209,6 @@
     //     return $send;
     // }
     // --------------------------------------------1
-   
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    function sendMail($data, $template){
-        require 'Libraries/Include/PHPMailer/src/Exception.php';
-        require 'Libraries/Include/PHPMailer/src/PHPMailer.php';
-        require 'Libraries/Include/PHPMailer/src/SMTP.php';
-
-        $nameUser = $data['nameUser'];
-        $mailUser = $data['email'];
-        $recovery = $data['url_recovery'];
-
-        ob_start();
-        require_once("Views/Template/Email/".$template.".php");
-        $mensaje = ob_get_clean();
-
-        $mail = new PHPMailer();
-
-        try {
-            //Server settings
-            $mail->SMTPDebug = 0;                      
-            $mail->isSMTP();                                            
-            $mail->Host       = MAIL_HOST;                     
-            $mail->SMTPAuth   = true;                                   
-            $mail->Username   = MAIL_USERNAME;                     
-            $mail->Password   = MAIL_PASSWORD;                               
-            $mail->SMTPSecure = 'ssl';            
-            $mail->Port       = 465;                                    
-
-            //Recipients
-            $mail->setFrom('carlospozo95@gmail.com');
-            $mail->addAddress($mailUser, $nameUser);
-
-            //Attachments
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    
-
-            //Content
-            $mail->isHTML(true);                                  
-            $mail->Subject = 'Prueba';
-            $mail->Body    = $mensaje;
-            // $mail->AltBody = strip_tags($body);
-
-            return $mail->send();
-            
-        } catch (Exception $e) {
-            echo $mail->ErrorInfo;
-        }
-    }
 
     // --------------------------------------------
     // function sendMail2($to, $subject, $body, $attachments=array()){
