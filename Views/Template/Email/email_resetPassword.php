@@ -92,16 +92,16 @@
 			<tr>
 				<td>
 					<div class="x_sgwrap">
-						<p>Hola</p>
+						<p>Hola <?=$nameUser?></p>
 					</div>
-					<p>Solicitud de acceso para el usuario: <strong></strong></p>
+					<p>Solicitud de acceso para el usuario: <strong><?=$mailUser?></strong></p>
 					<p>Has solicitado los datos de tu usuario, accede al enlace de abajo para confirmar tu contraseña. </p>
 					<p class="x_text_white">
-					<a href="<?= $url_recovery; ?>" target="_blank" class="x_button_link x_link_blue">Confirmar datos</a>
+					<a href="<?= $recovery; ?>" target="_blank" class="x_button_link x_link_blue">Confirmar datos</a>
 					</p>
 					<br>
 					<p>Si no te funciona el botón puedes copiar y pegar la siguiente dirección en tu navegador.</p>
-					<span><?= $url_recovery; ?></span>
+					<span><?= $recovery; ?></span>
 					<p class="x_title_gray"><a href="#" target="_blanck">SITIO_WEB</a></p>
 				</td>
 			</tr>

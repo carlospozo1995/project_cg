@@ -82,14 +82,14 @@
                         // ob_start();
                         // require_once("Views/Template/Email/email_resetPassword.php");
                         // $mensaje = ob_get_clean();
-                    
+
                         if($requestUpdate){
                             
                             // --------------------------------------------1
                             // $sendEmail = sendEmail($dataUser, 'email_resetPassword');
                             // --------------------------------------------1
-
-                            $sendEmail = sendMail();
+                            
+                            $sendEmail = sendMail($dataUser, 'email_resetPassword');
                             // --------------------------------------------
                             // $sendEmail = sendMail2($strEmail,'ejemplo', $mensaje, $url_recovery);
                             // --------------------------------------------

@@ -1,7 +1,7 @@
 <?php
 
     define("BASE_URL", "http://localhost/carlos/project_cg/");
-    define('RUTA_INCLUDES', 'C:/laragon/www/carlos/project_cg/Libraries/');
+    // define('RUTA_INCLUDES', 'C:/laragon/www/carlos/project_cg/Libraries/');
 
     // VAR A CONEXIO BASE DE DATOS
     define('DB_HOST', 'localhost');
