@@ -32,15 +32,18 @@
                     }
                 }else{
                     for ($i=0; $i < count($arrModulos); $i++) { 
-                        $arrDataPermisos = array('ver' => $arrPermisos[$i]['ver'],
-                                             'crear' => $arrPermisos[$i]['crear'],
-                                             'actualizar' => $arrPermisos[$i]['actualizar'],
-                                             'eliminar' => $arrPermisos[$i]['eliminar']
-                                            );
+                        $arrDataPermisos = array('ver' => 0, 'crear' => 0, 'actualizar' => 0, 'eliminar' => 0);
 
-                        if ($arrModulos[$i]['idmodulo'] == $arrPermisos[$i]['moduloid']) {
-                            $arrModulos[$i]['permisos'] = $arrDataPermisos;
+                        if(isset($arrPermisos[$i])){
+                            $arrDataPermisos = array('ver' => $arrPermisos[$i]['ver'],
+                                                'crear' => $arrPermisos[$i]['crear'],
+                                                'actualizar' => $arrPermisos[$i]['actualizar'],
+                                                'eliminar' => $arrPermisos[$i]['eliminar']
+                                                );
+
                         }
+                        $arrModulos[$i]['permisos'] = $arrDataPermisos;
+
                     }
                 }
 
