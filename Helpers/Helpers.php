@@ -134,7 +134,6 @@
         if (count($arrPermisos) > 0) {
             $permisos = $arrPermisos;
             $permisosMod = isset($arrPermisos[$idModulo]) ? $arrPermisos[$idModulo] : "";
-            // dep($permisosMod);
         }
 
         $_SESSION['permisos'] = $permisos;
