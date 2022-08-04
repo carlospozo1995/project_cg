@@ -15,7 +15,10 @@
 
     <!-- Main content -->
     <section class="content">
-        <?php dep($_SESSION['userData']) ?>
+        <?php dep($_SESSION['userData']);
+              dep($_SESSION['permisos']);
+              dep($_SESSION['permisosMod']);
+        ?>
     </section>
     <!-- /.content -->
   </div>

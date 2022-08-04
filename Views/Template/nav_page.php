@@ -25,13 +25,16 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <?php if (!empty($_SESSION['permisos'][1]['ver'])) {?>
           <li class="nav-item">
             <a href="<?php base_url(); ?>sistema" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
+          <?php } ?>
 
+          <?php if (!empty($_SESSION['permisos'][2]['ver'])) {?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -55,6 +58,7 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
