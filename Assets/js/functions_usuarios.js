@@ -1,5 +1,5 @@
 // OPEN MODAL USERS
-document.getElementById("btnNewUser").addEventListener("click", function () {
+function modalNewUser() {
     document.getElementById("idUsuario").value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
     document.querySelector(".modal-title").innerHTML = "Nuevo Usuario";
@@ -9,7 +9,7 @@ document.getElementById("btnNewUser").addEventListener("click", function () {
     formNewUser.reset();
     $("#modalFormUser").modal("show");
     validFocus();
-});
+}
 
 //LOAD DATA TABLE USERS
 var tableUsers;

@@ -6,12 +6,24 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <?php
+    dep($_SESSION['permisosMod']);
+      if (empty($_SESSION['permisosMod']['ver'])) {
+    ?>
+    <h2 class="text-center">Lo sentimos no tiene permiso a esta sección</h2>
+    <?php 
+      }else{ ?>
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 add-new-mc">
             <h1><?= $data['page_name'] ?></h1>
-            <button type="button" class="btn btn-primary" id="btnNewUser"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <?php if (!empty($_SESSION['permisosMod']['crear'])) {
+            ?>
+            <button type="button" class="btn btn-primary" id="btnNewUser" onclick="modalNewUser()"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <?php
+            } ?>
+            
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -57,6 +69,7 @@
       
     </section>
     <!-- /.content -->
+    <?php } ?>
   </div>
   <!-- /.content-wrapper -->
 

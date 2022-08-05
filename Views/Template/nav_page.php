@@ -60,41 +60,36 @@
           </li>
           <?php } ?>
 
+          <?php if (!empty($_SESSION['permisos'][3]['ver']) || !empty($_SESSION['permisos'][4]['ver'])) {?>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-boxes"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
-                Productos
+                Tienda
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if (!empty($_SESSION['permisos'][3]['ver'])) {?>
               <li class="nav-item">
-                <a href="../forms/general.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Productos</p>
                 </a>
               </li>
+              <?php } ?>
+
+              <?php if (!empty($_SESSION['permisos'][4]['ver'])) {?>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
+                  <p>Categoría</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li>
+              <?php } ?>
             </ul>
           </li>
+          <?php } ?>
           
         </ul>
       </nav>

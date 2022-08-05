@@ -48,15 +48,13 @@
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="Imagen de usuario">
-          <span class="d-none d-md-inline"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alejandro Pierce</font></font></span>
+          <span class="d-none d-md-inline"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $_SESSION['userData']['nombres']." ".$_SESSION['userData']['apellidos'] ?></font></font></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
-            <img src="" class="img-circle elevation-2" alt="User Image">
-
+            <p><?= $_SESSION['userData']['nombrerol'] ?></p>
             <p>
-              Alexander Pierce - Web Developer
               <small><?= fecha(); ?></small>
             </p>
           </li>

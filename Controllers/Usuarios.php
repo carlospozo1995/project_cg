@@ -80,18 +80,30 @@
             $arrUsers = $this->model->selectUsers();
 
             for ($i=0; $i < count($arrUsers); $i++) { 
+                $btnViewUser = '';
+                $btnUpdateUser  =  '';
+                $btnDeleteUser = '';
+
                 if ($arrUsers[$i]['status'] == 1) {
                     $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
                 }else{
                     $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                 }
 
+                if (!empty($_SESSION['permisosMod']['ver'])) {
+                    $btnViewUser = '<button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                }
+
+                if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                    $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                }
+                
+                if (!empty($_SESSION['permisosMod']['eliminar'])) {
+                    $btnDeleteUser = '<button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                }
+
                 // BTN PERMISOS DELETE EDIT
-                $arrUsers[$i]['actions']= ' <div class="text-center">
-                                                <button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>
-                                                <button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                                <button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>
-                                            </div>' ;
+                $arrUsers[$i]['actions']= ' <div class="text-center">'.$btnViewUser.' '.$btnUpdateUser.' '.$btnDeleteUser.'</div>' ;
             }
 
             echo json_encode($arrUsers, JSON_UNESCAPED_UNICODE);

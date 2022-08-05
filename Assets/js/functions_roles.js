@@ -1,5 +1,5 @@
 // OPEN MODAL NEW ROL
-$("#btnNewRol").click(function () {
+function modalNewRol() {
     document.getElementById("idRol").value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
     document.querySelector(".modal-title").innerHTML = "Nuevo Rol";
@@ -8,7 +8,7 @@ $("#btnNewRol").click(function () {
     formNewRol.reset();
 
     $('#modalFormRol').modal('show');
-})
+}
 
 //LOAD DATA TABLE ROLES
 var tableRoles;
