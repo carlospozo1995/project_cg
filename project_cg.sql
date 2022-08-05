@@ -1,114 +1,114 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1    Database: project_cg
--- ------------------------------------------------------
--- Server version	5.7.33
+-- Servidor: localhost
+-- Tiempo de generación: 05-08-2022 a las 03:36:20
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `modulos`
+-- Base de datos: `project_cg`
 --
 
-DROP TABLE IF EXISTS `modulos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modulos`
+--
+
 CREATE TABLE `modulos` (
-  `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idmodulo` bigint(20) NOT NULL,
   `titulo` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idmodulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
--- Dumping data for table `modulos`
+-- Volcado de datos para la tabla `modulos`
 --
 
-LOCK TABLES `modulos` WRITE;
-/*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
-INSERT INTO `modulos` VALUES (1,'Sistema','Página principal - Sistema',1),(2,'Usuarios','Usuarios del sistema',1),(3,'Productos','Todos los productos',1);
-/*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `modulos` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
+(1, 'Sistema', 'Página principal - Sistema', 1),
+(2, 'Usuarios', 'Usuarios del sistema', 1),
+(3, 'Productos', 'Todos los productos', 1),
+(4, 'Categorias', 'Todas las categorias', 1);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `permisos`
 --
 
-DROP TABLE IF EXISTS `permisos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisos` (
-  `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idpermiso` bigint(20) NOT NULL,
   `rolid` bigint(20) NOT NULL,
   `moduloid` bigint(20) NOT NULL,
   `ver` int(11) NOT NULL DEFAULT '0',
   `crear` int(11) NOT NULL DEFAULT '0',
   `actualizar` int(11) NOT NULL DEFAULT '0',
-  `eliminar` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idpermiso`),
-  KEY `rolid` (`rolid`),
-  KEY `moduloid` (`moduloid`),
-  CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulos` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `eliminar` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
--- Dumping data for table `permisos`
+-- Volcado de datos para la tabla `permisos`
 --
 
-LOCK TABLES `permisos` WRITE;
-/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-INSERT INTO `permisos` VALUES (1,1,1,0,0,0,0),(2,1,2,1,1,1,1),(3,1,3,1,1,1,1),(4,2,1,0,0,0,0),(5,2,2,1,1,1,0),(6,2,3,1,1,1,0),(7,6,1,1,1,1,0),(8,6,2,0,0,0,0),(9,6,3,0,0,0,0);
-/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
+(7, 3, 1, 1, 0, 0, 0),
+(8, 3, 2, 1, 0, 0, 0),
+(9, 3, 3, 1, 0, 0, 0),
+(91, 1, 1, 1, 0, 0, 0),
+(92, 1, 2, 1, 1, 1, 1),
+(93, 1, 3, 1, 0, 0, 0),
+(94, 1, 4, 1, 0, 0, 0),
+(95, 2, 1, 1, 0, 0, 0),
+(96, 2, 2, 1, 1, 1, 0),
+(97, 2, 3, 1, 0, 0, 0),
+(98, 2, 4, 1, 0, 0, 0);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
-  `idrol` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idrol` bigint(20) NOT NULL,
   `nombrerol` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
 
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Administrador','Administrador Todos los permisos',1),(2,'Supervisor','Supervisor  La mayoria de los permisos',1),(3,'Suplente','Suplente  Permisos restringidos',1),(4,'Vendedor','Vendedor - No tiene permisos',1),(5,'Cliente','Cliente - No hay permisos',1),(6,'Comprador','lcaocakns',0);
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `roles` (`idrol`, `nombrerol`, `descripcion`, `status`) VALUES
+(1, 'Administrador', 'Administrador Todos los permisos', 1),
+(2, 'Supervisor', 'Supervisor  La mayoria de los permisos', 1),
+(3, 'Suplente', 'Suplente  Permisos restringidos', 1),
+(4, 'Vendedor', 'Vendedor - No tiene permisos', 1),
+(5, 'Cliente', 'Cliente - No hay permisos', 1);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idusuario` bigint(20) NOT NULL,
   `identificacion` varchar(30) COLLATE utf8mb4_swedish_ci NOT NULL,
   `nombres` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
   `apellidos` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
@@ -118,30 +118,98 @@ CREATE TABLE `usuario` (
   `toke` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `rolid` bigint(20) NOT NULL,
   `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idusuario`),
-  KEY `rolid` (`rolid`),
-  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'123','Carlos','Pozo',994603678,'carlospozo95@gmail.com','ff0575e07695d3adcc00bbbab5551e53387c65809d76be3ce8e1896d266df8aa',NULL,1,'2022-07-23 18:54:53',1),(2,'456','Dos','Dos',1234567891,'do@do.com','3052a0fced2e42e8e725fd0cad429da9aa6430fdd2f9a4b3c744021534048d13',NULL,2,'2022-07-23 21:28:01',1),(3,'789','Tres','Tres',365465465,'tres@tres.com','b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194',NULL,3,'2022-07-24 14:20:02',1),(4,'100','Cuatro','Cuatro',9654656,'cuatro@cuatro.com','76041c530ce73f870e2dc8263bdac7b8d8e818711090f19b49778757be9f5fa6',NULL,4,'2022-07-24 14:24:16',1),(5,'1100','Cinco','Cinco',6845461625,'cinco@cinco.com','383c9d639d9f2f1dfa5325be5c7c01050e4052c8e29ad09aa9065dedaf6793e0',NULL,5,'2022-07-24 14:26:06',1);
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
+(1, '123', 'Carlos', 'Pozo', 994603678, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
+(2, '456', 'Dos', 'Dos', 1234567891, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-07-23 21:28:01', 1),
+(3, '789', 'Tres', 'Tres', 365465465, 'tres@tres.com', 'b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194', NULL, 3, '2022-07-24 14:20:02', 1),
+(4, '100', 'Cuatro', 'Cuatro', 9654656, 'cuatro@cuatro.com', '76041c530ce73f870e2dc8263bdac7b8d8e818711090f19b49778757be9f5fa6', NULL, 4, '2022-07-24 14:24:16', 1),
+(5, '1100', 'Cinco', 'Cinco', 6845461625, 'cinco@cinco.com', '383c9d639d9f2f1dfa5325be5c7c01050e4052c8e29ad09aa9065dedaf6793e0', NULL, 5, '2022-07-24 14:26:06', 1),
+(6, '200', 'Seis', 'Seis', 6545665485, 'carlos.pflogger@hotmail.com', '0e5c50d9a45bde6a59d2052afa319d93928095b24589b1b887bcecbad7c010a8', '4ceb682b6e235dd9e75d87a37fc2d24cf41e31c40f2902eb5a1b0afe446fc9016a6f4d9d7ca4675f', 5, '2022-07-27 21:48:18', 1);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `modulos`
+--
+ALTER TABLE `modulos`
+  ADD PRIMARY KEY (`idmodulo`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`idpermiso`),
+  ADD KEY `rolid` (`rolid`),
+  ADD KEY `moduloid` (`moduloid`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`idrol`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`),
+  ADD KEY `rolid` (`rolid`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `modulos`
+--
+ALTER TABLE `modulos`
+  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `idrol` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulos` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2022-08-01 14:22:41
