@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "copy", "csv", "excel", "pdf", "print", "colvis"
         ],
         "bDestroy":true,
-        "iDisplayLength":3,
+        "iDisplayLength":10,
         "order":[[0,"asc"]],
     });
 

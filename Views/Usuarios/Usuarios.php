@@ -1,6 +1,5 @@
 <?php 
-  headerPage($data); 
-  getModal("modalUsuarios", $data);
+  headerPage($data);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -12,7 +11,8 @@
     ?>
     <h2 class="text-center">Lo sentimos no tiene permiso a esta sección</h2>
     <?php 
-      }else{ ?>
+      }else{ 
+        getModal("modalUsuarios", $data);?>
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">

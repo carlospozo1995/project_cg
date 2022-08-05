@@ -2,21 +2,19 @@
   headerPage($data); 
   getModal("modalRoles", $data);
 ?>
-
-  <!-- CONTAINER MODAL PERMISOS -->
-  <div id="contentModalPermisos"></div>
-  <!-- ------------------------ -->
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- CONTAINER MODAL PERMISOS -->
+    <div id="contentModalPermisos"></div>
+    <!-- ------------------------ -->
+    
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 add-new-mc">
             <h1><?= $data['page_name'] ?></h1>
-            <button type="button" class="btn btn-primary" id="btnNewRol" onclick="modalNewRol();"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <button type="button" class="btn btn-primary" onclick="modalNewRol();"><i class="fas fa-plus-circle"></i> Nuevo</button>
           </div>
         </div>
       </div><!-- /.container-fluid -->

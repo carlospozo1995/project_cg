@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":2,
+        "iDisplayLength":10,
     });
 
     var formNewRol = document.getElementById("formNewRol");
