@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 05-08-2022 a las 03:36:20
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.19
+-- Servidor: localhost:3306
+-- Tiempo de generación: 05-08-2022 a las 22:40:31
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ INSERT INTO `modulos` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
 (1, 'Sistema', 'Página principal - Sistema', 1),
 (2, 'Usuarios', 'Usuarios del sistema', 1),
 (3, 'Productos', 'Todos los productos', 1),
-(4, 'Categorias', 'Todas las categorias', 1);
+(4, 'Categorias', 'Todas las categorias', 1),
+(5, 'Roles', 'Todos los roles', 1);
 
 -- --------------------------------------------------------
 
@@ -68,14 +69,16 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (7, 3, 1, 1, 0, 0, 0),
 (8, 3, 2, 1, 0, 0, 0),
 (9, 3, 3, 1, 0, 0, 0),
-(91, 1, 1, 1, 0, 0, 0),
-(92, 1, 2, 1, 1, 1, 1),
-(93, 1, 3, 1, 0, 0, 0),
-(94, 1, 4, 1, 0, 0, 0),
-(95, 2, 1, 1, 0, 0, 0),
-(96, 2, 2, 1, 1, 1, 0),
-(97, 2, 3, 1, 0, 0, 0),
-(98, 2, 4, 1, 0, 0, 0);
+(127, 1, 1, 1, 0, 0, 0),
+(128, 1, 2, 1, 1, 1, 1),
+(129, 1, 3, 1, 0, 0, 0),
+(130, 1, 4, 1, 0, 0, 0),
+(131, 1, 5, 1, 1, 1, 1),
+(132, 2, 1, 1, 0, 0, 0),
+(133, 2, 2, 1, 1, 1, 0),
+(134, 2, 3, 1, 0, 0, 0),
+(135, 2, 4, 1, 0, 0, 0),
+(136, 2, 5, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -172,13 +175,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
