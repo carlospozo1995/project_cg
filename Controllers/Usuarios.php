@@ -16,6 +16,10 @@
 
         public function usuarios()
         {
+            if(empty($_SESSION['permisos'][2]['ver'])){
+                header('Location: '.base_url().'sistema');
+            }
+
             $data['page_id'] = 4;
             $data['page_tag'] = 'Sistema';
             $data['page_title'] = 'Empresa - Usuarios';

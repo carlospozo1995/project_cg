@@ -9,10 +9,15 @@
             if (empty($_SESSION['login'])){
                 header("Location: ".base_url()."login");
             }
+
+            getPermisos(5);
         }
 
         public function roles()
         {
+            if(empty($_SESSION['permisos'][5]['ver'])){
+                header('Location: '.base_url().'sistema');
+            }
             $data['page_id'] = 3;
             $data['page_tag'] = 'Sistema';
             $data['page_title'] = 'Empresa - Roles';
@@ -27,6 +32,21 @@
             $arrRoles = $this->model->selectRoles();
 
             for ($i=0; $i < count($arrRoles); $i++) { 
+                $btnPermisosRol = '';
+                $btnUpdateRol = '';
+                $btnDeleteRol = '';
+
+                if ($_SESSION['permisosMod']['rolid'] == 1) {
+                    $btnPermisosRol = '<button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" onclick="permisos('.$arrRoles[$i]['idrol'].')" tilte="Permisos"><i class="fas fa-key"></i></button>';
+                }
+                if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                    $btnUpdateRol = '<button type="button" class="btnEditRol btn btn-primary btn-sm" onclick="editRol('.$arrRoles[$i]['idrol'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                }
+
+                if (!empty($_SESSION['permisosMod']['eliminar'])){
+                    $btnDeleteRol = ' <button type="button" class="btnDeleteRol btn btn-danger btn-sm" onclick="deleteRol('.$arrRoles[$i]['idrol'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                }
+
                 if ($arrRoles[$i]['status'] == 1) {
                     $arrRoles[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
                 }else{
@@ -34,11 +54,7 @@
                 }
 
                 // BTN PERMISOS DELETE EDIT
-                $arrRoles[$i]['actions']=   '<div class="text-center">
-                                                <button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" onclick="permisos('.$arrRoles[$i]['idrol'].')" tilte="Permisos"><i class="fas fa-key"></i></button>
-                                                <button type="button" class="btnEditRol btn btn-primary btn-sm" onclick="editRol('.$arrRoles[$i]['idrol'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                                <button type="button" class="btnDeleteRol btn btn-danger btn-sm" onclick="deleteRol('.$arrRoles[$i]['idrol'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>
-                                            </div>' ;
+                $arrRoles[$i]['actions']=   '<div class="text-center">'.$btnPermisosRol.' '.$btnUpdateRol.' '.$btnDeleteRol.'</div>' ;
             }
 
 

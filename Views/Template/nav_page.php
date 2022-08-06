@@ -23,8 +23,6 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <?php if (!empty($_SESSION['permisos'][1]['ver'])) {?>
           <li class="nav-item">
             <a href="<?php base_url(); ?>sistema" class="nav-link">
@@ -34,7 +32,7 @@
           </li>
           <?php } ?>
 
-          <?php if (!empty($_SESSION['permisos'][2]['ver'])) {?>
+          <?php if (!empty($_SESSION['permisos'][2]['ver']) || !empty($_SESSION['permisos'][5]['ver'])){?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -44,18 +42,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if (!empty($_SESSION['permisos'][2]['ver'])){?>
               <li class="nav-item">
                 <a href="<?php base_url(); ?>usuarios" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
               </li>
+              <?php } ?>
+              <?php if (!empty($_SESSION['permisos'][5]['ver'])){?>
               <li class="nav-item">
                 <a href="<?php base_url(); ?>roles" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
                 </a>
               </li>
+              <?php } ?>
             </ul>
           </li>
           <?php } ?>

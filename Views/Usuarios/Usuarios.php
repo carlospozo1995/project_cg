@@ -1,18 +1,11 @@
 <?php 
   headerPage($data);
+  getModal("modalUsuarios", $data);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <?php
-    dep($_SESSION['permisosMod']);
-      if (empty($_SESSION['permisosMod']['ver'])) {
-    ?>
-    <h2 class="text-center">Lo sentimos no tiene permiso a esta sección</h2>
-    <?php 
-      }else{ 
-        getModal("modalUsuarios", $data);?>
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -69,7 +62,6 @@
       
     </section>
     <!-- /.content -->
-    <?php } ?>
   </div>
   <!-- /.content-wrapper -->
 

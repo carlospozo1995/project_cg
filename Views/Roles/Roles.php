@@ -4,6 +4,7 @@
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <?php dep($_SESSION['permisosMod']);?>
     <!-- CONTAINER MODAL PERMISOS -->
     <div id="contentModalPermisos"></div>
     <!-- ------------------------ -->
@@ -14,7 +15,9 @@
         <div class="row mb-2">
           <div class="col-sm-6 add-new-mc">
             <h1><?= $data['page_name'] ?></h1>
+            <?php if(!empty($_SESSION['permisosMod']['crear'])){ ?>
             <button type="button" class="btn btn-primary" onclick="modalNewRol();"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <?php } ?>
           </div>
         </div>
       </div><!-- /.container-fluid -->
