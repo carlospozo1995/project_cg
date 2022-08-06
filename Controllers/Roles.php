@@ -36,13 +36,12 @@
                 $btnUpdateRol = '';
                 $btnDeleteRol = '';
 
-                if ($_SESSION['permisosMod']['rolid'] == 1) {
+                if ($_SESSION['idUser'] == 1) {
                     $btnPermisosRol = '<button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" onclick="permisos('.$arrRoles[$i]['idrol'].')" tilte="Permisos"><i class="fas fa-key"></i></button>';
                 }
                 if (!empty($_SESSION['permisosMod']['actualizar'])) {
                     $btnUpdateRol = '<button type="button" class="btnEditRol btn btn-primary btn-sm" onclick="editRol('.$arrRoles[$i]['idrol'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                 }
-
                 if (!empty($_SESSION['permisosMod']['eliminar'])){
                     $btnDeleteRol = ' <button type="button" class="btnDeleteRol btn btn-danger btn-sm" onclick="deleteRol('.$arrRoles[$i]['idrol'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                 }

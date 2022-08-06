@@ -63,7 +63,13 @@
 
         public function selectUsers()
         {
-            $sql_select_users = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, u.status, r.nombrerol FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.status !=  0";
+            $notAdmin = "";
+
+            if ($_SESSION['idUser'] != 1){
+                $notAdmin = " AND u.idusuario != 1";
+            }
+
+            $sql_select_users = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, u.status, r.nombrerol, r.idrol FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.status != 0".$notAdmin;
 
             $request = $this->selectAll($sql_select_users);
             return $request;
