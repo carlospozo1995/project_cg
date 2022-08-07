@@ -4,7 +4,6 @@
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <?php dep($_SESSION['permisosMod']);?>
     <!-- CONTAINER MODAL PERMISOS -->
     <div id="contentModalPermisos"></div>
     <!-- ------------------------ -->
