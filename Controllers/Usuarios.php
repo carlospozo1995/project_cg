@@ -99,11 +99,20 @@
                 }
 
                 if (!empty($_SESSION['permisosMod']['actualizar'])) {
-                    $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                    if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
+                        $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                    }else{
+                        $btnUpdateUser ='';
+                    }
                 }
                 
                 if (!empty($_SESSION['permisosMod']['eliminar'])) {
-                    $btnDeleteUser = '<button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                    if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
+                        $btnDeleteUser = '<button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                    }else{
+                        $btnDeleteUser = '';
+                    }
+                    
                 }
 
                 // BTN PERMISOS DELETE EDIT
