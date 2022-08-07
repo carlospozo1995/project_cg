@@ -60,7 +60,7 @@
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            <a href="<?= base_url();?>usuarios/perfil" class="btn btn-default btn-flat">Perfil</a>
+            <a href="<?= base_url();?>perfil" class="btn btn-default btn-flat">Perfil</a>
             <a href="<?= base_url();?>logout" class="btn btn-default btn-flat float-right">Cerrar sesión</a>
           </li>
         </ul>

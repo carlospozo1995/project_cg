@@ -151,16 +151,6 @@
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
 
-        public function perfil()
-        {
-            $data['page_tag'] = 'Perfil';
-            $data['page_title'] = 'Empresa - Perfil';
-            // $data['page_title'] = 'Créditos GUAMAN - Usuarios';
-            $data['page_name'] = 'Perfil de usuario';
-            $data['page_functions_js'] = 'functions_usuarios.js';
-            $this->views->getView($this, "perfil", $data);
-        }
-
     }
 
 ?>
