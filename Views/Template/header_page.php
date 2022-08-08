@@ -47,7 +47,7 @@
       
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="Imagen de usuario">
+          <i class="fas fa-user "></i>
           <span class="d-none d-md-inline"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?= $_SESSION['userData']['nombres']." ".$_SESSION['userData']['apellidos'] ?></font></font></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

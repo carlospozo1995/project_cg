@@ -22,7 +22,16 @@
             $this->views->getView($this, "perfil", $data);
         }
 
+        public function updateMyUser(int $idUser)
+        {   
+            dep($_POST);
+            $idUsuario  = intval($idUser);
+            if ($idUsuario > 0) {
+                $arrUser = $this->model->selectUsuario($idUsuario);
+            }
+            die();
+        }
        
     }
 
-?>
+?><acronym title=""></acronym>

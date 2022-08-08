@@ -25,9 +25,9 @@
                                 alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">Nina Mcintire</h3>
+                            <h3 class="profile-username text-center"><?= $_SESSION['userData']['nombres']." ".$_SESSION['userData']['apellidos'] ?></h3>
 
-                            <p class="text-muted text-center">Software Engineer</p>
+                            <p class="text-muted text-center"><?= $_SESSION['userData']['nombrerol'] ?></p>
 
                             <!-- <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
@@ -92,55 +92,86 @@
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Datos personales</a></li>
-                                <li class="nav-item" title="Editar"><a class="nav-link" href="#settings" data-toggle="tab"><i class="fas fa-user-edit"></i></a></li>
+                                <li class="nav-item" title="Editar datos personales"><a class="nav-link" href="#settings" data-toggle="tab"><i class="fas fa-user-edit"></i></a></li>
                             </ul>
                         </div>
 
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
-                                   <p>datos personales data table</p>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>Identificación:</td>
+                                                <td><?= $_SESSION['userData']['identificacion']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nombres:</td>
+                                                <td><?= $_SESSION['userData']['nombres']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Apellidos:</td>
+                                                <td><?= $_SESSION['userData']['apellidos']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>teléfono:</td>
+                                                <td><?= $_SESSION['userData']['telefono']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email(Usuario):</td>
+                                                <td><?= $_SESSION['userData']['email_user']; ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tipo Usuario:</td>
+                                                <td><?= $_SESSION['userData']['nombrerol']; ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="tab-pane" id="settings">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" id="formUpdateUser">
+                                        <input type="hidden" id="idUser" value="<?= $_SESSION['userData']['idusuario'] ?>">
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                            <label class="col-sm-2 col-form-label">Identificación</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                <input type="text" class="form-control" name="identificacion" id="identificacion" value="<?= $_SESSION['userData']['identificacion'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                            <label class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $_SESSION['userData']['nombres'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                            <label class="col-sm-2 col-form-label">Apellido</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                                <input type="text" class="form-control" id="apellido" name="apellido" value="<?= $_SESSION['userData']['apellidos'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                                            <label class="col-sm-2 col-form-label">Teléfono</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                                <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $_SESSION['userData']['telefono'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                            <label class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                                <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['userData']['email_user'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="offset-sm-2 col-sm-10">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                                    </label>
-                                                </div>
+                                            <label class="col-sm-2 col-form-label">Contraseña</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="password" id="password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Confirmar contraseña</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
                                             </div>
                                         </div>
                                         <div class="form-group row">
