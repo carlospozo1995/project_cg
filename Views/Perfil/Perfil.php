@@ -131,35 +131,35 @@
 
                                 <div class="tab-pane" id="settings">
                                     <form class="form-horizontal" id="formUpdateUser">
-                                        <input type="hidden" id="idUser" value="<?= $_SESSION['userData']['idusuario'] ?>">
+                                        <input type="hidden" id="idUser" name="idUser" value="<?= $_SESSION['idUser'] ?>">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Identificación</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="identificacion" id="identificacion" value="<?= $_SESSION['userData']['identificacion'] ?>">
+                                                <input type="text" class="form-control" name="identificacion" id="identificacion" value="<?= $_SESSION['userData']['identificacion'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $_SESSION['userData']['nombres'] ?>">
+                                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $_SESSION['userData']['nombres'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Apellido</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="apellido" name="apellido" value="<?= $_SESSION['userData']['apellidos'] ?>">
+                                                <input type="text" class="form-control" id="apellido" name="apellido" value="<?= $_SESSION['userData']['apellidos'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Teléfono</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $_SESSION['userData']['telefono'] ?>">
+                                                <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $_SESSION['userData']['telefono'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['userData']['email_user'] ?>">
+                                                <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['userData']['email_user'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">

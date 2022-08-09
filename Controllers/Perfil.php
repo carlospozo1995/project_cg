@@ -22,16 +22,22 @@
             $this->views->getView($this, "perfil", $data);
         }
 
-        public function updateMyUser(int $idUser)
+        public function updateMyUser()
         {   
             dep($_POST);
-            $idUsuario  = intval($idUser);
-            if ($idUsuario > 0) {
-                $arrUser = $this->model->selectUsuario($idUsuario);
+            if($_POST){
+                if ($_POST['identificacion'] == '' || $_POST['nombre'] == '' || $_POST['apellido'] == '' || $_POST['telefono'] == '' || $_POST['email'] == '') {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
+                }
+                else{
+                    $identificacion = $_POST['identificacion'];
+                    $nombre = $_POST['nombre'];
+                    $apellido = $_POST['apellido'];
+                    $telefono = $_POST['telefono'];
+                }
             }
-            die();
         }
        
     }
 
-?><acronym title=""></acronym>
+?>
