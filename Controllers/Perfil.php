@@ -24,16 +24,22 @@
 
         public function updateMyUser()
         {   
-            dep($_POST);
             if($_POST){
                 if ($_POST['identificacion'] == '' || $_POST['nombre'] == '' || $_POST['apellido'] == '' || $_POST['telefono'] == '' || $_POST['email'] == '') {
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }
                 else{
-                    $identificacion = $_POST['identificacion'];
-                    $nombre = $_POST['nombre'];
-                    $apellido = $_POST['apellido'];
-                    $telefono = $_POST['telefono'];
+                    dep($_POST);
+                    $idUser = intval($_POST['idUser']);
+                    $identificacion = strClean($_POST['identificacion']);
+                    $nombre = ucwords(strClean($_POST['nombre']));
+                    $apellido = ucwords(strClean($_POST['apellido']));
+                    $telefono = intval(strClean($_POST['telefono']));
+                    $email = strClean($_POST['email']);
+                    $password = $_POST['password'];
+                    $confirmPassword = $_POST['confirmPassword'];
+
+                    $request = $this->model->searchUser($idUser, $identificacion, $email);
                 }
             }
         }
