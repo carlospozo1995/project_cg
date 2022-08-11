@@ -22,26 +22,36 @@
             $this->views->getView($this, "perfil", $data);
         }
 
-        public function updateMyUser()
+        public function updatePerfil()
         {   
             if($_POST){
-                if ($_POST['identificacion'] == '' || $_POST['nombre'] == '' || $_POST['apellido'] == '' || $_POST['telefono'] == '' || $_POST['email'] == '') {
+                dep($_POST);
+                if ($_POST['identificacion'] == '' || $_POST['nombre'] == '' || $_POST['apellido'] == '' || $_POST['telefono'] == '') {
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }
                 else{
-                    dep($_POST);
-                    $idUser = intval($_POST['idUser']);
+                    $idUser = $_SESSION['idUser'];
                     $identificacion = strClean($_POST['identificacion']);
                     $nombre = ucwords(strClean($_POST['nombre']));
                     $apellido = ucwords(strClean($_POST['apellido']));
                     $telefono = intval(strClean($_POST['telefono']));
-                    $email = strClean($_POST['email']);
-                    $password = $_POST['password'];
-                    $confirmPassword = $_POST['confirmPassword'];
+                    $password  = "";
 
-                    $request = $this->model->searchUser($idUser, $identificacion, $email);
+                    if(!empty($_POST['password'])){
+                        $password = hash("SHA256", $_POST['password']);
+                    }
+                    $request = $this->model->updatePerfil($idUser, $identificacion, $nombre, $apellido, $telefono, $password);
+
+                    if($request){
+                        sessionUser($_SESSION['idUser']);
+                        $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                    }else{
+                        $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos.');
+                    }
                 }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
+            die();
         }
        
     }
