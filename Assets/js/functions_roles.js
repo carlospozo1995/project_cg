@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
         "ajax":{
-            "url": base_url + "/Roles/getRoles",
+            "url": base_url + "Roles/getRoles",
             "dataSrc":"",
         },
         "columns":[
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":2,
+        "iDisplayLength":10,
     });
 
     var formNewRol = document.getElementById("formNewRol");

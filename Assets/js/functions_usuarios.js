@@ -9,6 +9,7 @@ function modalNewUser() {
     formNewUser.reset();
     $("#modalFormUser").modal("show");
     validFocus();
+    rowTable = "";
 }
 
 //LOAD DATA TABLE USERS
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
         "ajax":{
-            "url": base_url + "/Usuarios/getUsuarios",
+            "url": base_url + "Usuarios/getUsuarios",
             "dataSrc":"",
         },
         "columns":[
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "copy", "csv", "excel", "pdf", "print", "colvis"
         ],
         "bDestroy":true,
-        "iDisplayLength":2,
+        "iDisplayLength":10,
         "order":[[0,"asc"]],
     });
 
@@ -163,7 +164,7 @@ function viewUser(idUsuario) {
             let objData = JSON.parse(request.responseText);
 
             if (objData.status) {
-                let statuUser = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                let statusUser = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
                 
                 document.getElementById("celIdentificacion").innerHTML = objData.data.identificacion;
                 document.getElementById("celNombre").innerHTML = objData.data.nombres;
@@ -171,7 +172,7 @@ function viewUser(idUsuario) {
                 document.getElementById("celTelefono").innerHTML = objData.data.telefono;
                 document.getElementById("celEmailUser").innerHTML = objData.data.email_user;
                 document.getElementById("celTipoUsuario").innerHTML = objData.data.nombrerol;
-                document.getElementById("celEstado").innerHTML = statuUser;
+                document.getElementById("celEstado").innerHTML = statusUser;
                 document.getElementById("celFecharegistro").innerHTML = objData.data.fechaRegistro;
                 $('#modalViewUser').modal('show');
             }else{
