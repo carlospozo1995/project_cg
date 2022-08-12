@@ -3,6 +3,8 @@ function openModalUpdate() {
     formUpdateUser.reset();
 }
 
+// let loading = document.getElementById('loading'); 
+
 let formUpdateUser = document.getElementById('formPerfil');
 
 formPerfil.addEventListener('submit', function (e){
@@ -29,7 +31,7 @@ formPerfil.addEventListener('submit', function (e){
             return false;
         }
     }
-
+    loading.style.display = 'flex';
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     var ajaxUrl = base_url + 'Perfil/updatePerfil';
     var formData = new FormData(formPerfil);
@@ -68,6 +70,8 @@ formPerfil.addEventListener('submit', function (e){
                 'error'
             );
         }
+        loading.style.display = 'none';
+        return false;
     };
 
 

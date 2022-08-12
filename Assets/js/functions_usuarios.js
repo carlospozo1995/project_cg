@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return false;
                 }
             }
-
+            loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + 'Usuarios/setUsuario';
             var formData = new FormData(formNewUser);
@@ -88,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire("Error", objData.msg, "error");
                     }
                 }
+                loading.style.display = "none";
+                return false;
             }
         }
     }

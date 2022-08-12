@@ -55,8 +55,6 @@
                 // BTN PERMISOS DELETE EDIT
                 $arrRoles[$i]['actions']=   '<div class="text-center">'.$btnPermisosRol.' '.$btnUpdateRol.' '.$btnDeleteRol.'</div>' ;
             }
-
-
             echo json_encode($arrRoles, JSON_UNESCAPED_UNICODE);
             die();
         }

@@ -29,6 +29,11 @@
   <link rel="stylesheet" href="<?php echo media(); ?>css/style.css">
 </head>
 <body class="hold-transition sidebar-mini">
+  <div id="loading" class="loading-login-mc">
+      <div>
+          <img src="<?= media(); ?>images/loading.gif" alt="">
+      </div>
+  </div>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->

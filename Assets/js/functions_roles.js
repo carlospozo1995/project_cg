@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (strNombre == "" || strDescripcion == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
+            loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + 'Roles/setRol';
             var formData = new FormData(formNewRol);
@@ -73,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire("Error", objData.msg, "error");
                     }
                 }
+                loading.style.display = "none";
+                return false;
             }
         }
     }
