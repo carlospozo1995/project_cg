@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <p>Los campos que contienen un (<span class="required">*</span>) son obligatorios.</p>
                 <div class="card card-primary">
                 <!-- form start -->
                     <form id="formPerfil" name="formPerfil">
@@ -15,8 +16,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Identificación<span class="required"> *</span></label>
-                                        <input type="text" class="form-control" id="identificacion" name="identificacion" value="<?= $_SESSION['userData']['identificacion'] ?>" required>
+                                        <label>Identificación</label>
+                                        <input type="text" class="form-control" id="identificacion" name="identificacion" value="<?= $_SESSION['userData']['identificacion'] ?>" required disabled>
                                     </div>
                                 </div>
                             </div>
@@ -45,8 +46,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="txtEmail">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['userData']['email_user'] ?>" required disabled>
+                                        <label for="txtEmail">Email<span class="required"> *</span></label>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['userData']['email_user'] ?>" required>
                                     </div>
                                 </div>
                             </div>

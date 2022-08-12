@@ -7,14 +7,14 @@ let formUpdateUser = document.getElementById('formPerfil');
 
 formPerfil.addEventListener('submit', function (e){
     e.preventDefault();
-    var identificacion = document.getElementById("identificacion").value;
     var nombre = document.getElementById("nombre").value;
     var apellido = document.getElementById("apellido").value;
     var telefono = document.getElementById("telefono").value;
+    var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (identificacion == "" || nombre == "" || apellido == "" || telefono == "") {
+    if (nombre == "" || apellido == "" || telefono == "" || email == "") {
         Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         return false;
     }
@@ -54,6 +54,12 @@ formPerfil.addEventListener('submit', function (e){
                         location.reload();
                     }
                 });
+            }else{
+                Swal.fire(
+                    'Atención!',
+                    objData.msg,
+                    'warning'
+                );
             }
         }else{
             Swal.fire(

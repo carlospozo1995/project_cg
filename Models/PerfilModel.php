@@ -3,10 +3,10 @@
 class  PerfilModel extends Mysql{
 
     private $intIdUsuario;
-    private $strIdentificacion;
     private $strNombre;
     private $strApellido;
     private $intTelefono;
+    private $strEmail;
     private $strPassword;
 
     public function __construct()
@@ -14,20 +14,29 @@ class  PerfilModel extends Mysql{
         parent::__construct();
     }
 
-    public function updatePerfil(int $idUSer, string $identificacion, string $nombre, string $apellido, int $telefono, string $password){
+    public function updatePerfil(int $idUSer, string $nombre, string $apellido, int $telefono, string $email, string $password){
         $this->intIdUsuario = $idUSer;
-        $this->strIdentificacion = $identificacion;
         $this->strNombre = $nombre;
         $this->strApellido = $apellido;
         $this->intTelefono = $telefono;
+        $this->strEmail = $email;
         $this->strPassword = $password;
 
-        if ($this->strPassword != "") {
-            $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, password = '$this->strPassword' WHERE idusuario = $this->intIdUsuario";
+        $sql_exist_email = "SELECT * FROM project_cg.usuario WHERE email_user = '{$this-> strEmail}' AND idusuario != $this->intIdUsuario";
+        $request_email = $this->selectAll($sql_exist_email);
+
+        if (empty($request_email)) {
+            if ($this->strPassword != "") {
+                $sql_update_user = "UPDATE project_cg.usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword' WHERE idusuario = $this->intIdUsuario";
+            }else{
+                $sql_update_user = "UPDATE project_cg.usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail' WHERE idusuario = $this->intIdUsuario";
+            }
+            $request = $this->update($sql_update_user);
         }else{
-            $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono WHERE idusuario = $this->intIdUsuario";
+            $request = "existe";
         }
-        $request = $this->update($sql_update_user);
+
+       
         return $request;
     }
 }
