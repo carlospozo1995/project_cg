@@ -100,7 +100,7 @@
 
                 if (!empty($_SESSION['permisosMod']['actualizar'])) {
                     if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
-                        $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser('.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                        $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser(this,'.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                     }else{
                         $btnUpdateUser ='';
                     }
