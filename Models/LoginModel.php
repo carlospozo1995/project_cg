@@ -29,6 +29,7 @@
             $sql_search_rol  = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, r.idrol, r.nombrerol, r.status FROM project_cg.usuario u INNER JOIN project_cg.roles r ON u.rolid = r.idrol WHERE u.idusuario = $this->intIdUsuario";
 
             $request = $this->select($sql_search_rol);
+            $_SESSION['userData'] = $request;
             return $request;
         }
 

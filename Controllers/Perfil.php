@@ -25,7 +25,6 @@
         public function updatePerfil()
         {   
             if($_POST){
-                dep($_POST);
                 if ($_POST['identificacion'] == '' || $_POST['nombre'] == '' || $_POST['apellido'] == '' || $_POST['telefono'] == '') {
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }

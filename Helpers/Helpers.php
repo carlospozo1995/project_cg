@@ -141,6 +141,13 @@
           
     }
 
+    function sessionUser (int $idUser){
+        require_once 'Models/LoginModel.php';
+        $objLogin = new LoginModel();
+        $request = $objLogin->sessionLogin($idUser);
+        return $request;
+    }
+
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);

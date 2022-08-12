@@ -1,5 +1,6 @@
 function openModalUpdate() {
     $("#modalUpdateUser").modal("show");
+    formUpdateUser.reset();
 }
 
 let formUpdateUser = document.getElementById('formPerfil');
@@ -43,8 +44,8 @@ formPerfil.addEventListener('submit', function (e){
                 Swal.fire({
                     title: '',
                     text: objData.msg,
-                    icon: 'warning',
-                    showCancelButton: true,
+                    icon: 'success',
+                    showCancelButton: false,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Aceptar'

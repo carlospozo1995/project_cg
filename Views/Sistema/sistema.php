@@ -15,7 +15,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <?php dep($_SESSION['userData']);
+        <?php dep(sessionUser($_SESSION['idUser']));
         ?>
     </section>
     <!-- /.content -->
