@@ -10,6 +10,7 @@
         return BASE_URL."Assets/";
     }
 
+    // RETORNA FECHA Y HORA
     function fecha(){
         $dia = date("d");
         $mes = date("m");
@@ -148,9 +149,10 @@
         return $request;
     }
 
+     // TIEMPO QUE EL USUARIO PERMANECE LOGEADO
     function sessionStart(){
         session_start();
-        $timeInactive  = 60;
+        $timeInactive  = 3600;
         if (isset($_SESSION['timeout'])){
             $session_in = time() - $_SESSION['inicio'];
             if ($session_in > $timeInactive) {
@@ -161,6 +163,7 @@
         }
 
     }
+
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
