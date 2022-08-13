@@ -37,6 +37,8 @@
                         if ($arrData['status'] == 1) {
                             $_SESSION['idUser'] = $arrData['idusuario'];
                             $_SESSION['login'] = true;
+                            $_SESSION['timeout'] = true;
+                            $_SESSION['inicio'] = time();
 
                             $arrData = $this->model->sessionLogin($_SESSION['idUser']);
                             sessionUser($_SESSION['idUser']);

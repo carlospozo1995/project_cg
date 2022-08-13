@@ -148,6 +148,19 @@
         return $request;
     }
 
+    function sessionStart(){
+        session_start();
+        $timeInactive  = 60;
+        if (isset($_SESSION['timeout'])){
+            $session_in = time() - $_SESSION['inicio'];
+            if ($session_in > $timeInactive) {
+                header("Location: ".BASE_URL."logout");
+            }
+        }else{
+            header("Location: ".BASE_URL."logout");
+        }
+
+    }
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
