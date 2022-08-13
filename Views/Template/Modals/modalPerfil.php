@@ -26,13 +26,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Nombre<span class="required"> *</span></label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $_SESSION['userData']['nombres'] ?>" required>
+                                        <input type="text" class="form-control valid validText" id="nombre" name="nombre" value="<?= $_SESSION['userData']['nombres'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Apellido<span class="required"> *</span></label>
-                                        <input type="text" class="form-control" id="apellido" name="apellido" value="<?= $_SESSION['userData']['apellidos'] ?>" required>
+                                        <input type="text" class="form-control valid validText" id="apellido" name="apellido" value="<?= $_SESSION['userData']['apellidos'] ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -41,13 +41,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Teléfono<span class="required"> *</span></label>
-                                        <input type="text" class="form-control" id="telefono" name="telefono" value="<?= $_SESSION['userData']['telefono'] ?>" required ">
+                                        <input type="text" class="form-control valid validNumber" id="telefono" name="telefono" value="<?= $_SESSION['userData']['telefono'] ?>" required ">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="txtEmail">Email<span class="required"> *</span></label>
-                                        <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['userData']['email_user'] ?>" required>
+                                        <label>Email<span class="required"> *</span></label>
+                                        <input type="email" class="form-control valid validEmail" id="email" name="email" value="<?= $_SESSION['userData']['email_user'] ?>" required>
                                     </div>
                                 </div>
                             </div>

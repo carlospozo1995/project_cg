@@ -259,11 +259,3 @@ function deleteUser(idUsuario) {
     });
 }
 
-// VALIDAR EL FOCUS DE LOS INPUTS
-function validFocus() {
-    let valid = document.querySelectorAll(".valid");
-    valid.forEach(function (valid) {
-        valid.classList.remove("is-invalid");
-        valid.classList.remove("is-valid");
-    });
-}
