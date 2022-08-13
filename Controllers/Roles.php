@@ -9,12 +9,12 @@
                 header("Location: ".base_url()."login");
             }
 
-            getPermisos(5);
+            getPermisos(3);
         }
 
         public function roles()
         {
-            if(empty($_SESSION['permisos'][5]['ver'])){
+            if(empty($_SESSION['permisos'][3]['ver'])){
                 header('Location: '.base_url().'sistema');
             }
             $data['page_id'] = 3;

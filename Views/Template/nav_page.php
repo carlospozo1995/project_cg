@@ -32,7 +32,7 @@
           </li>
           <?php } ?>
 
-          <?php if (!empty($_SESSION['permisos'][2]['ver']) || !empty($_SESSION['permisos'][5]['ver'])){?>
+          <?php if (!empty($_SESSION['permisos'][2]['ver']) || !empty($_SESSION['permisos'][3]['ver'])){?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -50,7 +50,7 @@
                 </a>
               </li>
               <?php } ?>
-              <?php if (!empty($_SESSION['permisos'][5]['ver'])){?>
+              <?php if (!empty($_SESSION['permisos'][3]['ver'])){?>
               <li class="nav-item">
                 <a href="<?php base_url(); ?>roles" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -62,7 +62,7 @@
           </li>
           <?php } ?>
 
-          <?php if (!empty($_SESSION['permisos'][3]['ver']) || !empty($_SESSION['permisos'][4]['ver'])) {?>
+          <?php if (!empty($_SESSION['permisos'][4]['ver']) || !empty($_SESSION['permisos'][5]['ver'])) {?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
@@ -72,18 +72,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <?php if (!empty($_SESSION['permisos'][3]['ver'])) {?>
+              <?php if (!empty($_SESSION['permisos'][4]['ver'])) {?>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php base_url(); ?>productos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Productos</p>
                 </a>
               </li>
               <?php } ?>
 
-              <?php if (!empty($_SESSION['permisos'][4]['ver'])) {?>
+              <?php if (!empty($_SESSION['permisos'][5]['ver'])) {?>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php base_url(); ?>categorias" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categoría</p>
                 </a>
