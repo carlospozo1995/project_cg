@@ -63,16 +63,18 @@
 
         public function getSelectRoles()
         {
-            $htmlOptions = "";
-            $arrRoles = $this->model->selectRoles();
-            if (count($arrRoles) > 0) {
-                for ($i=0; $i < count($arrRoles); $i++) { 
-                    if ($arrRoles[$i]['status'] == 1) {
-                        $htmlOptions .= '<option value="'.$arrRoles[$i]['idrol'].'">'.$arrRoles[$i]['nombrerol'].'</option>' ;
+            if($_SESSION['permisosMod']['ver']){
+                $htmlOptions = "";
+                $arrRoles = $this->model->selectRoles();
+                if (count($arrRoles) > 0) {
+                    for ($i=0; $i < count($arrRoles); $i++) { 
+                        if ($arrRoles[$i]['status'] == 1) {
+                            $htmlOptions .= '<option value="'.$arrRoles[$i]['idrol'].'">'.$arrRoles[$i]['nombrerol'].'</option>' ;
+                        }
                     }
                 }
-            }
-            echo $htmlOptions;
+                echo $htmlOptions;
+            }    
             die();
         }
 
@@ -82,14 +84,19 @@
             $strRol = strClean($_POST['txtNombre']);
             $strDescripcion = strClean($_POST['txtDescripcion']);
             $intStatus = intval($_POST['listStatus']);
+            $request_rol = "";
 
             if (empty($intIdrol)) {
                 // ROL CREATE
-                $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
                 $option = 1;
+                if($_SESSION['permisosMod']['crear']){
+                    $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+                }
             }else{
-                $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
                 $option=2;
+                if($_SESSION['permisosMod']['actualizar']){
+                    $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
+                }
             }
 
             if ($request_rol > 0) {
@@ -126,8 +133,11 @@
         public function delRol()
         {
             if ($_POST) {
+                $request_rol = "";
                 $intIdrol = intval($_POST['idRol']);
-                $request_rol = $this->model->deleteRol($intIdrol);
+                if($_SESSION['permisosMod']['eliminar']){
+                    $request_rol = $this->model->deleteRol($intIdrol);
+                }
 
                 if($request_rol == "ok"){
                     $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el rol.');

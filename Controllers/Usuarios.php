@@ -43,19 +43,22 @@
                     $strEmail = strClean($_POST['txtEmail']);
                     $intRoluser = intval(strClean($_POST['listRolid']));
                     $intStatus = intval(strClean($_POST['listStatus']));
-
+                    $request_user = "";
                     if (empty($intUserid)) {
                         // USER CREATE
                         $option = 1;
                         $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
 
-                        $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                        if($_SESSION['permisosMod']['crear']){
+                            $request_user = $this->model->insertUser($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                        }
                     }else{
                         // UPDATE USER
                         $option = 2;
                         $strPassword = empty($_POST['txtPassword']) ? '' : hash("SHA256", $_POST['txtPassword']);
-
-                        $request_user = $this->model->updateUser($intUserid, $strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                        if($_SESSION['permisosMod']['actualizar']){
+                            $request_user = $this->model->updateUser($intUserid, $strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $intStatus, $strPassword);
+                        }
                     }
 
                     if ($request_user > 0) {
@@ -144,9 +147,12 @@
 
         public function delUser(int $idUser)
         {
+            $request_user = "";
             $intUser = intval($idUser);
-            $request_user = $this->model->deleteUser($intUser);
-            
+            if($_SESSION['permisosMod']['eliminar']){
+                $request_user = $this->model->deleteUser($intUser);
+            }
+
             if ($request_user == "ok"){
                 $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario.');
             }else{
