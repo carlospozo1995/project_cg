@@ -14,7 +14,7 @@
         }
 
         public function categorias()
-        {
+        {   
             if(empty($_SESSION['permisos'][5]['ver'])){
                 header('Location: '.base_url().'sistema');
             }
