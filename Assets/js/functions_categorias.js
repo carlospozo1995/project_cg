@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var type = fileimg[0].type;
                 var name = fileimg[0].name;
                 if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
-                    contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
+                    contactAlert.innerHTML = '<p class="errorArchivo">El archivo selecionado no es válido. Intentelo de nuevo.</p>';
                     if(document.getElementById('img')){
                         document.getElementById('img').remove();
                     }
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                         document.querySelector('.delPhoto').classList.remove("notBlock");
                         var objeto_url = nav.createObjectURL(this.files[0]);
+                        console.log(objeto_url);
                         document.querySelector('.prevPhoto div').innerHTML = "<img id='img' src="+objeto_url+">";
                     }
             }else{
@@ -50,11 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
             removePhoto();
         }
     }
-    
-    function removePhoto(){
-        document.getElementById('foto').value ="";
-        document.querySelector('.delPhoto').classList.add("notBlock");
-        document.getElementById('img').remove();
-    }
-    
 },false);
+
+function removePhoto(){
+    document.getElementById('foto').value ="";
+    document.querySelector('.delPhoto').classList.add("notBlock");
+    document.getElementById('img').remove();
+}

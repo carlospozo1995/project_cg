@@ -41,7 +41,7 @@
                                             <span class="delPhoto notBlock">X</span>
                                             <label for="foto"></label>
                                             <div>
-                                                <img src="<?= media(); ?>images/uploads/portCategory.png" id="img" alt="">
+                                                <img src="<?= media(); ?>images/imgCategory.png" id="img" alt="">
                                             </div>
                                         </div>
                                         <div class="upimg">
