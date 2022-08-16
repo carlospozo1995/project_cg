@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var formData = new FormData(formNewCategory);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
-            console.log(request);
             // request.onreadystatechange = function () {
             //     if (request.readyState == 4 && request.status == 200) {
             //         var objData = JSON.parse(request.responseText);
