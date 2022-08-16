@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                         document.querySelector('.delPhoto').classList.remove("notBlock");
                         var objeto_url = nav.createObjectURL(this.files[0]);
-                        console.log(objeto_url);
                         document.querySelector('.prevPhoto div').innerHTML = "<img id='img' src="+objeto_url+">";
                     }
             }else{
@@ -51,6 +50,48 @@ document.addEventListener("DOMContentLoaded", function () {
             removePhoto();
         }
     }
+
+    var formNewCategory = document.getElementById("formNewCategory");
+
+    formNewCategory.onsubmit = function (e) {
+        e.preventDefault(e);
+
+        var intIdCategory = document.getElementById("idCategory").value;
+        var strNombre = document.getElementById("txtNombre").value;
+        var strDescripcion = document.getElementById("txtDescripcion").value;
+        var intStatus = document.getElementById("listStatus").value;
+        // var fileFoto = document.getElementById('foto').value;
+
+        if (strNombre == "" || strDescripcion == "" || intStatus == "") {
+            Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+        }else{
+            // loading.style.display = "flex";
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url + 'Categorias/setCategoria';
+            var formData = new FormData(formNewCategory);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            console.log(request);
+            // request.onreadystatechange = function () {
+            //     if (request.readyState == 4 && request.status == 200) {
+            //         var objData = JSON.parse(request.responseText);
+                    
+            //         if (objData.status) {
+            //             $('#modalFormCategory').modal('hide');
+            //             formNewCategory.reset();
+            //             Swal.fire("Categorias", objData.msg, "success");
+            //             // tableRoles.ajax.reload(function () {
+            //             // });
+            //         }else{
+            //             Swal.fire("Error", objData.msg, "error");
+            //         }
+            //     }
+            //     loading.style.display = "none";
+            //     return false;
+            // }
+        }
+    }
+
 },false);
 
 function removePhoto(){

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 05-08-2022 a las 22:40:31
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+-- Servidor: localhost
+-- Tiempo de generación: 16-08-2022 a las 02:58:55
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `project_cg`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idcategoria` bigint(20) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `portada` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `datacreated` datetime NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -40,10 +55,10 @@ CREATE TABLE `modulos` (
 
 INSERT INTO `modulos` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
 (1, 'Sistema', 'Página principal - Sistema', 1),
-(2, 'Usuarios', 'Usuarios del sistema', 1),
-(3, 'Productos', 'Todos los productos', 1),
-(4, 'Categorias', 'Todas las categorias', 1),
-(5, 'Roles', 'Todos los roles', 1);
+(2, 'Usuarios', 'Pagina - Usuarios', 1),
+(3, 'Roles', 'Pagina - Roles', 1),
+(4, 'Productos', 'Pagina - Productos', 1),
+(5, 'Categorias', 'Pagina - Categorias', 1);
 
 -- --------------------------------------------------------
 
@@ -66,19 +81,17 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
-(7, 3, 1, 1, 0, 0, 0),
-(8, 3, 2, 1, 0, 0, 0),
-(9, 3, 3, 1, 0, 0, 0),
-(127, 1, 1, 1, 0, 0, 0),
-(128, 1, 2, 1, 1, 1, 1),
-(129, 1, 3, 1, 0, 0, 0),
-(130, 1, 4, 1, 0, 0, 0),
-(131, 1, 5, 1, 1, 1, 1),
-(132, 2, 1, 1, 0, 0, 0),
-(133, 2, 2, 1, 1, 1, 0),
-(134, 2, 3, 1, 0, 0, 0),
-(135, 2, 4, 1, 0, 0, 0),
-(136, 2, 5, 0, 0, 0, 0);
+(447, 2, 1, 1, 0, 0, 0),
+(448, 2, 2, 1, 1, 0, 1),
+(451, 2, 3, 0, 0, 0, 0),
+(607, 3, 1, 1, 0, 0, 0),
+(608, 3, 2, 1, 0, 0, 0),
+(611, 3, 3, 0, 0, 0, 0),
+(617, 1, 1, 1, 0, 0, 0),
+(618, 1, 2, 1, 1, 1, 1),
+(619, 1, 3, 1, 1, 1, 1),
+(620, 1, 4, 1, 0, 0, 0),
+(621, 1, 5, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -98,11 +111,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`idrol`, `nombrerol`, `descripcion`, `status`) VALUES
-(1, 'Administrador', 'Administrador Todos los permisos', 1),
-(2, 'Supervisor', 'Supervisor  La mayoria de los permisos', 1),
+(1, 'Administrador', 'Todos los permisos', 1),
+(2, 'Supervisor', 'Solo ciertos permisos', 1),
 (3, 'Suplente', 'Suplente  Permisos restringidos', 1),
 (4, 'Vendedor', 'Vendedor - No tiene permisos', 1),
-(5, 'Cliente', 'Cliente - No hay permisos', 1);
+(5, 'Cliente', 'Cliente - No hay permisos', 0);
 
 -- --------------------------------------------------------
 
@@ -129,16 +142,19 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
-(1, '123', 'Carlos', 'Pozo', 994603678, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
-(2, '456', 'Dos', 'Dos', 1234567891, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-07-23 21:28:01', 1),
-(3, '789', 'Tres', 'Tres', 365465465, 'tres@tres.com', 'b4fd4d2244853919a887f059be711870dffcd09859032433de6bb31483b0e194', NULL, 3, '2022-07-24 14:20:02', 1),
-(4, '100', 'Cuatro', 'Cuatro', 9654656, 'cuatro@cuatro.com', '76041c530ce73f870e2dc8263bdac7b8d8e818711090f19b49778757be9f5fa6', NULL, 4, '2022-07-24 14:24:16', 1),
-(5, '1100', 'Cinco', 'Cinco', 6845461625, 'cinco@cinco.com', '383c9d639d9f2f1dfa5325be5c7c01050e4052c8e29ad09aa9065dedaf6793e0', NULL, 5, '2022-07-24 14:26:06', 1),
-(6, '200', 'Seis', 'Seis', 6545665485, 'carlos.pflogger@hotmail.com', '0e5c50d9a45bde6a59d2052afa319d93928095b24589b1b887bcecbad7c010a8', '4ceb682b6e235dd9e75d87a37fc2d24cf41e31c40f2902eb5a1b0afe446fc9016a6f4d9d7ca4675f', 5, '2022-07-27 21:48:18', 1);
+(1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
+(2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
+(3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idcategoria`);
 
 --
 -- Indices de la tabla `modulos`
@@ -172,6 +188,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
@@ -181,7 +203,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=622;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -193,7 +215,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

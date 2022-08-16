@@ -22,7 +22,7 @@
                                 
                                     <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea class="form-control" rows="3" placeholder="Descripción de categoria" id="txtDescripcion" name="txtDescripcion"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Descripción de categoria" id="txtDescripcion" name="txtDescripcion" required></textarea>
                                     </div>
                                 
                                     <div class="form-group">
