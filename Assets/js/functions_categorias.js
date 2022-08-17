@@ -71,23 +71,23 @@ document.addEventListener("DOMContentLoaded", function () {
             var formData = new FormData(formNewCategory);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
-            // request.onreadystatechange = function () {
-            //     if (request.readyState == 4 && request.status == 200) {
-            //         var objData = JSON.parse(request.responseText);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
                     
-            //         if (objData.status) {
-            //             $('#modalFormCategory').modal('hide');
-            //             formNewCategory.reset();
-            //             Swal.fire("Categorias", objData.msg, "success");
-            //             // tableRoles.ajax.reload(function () {
-            //             // });
-            //         }else{
-            //             Swal.fire("Error", objData.msg, "error");
-            //         }
-            //     }
-            //     loading.style.display = "none";
-            //     return false;
-            // }
+                    if (objData.status) {
+                        $('#modalFormCategory').modal('hide');
+                        formNewCategory.reset();
+                        Swal.fire("Categorias", objData.msg, "success");
+                        // tableRoles.ajax.reload(function () {
+                        // });
+                    }else{
+                        Swal.fire("Error", objData.msg, "error");
+                    }
+                }
+                loading.style.display = "none";
+                return false;
+            }
         }
     }
 
