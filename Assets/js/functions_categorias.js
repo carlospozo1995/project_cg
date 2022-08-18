@@ -4,8 +4,13 @@ function modalNewCategory() {
     document.querySelector(".modal-title").innerHTML = "Nuevo Usuario";
     document.getElementById("btnSubmitCategory").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Guardar";
+
     $("#modalFormCategory").modal("show");
+    formNewCategory.reset();
+    removePhoto();    
 }
+
+var tableCategory;
 
 document.addEventListener("DOMContentLoaded", function () {
     if(document.getElementById("foto")){
@@ -51,6 +56,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    tableCategory = $("#tableCategorias").DataTable({
+        "aProcessing": true,
+        "aServerSide":true,
+        "language":{
+            "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+        },
+        "ajax":{
+            "url": base_url + "Categorias/getCategorias",
+            "dataSrc":"",
+        },
+        "columns":[
+            {"data":"idcategoria"},
+            {"data":"nombre"},
+            {"data":"descripcion"},
+            {"data":"status"},
+            {"data":"actions"},
+        ],
+        "responsive": true,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "dom": 'lBfrtip',
+        "buttons": [
+            "copy", "csv", "excel", "pdf", "print", "colvis"
+        ],
+        "bDestroy":true,
+        "order":[[0,"asc"]],
+        "iDisplayLength":10,
+    });
+
     var formNewCategory = document.getElementById("formNewCategory");
 
     formNewCategory.onsubmit = function (e) {
@@ -60,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var strNombre = document.getElementById("txtNombre").value;
         var strDescripcion = document.getElementById("txtDescripcion").value;
         var intStatus = document.getElementById("listStatus").value;
-        // var fileFoto = document.getElementById('foto').value;
+        var fileFoto = document.getElementById('foto').value;
 
         if (strNombre == "" || strDescripcion == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
-            // loading.style.display = "flex";
+            loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + 'Categorias/setCategoria';
             var formData = new FormData(formNewCategory);
@@ -79,8 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         $('#modalFormCategory').modal('hide');
                         formNewCategory.reset();
                         Swal.fire("Categorias", objData.msg, "success");
-                        // tableRoles.ajax.reload(function () {
-                        // });
+                        removePhoto();
+                        tableCategory.ajax.reload(function () {
+                        });
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }

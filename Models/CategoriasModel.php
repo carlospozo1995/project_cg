@@ -34,6 +34,13 @@
 
             return $return;
         }
+
+        public function selectCategorias()
+        {
+            $sql_all_categorias = "SELECT  * FROM project_cg.categoria WHERE status != 0";
+            $request = $this->selectAll($sql_all_categorias);
+            return $request;
+        }
     }
 
 ?>

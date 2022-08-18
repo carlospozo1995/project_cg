@@ -29,10 +29,6 @@
 
         public function setCategoria()
         {
-            // dep($_POST);
-            // dep($_FILES);
-            // exit;
-
             if ($_POST) {
                 if ($_POST['txtNombre'] == '' || $_POST['txtDescripcion'] == '' || $_POST['listStatus'] == '') {
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
@@ -47,7 +43,7 @@
                     $name_foto = $foto['name'];
                     $type = $foto['type'];
                     $url_temp = $foto['tmp_name'];
-                    $imgPortada = 'imgCategoria.png';
+                    $imgPortada = 'imgCategory.png';
 
                     if (!empty($name_foto)) {
                         $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
@@ -58,6 +54,7 @@
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
                             $request_category = $this->model->insertCategory($strCategory, $strDescripcion, $imgPortada, $intStatus);
+                            if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                         }
                     }
                     // else{
@@ -83,6 +80,40 @@
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 die();
             }
+        }
+
+        public function getCategorias()
+        {   
+            if($_SESSION['permisosMod']['ver']){
+                $arrCategorias = $this->model->selectCategorias();
+
+                for ($i=0; $i < count($arrCategorias); $i++) { 
+                    $btnViewCategory = '';
+                    $btnUpdateCategory = '';
+                    $btnDeleteCategory = '';
+
+                    if ($_SESSION['permisosMod']['ver']) {
+                        $btnViewCategory = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-key"></i></button>';
+                    }
+                    if (!empty($_SESSION['permisosMod']['actualizar']) && $_SESSION['idUser'] == 1) {
+                        $btnUpdateCategory = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCateoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                    }
+                    if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
+                        $btnDeleteCategory = ' <button type="button" class="btnDeleteCategory btn btn-danger btn-sm" onclick="deleteCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                    }
+
+                    if ($arrCategorias[$i]['status'] == 1) {
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                    }else{
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                    }
+
+                    // BTN PERMISOS DELETE EDIT
+                    $arrCategorias[$i]['actions']=   '<div class="text-center">'.$btnViewCategory.' '.$btnUpdateCategory.' '.$btnDeleteCategory.'</div>' ;
+                }
+                echo json_encode($arrCategorias, JSON_UNESCAPED_UNICODE);
+            }
+            die();
         }
     }   
 

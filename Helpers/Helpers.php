@@ -164,6 +164,15 @@
 
     }
 
+    // AGREGAR LA IMAGEN A UPLOAD
+    function uploadImage(array $data, string $name){
+        $url_temp = $data['tmp_name'];
+        $destino = 'Assets/images/uploads/'.$name;
+        $move = move_uploaded_file($url_temp, $destino);
+        return $move;
+    }
+
+
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
