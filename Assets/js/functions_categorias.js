@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":10,
+        "iDisplayLength":1,
     });
 
     var formCategoria = document.getElementById("formCategoria");
