@@ -128,12 +128,6 @@ function modalNewCategoria() {
 }
 
 
-function removePhoto(){
-    document.getElementById('foto').value ="";
-    document.querySelector('.delPhoto').classList.add("notBlock");
-    document.getElementById('img').remove();
-}
-
 //  VER DATOS DE CATEGORIA
 
 function viewCategoria(idCategoria) {
@@ -146,14 +140,13 @@ function viewCategoria(idCategoria) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             console.log(objData)
-
             if (objData.status) {
                 let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
 
                 document.getElementById('celNombre').innerHTML = objData.data.nombre;
                 document.getElementById('celDescripcion').innerHTML = objData.data.descripcion;
-                document.getElementById('celImagen').innerHTML = '<img src="'+ base_url+'Assets/images/uploads/'+objData.data.portada+'" alt="">';
-                document.getElementById('celFecharegistro').innerHTML = objData.data.fechaRegistro;
+                document.getElementById('celImagen').innerHTML = '<img src="'+ objData.data.url_portada +'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
                 document.getElementById('celEstado').innerHTML = statusCategoria;
                 $('#modalViewCategoria').modal('show');
             }else{
@@ -163,4 +156,18 @@ function viewCategoria(idCategoria) {
         
     }    
     
+}
+
+function editCategoria(idCategoria) {
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
+    document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    $("#modalFormCategoria").modal("show");
+}
+
+function removePhoto(){
+    document.getElementById('foto').value ="";
+    document.querySelector('.delPhoto').classList.add("notBlock");
+    document.getElementById('img').remove();
 }

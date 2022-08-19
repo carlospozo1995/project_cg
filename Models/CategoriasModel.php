@@ -46,7 +46,7 @@
         {
             $this->intIdCategoria = $idcategoria;
             
-            $sql_select_categoria = "SELECT c.idcategoria, c.nombre, c.descripcion, c.portada, DATE_FORMAT(c.datacreated, '%d-%m-%Y') AS fechaRegistro, c.status FROM project_cg.categoria c WHERE c.idcategoria = $this->intIdCategoria";
+            $sql_select_categoria = "SELECT * FROM project_cg.categoria WHERE idcategoria = $this->intIdCategoria";
             $request = $this->select( $sql_select_categoria);
             return $request;
         }

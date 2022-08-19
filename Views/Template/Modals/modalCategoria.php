@@ -1,7 +1,7 @@
 <div class="modal fade" id="modalFormCategoria">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header headerRegister-mc">
                 <h4 class="modal-title">Nueva Categoria</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -41,7 +41,7 @@
                                             <span class="delPhoto notBlock">X</span>
                                             <label for="foto"></label>
                                             <div>
-                                                <img src="<?= media(); ?>images/imgCategoria.png" id="img" alt="">
+                                                <img src="<?= media(); ?>images/uploads/imgCategoria.png" id="img" alt="">
                                             </div>
                                         </div>
                                         <div class="upimg">

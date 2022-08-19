@@ -34,7 +34,7 @@
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
-                    $strCategoria = strClean($_POST['txtNombre']);
+                    $strCategoria = strClean(ucwords($_POST['txtNombre']));
                     $strDescripcion = strClean($_POST['txtDescripcion']);
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
@@ -119,12 +119,13 @@
         public function viewCategoria($idCategoria)
         {   
             if($_SESSION['permisosMod']['ver']){
-                $idcategoria = intval($idCategoria);
-                if ($idcategoria > 0) {
-                    $arrCategoria = $this->model->selectCategoria($idCategoria);
+                $intIdcategoria = intval($idCategoria);
+                if ($intIdcategoria > 0) {
+                    $arrCategoria = $this->model->selectCategoria($intIdcategoria);
                     if (empty($arrCategoria)) {
                         $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
                     }else{
+                        $arrCategoria['url_portada'] = media().'images/uploads/'.$arrCategoria['portada'];
                         $arrResponse = array('status' => true, 'data' => $arrCategoria);
                     }
                     echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
