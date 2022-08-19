@@ -56,21 +56,19 @@
                             $request_categoria = $this->model->insertCategoria($strCategoria, $strDescripcion, $imgPortada, $intStatus);
                             if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                         }
+                    }else{
+                        $option=2;
+                        if($_SESSION['permisosMod']['actualizar']){
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $intStatus, $imgPortada);
+                        }
                     }
-                    // else{
-                        // $option=2;
-                        // if($_SESSION['permisosMod']['actualizar']){
-                        //     $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $intStatus, $imgPortada);
-                        // }
-                    // }
         
                     if ($request_categoria > 0) {
                         if ($option == 1) {
                             $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                        }else{
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
-                        // else{
-                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                        // }
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{

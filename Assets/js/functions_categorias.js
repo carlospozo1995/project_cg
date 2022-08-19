@@ -124,6 +124,7 @@ function modalNewCategoria() {
 
     $("#modalFormCategoria").modal("show");
     formCategoria.reset();
+    document.getElementById('form_alert').innerHTML = "";
     if (document.getElementById('img')) removePhoto();
 }
 
@@ -139,13 +140,12 @@ function viewCategoria(idCategoria) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
-            console.log(objData)
             if (objData.status) {
                 let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
 
                 document.getElementById('celNombre').innerHTML = objData.data.nombre;
                 document.getElementById('celDescripcion').innerHTML = objData.data.descripcion;
-                document.getElementById('celImagen').innerHTML = '<img src="'+ objData.data.url_portada +'" alt="">';
+                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_portada +'" alt="">';
                 document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
                 document.getElementById('celEstado').innerHTML = statusCategoria;
                 $('#modalViewCategoria').modal('show');
@@ -163,7 +163,27 @@ function editCategoria(idCategoria) {
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
-    $("#modalFormCategoria").modal("show");
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", ajaxetCategoria, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                console.log(objData);
+                objData.data.portada != 'imgCategoria.png' ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
+                document.getElementById("idCategoria").value = objData.data.idcategoria;
+                document.getElementById("txtNombre").value = objData.data.nombre;
+                document.getElementById("txtDescripcion").value = objData.data.descripcion;
+                document.getElementById("listStatus").value = objData.data.status;
+                document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_portada +'" alt="">';
+                document.getElementById('form_alert').innerHTML = "";
+                $("#modalFormCategoria").modal("show");
+            }
+        }
+    }    
 }
 
 function removePhoto(){
