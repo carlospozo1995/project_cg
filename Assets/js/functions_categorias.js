@@ -1,16 +1,4 @@
-function modalNewCategory() {
-    document.getElementById("idCategory").value = "";
-    document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
-    document.querySelector(".modal-title").innerHTML = "Nuevo Usuario";
-    document.getElementById("btnSubmitCategory").classList.replace("bg-success", "btn-primary");
-    document.querySelector(".btnText").innerHTML = "Guardar";
-
-    $("#modalFormCategory").modal("show");
-    formNewCategory.reset();
-    removePhoto();    
-}
-
-var tableCategory;
+var tableCategorias;
 
 document.addEventListener("DOMContentLoaded", function () {
     if(document.getElementById("foto")){
@@ -56,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    tableCategory = $("#tableCategorias").DataTable({
+    tableCategorias = $("#tableCategorias").DataTable({
         "aProcessing": true,
         "aServerSide":true,
         "language":{
@@ -84,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "iDisplayLength":10,
     });
 
-    var formNewCategory = document.getElementById("formNewCategory");
+    var formCategoria = document.getElementById("formCategoria");
 
-    formNewCategory.onsubmit = function (e) {
+    formCategoria.onsubmit = function (e) {
         e.preventDefault(e);
 
-        var intIdCategory = document.getElementById("idCategory").value;
+        var intIdCategoria = document.getElementById("idCategoria").value;
         var strNombre = document.getElementById("txtNombre").value;
         var strDescripcion = document.getElementById("txtDescripcion").value;
         var intStatus = document.getElementById("listStatus").value;
@@ -101,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + 'Categorias/setCategoria';
-            var formData = new FormData(formNewCategory);
+            var formData = new FormData(formCategoria);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
             request.onreadystatechange = function () {
@@ -109,11 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     var objData = JSON.parse(request.responseText);
                     
                     if (objData.status) {
-                        $('#modalFormCategory').modal('hide');
-                        formNewCategory.reset();
+                        $('#modalFormCategoria').modal('hide');
+                        formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
-                        removePhoto();
-                        tableCategory.ajax.reload(function () {
+                        if (document.getElementById('img')) removePhoto();  
+                        tableCategorias.ajax.reload(function () {
                         });
                     }else{
                         Swal.fire("Error", objData.msg, "error");
@@ -127,8 +115,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 },false);
 
+function modalNewCategoria() {
+    document.getElementById("idCategoria").value = "";
+    document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
+    document.querySelector(".modal-title").innerHTML = "Nueva Categoria";
+    document.getElementById("btnSubmitCategoria").classList.replace("bg-success", "btn-primary");
+    document.querySelector(".btnText").innerHTML = "Guardar";
+
+    $("#modalFormCategoria").modal("show");
+    formCategoria.reset();
+    if (document.getElementById('img')) removePhoto();
+}
+
+
 function removePhoto(){
     document.getElementById('foto').value ="";
     document.querySelector('.delPhoto').classList.add("notBlock");
     document.getElementById('img').remove();
+}
+
+//  VER DATOS DE CATEGORIA
+
+function viewCategoria(idCategoria) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", urlCategoria, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            console.log(objData)
+
+            if (objData.status) {
+                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+
+                document.getElementById('celNombre').innerHTML = objData.data.nombre;
+                document.getElementById('celDescripcion').innerHTML = objData.data.descripcion;
+                document.getElementById('celImagen').innerHTML = '<img src="'+ base_url+'Assets/images/uploads/'+objData.data.portada+'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = objData.data.fechaRegistro;
+                document.getElementById('celEstado').innerHTML = statusCategoria;
+                $('#modalViewCategoria').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }
+        }
+        
+    }    
+    
 }

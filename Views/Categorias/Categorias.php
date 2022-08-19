@@ -13,7 +13,7 @@
             <h1><?= $data['page_name'] ?></h1>
             <?php if (!empty($_SESSION['permisosMod']['crear'])) {
             ?>
-            <button type="button" class="btn btn-primary" id="btnNewUser" onclick="modalNewCategory()"><i class="fas fa-plus-circle"></i> Nuevo</button>
+            <button type="button" class="btn btn-primary" onclick="modalNewCategoria()"><i class="fas fa-plus-circle"></i> Nuevo</button>
             <?php
             } ?>
             

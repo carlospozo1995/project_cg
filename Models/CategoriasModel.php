@@ -1,8 +1,8 @@
 <?php
 
     class CategoriasModel extends Mysql{
-        public $intIdCategory;
-        public $strCategory;
+        public $intIdCategoria;
+        public $strCategoria;
         public $strDescripcion;
         public $strImgPortada;
         public $intStatus;
@@ -11,22 +11,22 @@
             parent::__construct();
         }
 
-        public function insertCategory(string $nameCategory, string $descripcion, string $imgPortada, int $status)
+        public function insertCategoria(string $nameCategoria, string $descripcion, string $imgPortada, int $status)
         {
             $return = "";
-            $this->strCategory = $nameCategory;
+            $this->strCategoria = $nameCategoria;
             $this->strDescripcion = $descripcion;
             $this->strImgPortada = $imgPortada;
             $this->intStatus = $status;
 
-            $sql_exists_category = "SELECT * FROM project_cg.categoria WHERE nombre = '$this->strCategory'";
+            $sql_exists_categoria = "SELECT * FROM project_cg.categoria WHERE nombre = '$this->strCategoria'";
 
-            $request = $this->selectAll($sql_exists_category);
+            $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
-                $sql_insert_category = "INSERT INTO project_cg.categoria(nombre, descripcion, portada, status) VALUES('$this->strCategory', '$this->strDescripcion', '$this->strImgPortada', $this->intStatus)";
+                $sql_insert_categoria = "INSERT INTO project_cg.categoria(nombre, descripcion, portada, status) VALUES('$this->strCategoria', '$this->strDescripcion', '$this->strImgPortada', $this->intStatus)";
                 
-                $request = $this->insert($sql_insert_category);
+                $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{
                 $return = "existe";
@@ -39,6 +39,15 @@
         {
             $sql_all_categorias = "SELECT  * FROM project_cg.categoria WHERE status != 0";
             $request = $this->selectAll($sql_all_categorias);
+            return $request;
+        }
+
+        public function selectCategoria(int $idcategoria)
+        {
+            $this->intIdCategoria = $idcategoria;
+            
+            $sql_select_categoria = "SELECT c.idcategoria, c.nombre, c.descripcion, c.portada, DATE_FORMAT(c.datacreated, '%d-%m-%Y') AS fechaRegistro, c.status FROM project_cg.categoria c WHERE c.idcategoria = $this->intIdCategoria";
+            $request = $this->select( $sql_select_categoria);
             return $request;
         }
     }

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalFormCategory">
+<div class="modal fade" id="modalFormCategoria">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,8 +10,8 @@
 
             <div class="modal-body">
                 <div class="card card-primary">
-                    <form id="formNewCategory" name="formNewCategory">
-                        <input type="hidden" id="idCategory" name="idCategory" value="">
+                    <form id="formCategoria" name="formCategoria">
+                        <input type="hidden" id="idCategoria" name="idCategoria" value="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -41,7 +41,7 @@
                                             <span class="delPhoto notBlock">X</span>
                                             <label for="foto"></label>
                                             <div>
-                                                <img src="<?= media(); ?>images/imgCategory.png" id="img" alt="">
+                                                <img src="<?= media(); ?>images/imgCategoria.png" id="img" alt="">
                                             </div>
                                         </div>
                                         <div class="upimg">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <button id="btnSubmitCategory" type="submit" class="btn btn-primary btnText">Guardar</button>
+                            <button id="btnSubmitCategoria" type="submit" class="btn btn-primary btnText">Guardar</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
@@ -64,4 +64,51 @@
            
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalViewCategoria">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header header-primary-mc">
+                <h4 class="modal-title">Datos de categoria</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                <!-- Table data user -->
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td id="celNombre"></td>
+                            </tr>
+                            <tr>
+                                <td>Descripción:</td>
+                                <td id="celDescripcion"></td>
+                            </tr>
+                            <tr>
+                                <td>Imagen:</td>
+                                <td id="celImagen"></td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de registro:</td>
+                                <td id="celFecharegistro"></td>
+                            </tr>
+                            <tr>
+                                <td>Estado:</td>
+                                <td id="celEstado"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
