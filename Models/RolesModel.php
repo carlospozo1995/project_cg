@@ -13,7 +13,11 @@
 
         public function selectRoles()
         {
-            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0";
+            $whereAdmin = "";
+            if ($_SESSION['idUser'] != 1) {
+                $whereAdmin = " and idrol != 1 ";
+            }
+            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0" . $whereAdmin;
             $request = $this->selectAll($sql_all_rol);
             return $request;
         }

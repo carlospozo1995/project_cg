@@ -5,7 +5,7 @@ function modalNewUser() {
     document.querySelector(".modal-title").innerHTML = "Nuevo Usuario";
     document.getElementById("btnSubmitUser").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Guardar";
-    $("#listRolid").select2("val", "1");
+    $("#listRolid").select2();
     formNewUser.reset();
     $("#modalFormUser").modal("show");
     validFocus();
@@ -125,7 +125,6 @@ function rolesUsuario() {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             document.getElementById("listRolid").innerHTML = request.responseText;
-            // document.getElementById("listRolid").value = 1;
             $("#listRolid").select2();
         }
     }
