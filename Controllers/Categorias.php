@@ -102,7 +102,7 @@
                     }
                     if (!empty($_SESSION['permisosMod']['actualizar'])) {
                         // if (!empty($_SESSION['permisosMod']['actualizar']) && $_SESSION['idUser'] == 1) {
-                        $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                        $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                     }
                     if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
                         $btnDeleteCategoria = ' <button type="button" class="btnDeleteCategoria btn btn-danger btn-sm" onclick="deleteCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
@@ -138,6 +138,12 @@
                 }
             }
             die();
+        }
+
+        public function delCategoria($idCategoria)
+        {
+            $data = 'Assets/images/uploads/perfil.png';
+            unlink($data);
         }
 
     }   

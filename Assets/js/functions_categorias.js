@@ -1,5 +1,5 @@
 var tableCategorias;
-
+var rowTable = "";
 document.addEventListener("DOMContentLoaded", function () {
     if(document.getElementById("foto")){
         var foto = document.getElementById("foto");
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":1,
+        "iDisplayLength":10,
     });
 
     var formCategoria = document.getElementById("formCategoria");
@@ -96,14 +96,25 @@ document.addEventListener("DOMContentLoaded", function () {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
-                    
-                    if (objData.status) {
+
+                    if(objData.status){
+                        if (rowTable == "") {
+                            tableCategorias.ajax.reload(function () {
+                            });
+                        }else{
+                            
+                            let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                            
+                            rowTable.cells[1].textContent = strNombre;
+                            rowTable.cells[2].textContent = strDescripcion;
+                            rowTable.cells[3].innerHTML = htmlStatus;
+                            
+                        }
                         $('#modalFormCategoria').modal('hide');
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                        tableCategorias.ajax.reload(function () {
-                        });
+
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -127,6 +138,7 @@ function modalNewCategoria() {
     formCategoria.reset();
     document.getElementById('form_alert').innerHTML = "";
     removePhoto();
+    rowTable = "";
 }
 
 
@@ -159,7 +171,8 @@ function viewCategoria(idCategoria) {
     
 }
 
-function editCategoria(idCategoria) {
+function editCategoria(element, idCategoria) {
+    rowTable = element.parentNode.parentNode.parentNode;
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
@@ -173,7 +186,6 @@ function editCategoria(idCategoria) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
-                // console.log(objData);
                 objData.data.portada != 'imgCategoria.png' ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                 document.getElementById('foto_remove').value = 0;
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
@@ -187,6 +199,47 @@ function editCategoria(idCategoria) {
             }
         }
     }    
+}
+
+function deleteCategoria(idCategoria) {
+    Swal.fire({
+        title: 'Eliminar categoria',
+        text: "Realmente quiere eliminar la categoria!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Categorias/delCategoria/' + idCategoria;
+            request.open("POST", ajaxUrl, true);
+            request.send();
+
+            // request.onreadystatechange = function () {
+            //     if (request.readyState == 4 && request.status == 200) {
+            //         let objData = JSON.parse(request.responseText);
+            //         if(objData.status){
+            //             Swal.fire(
+            //                 'Eliminado!',
+            //                 objData.msg,
+            //                 'success'
+            //             );
+            //             tableCategorias.ajax.reload(function () {
+            //             });
+            //         }else{
+            //             Swal.fire(
+            //                 'Atención!',
+            //                 objData.msg,
+            //                 'error'
+            //             );
+            //         }
+            //     }
+            // }
+
+        }
+    });
 }
 
 function removePhoto(){
