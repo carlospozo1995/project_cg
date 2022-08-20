@@ -47,7 +47,6 @@
 
                     if (!empty($name_foto)) {
                         $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                        // dep($imgPortada);
                     }
                     
                     if (empty($intIdCategoria)) {
@@ -59,7 +58,15 @@
                     }else{
                         $option=2;
                         if($_SESSION['permisosMod']['actualizar']){
-                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $intStatus, $imgPortada);
+                            if($name_foto == ""){
+                                if ($_POST['foto_actual'] != 'imgCategoria.png' && $_POST['foto_remove'] == 0) {
+                                    $imgPortada = $_POST['foto_actual'];
+                                }
+                            }else{
+                                $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                uploadImage($foto, $imgPortada);   
+                            }
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $imgPortada, $intStatus);
                         }
                     }
         
@@ -106,7 +113,7 @@
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                     }
 
-                    // BTN PERMISOS DELETE EDIT
+                    // BTN VIEW DELETE EDIT
                     $arrCategorias[$i]['actions']=   '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.' '.$btnDeleteCategoria.'</div>' ;
                 }
                 echo json_encode($arrCategorias, JSON_UNESCAPED_UNICODE);

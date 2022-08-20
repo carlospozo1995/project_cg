@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 19-08-2022 a las 03:52:37
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.19
+-- Servidor: localhost:3306
+-- Tiempo de generación: 19-08-2022 a las 23:59:19
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,10 +41,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `portada`, `datecreate`, `status`) VALUES
-(1, 'categoria 1', 'Todo de la categoria 1', 'img_c6d9f6b143c552b30694e9dd5742040f.jpg', '2022-08-18 22:39:24', 1),
-(2, 'categoria 2', 'todo de la categoria 2', 'imgCategoria.png', '2022-08-18 22:39:44', 2),
-(3, 'categoria 3', 'todo de la categoria 3', 'img_7c263b1e62f456a62850f11dd477589b.jpg', '2022-08-18 22:40:23', 1),
-(4, 'Categoria 4', 'Todo De La Categoria 4', 'imgCategoria.png', '2022-08-18 22:42:55', 2);
+(1, 'Categoria 1', 'Todo de la categoria 1', 'img_da824333a5083f9a538a69e3ec03692b.jpg', '2022-08-18 22:39:24', 1),
+(2, 'Categoria 2', 'todo de la categoria 2', 'img_c10ec1468af205548055b31e7508d8cd.jpg', '2022-08-18 22:39:44', 2),
+(3, 'Categoria 3', 'todo de la categoria 3', 'img_7edda0a6c725ff02cf4c15c63f2eb25c.jpg', '2022-08-18 22:40:23', 1),
+(4, 'Categoria 4', 'Todo De La Categoria 4', 'img_ee46853d663b0157e0356c41bb44d229.jpg', '2022-08-18 22:42:55', 2),
+(5, 'Categoria 5', 'Toda la categoria 5', 'img_0cd52a81956b007d952ee9f54e8ea051.jpg', '2022-08-18 17:26:43', 1),
+(6, 'Categoria 6', 'Toda la categoria 6', 'img_bed27d24157cd5f62b112593cf9e8190.jpg', '2022-08-19 13:27:39', 2);
 
 -- --------------------------------------------------------
 
@@ -201,7 +203,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`

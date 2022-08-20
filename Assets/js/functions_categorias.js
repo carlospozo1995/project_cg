@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(document.querySelector(".delPhoto")){
         var delPhoto = document.querySelector(".delPhoto");
         delPhoto.onclick = function(e) {
+            document.getElementById('foto_remove').value = 1;
             removePhoto();
         }
     }
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         $('#modalFormCategoria').modal('hide');
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
-                        if (document.getElementById('img')) removePhoto();  
+                        removePhoto();  
                         tableCategorias.ajax.reload(function () {
                         });
                     }else{
@@ -125,7 +126,7 @@ function modalNewCategoria() {
     $("#modalFormCategoria").modal("show");
     formCategoria.reset();
     document.getElementById('form_alert').innerHTML = "";
-    if (document.getElementById('img')) removePhoto();
+    removePhoto();
 }
 
 
@@ -172,9 +173,11 @@ function editCategoria(idCategoria) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
-                console.log(objData);
+                // console.log(objData);
                 objData.data.portada != 'imgCategoria.png' ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
+                document.getElementById('foto_remove').value = 0;
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
+                document.getElementById('foto_actual').value = objData.data.portada;
                 document.getElementById("txtNombre").value = objData.data.nombre;
                 document.getElementById("txtDescripcion").value = objData.data.descripcion;
                 document.getElementById("listStatus").value = objData.data.status;
@@ -189,5 +192,7 @@ function editCategoria(idCategoria) {
 function removePhoto(){
     document.getElementById('foto').value ="";
     document.querySelector('.delPhoto').classList.add("notBlock");
-    document.getElementById('img').remove();
+    if (document.getElementById('img')){
+        document.getElementById('img').remove();
+    }
 }

@@ -51,50 +51,25 @@
             return $request;
         }
 
-        // public function updateCategoria(int $idcategoria, string $nameCategoria, string $descripcion, string $imgPortada, int $status)
-        // {
-        //     $this->intIdCategoria = $idcategoria;
-        //     $this->strCategoria = $nameCategoria;
-        //     $this->strDescripcion = $descripcion;
-        //     $this->strImgPortada = $imgPortada;
-        //     $this->intStatus = $status;
+        public function updateCategoria(int $idcategoria, string $nameCategoria, string $descripcion, string $imgPortada, int $status)
+        {
+            $this->intIdCategoria = $idcategoria;
+            $this->strCategoria = $nameCategoria;
+            $this->strDescripcion = $descripcion;
+            $this->strImgPortada = $imgPortada;
+            $this->intStatus = $status;
 
-        //     $sql_exists_categoria = "SELECT * FROM project_cg.categoria WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria";
-        //     $request = $this->selectAll($sql_exists_categoria);
+            $sql_exists_categoria = "SELECT * FROM project_cg.categoria WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria";
+            $request = $this->selectAll($sql_exists_categoria);
 
-        //     if (empty($request)) {
-        //         if ($this->strImgPortada != '') {
-        //             $sql_update_user = "UPDATE project_cg.categoria SET nombre = '$this->strCategoria', descripcion = '$this->strDescripcion', portada = 'this' ,status = $this->intStatus,  WHERE idusuario = $this->intIdUsuario";
-        //         }else{
-        //             $sql_update_user = "UPDATE project_cg.usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', rolid = $this->intUserRol, status = $this->intStatus WHERE idusuario = $this->intIdUsuario";
-        //         }
-
-        //         $request = $this->update($sql_update_user);
-        //     }else{
-        //         $idenValidate = false;
-        //         $emailValidate = false;
-                
-        //         array_filter($request, function ($data) use(&$idenValidate, &$emailValidate)
-        //         {
-        //             if ($data['identificacion'] == $this->strIdentificacion) {
-        //                 $idenValidate = true;
-        //             }
-        //             if ($data['email_user'] == $this->strEmail) {
-        //                 $emailValidate = true;
-        //             }
-        //         });
-
-        //         if ($idenValidate && $emailValidate) {
-        //             $request = "Existe correo e identificacion";
-        //         }elseif ($idenValidate) {
-        //             $request = "Existe identificacion"; 
-        //         }elseif ($emailValidate) {
-        //             $request = "Existe correo"; 
-        //         }
-
-        //     }
-        //     return $request;
-        // }
+            if (empty($request)) {
+                $sql_update_categoria = "UPDATE project_cg.categoria SET nombre = '$this->strCategoria', descripcion = '$this->strDescripcion', portada = '$this->strImgPortada', status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $request = $this->update($sql_update_categoria);
+            }else{
+                $request = 'existe';
+            }
+            return $request;
+        }
     }
 
 ?>
