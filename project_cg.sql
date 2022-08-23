@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-08-2022 a las 23:49:42
+-- Tiempo de generación: 23-08-2022 a las 02:23:03
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -47,7 +47,7 @@ INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `portada`, `dat
 (4, 'Categoria 4', 'Todo De La Categoria 4', 'img_ee46853d663b0157e0356c41bb44d229.jpg', '2022-08-18 22:42:55', 1),
 (5, 'Categoria 5', 'Toda la categoria 5', 'img_0cd52a81956b007d952ee9f54e8ea051.jpg', '2022-08-18 17:26:43', 2),
 (6, 'Categoria 6', 'Toda la categoria 6', 'img_bed27d24157cd5f62b112593cf9e8190.jpg', '2022-08-19 13:27:39', 1),
-(7, 'Categoria 7', 'Toda la categoria 7', 'img_bb24181bd936d07b78e5289ab828321e.jpg', '2022-08-20 17:52:56', 1);
+(7, 'Categoria 7', 'Toda la categoria 7', 'img_bb24181bd936d07b78e5289ab828321e.jpg', '2022-08-20 17:52:56', 2);
 
 -- --------------------------------------------------------
 
@@ -109,6 +109,24 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (784, 3, 3, 0, 0, 0, 0),
 (785, 3, 4, 1, 0, 0, 0),
 (786, 3, 5, 1, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `idproducto` bigint(20) NOT NULL,
+  `categoriaid` bigint(20) NOT NULL,
+  `codproducto` bigint(20) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `precio` decimal(11,2) NOT NULL,
+  `imagen` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `datacreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -188,6 +206,13 @@ ALTER TABLE `permisos`
   ADD KEY `moduloid` (`moduloid`);
 
 --
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`idproducto`),
+  ADD KEY `categoriaid` (`categoriaid`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -223,6 +248,12 @@ ALTER TABLE `permisos`
   MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=787;
 
 --
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -244,6 +275,12 @@ ALTER TABLE `usuario`
 ALTER TABLE `permisos`
   ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rolid`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`moduloid`) REFERENCES `modulos` (`idmodulo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoriaid`) REFERENCES `categoria` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
