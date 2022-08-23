@@ -168,8 +168,9 @@ function viewCategoria(idCategoria) {
         }
         
     }    
-    
 }
+
+// EDITAR DATOS CATEGORIA
 
 function editCategoria(element, idCategoria) {
     rowTable = element.parentNode.parentNode.parentNode;
@@ -201,6 +202,8 @@ function editCategoria(element, idCategoria) {
     }    
 }
 
+// ELIMINAR CATEGORIA
+
 function deleteCategoria(idCategoria) {
     Swal.fire({
         title: 'Eliminar categoria',
@@ -217,26 +220,26 @@ function deleteCategoria(idCategoria) {
             request.open("POST", ajaxUrl, true);
             request.send();
 
-            // request.onreadystatechange = function () {
-            //     if (request.readyState == 4 && request.status == 200) {
-            //         let objData = JSON.parse(request.responseText);
-            //         if(objData.status){
-            //             Swal.fire(
-            //                 'Eliminado!',
-            //                 objData.msg,
-            //                 'success'
-            //             );
-            //             tableCategorias.ajax.reload(function () {
-            //             });
-            //         }else{
-            //             Swal.fire(
-            //                 'Atención!',
-            //                 objData.msg,
-            //                 'error'
-            //             );
-            //         }
-            //     }
-            // }
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        Swal.fire(
+                            'Eliminado!',
+                            objData.msg,
+                            'success'
+                        );
+                        tableCategorias.ajax.reload(function () {
+                        });
+                    }else{
+                        Swal.fire(
+                            'Atención!',
+                            objData.msg,
+                            'error'
+                        );
+                    }
+                }
+            }
 
         }
     });
