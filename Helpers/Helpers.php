@@ -152,7 +152,7 @@
      // TIEMPO QUE EL USUARIO PERMANECE LOGEADO
     function sessionStart(){
         session_start();
-        $timeInactive  = 3600;
+        $timeInactive  = 7200;
         if (isset($_SESSION['timeout'])){
             $session_in = time() - $_SESSION['inicio'];
             if ($session_in > $timeInactive) {

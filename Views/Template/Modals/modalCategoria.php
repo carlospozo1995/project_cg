@@ -12,19 +12,26 @@
                 <div class="card card-primary">
                     <form id="formCategoria" name="formCategoria">
                         <input type="hidden" id="idCategoria" name="idCategoria" value="">
-                        <input type="hidden" id="foto_actual" name="foto_actual" value="">
-                        <input type="hidden" id="foto_remove" name="foto_remove" value="0">
+                        <!-- <input type="hidden" id="foto_actual" name="foto_actual" value="">
+                        <input type="hidden" id="foto_remove" name="foto_remove" value="0"> -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Nombre</label>
-                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" required>
+                                        <label>Titulo</label>
+                                        <input type="text" class="form-control" placeholder="Nombre de la categoria" id="nameCategoria" name="nameCategoria" required>
                                     </div>
                                 
                                     <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea class="form-control" rows="3" placeholder="Descripción de categoria" id="txtDescripcion" name="txtDescripcion" required></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Descripción de categoria" id="desCategoria" name="desCategoria" required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="categoriaId">Categoria padre</label>
+                                        <select class="form-control" id="categoriaFatherId" name="categoriaFatherId">
+                                            <option value="">-- CATEGORIA SUPERIOR --</option>
+                                        </select>
                                     </div>
                                 
                                     <div class="form-group">
@@ -36,7 +43,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                    <div class="photo">
                                         <label for="foto">Foto (570x380)</label>
                                         <div class="prevPhoto">
@@ -51,7 +58,7 @@
                                         </div>
                                         <div id="form_alert"></div>
                                    </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
