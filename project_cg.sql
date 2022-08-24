@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-08-2022 a las 02:23:03
+-- Tiempo de generación: 24-08-2022 a las 03:24:37
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -48,6 +48,22 @@ INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `portada`, `dat
 (5, 'Categoria 5', 'Toda la categoria 5', 'img_0cd52a81956b007d952ee9f54e8ea051.jpg', '2022-08-18 17:26:43', 2),
 (6, 'Categoria 6', 'Toda la categoria 6', 'img_bed27d24157cd5f62b112593cf9e8190.jpg', '2022-08-19 13:27:39', 1),
 (7, 'Categoria 7', 'Toda la categoria 7', 'img_bb24181bd936d07b78e5289ab828321e.jpg', '2022-08-20 17:52:56', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `idcategoria` bigint(20) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `imgcategoria` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `categoria_father_id` bigint(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -192,6 +208,13 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idcategoria`);
 
 --
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`idcategoria`),
+  ADD KEY `categoria_father_id` (`categoria_father_id`);
+
+--
 -- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
@@ -236,6 +259,12 @@ ALTER TABLE `categoria`
   MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
@@ -270,6 +299,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- Filtros para la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`categoria_father_id`) REFERENCES `categorias` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -280,7 +315,7 @@ ALTER TABLE `permisos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoriaid`) REFERENCES `categoria` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoriaid`) REFERENCES `categorias` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
