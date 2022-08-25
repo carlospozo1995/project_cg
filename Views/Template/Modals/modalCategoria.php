@@ -19,17 +19,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Titulo</label>
-                                        <input type="text" class="form-control" placeholder="Nombre de la categoria" id="nameCategoria" name="nameCategoria" required>
-                                    </div>
-                                
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea class="form-control" rows="3" placeholder="Descripción de categoria" id="desCategoria" name="desCategoria" required></textarea>
+                                        <input type="text" class="form-control" placeholder="Titulo de la categoria" id="txtTitulo" name="txtTitulo" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="categoriaId">Categoria padre</label>
-                                        <select class="form-control" id="categoriaFatherId" name="categoriaFatherId">
+                                        <select class="form-control" id="fatherId" name="fatherId">
                                             <option value="">-- CATEGORIA SUPERIOR --</option>
                                         </select>
                                     </div>
@@ -43,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="col-sm-6">
+                                <div class="col-sm-6">
                                    <div class="photo">
                                         <label for="foto">Foto (570x380)</label>
                                         <div class="prevPhoto">
@@ -56,14 +51,14 @@
                                         <div class="upimg">
                                             <input type="file" name="foto" id="foto">
                                         </div>
-                                        <div id="form_alert"></div>
+                                        <div id="foto_alert"></div>
                                    </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
 
                         <div class="card-footer">
-                            <button id="btnSubmitCategoria" type="submit" class="btn btn-primary btnText">Guardar</button>
+                            <button id="btnSubmitCategoria" type="submit" class="btn btn-primary btnText">Agregar</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
