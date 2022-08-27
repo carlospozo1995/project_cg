@@ -5,6 +5,7 @@ function modalNewCategoria() {
     document.getElementById("btnSubmitCategoria").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
     $("#modalFormCategoria").modal("show");
+    // $("#listCategorias").select2();
     formCategoria.reset();
     document.getElementById('foto_alert').innerHTML = "";
     removePhoto();
@@ -83,5 +84,23 @@ function removePhoto(){
     document.querySelector('.delPhoto').classList.add("notBlock");
     if (document.getElementById('img')){
         document.getElementById('img').remove();
+    }
+}
+
+window.addEventListener('load', function () {
+    selectCategorias();
+})
+
+function selectCategorias(){
+    let ajaxUrl = base_url + 'Categorias/getCategorias';
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    request.open('GET', ajaxUrl, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            document.getElementById("listCategorias").innerHTML = request.responseText;
+            // $("#listCategorias").select2();
+        }
     }
 }

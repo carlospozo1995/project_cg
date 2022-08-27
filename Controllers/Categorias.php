@@ -34,7 +34,7 @@
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
                     $strCategoria = strClean(ucwords($_POST['txtTitulo']));
-                    $fatherCategoria = $_POST['fatherId'] != "" ? $_POST['fatherId'] : "NULL";
+                    $intCategoria = $_POST['listCategorias'] != "" ? intval($_POST['listCategorias']) : "NULL";
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
 
@@ -51,17 +51,36 @@
                     if (empty($intIdCategoria)) {
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $fatherCategoria, $intStatus, $imgPortada);
-                            if ($name_foto != '') {uploadImage($foto, $imgPortada);}
+                            $request_categoria = $this->model->insertCategoria($strCategoria, $intCategoria, $intStatus, $imgPortada);
+                            // if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                         }
                     }
 
                     // dep($intIdCategoria);
                     // dep($strCategoria);
-                    // dep($fatherCategoria);
+                    // dep($intCategoria);
                     // dep($intStatus);
                     // dep($foto);
                 }
             }
+        }
+
+        public function getCategorias()
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $htmlOptions = "";
+                $arrCategorias = $this->model->selectCategorias();
+                $optionStatic = '<option value="">-- CATEGORIA SUPERIOR --</option>';
+                if (count($arrCategorias) > 0) {
+                    for ($i=0; $i < count($arrCategorias); $i++) {
+
+                        if ($arrCategorias[$i]['status'] == 1) {
+                            $htmlOptions .= '<option value="'.$arrCategorias[$i]['idcategoria'].'">'.$arrCategorias[$i]['nombre'].'</option>' ;
+                        }
+                    }
+                }
+                echo $optionStatic . $htmlOptions;
+            }    
+            die();
         }
     }
