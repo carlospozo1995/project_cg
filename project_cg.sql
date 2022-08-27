@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-08-2022 a las 03:24:37
+-- Tiempo de generación: 27-08-2022 a las 03:54:29
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -58,10 +58,9 @@ INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `portada`, `dat
 CREATE TABLE `categorias` (
   `idcategoria` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
   `imgcategoria` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `categoria_father_id` bigint(20) NOT NULL,
+  `categoria_father_id` bigint(20) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
