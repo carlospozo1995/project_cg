@@ -38,8 +38,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                   <div class="photo">
+                                <div class="col-sm-6 container_photo">
+                                    <p class="errorArchivo errorCategoria"></p>
+                                    <div class="photo">
                                         <label for="foto">Foto (570x380)</label>
                                         <div class="prevPhoto">
                                             <span class="delPhoto notBlock">X</span>
@@ -52,7 +53,7 @@
                                             <input type="file" name="foto" id="foto">
                                         </div>
                                         <div id="foto_alert"></div>
-                                   </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

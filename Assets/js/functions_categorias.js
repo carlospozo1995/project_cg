@@ -8,10 +8,26 @@ function modalNewCategoria() {
     // $("#listCategorias").select2();
     formCategoria.reset();
     document.getElementById('foto_alert').innerHTML = "";
+    document.querySelector('.errorCategoria').textContent = "";
+    document.querySelector('.photo').style.display = 'block';
+    document.getElementById('listCategorias').value = "";
     removePhoto();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    let listCategorias = document.getElementById('listCategorias');
+    let contPhoto = document.querySelector('.photo');
+    listCategorias.onchange = function (e) {
+        if (listCategorias.value == "" ) {
+            contPhoto.style.display = 'block';
+            document.querySelector('.errorCategoria').textContent = "";
+            document.getElementById('foto_alert').innerHTML = "";
+        }else{
+            contPhoto.style.display = 'none';
+            document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
+            removePhoto();
+        }
+    }
 
     if (document.getElementById('foto')){
         var foto = document.getElementById('foto');
@@ -56,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             removePhoto();
         }
     }
+    
 
     var formCategoria = document.getElementById('formCategoria');
     formCategoria.onsubmit = function (e) {

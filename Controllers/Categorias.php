@@ -28,13 +28,14 @@
         {
             // dep($_POST);
             // dep($_FILES);
+
             if ($_POST) {
                 if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == ""){
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
                     $strCategoria = strClean(ucwords($_POST['txtTitulo']));
-                    $intCategoria = $_POST['listCategorias'] != "" ? intval($_POST['listCategorias']) : "NULL";
+                    $intCategoria = $_POST['listCategorias'] != "" ? intval($_POST['listCategorias']) :'NULL';
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
 
@@ -42,25 +43,27 @@
                     $name_foto = $foto['name'];
                     $type = $foto['type'];
                     $url_temp = $foto['tmp_name'];
-                    $imgPortada = 'imgCategoria.png';
-
-                    if (!empty($name_foto)) {
-                        $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                    }
 
                     if (empty($intIdCategoria)) {
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $intCategoria, $intStatus, $imgPortada);
-                            // if ($name_foto != '') {uploadImage($foto, $imgPortada);}
+                            if($intCategoria != 'NULL'){
+                                // AGREGAR SUBCATEGORIA - SIN IMAGEN
+                                $imgPortada = 'NULL';
+                                $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
+                            }else{  
+                                // ACTUALIZAR CATEGORIA - CON IMAGEN
+                                $imgPortada = 'imgCategoria.png';
+
+                                if (!empty($name_foto)) {
+                                    $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                }
+                                $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
+                                // if ($name_foto != '') {uploadImage($foto, $imgPortada);}
+                            }
+                            // dep($imgPortada);
                         }
                     }
-
-                    // dep($intIdCategoria);
-                    // dep($strCategoria);
-                    // dep($intCategoria);
-                    // dep($intStatus);
-                    // dep($foto);
                 }
             }
         }
