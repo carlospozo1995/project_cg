@@ -52,7 +52,6 @@
             $request = $this->selectAll($sql_all_subcategorias);
             return $request;
         }
-        // status != 0 AND categoria_father_id is NULL
     }
 
 ?>

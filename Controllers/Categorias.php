@@ -99,13 +99,3 @@
             die();
         }
     }
-
-// $arrSubcategorias = $this->model->selectSubcategorias($arrCategorias[$i]['idcategoria']);
-// dep($arrSubcategorias);
-// if (count($arrSubcategorias) > 0) {
-//     for ($s=0; $s < count($arrSubcategorias); $s++) {
-        // if ($arrSubcategorias[$s]['status'] == 1) {
-        //     $htmlOptions .= '<option value="'.$arrSubcategorias[$s]['idcategoria'].'">'.$arrSubcategorias[$s]['nombre'].'</option>' ;
-        // }
-//     }
-// }
