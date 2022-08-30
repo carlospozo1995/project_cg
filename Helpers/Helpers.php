@@ -182,8 +182,10 @@
         $request = $objMysql->selectAll($sql);
         if(count($request) > 0){
             for ($i=0; $i < count($request); $i++) { 
-                $return .= '<option value="'.$request[$i]['idcategoria'].'">'.str_repeat('- ', $level).$request[$i]['nombre'].'</option>';
-                $return .= subcategorias($request[$i]['idcategoria'], $level + 1);
+                if ($request[$i]['status'] == 1) {
+                    $return .= '<option value="'.$request[$i]['idcategoria'].'">'.str_repeat('- ', $level).$request[$i]['nombre'].'</option>';
+                    $return .= subcategorias($request[$i]['idcategoria'], $level + 1);
+                }
             }
         }
         return $return;
