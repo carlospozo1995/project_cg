@@ -13,24 +13,24 @@
 
         public function insertCategoria(string $titulo, string $imgPortada, $fatherCategoria, int $status ){
             $return = "";
+            $data_img = "";
             $this->strCategoria = $titulo;
             $this->strImgPortada = $imgPortada;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
-
-            // echo "<pre>";
-            // var_dump($titulo);
-            // var_dump($imgPortada);
-            // var_dump($fatherCategoria);
-            // var_dump($status);
+            
+            if ($this->strImgPortada == 'NULL') {
+                $data_img = $this->strImgPortada;
+            }else{
+                $data_img = "'$this->strImgPortada'";
+            }
 
             $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '$this->strCategoria'";
 
             $request = $this->selectAll($sql_exists_categoria);
 
             if(empty($request)){
-                $sql_insert_categoria = "INSERT INTO project_cg.categorias(nombre, imgcategoria, status) VALUES('$this->strCategoria', '$this->strImgPortada', $this->intStatus)";
-                echo $sql_insert_categoria;
+                $sql_insert_categoria = "INSERT INTO project_cg.categorias(nombre, imgCategoria, categoria_father_id, status) VALUES('$this->strCategoria', $data_img, $this->intCategoria, $this->intStatus)";
                 $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{

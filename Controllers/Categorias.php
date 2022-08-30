@@ -59,9 +59,8 @@
                                     $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
                                 }
                                 $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
-                                // if ($name_foto != '') {uploadImage($foto, $imgPortada);}
+                                if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                             }
-                            // dep($imgPortada);
                         }
                     }
                 }
