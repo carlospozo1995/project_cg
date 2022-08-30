@@ -26,9 +26,6 @@
 
         public function setCategoria()
         {
-            // dep($_POST);
-            // dep($_FILES);
-
             if ($_POST) {
                 if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == ""){
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
@@ -93,6 +90,13 @@
 
                         if ($arrCategorias[$i]['status'] == 1) {
                             $htmlOptions .= '<option value="'.$arrCategorias[$i]['idcategoria'].'">'.$arrCategorias[$i]['nombre'].'</option>' ;
+                            // $arrSubcategorias = $this->model->selectSubcategorias($arrCategorias[$i]['idcategoria']);
+                            // dep($arrSubcategorias);
+                            // if (count($arrSubcategorias) > 0) {
+                            //     for ($s=0; $s < count($arrSubcategorias); $s++) {
+                            //         $htmlOptionsdos .= '<option value="'.$arrSubcategorias[$s]['idcategoria'].'">'.$arrSubcategorias[$s]['nombre'].'</option>' ;
+                            //     }
+                            // }
                         }
                     }
                 }

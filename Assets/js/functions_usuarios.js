@@ -8,6 +8,7 @@ function modalNewUser() {
     $("#listRolid").select2();
     formNewUser.reset();
     $("#modalFormUser").modal("show");
+    rolesUsuario();
     validFocus();
     rowTable = "";
 }

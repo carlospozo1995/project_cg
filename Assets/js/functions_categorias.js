@@ -5,12 +5,13 @@ function modalNewCategoria() {
     document.getElementById("btnSubmitCategoria").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
     $("#modalFormCategoria").modal("show");
-    // $("#listCategorias").select2();
+    $("#listCategorias").select2();
     formCategoria.reset();
     document.getElementById('foto_alert').innerHTML = "";
     document.querySelector('.errorCategoria').textContent = "";
     document.querySelector('.photo').style.display = 'block';
     document.getElementById('listCategorias').value = "";
+    selectCategorias();
     removePhoto();
 }
 
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
+                        
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -130,7 +132,7 @@ function selectCategorias(){
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             document.getElementById("listCategorias").innerHTML = request.responseText;
-            // $("#listCategorias").select2();
+            $("#listCategorias").select2();
         }
     }
 }

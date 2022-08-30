@@ -41,10 +41,17 @@
 
         public function selectCategorias()
         {
-            $sql_all_categorias = "SELECT  * FROM project_cg.categorias WHERE status != 0";
+            $sql_all_categorias = "SELECT  * FROM project_cg.categorias WHERE status != 0 AND categoria_father_id is NULL";
             $request = $this->selectAll($sql_all_categorias);
             return $request;
         }
+
+        // public function electSubcategorias($fatherId)
+        // {
+        //     $sql_all_subcategorias = "SELECT  * FROM project_cg.categorias WHERE status != 0 AND categoria_father_id = $fatherId";
+        //     $request = $this->selectAll($sql_all_subcategorias);
+        //     return $request;
+        // }
     }
 
 ?>
