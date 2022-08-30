@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-08-2022 a las 04:14:09
+-- Tiempo de generación: 30-08-2022 a las 16:15:58
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -35,6 +35,20 @@ CREATE TABLE `categorias` (
   `categoria_father_id` bigint(20) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
+(1, 'Categoria 1', 'img_4d648ff0b95948a4bc1ea17fc2e60196.jpg', '2022-08-30 11:09:31', NULL, 1),
+(2, 'Categoria 1.1', NULL, '2022-08-30 11:09:46', 1, 1),
+(3, 'Categoria 1.1.1', NULL, '2022-08-30 11:10:03', 2, 1),
+(4, 'Categoria 2', 'img_8fbf86388e5a3cad934a47609ec8388d.jpg', '2022-08-30 11:10:34', NULL, 1),
+(5, 'Categoria 2.1', NULL, '2022-08-30 11:11:59', 4, 1),
+(6, 'Categoria 2.1.1', NULL, '2022-08-30 11:12:17', 5, 1),
+(7, 'Categoria 1.1.2', NULL, '2022-08-30 11:12:43', 2, 1),
+(8, 'Categoria 2.2.2', NULL, '2022-08-30 11:13:24', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -221,7 +235,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
