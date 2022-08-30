@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-08-2022 a las 16:15:58
+-- Tiempo de generación: 30-08-2022 a las 23:43:54
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -48,7 +48,8 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (5, 'Categoria 2.1', NULL, '2022-08-30 11:11:59', 4, 1),
 (6, 'Categoria 2.1.1', NULL, '2022-08-30 11:12:17', 5, 1),
 (7, 'Categoria 1.1.2', NULL, '2022-08-30 11:12:43', 2, 1),
-(8, 'Categoria 2.2.2', NULL, '2022-08-30 11:13:24', 5, 1);
+(8, 'Categoria 2.1.2', NULL, '2022-08-30 11:13:24', 5, 1),
+(9, 'Categoria 1.1.3', NULL, '2022-08-30 11:23:37', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
