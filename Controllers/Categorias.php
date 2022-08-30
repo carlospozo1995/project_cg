@@ -63,7 +63,22 @@
                             }
                         }
                     }
+
+                    if ($request_categoria > 0) {
+                        if ($option == 1) {
+                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                        }
+                        // else{
+                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                        // }
+                    }else if($request_categoria == "existe"){
+                        $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
+                    }else{
+                        $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
+                    }  
                 }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                die();
             }
         }
 

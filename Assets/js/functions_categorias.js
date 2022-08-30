@@ -83,15 +83,28 @@ document.addEventListener('DOMContentLoaded', function () {
         if (strTitulo == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
-            // loading.style.display = "flex";
+            loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'); 
             var ajaxUrl = base_url + 'Categorias/setCategoria';
             var formData = new FormData(formCategoria);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
-            // request.onreadystatechange = function () {
-    
-            // }
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var objData = JSON.parse(request.responseText);
+                    console.log(objData);
+                    if(objData.status){
+                        $("#modalFormCategoria").modal("hide");
+                        formCategoria.reset();
+                        Swal.fire("Categorias", objData.msg, "success");
+                        removePhoto();  
+                    }else{
+                        Swal.fire("Error", objData.msg, "error");
+                    }
+                }
+                loading.style.display = "none";
+                return false;
+            }
         }
     }
 }, false);
