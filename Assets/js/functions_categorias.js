@@ -1,3 +1,5 @@
+var tableCategorias;
+
 function modalNewCategoria() {
     document.getElementById("idCategoria").value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
@@ -73,7 +75,34 @@ document.addEventListener('DOMContentLoaded', function () {
             removePhoto();
         }
     }
-    
+
+    tableCategorias = $("#tableCategorias").DataTable({
+        "aProcessing": true,
+        "aServerSide":true,
+        "language":{
+            "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+        },
+        "ajax":{
+            "url": base_url + "Categorias/tableCategorias",
+            "dataSrc":"",
+        },
+        "columns":[
+            {"data":"idcategoria"},
+            {"data":"nombre"},
+            {"data":"categoria_father_id"},
+            {"data":"status"},
+            // {"data":"actions"},
+        ],
+        "responsive": true,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "dom": 'lBfrtip',
+        "buttons": [
+            "copy", "csv", "excel", "pdf", "print", "colvis"
+        ],
+        "bDestroy":true,
+        "order":[[0,"asc"]],
+        "iDisplayLength":10,
+    });
 
     var formCategoria = document.getElementById('formCategoria');
     formCategoria.onsubmit = function (e) {

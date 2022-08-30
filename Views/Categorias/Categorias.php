@@ -36,9 +36,8 @@
                   <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Categoria padre</th>
                     <th>Estado</th>
-                    <th>Acciones</th>
                     <!-- <th>Acciones</th> -->
                   </tr>
                   </thead>

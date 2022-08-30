@@ -98,4 +98,46 @@
             }    
             die();
         }
+
+        public function tableCategorias()
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $arrCategorias = $this->model->allCategorias();
+                for ($i=0; $i < count($arrCategorias); $i++) { 
+                                // if (!empty($arrCategorias[$i]['categoria_father_id'])) {
+                                //     $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['nombre'];
+                                // }
+            
+                    if ($arrCategorias[$i]['status'] == 1) {
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                    }else{
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                    }
+                }
+            }
+            echo json_encode($arrCategorias);
+        }
+
+
+        // public function tableCategorias()
+        // {
+        //     if($_SESSION['permisosMod']['ver']){
+        //         $arrCategorias = $this->model->allCategorias();
+        //         for ($i=0; $i < count($arrCategorias); $i++) { 
+        //             // if (!empty($arrCategorias[$i]['categoria_father_id'])) {
+        //             //     $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['nombre'];
+        //             // }
+
+        //             if ($arrCategorias[$i]['status'] == 1) {
+        //                 $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+        //             }else{
+        //                 $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+        //             }
+        //         }
+        //     }
+        //     echo json_encode($arrCategorias);
+        // }
+        
     }
+
+?>

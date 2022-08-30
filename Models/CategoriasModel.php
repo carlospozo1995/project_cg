@@ -52,6 +52,17 @@
             $request = $this->selectAll($sql_all_subcategorias);
             return $request;
         }
+
+        public function allCategorias()
+        {
+            $sql_categorias = "SELECT * FROM project_cg.categorias WHERE status != 0";
+            $request = $this->selectAll($sql_categorias);
+            return $request;
+        }
     }
 
 ?>
+
+
+
+
