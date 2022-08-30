@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 27-08-2022 a las 16:24:00
+-- Tiempo de generación: 30-08-2022 a las 04:14:09
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -20,34 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `project_cg`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `idcategoria` bigint(20) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `portada` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `portada`, `datecreate`, `status`) VALUES
-(1, 'Categoria 1', 'Todo de la categoria 1', 'img_7286eee513774c1d9210506b0be747ae.jpg', '2022-08-18 22:39:24', 1),
-(2, 'Categoria 2', 'todo de la categoria 2', 'img_c10ec1468af205548055b31e7508d8cd.jpg', '2022-08-18 22:39:44', 2),
-(3, 'Categoria 3', 'todo de la categoria 3', 'img_7edda0a6c725ff02cf4c15c63f2eb25c.jpg', '2022-08-18 22:40:23', 1),
-(4, 'Categoria 4', 'Todo De La Categoria 4', 'img_ee46853d663b0157e0356c41bb44d229.jpg', '2022-08-18 22:42:55', 1),
-(5, 'Categoria 5', 'Toda la categoria 5', 'img_0cd52a81956b007d952ee9f54e8ea051.jpg', '2022-08-18 17:26:43', 2),
-(6, 'Categoria 6', 'Toda la categoria 6', 'img_bed27d24157cd5f62b112593cf9e8190.jpg', '2022-08-19 13:27:39', 1),
-(7, 'Categoria 7', 'Toda la categoria 7', 'img_bb24181bd936d07b78e5289ab828321e.jpg', '2022-08-20 17:52:56', 2);
 
 -- --------------------------------------------------------
 
@@ -201,12 +173,6 @@ INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `t
 --
 
 --
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idcategoria`);
-
---
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -250,12 +216,6 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
