@@ -19,7 +19,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Titulo</label>
-                                        <input type="text" class="form-control" placeholder="Titulo de la categoria" id="txtTitulo" name="txtTitulo" required>
+                                        <input type="text" class="form-control" placeholder="Titulo de la categoria" id="txtTitulo" autocomplete="off" name="txtTitulo" required>
                                     </div>
 
                                     <div class="form-group">
