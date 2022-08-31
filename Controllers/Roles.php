@@ -29,7 +29,7 @@
         public function getRoles()
         {   
             if($_SESSION['permisosMod']['ver']){
-                $arrRoles = $this->model->selectRoles();
+                $arrRoles = $this->model->selectAllRoles();
 
                 for ($i=0; $i < count($arrRoles); $i++) { 
                     $btnPermisosRol = '';

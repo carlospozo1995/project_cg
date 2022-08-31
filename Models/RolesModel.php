@@ -23,6 +23,15 @@
             return $request;
         }
 
+        // CONSULTA PARA LA TABLA ROLES
+        public function selectAllRoles()
+        {
+            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0";
+            $request = $this->selectAll($sql_all_rol);
+            return $request;
+        }
+        // -----------------------------------------
+
         public function insertRol(string $nameRol, string $descripcion, int $status)
         {
             $return = "";
