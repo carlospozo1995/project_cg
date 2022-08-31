@@ -107,11 +107,16 @@
                 $arrCategorias = $this->model->allCategorias();
                 for ($i=0; $i < count($arrCategorias); $i++) { 
                     $btnViewCategoria = '';
+                    $btnUpdateCategoria = '';
 
                     $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['fathercatname'];
 
                     if ($_SESSION['permisosMod']['ver']) {
                         $btnViewCategoria = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                    }
+
+                    if (!empty($_SESSION['permisosMod']['actualizar']) && $_SESSION['idUser'] == 1) {
+                        $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                     }
             
                     if ($arrCategorias[$i]['status'] == 1) {
@@ -120,7 +125,7 @@
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                     }
 
-                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.'</div>';
+                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.'</div>';
                 }
             }
             echo json_encode($arrCategorias);

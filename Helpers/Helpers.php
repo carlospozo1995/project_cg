@@ -161,7 +161,6 @@
         }else{
             header("Location: ".BASE_URL."logout");
         }
-
     }
 
     // AGREGAR LA IMAGEN A UPLOAD

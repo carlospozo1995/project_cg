@@ -15,7 +15,8 @@
         {
             $whereAdmin = "";
             if ($_SESSION['idUser'] != 1) {
-                $whereAdmin = " and idrol != 1 ";
+                $whereAdmin = " AND idrol != 1 AND idrol >= '".sessionUser($_SESSION['idUser'])['idrol']."'";
+
             }
             $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0" . $whereAdmin;
             $request = $this->selectAll($sql_all_rol);
@@ -49,6 +50,15 @@
         {
             $this->intIdrol = $idRol;
             $sql_select_rol = "SELECT * FROM project_cg.roles WHERE idrol = $this->intIdrol";
+
+            $request = $this->select($sql_select_rol);
+            return $request;
+        }
+
+        public function selectIdRol(int $idRol)
+        {
+            $this->intIdrol = $idRol;
+            $sql_select_rol = "SELECT idrol FROM project_cg.roles WHERE idrol = $this->intIdrol";
 
             $request = $this->select($sql_select_rol);
             return $request;
