@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {"data":"nombre"},
             {"data":"categoria_father_id"},
             {"data":"status"},
-            // {"data":"actions"},
+            {"data":"actions"},
         ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                        
+                        tableCategorias.ajax.reload(function () {
+                            
+                        });                        
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -162,6 +164,30 @@ function selectCategorias(){
         if (request.readyState == 4 && request.status == 200) {
             document.getElementById("listCategorias").innerHTML = request.responseText;
             $("#listCategorias").select2();
+        }
+    }
+}
+
+function viewCategoria(idCategoria) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", urlCategoria, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                document.getElementById('celNombre').innerHTML = objData.data.nombre;
+                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
+                document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
+                document.getElementById('celEstado').innerHTML = statusCategoria;
+                $('#modalViewCategoria').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }
         }
     }
 }

@@ -11,6 +11,7 @@
             parent::__construct();
         }
 
+        //INSERTAR CATEGORIA 
         public function insertCategoria(string $titulo, string $imgPortada, $fatherCategoria, int $status ){
             $return = "";
             $data_img = "";
@@ -39,6 +40,7 @@
             return $return;
         }
 
+        // PINTAR CATEGORIAS EN UN SELECT
         public function selectCategorias()
         {
             $sql_all_categorias = "SELECT  * FROM project_cg.categorias WHERE categoria_father_id is NULL AND status != 0";
@@ -52,11 +54,23 @@
             $request = $this->selectAll($sql_all_subcategorias);
             return $request;
         }
+        // ---------------------------------------------
 
+        // SELECIONAR TODAS LAS CATEGORIAS
         public function allCategorias()
         {
-            $sql_categorias = "SELECT * FROM project_cg.categorias WHERE status != 0";
+            $sql_categorias = "SELECT ca1.*, ca2.nombre AS fathercatname FROM categorias ca1 LEFT JOIN categorias ca2 ON ca1.categoria_father_id = ca2.idcategoria WHERE ca1.status != 0";
             $request = $this->selectAll($sql_categorias);
+            return $request;
+        }
+
+        // SELECIONAR UNA CATEGORIA ESPECIFICA
+        public function selectCategoria(int $idcategoria)
+        {
+            $this->intIdCategoria = $idcategoria;
+            
+            $sql_select_categoria = "SELECT ca1.*, ca2.nombre AS fathercatname FROM categorias ca1 LEFT JOIN categorias ca2 ON ca1.categoria_father_id = ca2.idcategoria WHERE ca1.idcategoria = $this->intIdCategoria";
+            $request = $this->select( $sql_select_categoria);
             return $request;
         }
     }

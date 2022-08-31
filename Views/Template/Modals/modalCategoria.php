@@ -89,16 +89,16 @@
                                 <td id="celNombre"></td>
                             </tr>
                             <tr>
-                                <td>Descripción:</td>
-                                <td id="celDescripcion"></td>
-                            </tr>
-                            <tr>
                                 <td>Imagen:</td>
                                 <td id="celImagen"></td>
                             </tr>
                             <tr>
                                 <td>Fecha de registro:</td>
                                 <td id="celFecharegistro"></td>
+                            </tr>
+                            <tr>
+                                <td>Categoria padre</td>
+                                <td id="celCatPadre"></td>
                             </tr>
                             <tr>
                                 <td>Estado:</td>

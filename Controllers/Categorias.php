@@ -79,6 +79,7 @@
             }
         }
 
+        // PINTAR CATEGORIAS EN UN SELECT
         public function getCategorias()
         {
             if($_SESSION['permisosMod']['ver']){
@@ -98,46 +99,52 @@
             }    
             die();
         }
+        // ---------------------------------
 
         public function tableCategorias()
         {
             if($_SESSION['permisosMod']['ver']){
                 $arrCategorias = $this->model->allCategorias();
                 for ($i=0; $i < count($arrCategorias); $i++) { 
-                                // if (!empty($arrCategorias[$i]['categoria_father_id'])) {
-                                //     $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['nombre'];
-                                // }
+                    $btnViewCategoria = '';
+
+                    $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['fathercatname'];
+
+                    if ($_SESSION['permisosMod']['ver']) {
+                        $btnViewCategoria = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                    }
             
                     if ($arrCategorias[$i]['status'] == 1) {
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
                     }else{
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                     }
+
+                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.'</div>';
                 }
             }
             echo json_encode($arrCategorias);
         }
 
-
-        // public function tableCategorias()
-        // {
-        //     if($_SESSION['permisosMod']['ver']){
-        //         $arrCategorias = $this->model->allCategorias();
-        //         for ($i=0; $i < count($arrCategorias); $i++) { 
-        //             // if (!empty($arrCategorias[$i]['categoria_father_id'])) {
-        //             //     $arrCategorias[$i]['categoria_father_id'] = $arrCategorias[$i]['nombre'];
-        //             // }
-
-        //             if ($arrCategorias[$i]['status'] == 1) {
-        //                 $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
-        //             }else{
-        //                 $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
-        //             }
-        //         }
-        //     }
-        //     echo json_encode($arrCategorias);
-        // }
-        
+        public function viewCategoria($idCategoria)
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $intIdcategoria = intval($idCategoria);
+                if ($intIdcategoria > 0) {
+                    $arrCategoria = $this->model->selectCategoria($intIdcategoria);
+                    if (empty($arrCategoria)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    }else{
+                        if (!empty($arrCategoria['imgcategoria'])) {
+                            $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];    
+                        }
+                        $arrResponse = array('status' => true, 'data' => $arrCategoria);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                }
+            }
+            die();
+        }
     }
 
 ?>
