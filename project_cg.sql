@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-08-2022 a las 23:43:54
+-- Tiempo de generación: 31-08-2022 a las 05:04:00
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -49,7 +49,11 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (6, 'Categoria 2.1.1', NULL, '2022-08-30 11:12:17', 5, 1),
 (7, 'Categoria 1.1.2', NULL, '2022-08-30 11:12:43', 2, 1),
 (8, 'Categoria 2.1.2', NULL, '2022-08-30 11:13:24', 5, 1),
-(9, 'Categoria 1.1.3', NULL, '2022-08-30 11:23:37', 2, 1);
+(9, 'Categoria 1.1.3', NULL, '2022-08-30 11:23:37', 2, 1),
+(10, 'Categoria 3', 'img_8ecd544966a96055ff259a140347f754.jpg', '2022-08-30 23:41:05', NULL, 1),
+(11, 'Categoria 4', 'img_4ed5fb1b9a67daf343241c113ac6f0e4.jpg', '2022-08-30 23:42:29', NULL, 1),
+(12, 'Categoria 3.1', NULL, '2022-08-30 23:43:01', 10, 1),
+(13, 'Categoria 4.1', NULL, '2022-08-30 23:44:12', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +240,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
