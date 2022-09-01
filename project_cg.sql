@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 31-08-2022 a las 05:04:00
+-- Tiempo de generación: 01-09-2022 a las 03:13:14
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -100,21 +100,31 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
-(617, 1, 1, 1, 0, 0, 0),
-(618, 1, 2, 1, 1, 1, 1),
-(619, 1, 3, 1, 1, 1, 1),
-(620, 1, 4, 1, 0, 0, 0),
-(621, 1, 5, 1, 1, 1, 1),
-(732, 2, 1, 1, 0, 0, 0),
-(733, 2, 2, 1, 1, 0, 0),
-(734, 2, 3, 1, 0, 0, 0),
-(735, 2, 4, 0, 0, 0, 0),
-(736, 2, 5, 1, 0, 0, 0),
-(782, 3, 1, 1, 0, 0, 0),
-(783, 3, 2, 1, 0, 0, 0),
-(784, 3, 3, 0, 0, 0, 0),
-(785, 3, 4, 1, 0, 0, 0),
-(786, 3, 5, 1, 0, 0, 0);
+(867, 5, 1, 1, 0, 0, 0),
+(868, 5, 2, 1, 1, 0, 0),
+(869, 5, 3, 1, 0, 0, 0),
+(870, 5, 4, 0, 0, 0, 0),
+(871, 5, 5, 0, 0, 0, 0),
+(882, 1, 1, 1, 0, 0, 0),
+(883, 1, 2, 1, 1, 1, 1),
+(884, 1, 3, 1, 1, 1, 1),
+(885, 1, 4, 1, 1, 1, 1),
+(886, 1, 5, 1, 1, 1, 1),
+(907, 2, 1, 1, 0, 0, 0),
+(908, 2, 2, 1, 1, 1, 0),
+(909, 2, 3, 1, 0, 0, 0),
+(910, 2, 4, 1, 1, 1, 1),
+(911, 2, 5, 1, 1, 1, 1),
+(912, 3, 1, 1, 0, 0, 0),
+(913, 3, 2, 1, 1, 0, 0),
+(914, 3, 3, 1, 0, 0, 0),
+(915, 3, 4, 1, 1, 1, 0),
+(916, 3, 5, 1, 0, 0, 0),
+(917, 4, 1, 1, 0, 0, 0),
+(918, 4, 2, 1, 1, 0, 0),
+(919, 4, 3, 1, 0, 0, 0),
+(920, 4, 4, 1, 0, 0, 0),
+(921, 4, 5, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -156,7 +166,7 @@ INSERT INTO `roles` (`idrol`, `nombrerol`, `descripcion`, `status`) VALUES
 (2, 'Supervisor', 'Solo ciertos permisos', 1),
 (3, 'Suplente', 'Suplente  Permisos restringidos', 1),
 (4, 'Vendedor', 'Vendedor - No tiene permisos', 1),
-(5, 'Cliente', 'Cliente - No hay permisos', 0);
+(5, 'Cliente', 'Cliente No hay permisos', 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +195,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
 (2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
-(3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1);
+(3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
+(4, '1000', 'Isabelle', 'Anibal', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
+(5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1);
 
 --
 -- Índices para tablas volcadas
@@ -252,7 +264,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=787;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=922;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -270,7 +282,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
