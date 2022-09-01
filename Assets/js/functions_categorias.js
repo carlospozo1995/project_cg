@@ -191,3 +191,40 @@ function viewCategoria(idCategoria) {
         }
     }
 }
+
+function editCategoria(element, idCategoria) {
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
+    document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", ajaxetCategoria, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                document.getElementById("idCategoria").value = objData.data.idcategoria;
+                document.getElementById("txtTitulo").value = objData.data.nombre;  
+
+                if (objData.data.categoria_father_id == null) {
+                    document.getElementById("listCategorias").value = '';
+                    $("#listCategorias").select2();
+                }else{
+                    document.getElementById("listCategorias").value = objData.data.categoria_father_id;
+                    $("#listCategorias").select2("val", objData.data.categoria_father_id);
+                }
+                
+                document.getElementById("listStatus").value = objData.data.status;
+
+
+                // 
+                document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';    
+                
+                $("#modalFormCategoria").modal("show");
+            }
+        }  
+
+    }
+} 

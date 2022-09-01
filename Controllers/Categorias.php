@@ -59,15 +59,27 @@
                                 if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                             }
                         }
+                    }else{
+                        $option = 2;
+                        if($_SESSION['permisosMod']['actualizar']){
+                            // if($name_foto == ""){
+                            //     if ($_POST['foto_actual'] != 'imgCategoria.png' && $_POST['foto_remove'] == 0) {
+                            //         $imgPortada = $_POST['foto_actual'];
+                            //     }
+                            // }else{
+                            //     $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                            //     uploadImage($foto, $imgPortada);   
+                            // }
+                            // $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $imgPortada, $intStatus);
+                        }
                     }
 
                     if ($request_categoria > 0) {
                         if ($option == 1) {
                             $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                        }else{
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
-                        // else{
-                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                        // }
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{
@@ -116,6 +128,7 @@
                     }
 
                     if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                        
                         $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                     }
             
