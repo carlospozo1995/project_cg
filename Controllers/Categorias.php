@@ -40,6 +40,7 @@
                     $name_foto = $foto['name'];
                     $type = $foto['type'];
                     $url_temp = $foto['tmp_name'];
+                    $imgPortada = 'imgCategoria.png';
 
                     if (empty($intIdCategoria)) {
                         $option = 1;
@@ -47,30 +48,31 @@
                             if($intCategoria != 'NULL'){
                                 // AGREGAR SUBCATEGORIA - SIN IMAGEN
                                 $imgPortada = 'NULL';
-                                $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
                             }else{  
-                                // ACTUALIZAR CATEGORIA - CON IMAGEN
-                                $imgPortada = 'imgCategoria.png';
-
+                                // AGREGAR CATEGORIA - CON IMAGEN
                                 if (!empty($name_foto)) {
                                     $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
                                 }
-                                $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
                                 if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                             }
+                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
                         }
                     }else{
                         $option = 2;
                         if($_SESSION['permisosMod']['actualizar']){
-                            // if($name_foto == ""){
-                            //     if ($_POST['foto_actual'] != 'imgCategoria.png' && $_POST['foto_remove'] == 0) {
-                            //         $imgPortada = $_POST['foto_actual'];
-                            //     }
-                            // }else{
-                            //     $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                            //     uploadImage($foto, $imgPortada);   
-                            // }
-                            // $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $strDescripcion, $imgPortada, $intStatus);
+                            if($intCategoria != 'NULL'){
+                                $imgPortada = 'NULL';
+                            }else{
+                                if($name_foto == ""){
+                                    if ($_POST['foto_actual'] != 'imgCategoria.png' && $_POST['foto_remove'] == 0) {
+                                        $imgPortada = $_POST['foto_actual'];
+                                    }
+                                }else{
+                                    $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($foto, $imgPortada);   
+                                }
+                            }
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $intCategoria, $intStatus);
                         }
                     }
 

@@ -1,5 +1,5 @@
 var tableCategorias;
-
+var rowTable = "" ;
 function modalNewCategoria() {
     document.getElementById("idCategoria").value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if(document.querySelector(".delPhoto")){
         var delPhoto = document.querySelector(".delPhoto");
         delPhoto.onclick = function(e) {
-            // document.getElementById('foto_remove').value = 1;
-            removePhoto();
+            document.getElementById('foto_remove').value = 1;
+            removePhoto();  
         }
     }
 
@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
+        var intCategoria = document.getElementById('listCategorias').value;
         var intStatus = document.getElementById('listStatus').value;
         if (strTitulo == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
@@ -122,15 +123,22 @@ document.addEventListener('DOMContentLoaded', function () {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
-                    console.log(objData);
                     if(objData.status){
+                        if(rowTable == ""){
+                            tableCategorias.ajax.reload(function () {
+                            });
+                        }else{
+                            let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                            
+                            rowTable.cells[1].textContent = strTitulo;
+                            rowTable.cells[2].textContent = intCategoria;
+                            rowTable.cells[3].innerHTML = htmlStatus;
+                        }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                        tableCategorias.ajax.reload(function () {
-                            
-                        });                        
+                                                
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -193,6 +201,8 @@ function viewCategoria(idCategoria) {
 }
 
 function editCategoria(element, idCategoria) {
+    rowTable = element.parentNode.parentNode.parentNode;
+    console.log(rowTable);
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
@@ -206,23 +216,27 @@ function editCategoria(element, idCategoria) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
+                document.getElementById('foto_actual').value = objData.data.imgcategoria;
+                document.getElementById('foto_remove').value = 0;
                 document.getElementById("txtTitulo").value = objData.data.nombre;  
-
+                
                 if (objData.data.categoria_father_id == null) {
                     document.getElementById("listCategorias").value = '';
                     $("#listCategorias").select2();
+                    document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';  
+                    document.querySelector('.photo').style.display = 'block'
+                    document.querySelector('.errorCategoria').textContent = "";
+                    objData.data.imgcategoria != 'imgCategoria.png' ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
+                    document.getElementById('foto_alert').innerHTML = "";
                 }else{
                     document.getElementById("listCategorias").value = objData.data.categoria_father_id;
                     $("#listCategorias").select2("val", objData.data.categoria_father_id);
                 }
                 
                 document.getElementById("listStatus").value = objData.data.status;
-
-
-                // 
-                document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';    
                 
                 $("#modalFormCategoria").modal("show");
+
             }
         }  
 
