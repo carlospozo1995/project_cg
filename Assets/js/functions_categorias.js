@@ -202,7 +202,6 @@ function viewCategoria(idCategoria) {
 
 function editCategoria(element, idCategoria) {
     rowTable = element.parentNode.parentNode.parentNode;
-    console.log(rowTable);
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
@@ -226,7 +225,8 @@ function editCategoria(element, idCategoria) {
                     document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';  
                     document.querySelector('.photo').style.display = 'block'
                     document.querySelector('.errorCategoria').textContent = "";
-                    objData.data.imgcategoria != 'imgCategoria.png' ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
+                    objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
+
                     document.getElementById('foto_alert').innerHTML = "";
                 }else{
                     document.getElementById("listCategorias").value = objData.data.categoria_father_id;
