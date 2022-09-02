@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                                                
+                        selectCategorias();            
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
