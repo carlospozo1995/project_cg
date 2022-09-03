@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-09-2022 a las 03:58:57
+-- Tiempo de generación: 03-09-2022 a las 04:59:35
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -35,6 +35,36 @@ CREATE TABLE `categorias` (
   `categoria_father_id` bigint(20) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
+(1, 'Categoria 1', 'imgCategoria.png', '2022-09-02 18:06:25', NULL, 1),
+(2, 'Categoria 1.1', NULL, '2022-09-02 18:06:44', 1, 1),
+(3, 'Categoria 1.2', NULL, '2022-09-02 18:07:19', 1, 1),
+(4, 'Categoria 1.3', NULL, '2022-09-02 18:07:33', 1, 1),
+(5, 'Categoria 2', 'imgCategoria.png', '2022-09-02 18:07:53', NULL, 1),
+(6, 'Categoria 2.1', NULL, '2022-09-02 18:08:09', 5, 1),
+(7, 'Categoria 2.2', NULL, '2022-09-02 18:08:19', 5, 1),
+(8, 'Categoria 2.3', NULL, '2022-09-02 18:08:32', 5, 1),
+(9, 'Categoria 3', 'imgCategoria.png', '2022-09-02 18:08:41', NULL, 1),
+(10, 'Categoria 3.1', NULL, '2022-09-02 18:08:55', 9, 1),
+(11, 'Categoria 3.2', NULL, '2022-09-02 18:09:20', 9, 1),
+(12, 'Categoria 3.3', NULL, '2022-09-02 18:09:47', 9, 1),
+(13, 'Categoria 4', 'imgCategoria.png', '2022-09-02 18:09:58', NULL, 1),
+(14, 'Categoria 4.1', NULL, '2022-09-02 18:10:21', 13, 1),
+(15, 'Categoria 4.2', NULL, '2022-09-02 21:29:05', 13, 1),
+(16, 'Categoria 4.3', NULL, '2022-09-02 21:29:20', 13, 1),
+(17, 'Categoria 5', 'imgCategoria.png', '2022-09-02 21:29:39', NULL, 1),
+(18, 'Categoria 5.1', NULL, '2022-09-02 21:29:56', 17, 1),
+(19, 'Categoria 5.2', NULL, '2022-09-02 21:30:20', 17, 1),
+(20, 'Categoria 5.3', NULL, '2022-09-02 21:30:40', 17, 1),
+(21, 'Categoria 6', '', '2022-09-02 21:30:58', NULL, 1),
+(22, 'Categoria 6.1', NULL, '2022-09-02 21:31:22', 21, 1),
+(23, 'Categoria 6.2', NULL, '2022-09-02 21:31:39', 21, 1),
+(24, 'Categoria 6.3', NULL, '2022-09-02 21:31:58', 21, 1);
 
 -- --------------------------------------------------------
 
@@ -177,8 +207,9 @@ INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `t
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
 (2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
 (3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
-(4, '1000', 'Isabelle', 'Anibal', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
-(5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1);
+(4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
+(5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1),
+(6, '1300', 'Camilo', 'Perez', 1231231231, 'camilo@camilo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-09-02 17:46:02', 1);
 
 --
 -- Índices para tablas volcadas
@@ -233,7 +264,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -263,7 +294,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
