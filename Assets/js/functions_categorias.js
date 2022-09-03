@@ -113,7 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
         var intCategoria = $("#listCategorias").find("option:selected").text();
-        intCategoria = intCategoria.replaceAll("-","");
+        if (intCategoria == "") {
+            document.getElementById("listCategorias").value = "";
+        }else{
+            intCategoria = intCategoria.replaceAll("-","");
+        }
+
         var intStatus = document.getElementById('listStatus').value;
         if (strTitulo == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
@@ -230,14 +235,20 @@ function editCategoria(element, idCategoria) {
                     document.querySelector('.errorCategoria').textContent = "";
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
-                }  
-                
-                let option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
-                if(option_cat.length){
-                    option_cat.prop("selected", true);
+                } else{
+                    let option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                    if(option_cat.length){
+                        option_cat.prop("selected", true);
+                    }
+                    $("#listCategorias").select2();
+                    document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
+                    document.querySelector('.photo').style.display = 'none';
+                    document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }
-                $("#listCategorias").select2();
-                document.getElementById("listCategorias").value = objData.data.categoria_father_id;
+                
+                
+                console.log(objData.data);
+                // console.log(document.getElementById("listCategorias").value)
 
                 document.getElementById("listStatus").value = objData.data.status;
                 

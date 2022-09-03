@@ -64,8 +64,12 @@
                                 $imgPortada = 'NULL';
                             }else{
                                 if($name_foto == ""){
-                                    if ($_POST['foto_actual'] != 'imgCategoria.png' && $_POST['foto_remove'] == 0) {
+                                    if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
                                         $imgPortada = $_POST['foto_actual'];
+                                    }
+                                    
+                                    if($imgPortada == ""){
+                                        $imgPortada = 'imgCategoria.png';
                                     }
                                 }else{
                                     $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
