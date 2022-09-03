@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
         "buttons": [
             "copy", "csv", "excel", "pdf", "print", "colvis"
         ],
+        "drawCallback":function () {
+        },
         "bDestroy":true,
         "order":[[0,"asc"]],
         "iDisplayLength":10,
@@ -110,7 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
-        var intCategoria = document.getElementById('listCategorias').value;
+        var intCategoria = $("#listCategorias").find("option:selected").text();
+        intCategoria = intCategoria.replaceAll("-","");
         var intStatus = document.getElementById('listStatus').value;
         if (strTitulo == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
@@ -130,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             });
                         }else{
                             let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
-                            
                             rowTable.cells[1].textContent = strTitulo;
                             rowTable.cells[2].textContent = intCategoria;
                             rowTable.cells[3].innerHTML = htmlStatus;
@@ -149,10 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
-
-    // $("#tableCategorias tbody").on("click", ".btnEditCategoria", function () {
-    //     console.log('hola')
-    // })
 }, false);
 
 function removePhoto(){
@@ -222,9 +220,7 @@ function editCategoria(element, idCategoria) {
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
-                document.getElementById("txtTitulo").value = objData.data.nombre;  
-                console.log(objData.data)
-                
+                document.getElementById("txtTitulo").value = objData.data.nombre;
                 
                 if (objData.data.categoria_father_id == null) {
                     document.getElementById("listCategorias").value = '';
@@ -236,10 +232,12 @@ function editCategoria(element, idCategoria) {
                     document.getElementById('foto_alert').innerHTML = "";
                 }  
                 
-                $("#listCategorias").select2("val",objData.data.categoria_father_id);
+                let option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                if(option_cat.length){
+                    option_cat.prop("selected", true);
+                }
+                $("#listCategorias").select2();
                 document.getElementById("listCategorias").value = objData.data.categoria_father_id;
-                
-                console.log(document.getElementById("listCategorias").value);
 
                 document.getElementById("listStatus").value = objData.data.status;
                 
