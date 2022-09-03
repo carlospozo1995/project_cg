@@ -15,6 +15,7 @@ function modalNewCategoria() {
     document.getElementById('listCategorias').value = "";
     selectCategorias();
     removePhoto();
+    rowTable = "";
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                        selectCategorias();            
+                        selectCategorias();      
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -148,6 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+
+    // $("#tableCategorias tbody").on("click", ".btnEditCategoria", function () {
+    //     console.log('hola')
+    // })
 }, false);
 
 function removePhoto(){
@@ -218,6 +223,8 @@ function editCategoria(element, idCategoria) {
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
                 document.getElementById("txtTitulo").value = objData.data.nombre;  
+                console.log(objData.data)
+                
                 
                 if (objData.data.categoria_father_id == null) {
                     document.getElementById("listCategorias").value = '';
@@ -226,13 +233,14 @@ function editCategoria(element, idCategoria) {
                     document.querySelector('.photo').style.display = 'block'
                     document.querySelector('.errorCategoria').textContent = "";
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
-
                     document.getElementById('foto_alert').innerHTML = "";
-                }else{
-                    document.getElementById("listCategorias").value = objData.data.categoria_father_id;
-                    $("#listCategorias").select2("val", objData.data.categoria_father_id);
-                }
+                }  
                 
+                $("#listCategorias").select2("val",objData.data.categoria_father_id);
+                document.getElementById("listCategorias").value = objData.data.categoria_father_id;
+                
+                console.log(document.getElementById("listCategorias").value);
+
                 document.getElementById("listStatus").value = objData.data.status;
                 
                 $("#modalFormCategoria").modal("show");
