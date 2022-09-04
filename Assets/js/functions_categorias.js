@@ -113,13 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
         var intCategoria = $("#listCategorias").find("option:selected").text();
-        if (intCategoria == "") {
-            document.getElementById("listCategorias").value = "";
-        }else{
-            intCategoria = intCategoria.replaceAll("-","");
-        }
-
+        intCategoria = intCategoria.replaceAll("-","");
         var intStatus = document.getElementById('listStatus').value;
+
         if (strTitulo == "" || intStatus == "") {
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
@@ -139,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }else{
                             let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                             rowTable.cells[1].textContent = strTitulo;
-                            rowTable.cells[2].textContent = intCategoria;
+                            document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
                             rowTable.cells[3].innerHTML = htmlStatus;
                         }
                         $("#modalFormCategoria").modal("hide");
@@ -245,10 +241,6 @@ function editCategoria(element, idCategoria) {
                     document.querySelector('.photo').style.display = 'none';
                     document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }
-                
-                
-                console.log(objData.data);
-                // console.log(document.getElementById("listCategorias").value)
 
                 document.getElementById("listStatus").value = objData.data.status;
                 
