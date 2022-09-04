@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 03-09-2022 a las 04:59:35
+-- Tiempo de generación: 04-09-2022 a las 16:05:48
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -41,30 +41,24 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
-(1, 'Categoria 1', 'imgCategoria.png', '2022-09-02 18:06:25', NULL, 1),
-(2, 'Categoria 1.1', NULL, '2022-09-02 18:06:44', 1, 1),
-(3, 'Categoria 1.2', NULL, '2022-09-02 18:07:19', 1, 1),
-(4, 'Categoria 1.3', NULL, '2022-09-02 18:07:33', 1, 1),
-(5, 'Categoria 2', 'imgCategoria.png', '2022-09-02 18:07:53', NULL, 1),
-(6, 'Categoria 2.1', NULL, '2022-09-02 18:08:09', 5, 1),
-(7, 'Categoria 2.2', NULL, '2022-09-02 18:08:19', 5, 1),
-(8, 'Categoria 2.3', NULL, '2022-09-02 18:08:32', 5, 1),
-(9, 'Categoria 3', 'imgCategoria.png', '2022-09-02 18:08:41', NULL, 1),
-(10, 'Categoria 3.1', NULL, '2022-09-02 18:08:55', 9, 1),
-(11, 'Categoria 3.2', NULL, '2022-09-02 18:09:20', 9, 1),
-(12, 'Categoria 3.3', NULL, '2022-09-02 18:09:47', 9, 1),
-(13, 'Categoria 4', 'imgCategoria.png', '2022-09-02 18:09:58', NULL, 1),
-(14, 'Categoria 4.1', NULL, '2022-09-02 18:10:21', 13, 1),
-(15, 'Categoria 4.2', NULL, '2022-09-02 21:29:05', 13, 1),
-(16, 'Categoria 4.3', NULL, '2022-09-02 21:29:20', 13, 1),
-(17, 'Categoria 5', 'imgCategoria.png', '2022-09-02 21:29:39', NULL, 1),
-(18, 'Categoria 5.1', NULL, '2022-09-02 21:29:56', 17, 1),
-(19, 'Categoria 5.2', NULL, '2022-09-02 21:30:20', 17, 1),
-(20, 'Categoria 5.3', NULL, '2022-09-02 21:30:40', 17, 1),
-(21, 'Categoria 6', '', '2022-09-02 21:30:58', NULL, 1),
-(22, 'Categoria 6.1', NULL, '2022-09-02 21:31:22', 21, 1),
-(23, 'Categoria 6.2', NULL, '2022-09-02 21:31:39', 21, 1),
-(24, 'Categoria 6.3', NULL, '2022-09-02 21:31:58', 21, 1);
+(1, 'Categoria 1', 'img_136e122a958b524639996b72b11a2448.jpg', '2022-09-03 16:31:13', NULL, 1),
+(2, 'Categoria 1.1', NULL, '2022-09-03 16:32:35', 1, 1),
+(3, 'Categoria 1.2', NULL, '2022-09-03 16:34:38', 1, 1),
+(4, 'Categoria 1.3', NULL, '2022-09-03 16:35:44', 1, 1),
+(5, 'Categoria 2', 'img_520869f9c427496a817ae73c8d16315d.jpg', '2022-09-03 16:36:40', NULL, 1),
+(6, 'Categoria 2.1', NULL, '2022-09-03 16:37:47', 5, 1),
+(7, 'Categoria 2.2', NULL, '2022-09-03 16:38:11', 5, 1),
+(8, 'Categoria 2.3', NULL, '2022-09-03 16:38:29', 5, 1),
+(9, 'Categoria 3', 'img_19b7e232062132afa2f02e094a56acf4.jpg', '2022-09-03 16:38:49', NULL, 1),
+(10, 'Categoria 3.1', NULL, '2022-09-03 16:39:14', 9, 1),
+(11, 'Categoria 3.2', NULL, '2022-09-03 16:40:24', 9, 1),
+(12, 'Categoria 3.3', NULL, '2022-09-03 16:40:48', 9, 1),
+(13, 'Categoria 4', 'img_b1196780372956c9c83130a78010cac7.jpg', '2022-09-03 16:41:20', NULL, 1),
+(14, 'Categoria 4.1', NULL, '2022-09-03 16:42:01', 13, 1),
+(15, 'Categoria 5', 'img_1bba57497ab7e69195fdb6a6b3b5eb65.jpg', '2022-09-03 20:17:31', NULL, 1),
+(16, 'Categoria 1.3.1', NULL, '2022-09-03 22:23:53', 4, 1),
+(17, 'Categoria 1.3.1.1', NULL, '2022-09-03 22:24:19', 16, 1),
+(18, 'Cateegoria 1.1.1.1.1', NULL, '2022-09-03 22:24:44', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -264,7 +258,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
