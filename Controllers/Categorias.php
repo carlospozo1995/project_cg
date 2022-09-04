@@ -7,7 +7,75 @@
             if(empty($_SESSION['login'])){
                 header("Location: ".base_url()."login");
             }
+            echo "<pre>";
+            $arrCategorias = $this->model->allCategorias();
+            // print_r($arrCategorias);
+            self::procesar_categorias($arrCategorias);
+            exit;
             getPermisos(5);
+        }
+
+
+        public function procesar_categorias($categorias){
+            // print_r($categorias);
+            $nuevo = array();
+            foreach ($categorias as $key => $value) {
+                if(!isset($categorias[$key])){
+                    continue;
+                }
+                    // print_r($categorias[$key]);
+                    $nivel = 0;
+                    $categorias[$key]["nivel"] = $nivel;
+                    $nuevo[] = $categorias[$key];
+                // es padre
+                // if(empty($value["categoria_father_id"])){
+                    $idcat = $value["idcategoria"];
+                    $hijos = array_filter($categorias, function($item) use ($idcat){
+                        return $item["categoria_father_id"] == $idcat;
+                    });
+                    // echo "padre--: ".$value["idcategoria"];
+                    // echo "<br>hijos:<br>";
+                    // print_r($hijos);
+                    // echo "--------------------------<br>";
+                    if(count($hijos) > 0){
+                        $nivel ++;
+                        self::recursiva_data($categorias,$hijos,$nuevo,$nivel);
+                    }
+                    // recursiva_data();
+                // }
+            }
+            // exit;
+            // echo count($nuevo);
+            // print_r($nuevo);
+            // exit;
+            foreach ($nuevo as $key1 => $value1) {
+                echo str_repeat("-",$value1["nivel"])." ".$value1["nombre"]." [".$value1["nivel"]."]";
+                echo "<br>";
+            }
+        }
+
+        public function recursiva_data(&$categorias,$hijos,&$nuevo,&$nivel){
+            foreach ($hijos as $key => $value) {
+                $categorias[$key]["nivel"] = $nivel;
+                $nuevo[] = $categorias[$key];
+                // es padre
+                // if(empty($value["categoria_father_id"])){
+                    $idcat = $value["idcategoria"];
+                    $hijos = array_filter($categorias, function($item) use ($idcat){
+                        return $item["categoria_father_id"] == $idcat;
+                    });
+                    // echo "padre: ".$value["idcategoria"];
+                    // echo "<br>hijos:<br>";
+                    // print_r($hijos);
+                    // echo "--------------------------<br>";
+                    if(count($hijos) > 0){
+                        $nivel ++;
+                        self::recursiva_data($categorias,$hijos,$nuevo,$nivel);
+                    }
+                    // recursiva_data();
+                // }
+                unset($categorias[$key]);
+            }
         }
 
         public function categorias()
