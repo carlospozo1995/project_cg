@@ -171,23 +171,50 @@
         return $move;
     }
 
-    // AGREGAR SUBCATEGORIAS
+    function addCategorias($arrCategorias){
+        
+        $newArray = array();
+        foreach ($arrCategorias as $key => $value) {
 
-    function subcategorias($fatherId, $level){
-        $return ="";
-        $sql = "SELECT  * FROM project_cg.categorias WHERE status != 0 AND categoria_father_id = $fatherId";
-        require_once 'Libraries/Core/Mysql.php';
-        $objMysql = new Mysql();
-        $request = $objMysql->selectAll($sql);
-        if(count($request) > 0){
-            for ($i=0; $i < count($request); $i++) { 
-                if ($request[$i]['status'] == 1) {
-                    $return .= '<option value="'.$request[$i]['idcategoria'].'">'.str_repeat('- ', $level).$request[$i]['nombre'].'</option>';
-                    $return .= subcategorias($request[$i]['idcategoria'], $level + 1);
-                }
+            if (!isset($arrCategorias[$key])) {
+                continue;
+            }
+            $level = 0;
+            $idCategoria = $value['idcategoria'];
+            $arrCategorias[$key]["nivel"] = $level;
+
+            $newArray[] = $arrCategorias[$key];
+            $subCategorias = array_filter($arrCategorias, function ($item) use ($idCategoria){
+                return $item["categoria_father_id"] == $idCategoria;
+            });
+
+            if (count($subCategorias) > 0) {
+                $level ++;
+                recursivaDataC($arrCategorias, $subCategorias, $newArray, $level);
             }
         }
-        return $return;
+
+        foreach ($newArray as $keyNew => $valueNew) {
+            echo '<option value="'.$valueNew['idcategoria'].'">'.str_repeat("-",$valueNew["nivel"])." ".$valueNew["nombre"].'</option>'; 
+        }
+    }
+
+    function recursivaDataC(&$arrCategorias, $subCategorias, &$newArray, &$level){
+        foreach ($subCategorias as $key => $value) {
+            $arrCategorias[$key]['nivel'] = $level;
+            $newArray[] = $arrCategorias[$key];
+            $idCategoria = $value['idcategoria'];
+            $subCategorias = array_filter($arrCategorias, function($item) use ($idCategoria){
+                return $item["categoria_father_id"] == $idCategoria;
+            });
+
+            if (count($subCategorias) > 0){
+                $level ++;
+                recursivaDataC($arrCategorias, $subCategorias, $newArray, $level);
+            }
+
+            unset($arrCategorias[$key]);
+        }
     }
 
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
@@ -246,7 +273,6 @@
         $r3 = bin2hex(random_bytes(10));
         $r4 = bin2hex(random_bytes(10));
 
-        // $token = $r1.'-'.$r2.'-'.$r3.'-'.$r4;
         $token = $r1.$r2.$r3.$r4;
         return $token;
     }
