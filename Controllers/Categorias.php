@@ -116,6 +116,7 @@
                 for ($i=0; $i < count($arrCategorias); $i++) { 
                     $btnViewCategoria = '';
                     $btnUpdateCategoria = '';
+                    $btnDeleteCategoria = '';
 
                     if ($_SESSION['permisosMod']['ver']) {
                         $btnViewCategoria = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
@@ -125,6 +126,10 @@
                         
                         $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                     }
+
+                    if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
+                        $btnDeleteCategoria = ' <button type="button" class="btnDeleteCategoria btn btn-danger btn-sm" onclick="deleteCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                    }
             
                     if ($arrCategorias[$i]['status'] == 1) {
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
@@ -132,7 +137,7 @@
                         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                     }
 
-                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.'</div>';
+                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.' '.$btnDeleteCategoria.'</div>';
                 }
             }
             echo json_encode($arrCategorias);
@@ -156,6 +161,27 @@
                 }
             }
             die();
+        }
+
+        public function delCategoria($idCategoria)
+        {
+            // $data = 'Assets/images/uploads/perfil.png';
+            // unlink($data);
+            
+            $request_categoria = "";
+            $intCategoria = intval($idCategoria);
+            if($_SESSION['permisosMod']['eliminar']){
+                $request_categoria = $this->model->deleteCategoria($intCategoria);
+            }
+
+            if($request_categoria == "ok"){
+                $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado la categoria.');
+            }elseif ($request_categoria == "existe") {
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria asociada a productos.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la categoria.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
     }
 

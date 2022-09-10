@@ -222,6 +222,47 @@ function editCategoria(element, idCategoria) {
     }     
 }
 
+function deleteCategoria(idCategoria) {
+    Swal.fire({
+        title: 'Eliminar categoria',
+        text: "Realmente quiere eliminar la categoria!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Categorias/delCategoria/' + idCategoria;
+            request.open("POST", ajaxUrl, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        Swal.fire(
+                            'Eliminado!',
+                            objData.msg,
+                            'success'
+                        );
+                        tableCategorias.ajax.reload(function () {
+                        });
+                    }else{
+                        Swal.fire(
+                            'Atención!',
+                            objData.msg,
+                            'error'
+                        );
+                    }
+                }
+            }
+
+        }
+    });
+}
+
 function removePhoto(){
     document.getElementById('foto').value ="";
     document.querySelector('.delPhoto').classList.add("notBlock");
