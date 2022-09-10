@@ -196,6 +196,29 @@
     }
     // ----------------------------------------------
 
+
+    // OBTENCION DE LOS HIJOS DE UNA CATEGORIA PADRE
+    function childrensCategoria($arrCategorias, $intCategoria){
+        $return = array();
+        foreach ($arrCategorias as $key => $value) {
+            if($value['categoria_father_id'] == $intCategoria){
+                $return[] = $value;
+                recursiveChildrens($value['idcategoria'], $arrCategorias, $return);
+            }
+        }
+        return $return;;
+    }
+
+    function recursiveChildrens($idFather, $arrCategorias, &$return){
+        foreach ($arrCategorias as $key => $value) {
+            if ($value['categoria_father_id'] == $idFather) {
+                $return[] = $value;
+                recursiveChildrens($value['idcategoria'], $arrCategorias, $return);
+            }
+        }
+    }
+    // -----------------------------------------------------
+
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
         $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);

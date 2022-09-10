@@ -95,7 +95,30 @@
             $request = $this->select( $sql_select_categoria);
             return $request;
         }
+
+        public function deleteCategoria(int $idcategoria)
+        {
+            $this->intIdCategoria = $idcategoria;
+            $sql_exists_productos = "SELECT * FROM project_cg.productos WHERE categoriaid = $this->intIdCategoria";
+            $request = $this->selectAll($sql_exists_productos);
+            
+
+            if (empty($request)) {
+                $sql_update_status_categoria = "UPDATE project_cg.categorias SET status = 0 WHERE idcategoria = $this->intIdCategoria";
+                
+                $request = $this->update($sql_update_status_categoria);
+
+                if ($request) {
+                    $request = "ok";
+                }
+                else{
+                    $request = "error";
+                }
+            }else{
+                $request = "productExist";
+            }
+            return $request;
+        }
     }
     
-    // AND categoria_father_id != $this->intCategoria 
 ?>

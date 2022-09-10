@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-09-2022 a las 16:05:48
+-- Tiempo de generación: 10-09-2022 a las 11:08:15
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -41,24 +41,20 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
-(1, 'Categoria 1', 'img_136e122a958b524639996b72b11a2448.jpg', '2022-09-03 16:31:13', NULL, 1),
-(2, 'Categoria 1.1', NULL, '2022-09-03 16:32:35', 1, 1),
-(3, 'Categoria 1.2', NULL, '2022-09-03 16:34:38', 1, 1),
-(4, 'Categoria 1.3', NULL, '2022-09-03 16:35:44', 1, 1),
-(5, 'Categoria 2', 'img_520869f9c427496a817ae73c8d16315d.jpg', '2022-09-03 16:36:40', NULL, 1),
-(6, 'Categoria 2.1', NULL, '2022-09-03 16:37:47', 5, 1),
-(7, 'Categoria 2.2', NULL, '2022-09-03 16:38:11', 5, 1),
-(8, 'Categoria 2.3', NULL, '2022-09-03 16:38:29', 5, 1),
-(9, 'Categoria 3', 'img_19b7e232062132afa2f02e094a56acf4.jpg', '2022-09-03 16:38:49', NULL, 1),
-(10, 'Categoria 3.1', NULL, '2022-09-03 16:39:14', 9, 1),
-(11, 'Categoria 3.2', NULL, '2022-09-03 16:40:24', 9, 1),
-(12, 'Categoria 3.3', NULL, '2022-09-03 16:40:48', 9, 1),
-(13, 'Categoria 4', 'img_b1196780372956c9c83130a78010cac7.jpg', '2022-09-03 16:41:20', NULL, 1),
-(14, 'Categoria 4.1', NULL, '2022-09-03 16:42:01', 13, 1),
-(15, 'Categoria 5', 'img_1bba57497ab7e69195fdb6a6b3b5eb65.jpg', '2022-09-03 20:17:31', NULL, 1),
-(16, 'Categoria 1.3.1', NULL, '2022-09-03 22:23:53', 4, 1),
-(17, 'Categoria 1.3.1.1', NULL, '2022-09-03 22:24:19', 16, 1),
-(18, 'Cateegoria 1.1.1.1.1', NULL, '2022-09-03 22:24:44', 17, 1);
+(1, 'Electrodomesticos', 'img_8d5b66386bdd9d79be7435427de81fc9.jpg', '2022-09-10 03:25:00', NULL, 1),
+(2, 'Climatización', NULL, '2022-09-10 03:25:33', 1, 1),
+(3, 'Aire acondicionados', NULL, '2022-09-10 03:26:12', 2, 1),
+(4, 'Ventiladores', NULL, '2022-09-10 03:26:28', 2, 1),
+(5, 'Cocinas', NULL, '2022-09-10 03:29:51', 1, 1),
+(6, 'Cocinas a gas', NULL, '2022-09-10 03:30:12', 5, 1),
+(7, 'Hornos', NULL, '2022-09-10 03:30:33', 5, 1),
+(8, 'Audio y video', 'img_6fa97208c60433ff1950e439f7db30c5.jpg', '2022-09-10 03:32:33', NULL, 1),
+(9, 'Audio y sonido', NULL, '2022-09-10 03:33:33', 8, 1),
+(10, 'Equipos de sonido', NULL, '2022-09-10 03:34:28', 9, 1),
+(11, 'Barras de sonido', NULL, '2022-09-10 03:35:14', 9, 1),
+(12, 'TV y video', NULL, '2022-09-10 03:36:44', 8, 1),
+(13, 'Televisores', NULL, '2022-09-10 03:37:54', 12, 1),
+(14, 'Antenas prepago', NULL, '2022-09-10 03:38:16', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -110,11 +106,6 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (869, 5, 3, 1, 0, 0, 0),
 (870, 5, 4, 0, 0, 0, 0),
 (871, 5, 5, 0, 0, 0, 0),
-(882, 1, 1, 1, 0, 0, 0),
-(883, 1, 2, 1, 1, 1, 1),
-(884, 1, 3, 1, 1, 1, 1),
-(885, 1, 4, 1, 1, 1, 1),
-(886, 1, 5, 1, 1, 1, 1),
 (907, 2, 1, 1, 0, 0, 0),
 (908, 2, 2, 1, 1, 1, 0),
 (909, 2, 3, 1, 0, 0, 0),
@@ -129,7 +120,12 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (918, 4, 2, 1, 1, 0, 0),
 (919, 4, 3, 1, 0, 0, 0),
 (920, 4, 4, 1, 0, 0, 0),
-(921, 4, 5, 1, 0, 0, 0);
+(921, 4, 5, 1, 0, 0, 0),
+(942, 1, 1, 1, 0, 0, 0),
+(943, 1, 2, 1, 1, 1, 1),
+(944, 1, 3, 1, 1, 1, 1),
+(945, 1, 4, 1, 1, 1, 1),
+(946, 1, 5, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -148,6 +144,13 @@ CREATE TABLE `productos` (
   `datacreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `precio`, `imagen`, `datacreate`, `status`) VALUES
+(1, 13, 1111222233334444, 'Samsung - Televisor Qled QN65Q65BAPXPA 65\" | UHD 4K', 'Pasa horas de entretenimiento viendo tu contenido favorito, con una resolución excelente. Marca Samsung.', '1098.96', 'televisor.png', '2022-09-10 03:45:36', 1);
 
 -- --------------------------------------------------------
 
@@ -199,7 +202,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
-(2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
+(2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-08-06 18:58:01', 1),
 (3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
 (4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
 (5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1),
@@ -258,7 +261,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -270,13 +273,13 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=922;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=947;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

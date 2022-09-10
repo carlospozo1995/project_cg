@@ -42,7 +42,7 @@
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
-                    $strCategoria = strClean(ucwords($_POST['txtTitulo']));
+                    $strCategoria = strClean($_POST['txtTitulo']);
                     $intCategoria = $_POST['listCategorias'] != "" ? intval($_POST['listCategorias']) :'NULL';
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
@@ -165,19 +165,20 @@
 
         public function delCategoria($idCategoria)
         {
-            // $data = 'Assets/images/uploads/perfil.png';
-            // unlink($data);
-            
             $request_categoria = "";
             $intCategoria = intval($idCategoria);
             if($_SESSION['permisosMod']['eliminar']){
-                $request_categoria = $this->model->deleteCategoria($intCategoria);
+                $arrCategorias = $this->model->optionsCategorias("");
+                $dataChildren = childrensCategoria($arrCategorias, $intCategoria);
+                !empty($dataChildren) ? $request_categoria = "categoryExist" : $request_categoria = $this->model->deleteCategoria($intCategoria);
             }
 
             if($request_categoria == "ok"){
                 $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado la categoria.');
-            }elseif ($request_categoria == "existe") {
-                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria asociada a productos.');
+            }elseif ($request_categoria == "categoryExist") {
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria que contiene subcategorias.');
+            }elseif($request_categoria == "productExist"){
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria que contiene productos.');
             }else{
                 $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la categoria.');
             }

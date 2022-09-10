@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":10,
+        "iDisplayLength":15,
     });
 
     var formCategoria = document.getElementById("formCategoria");
