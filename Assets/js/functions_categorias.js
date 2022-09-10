@@ -139,8 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
-                        removePhoto();
-                        // selectAllCategorias();    
+                        removePhoto();  
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
