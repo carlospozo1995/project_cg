@@ -95,31 +95,50 @@
         {
             if($_SESSION['permisosMod']['ver']){
                 $arrCategorias = $this->model->allCategorias();
-                allCategorias($arrCategorias);
                 
-                // for ($i=0; $i < count($arrCategorias); $i++) { 
-                //     $btnViewCategoria = '';
-                //     $btnUpdateCategoria = '';
+                for ($i=0; $i < count($arrCategorias); $i++) { 
+                    $btnViewCategoria = '';
+                    $btnUpdateCategoria = '';
 
-                //     if ($_SESSION['permisosMod']['ver']) {
-                //         $btnViewCategoria = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
-                //     }
+                    if ($_SESSION['permisosMod']['ver']) {
+                        $btnViewCategoria = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$arrCategorias[$i]['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                    }
 
-                //     if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                    if (!empty($_SESSION['permisosMod']['actualizar'])) {
                         
-                //         $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                //     }
+                        $btnUpdateCategoria = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$arrCategorias[$i]['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                    }
             
-                //     if ($arrCategorias[$i]['status'] == 1) {
-                //         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
-                //     }else{
-                //         $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
-                //     }
+                    if ($arrCategorias[$i]['status'] == 1) {
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                    }else{
+                        $arrCategorias[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                    }
 
-                //     $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.'</div>';
-                // }
+                    $arrCategorias[$i]['actions'] = '<div class="text-center">'.$btnViewCategoria.' '.$btnUpdateCategoria.'</div>';
+                }
             }
-            // echo json_encode($arrCategorias);
+            echo json_encode($arrCategorias);
+        }
+
+        public function viewCategoria($idCategoria)
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $intIdcategoria = intval($idCategoria);
+                if ($intIdcategoria > 0) {
+                    $arrCategoria = $this->model->selectCategoria($intIdcategoria);
+                    if (empty($arrCategoria)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    }else{
+                        if (!empty($arrCategoria['imgcategoria'])) {
+                            $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];    
+                        }
+                        $arrResponse = array('status' => true, 'data' => $arrCategoria);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                }
+            }
+            die();
         }
     }
 

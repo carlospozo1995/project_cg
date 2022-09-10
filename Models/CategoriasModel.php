@@ -60,6 +60,15 @@
             $request = $this->selectAll($sql_categorias);
             return $request;
         }
+
+        public function selectCategoria(int $idcategoria)
+        {
+            $this->intIdCategoria = $idcategoria;
+            
+            $sql_select_categoria = "SELECT ca1.*, ca2.nombre AS fathercatname FROM categorias ca1 LEFT JOIN categorias ca2 ON ca1.categoria_father_id = ca2.idcategoria WHERE ca1.idcategoria = $this->intIdCategoria";
+            $request = $this->select( $sql_select_categoria);
+            return $request;
+        }
     }
     
     // AND categoria_father_id != $this->intCategoria 

@@ -1,5 +1,4 @@
 var tableCategorias;
-var formCategoria = document.getElementById("formCategoria");
 
 function modalNewCategoria() {
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
@@ -104,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "iDisplayLength":10,
     });
 
+    var formCategoria = document.getElementById("formCategoria");
     formCategoria.addEventListener('submit', function (e) {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
@@ -127,7 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
                         removePhoto();  
-                        // selectCategorias();      
+                        tableCategorias.ajax.reload(function () {
+                        });
+                        // selectAllCategorias();    
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -140,6 +142,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
+function viewCategoria(idCategoria) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", urlCategoria, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                document.getElementById('celNombre').innerHTML = objData.data.nombre;
+                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
+                document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
+                document.getElementById('celEstado').innerHTML = statusCategoria;
+                $('#modalViewCategoria').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }
+        }
+    }
+}
+
+function editCategoria(element, idCategoria) {
+    rowTable = element.parentNode.parentNode.parentNode;
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
+    document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    document.getElementById("idCategoria").value = idCategoria;
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    request.open("GET", ajaxetCategoria, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                document.getElementById("idCategoria").value = objData.data.idcategoria;
+                selectAllCategorias(objData.data.idcategoria);
+                document.getElementById("listStatus").value = objData.data.status;
+                
+                $("#modalFormCategoria").modal("show");
+            }
+        }
+    }     
+}
+
 function removePhoto(){
     document.getElementById('foto').value ="";
     document.querySelector('.delPhoto').classList.add("notBlock");
@@ -147,11 +198,6 @@ function removePhoto(){
         document.getElementById('img').remove();
     }
 }
-
-// window.addEventListener('load', function () {
-//     var idCategoria = document.getElementById('idCategoria').value  = 1;
-//     selectAllCategorias(idCategoria);
-// })
 
 function selectAllCategorias(idCategoria) {
     let ajaxUrl = "";
@@ -163,7 +209,7 @@ function selectAllCategorias(idCategoria) {
 
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200){
-            document.getElementById("listCategorias").innerHTML += request.responseText;
+            document.getElementById("listCategorias").innerHTML = request.responseText;
             $("#listCategorias").select2();
         }
     }

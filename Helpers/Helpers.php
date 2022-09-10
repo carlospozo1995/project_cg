@@ -174,13 +174,14 @@
     // OBTENCION DE CATEGORIAS PARA EL SELECT
     function addCategorias($arrCategorias){
         $htmlOptions = "";
+        $optionStatic = '<option value="">-- CATEGORIA SUPERIOR --</option>';
         foreach ($arrCategorias as $key => $value) {
             if ($value['status'] == 1 && $value['categoria_father_id'] == "") {
                 $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>'; 
                 $htmlOptions .= subCategorias($value['idcategoria'], 1, $arrCategorias);
             }
         }
-        echo $htmlOptions;
+        echo $optionStatic.$htmlOptions;
     }
 
     function subCategorias($fatherId, $level, $arrCategorias){
@@ -194,55 +195,6 @@
         return $return;
     }
     // ----------------------------------------------
-
-    function allCategorias($arrCategorias){
-        $nuevo = array();
-        foreach ($arrCategorias as $key => $value) {
-            if(!isset($categorias[$key])){
-                continue;
-            }
-
-            $nivel = 0;
-            $arrCategorias[$key]["nivel"] = $nivel;
-            $nuevo[] = $arrCategorias[$key];
-        
-            $idcat = $value["idcategoria"];
-            $hijos = array_filter($arrCategorias, function($item) use ($idcat){
-                return $item["categoria_father_id"] == $idcat;
-            });
-            
-            if(count($hijos) > 0){
-                $nivel ++;
-                recursiva_data($arrCategorias,$hijos,$nuevo,$nivel);
-            }
-                
-        }
-        
-        foreach ($nuevo as $key1 => $value1) {
-            dep($value1);
-            // echo str_repeat("-",$value1["nivel"])." ".$value1["nombre"]." [".$value1["nivel"]."]";
-            // echo "<br>";
-        }
-    }
-
-    function recursiva_data(&$categorias,$hijos,&$nuevo,&$nivel){
-        foreach ($hijos as $key => $value) {
-            $categorias[$key]["nivel"] = $nivel;
-            $nuevo[] = $categorias[$key];
-            
-            $idcat = $value["idcategoria"];
-            $hijos = array_filter($categorias, function($item) use ($idcat){
-                return $item["categoria_father_id"] == $idcat;
-            });
-            
-            if(count($hijos) > 0){
-                $nivel ++;
-                recursiva_data($categorias,$hijos,$nuevo,$nivel);
-            }
-
-            unset($categorias[$key]);
-        }
-    }
 
     // ELIMINA EXCESOS DE ESPACIOS ENTRE PALABRAS (evitar inyecciones sql)
     function strClean($strCadena){
