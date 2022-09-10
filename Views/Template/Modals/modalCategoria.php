@@ -12,8 +12,8 @@
                 <div class="card card-primary">
                     <form id="formCategoria" name="formCategoria">
                         <input type="hidden" id="idCategoria" name="idCategoria" value="">
-                        <!-- <input type="hidden" id="foto_actual" name="foto_actual" value="">
-                        <input type="hidden" id="foto_remove" name="foto_remove" value="0"> -->
+                        <input type="hidden" id="foto_actual" name="foto_actual" value="">
+                        <input type="hidden" id="foto_remove" name="foto_remove" value="0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">

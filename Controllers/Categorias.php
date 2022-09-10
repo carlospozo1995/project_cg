@@ -68,18 +68,35 @@
                             }
                             $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intCategoria, $intStatus );
                         }
+                    }else{
+                        $option = 2;
+                        if($_SESSION['permisosMod']['actualizar']){
+                            if($intCategoria != 'NULL'){
+                                $imgPortada = 'NULL';
+                            }else{
+                                if($name_foto == ""){
+                                    if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
+                                        $imgPortada = $_POST['foto_actual'];
+                                    }
+                                    
+                                    if($imgPortada == ""){
+                                        $imgPortada = 'imgCategoria.png';
+                                    }
+                                }else{
+                                    $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($foto, $imgPortada);   
+                                }
+                            }
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $intCategoria, $intStatus);
+                        }
                     }
-                    // else{
-
-                    // }
 
                     if ($request_categoria > 0) {
                         if ($option == 1) {
                             $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                        }else{
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
-                        // else{
-                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                        // }
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{

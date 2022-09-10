@@ -54,6 +54,32 @@
             return $return;
         }
 
+        public function updateCategoria(int $idcategoria, string $titulo, string $imgPortada, $fatherCategoria, int $status)
+        {
+            $this->intIdCategoria = $idcategoria;
+            $this->strCategoria = $titulo;
+            $this->strImgPortada = $imgPortada;
+            $this->intCategoria = $fatherCategoria;
+            $this->intStatus = $status;
+
+            if ($this->strImgPortada == 'NULL') {
+                $data_img = $this->strImgPortada;
+            }else{
+                $data_img = "'$this->strImgPortada'";
+            }
+
+            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria";
+            $request = $this->selectAll($sql_exists_categoria);
+
+            if (empty($request)) {
+                $sql_update_categoria = "UPDATE project_cg.categorias SET nombre = '$this->strCategoria',  imgcategoria= $data_img, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $request = $this->update($sql_update_categoria);
+            }else{
+                $request = 'existe';
+            }
+            return $request;
+        }
+
         public function allCategorias()
         {
             $sql_categorias = "SELECT ca1.*, ca2.nombre AS fathercatname FROM categorias ca1 LEFT JOIN categorias ca2 ON ca1.categoria_father_id = ca2.idcategoria WHERE ca1.status != 0";
