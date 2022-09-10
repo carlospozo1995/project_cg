@@ -171,49 +171,76 @@
         return $move;
     }
 
+    // OBTENCION DE CATEGORIAS PARA EL SELECT
     function addCategorias($arrCategorias){
-        
-        $newArray = array();
+        $htmlOptions = "";
         foreach ($arrCategorias as $key => $value) {
-
-            if (!isset($arrCategorias[$key])) {
-                continue;
-            }
-            $level = 0;
-            $idCategoria = $value['idcategoria'];
-            $arrCategorias[$key]["nivel"] = $level;
-
-            $newArray[] = $arrCategorias[$key];
-            $subCategorias = array_filter($arrCategorias, function ($item) use ($idCategoria){
-                return $item["categoria_father_id"] == $idCategoria;
-            });
-
-            if (count($subCategorias) > 0) {
-                $level ++;
-                recursivaDataC($arrCategorias, $subCategorias, $newArray, $level);
+            if ($value['status'] == 1 && $value['categoria_father_id'] == "") {
+                $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>'; 
+                $htmlOptions .= subCategorias($value['idcategoria'], 1, $arrCategorias);
             }
         }
+        echo $htmlOptions;
+    }
 
-        foreach ($newArray as $keyNew => $valueNew) {
-            echo '<option value="'.$valueNew['idcategoria'].'">'.str_repeat("-",$valueNew["nivel"])." ".$valueNew["nombre"].'</option>'; 
+    function subCategorias($fatherId, $level, $arrCategorias){
+        $return ="";
+        foreach ($arrCategorias as $key => $value) {
+            if ($value['status'] == 1 && $value['categoria_father_id'] == $fatherId) {
+                $return .= '<option value="'.$value['idcategoria'].'">'.str_repeat('- ', $level).$value['nombre'].'</option>';
+                $return.= subCategorias($value['idcategoria'], $level + 1,$arrCategorias);
+            }
+        }
+        return $return;
+    }
+    // ----------------------------------------------
+
+    function allCategorias($arrCategorias){
+        $nuevo = array();
+        foreach ($arrCategorias as $key => $value) {
+            if(!isset($categorias[$key])){
+                continue;
+            }
+
+            $nivel = 0;
+            $arrCategorias[$key]["nivel"] = $nivel;
+            $nuevo[] = $arrCategorias[$key];
+        
+            $idcat = $value["idcategoria"];
+            $hijos = array_filter($arrCategorias, function($item) use ($idcat){
+                return $item["categoria_father_id"] == $idcat;
+            });
+            
+            if(count($hijos) > 0){
+                $nivel ++;
+                recursiva_data($arrCategorias,$hijos,$nuevo,$nivel);
+            }
+                
+        }
+        
+        foreach ($nuevo as $key1 => $value1) {
+            dep($value1);
+            // echo str_repeat("-",$value1["nivel"])." ".$value1["nombre"]." [".$value1["nivel"]."]";
+            // echo "<br>";
         }
     }
 
-    function recursivaDataC(&$arrCategorias, $subCategorias, &$newArray, &$level){
-        foreach ($subCategorias as $key => $value) {
-            $arrCategorias[$key]['nivel'] = $level;
-            $newArray[] = $arrCategorias[$key];
-            $idCategoria = $value['idcategoria'];
-            $subCategorias = array_filter($arrCategorias, function($item) use ($idCategoria){
-                return $item["categoria_father_id"] == $idCategoria;
+    function recursiva_data(&$categorias,$hijos,&$nuevo,&$nivel){
+        foreach ($hijos as $key => $value) {
+            $categorias[$key]["nivel"] = $nivel;
+            $nuevo[] = $categorias[$key];
+            
+            $idcat = $value["idcategoria"];
+            $hijos = array_filter($categorias, function($item) use ($idcat){
+                return $item["categoria_father_id"] == $idcat;
             });
-
-            if (count($subCategorias) > 0){
-                $level ++;
-                recursivaDataC($arrCategorias, $subCategorias, $newArray, $level);
+            
+            if(count($hijos) > 0){
+                $nivel ++;
+                recursiva_data($categorias,$hijos,$nuevo,$nivel);
             }
 
-            unset($arrCategorias[$key]);
+            unset($categorias[$key]);
         }
     }
 
