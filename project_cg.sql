@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-09-2022 a las 11:08:15
+-- Tiempo de generación: 10-09-2022 a las 23:13:27
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -54,7 +54,14 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (11, 'Barras de sonido', NULL, '2022-09-10 03:35:14', 9, 1),
 (12, 'TV y video', NULL, '2022-09-10 03:36:44', 8, 1),
 (13, 'Televisores', NULL, '2022-09-10 03:37:54', 12, 1),
-(14, 'Antenas prepago', NULL, '2022-09-10 03:38:16', 12, 1);
+(14, 'Antenas prepago', NULL, '2022-09-10 03:38:16', 12, 1),
+(15, 'Tecnología', 'img_132e9fc5b9334216330d97f15ab17134.jpg', '2022-09-10 07:57:22', NULL, 1),
+(16, 'Computadoras', NULL, '2022-09-10 07:59:07', 15, 1),
+(17, 'Laptos', NULL, '2022-09-10 08:00:23', 16, 1),
+(18, 'Computadoras de escritorio', NULL, '2022-09-10 08:00:42', 16, 1),
+(19, 'Teléfonos', NULL, '2022-09-10 08:02:33', 15, 1),
+(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 1),
+(21, 'Accesorios', NULL, '2022-09-10 08:03:22', 19, 1);
 
 -- --------------------------------------------------------
 
@@ -261,7 +268,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
