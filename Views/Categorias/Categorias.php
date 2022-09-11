@@ -60,6 +60,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->s
+  <!-- /.content-wrapper -->
 
 <?php footerPage($data); ?>
