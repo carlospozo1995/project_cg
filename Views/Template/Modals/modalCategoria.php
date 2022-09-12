@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6 container_photo">
+                                <div class="col-sm-6">
                                     <p class="errorArchivo errorCategoria"></p>
                                     <div class="photo">
                                         <label for="foto">Foto (570x380)</label>
