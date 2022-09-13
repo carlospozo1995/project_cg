@@ -32,6 +32,13 @@
                                     <div class="form-group">
                                         <label for="txtCodigo">Código</label>
                                         <input type="text" class="form-control" placeholder="Código de barra" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
+                                        <br>
+                                        <div id="divBarCode" class="notBlock text-center">
+                                            <div id="printCode">
+                                                <svg id="barcode"></svg>
+                                            </div>
+                                            <button class="btn bg-success btn-sm" type="button" onclick="fntPrintBarcode('#printCode')"><i class="fas fa-print"></i> <strong>Imprimir</strong></button>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">

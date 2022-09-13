@@ -72,20 +72,20 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <?php if (!empty($_SESSION['permisos'][4]['ver'])) {?>
-              <li class="nav-item">
-                <a href="<?php base_url(); ?>productos" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Productos</p>
-                </a>
-              </li>
-              <?php } ?>
-
               <?php if (!empty($_SESSION['permisos'][5]['ver'])) {?>
               <li class="nav-item">
                 <a href="<?php base_url(); ?>categorias" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categoría</p>
+                </a>
+              </li>
+              <?php } ?>
+
+              <?php if (!empty($_SESSION['permisos'][4]['ver'])) {?>
+              <li class="nav-item">
+                <a href="<?php base_url(); ?>productos" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Productos</p>
                 </a>
               </li>
               <?php } ?>
