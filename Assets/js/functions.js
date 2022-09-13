@@ -18,7 +18,8 @@ function testText(txtString) {
 }
 
 function testEntero(intCant) {
-    var intCantidad = new RegExp(/^([0-9]{7,10})$/);
+    var intCantidad = new RegExp(/^([0-9])*$/);
+    // var intCantidad = new RegExp(/^([0-9]{7,10})$/);
     if (intCantidad.test(intCant)){
         return true;
     }else{

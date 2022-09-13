@@ -31,3 +31,14 @@ tinymce.init({
     branding: false,
 });
 // -------------------------------------------
+
+if(document.getElementById('txtCodigo')){
+    $('#txtCodigo').keyup(function (e) {
+        if(e.target.value.length >= 5) {$('#divBarCode').removeClass('notBlock'); fntBarcode()} else{ $('#divBarCode').addClass('notBlock')}
+    });
+}
+
+function fntBarcode() {
+    let codigo = document.getElementById('txtCodigo').value;
+    JsBarcode("#barcode", codigo);
+}

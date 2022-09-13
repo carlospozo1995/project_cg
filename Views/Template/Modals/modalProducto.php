@@ -31,7 +31,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="txtCodigo">Código</label>
-                                        <input type="text" class="form-control" placeholder="Código de barra" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
+                                        <input type="text" class="form-control valid validNumber" placeholder="Código de barra" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
                                         <br>
                                         <div id="divBarCode" class="notBlock text-center">
                                             <div id="printCode">
