@@ -24,7 +24,7 @@
 
                                     <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea cols="30" rows="10" style="width: 100%;" placeholder="Descripción del producto" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
+                                        <textarea rows="9" style="width: 100%;" placeholder="Descripción del producto" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
                                     </div>
                                 </div>
 
