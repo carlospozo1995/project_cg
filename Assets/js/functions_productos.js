@@ -6,6 +6,7 @@ function modalNewProducto(){
     document.getElementById("btnSubmitProducto").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
     var idProducto = document.getElementById('idProducto').value = "";
+    ctgProductos(idProducto);
     $('#modalFormProducto').modal('show');
     formProducto.reset();
 }
@@ -57,4 +58,20 @@ function fntPrintBarcode(area) {
     vprint.document.close();
     vprint.print();
     vprint.close();
+}
+
+function ctgProductos(idProducto) {
+    let ajaxUrl = "";
+    idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    request.open('GET', ajaxUrl, true);
+    request.send();
+
+    // request.onreadystatechange = function () {
+    //     if (request.readyState == 4 && request.status == 200){
+    //         document.getElementById("listCategorias").innerHTML = request.responseText;
+    //         $("#listCategorias").select2();
+    //     }
+    // }
 }
