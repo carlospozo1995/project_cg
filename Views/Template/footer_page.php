@@ -13,8 +13,6 @@
       const base_url = "<?php echo base_url();?>"
 </script>
 <script src="<?php echo media(); ?>js/plugins/jquery/jquery.min.js"></script>
-<!-- Tinymce -->
-<script src="<?php echo media(); ?>js/plugins/tinymce/tinymce.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo media(); ?>js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->

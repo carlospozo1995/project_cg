@@ -68,10 +68,10 @@ function ctgProductos(idProducto) {
     request.open('GET', ajaxUrl, true);
     request.send();
 
-    // request.onreadystatechange = function () {
-    //     if (request.readyState == 4 && request.status == 200){
-    //         document.getElementById("listCategorias").innerHTML = request.responseText;
-    //         $("#listCategorias").select2();
-    //     }
-    // }
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200){
+            document.getElementById("listCategorias").innerHTML = request.responseText;
+            $("#listCategorias").select2();
+        }
+    }
 }

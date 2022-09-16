@@ -1,6 +1,5 @@
 <?php
 
-    
     class Productos extends Controller {
             
         public function __construct()
@@ -34,60 +33,15 @@
                 $intIdProducto = "";
                 !empty($idProducto) ? $intIdProducto = intval($idProducto) : "";
                 $arrCategorias = $this->model->ctgProductos($intIdProducto);
-                dep($arrCategorias);
+                
+                foreach ($arrCategorias as $key => $value) {
+                    if ($value['status'] == 1) {
+                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>';
+                    }
+                }
+                echo $htmlOptions;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // public function subCatProductos ($idCategoria, $arrCategorias, $valueCatP)
-        // {
-        //     // dep($valueCatP);
-        //     $catFather = "";
-        //     $return ="";
-        //     foreach ($arrCategorias as $key => $value) {
-        //         if ($value['categoria_father_id'] == $idCategoria) {
-        //             // $return .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>';
-        //             // self::subsubProductos($value['idcategoria'], $arrCategorias);
-        //         }else{
-
-        //         }
-        //     }
-        // }
-
-        // // public function subsubProductos($idCategoria, $arrCategorias)
-        // // {
-        // //     foreach ($arrCategorias as $key => $value) {
-        // //         if ($value['status'] == 1 && $value['categoria_father_id'] == $idCategoria) {
-        // //             // $return .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>';
-        // //             dep($value);
-        // //         }
-        // //     }
-        // // }
-
-        
 
     }   
 
