@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
-                        removePhoto();  
+                        removePhoto();
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -206,12 +206,16 @@ function editCategoria(element, idCategoria) {
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
                 } else{
-                    let option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                    var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                    console.log(option_cat);
                     if(option_cat.length){
                         option_cat.prop("selected", true);
                     }
                     $("#listCategorias").select2();
-                    document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
+                    // document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
+                    // console.log(option_cat);
+                    // console.log(option_cat.length)
+                    console.log(document.getElementById("listCategorias").value);
                     document.querySelector('.photo').style.display = 'none';
                     document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }

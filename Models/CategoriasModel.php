@@ -40,7 +40,7 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
-            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '$this->strCategoria'";
+            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '$this->strCategoria' AND categoria_father_id is null";
 
             $request = $this->selectAll($sql_exists_categoria);
 
@@ -68,7 +68,7 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
-            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria";
+            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria AND categoria_father_id is null";
             $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
