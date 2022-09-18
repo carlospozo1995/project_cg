@@ -36,7 +36,7 @@
                 
                 foreach ($arrCategorias as $key => $value) {
                     if ($value['status'] == 1) {
-                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>';
+                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].' ('.$value['fathercatname'].')'.'</option>';
                     }
                 }
                 echo $htmlOptions;
