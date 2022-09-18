@@ -31,12 +31,15 @@
             if ($_SESSION['permisosMod']['ver']) {
                 $htmlOptions = "";
                 $intIdProducto = "";
+                $catFatherName = "";
                 !empty($idProducto) ? $intIdProducto = intval($idProducto) : "";
                 $arrCategorias = $this->model->ctgProductos($intIdProducto);
                 
                 foreach ($arrCategorias as $key => $value) {
+                    $value['fathercatname'] != "" ? $catFatherName = ' ('.$value['fathercatname'].')' : $catFatherName = "";
+
                     if ($value['status'] == 1) {
-                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].' ('.$value['fathercatname'].')'.'</option>';
+                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].$catFatherName.'</option>';
                     }
                 }
                 echo $htmlOptions;

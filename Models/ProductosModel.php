@@ -16,8 +16,7 @@
                 //     $retutnId = " AND idcategoria != $this->intCategoria";
                 // }
 
-                // $sql = "SELECT * FROM project_cg.categorias WHERE status = 1";
-                $sql ="SELECT ca.*, ca2.nombre AS fathercatname FROM categorias ca LEFT JOIN categorias ca2 ON ca.categoria_father_id = ca2.idcategoria where ca.idcategoria not in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1) AND ca.status = 1";
+                $sql ="SELECT ca.*, ca2.nombre AS fathercatname FROM categorias ca LEFT JOIN categorias ca2 ON ca.categoria_father_id = ca2.idcategoria where ca.idcategoria not in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC) AND ca.status = 1 ORDER BY ca.nombre ASC";
                 $request = $this->selectAll($sql);
                 return $request;
             }
