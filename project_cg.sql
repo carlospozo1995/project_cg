@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 17-09-2022 a las 22:17:26
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.19
+-- Servidor: localhost:3306
+-- Tiempo de generación: 18-09-2022 a las 19:44:56
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,13 +60,13 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (17, 'Laptos', NULL, '2022-09-10 08:00:23', 16, 1),
 (18, 'Computadoras de escritorio', NULL, '2022-09-10 08:00:42', 16, 1),
 (19, 'Teléfonos', NULL, '2022-09-10 08:02:33', 15, 1),
-(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 1),
+(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 2),
 (21, 'Accesorios', NULL, '2022-09-10 08:03:22', 19, 1),
 (22, 'Movilidad', 'img_ba98a55e9dedc2824e02fcfef989b5cf.jpg', '2022-09-14 09:46:54', NULL, 1),
 (23, 'Motos', NULL, '2022-09-14 09:48:14', 22, 1),
 (24, 'Bicicletas', NULL, '2022-09-14 09:48:46', 22, 1),
 (25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', '2022-09-14 09:50:19', NULL, 1),
-(26, 'Accesorios', NULL, '2022-09-17 16:14:34', 25, 1);
+(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 1);
 
 -- --------------------------------------------------------
 
