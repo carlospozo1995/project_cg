@@ -46,6 +46,34 @@
             }
         }
 
+        public function setProductos()
+        {
+            // dep($_POST);
+            // exit;
+            if($_POST){
+                if($_POST['txtNombre'] == "" || $_POST['txtDescripcion'] == "" || $_POST['txtCodigo'] == "" || $_POST['txtPrecio'] == "" || $_POST['listCategorias'] == "" || $_POST['listStatus'] == ""){
+                    $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
+                }else{
+                    $intIdProducto = intval($_POST['idProducto']);
+                    $strNombre = $_POST['txtNombre'];
+                    $strDescripcion  = $_POST['txtDescripcion'];
+                    $intCodigo = intval($_POST['txtCodigo']);
+                    $strPrecio = strClean($_POST['txtPrecio']);
+                    $listCategoria = intval($_POST['listCategorias']);
+                    $listStatus = intval($_POST['listStatus']);
+                    $request_producto = "";
+
+                    if (empty($intProducto)) {
+                        $option = 1;
+                        if($_SESSION['permisosMod']['crear']){
+                            $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $intCodigo, $strPrecio, $listCategoria, $listStatus);
+                        }
+                    }
+
+                }
+            }
+        }
+
     }   
 
 ?>

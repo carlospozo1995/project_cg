@@ -11,6 +11,41 @@ function modalNewProducto(){
     formProducto.reset();
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    var formProducto = document.getElementById('formProducto');
+    formProducto.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var idProd = document.getElementById('idProducto').value;
+        var nameProd  = document.getElementById('txtNombre').value;
+        var descProd = document.getElementById('txtDescripcion').value;
+        var codProd = document.getElementById('txtCodigo').value;
+        var priceProd = document.getElementById('txtPrecio').value;
+        var listCategoria = document.getElementById('listCategorias').value;
+        var status = document.getElementById('listStatus').value;
+
+        if (nameProd == "" || descProd == "" || codProd == "" || priceProd == "" || listCategoria == "" || status == "") {
+            Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+        }else{
+            // loading.style.display = "flex";
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'); 
+            var ajaxUrl = base_url + 'Productos/setProductos';
+            var formData = new FormData(formProducto);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            // request.onreadystatechange = function () {
+            //     if (request.readyState == 4 && request.status == 200) {
+            //         var objData = JSON.parse(request.responseText);
+            //         if(objData.status){
+
+            //         }
+            //     }
+            //     // loading.style.display = "none";
+            //     return false;
+            // }
+        }
+    });
+}, false);
+
 // CONFIGURACION TEXTAREA DESCRIPCION -TINYMCE
 // $('#txtDescripcion').summernote();
 
