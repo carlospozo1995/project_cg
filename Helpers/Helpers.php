@@ -250,7 +250,6 @@
         $string = str_ireplace("[","",$string);
         $string = str_ireplace("]","",$string);
         $string = str_ireplace("==","",$string);
-        $string = str_ireplace("-","",$string);
         return $string;
     }
 

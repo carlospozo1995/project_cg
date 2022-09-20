@@ -16,34 +16,50 @@
                         <input type="hidden" id="foto_remove" name="foto_remove" value="0"> -->
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-7">
                                     <div class="form-group">
                                         <label>Nombre</label>
                                         <input type="text" class="form-control" id="txtNombre" autocomplete="off" name="txtNombre" required>
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Marca</label>
+                                        <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Descripción</label>
-                                        <textarea rows="9" style="width: 100%;" placeholder="Descripción del producto" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
+                                        <textarea rows="4" style="width: 100%;" placeholder="Descripción del producto" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="txtCodigo">Código</label>
                                         <input type="text" class="form-control valid validNumber" placeholder="Código de barra" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
-                                        <br>
-                                        <div id="divBarCode" class="notBlock text-center">
+                                        
+                                        <!-- BARCODE (CODIGO DE BARRA) -->
+                                        <!-- <div id="divBarCode" class="notBlock text-center">
                                             <div id="printCode">
                                                 <svg id="barcode"></svg>
                                             </div>
                                             <button class="btn bg-success btn-sm" type="button" onclick="fntPrintBarcode('#printCode')"><i class="fas fa-print"></i> <strong>Imprimir</strong></button>
-                                        </div>
+                                        </div> -->
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="txtCodigo">Precio</label>
-                                        <input type="text" class="form-control" id="txtPrecio" autocomplete="off" name="txtPrecio" required>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtCodigo">Precio</label>
+                                                <input type="text" class="form-control" id="txtPrecio" autocomplete="off" name="txtPrecio" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtStock">Stock</label>
+                                                <input type="text" class="form-control valid validNumber" id="txtStock" autocomplete="off" name="txtStock" required>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -60,24 +76,6 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <!-- <div class="col-sm-6">
-                                    <p class="errorArchivo errorCategoria"></p>
-                                    <div class="photo">
-                                        <label for="foto">Foto (570x380)</label>
-                                        <div class="prevPhoto">
-                                            <span class="delPhoto notBlock">X</span>
-                                            <label for="foto"></label>
-                                            <div>
-                                                <img src="<?= media(); ?>images/uploads/imgCategoria.png" id="img" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="upimg">
-                                            <input type="file" name="foto" id="foto">
-                                        </div>
-                                        <div id="foto_alert"></div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
 

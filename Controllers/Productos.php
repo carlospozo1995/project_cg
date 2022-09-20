@@ -48,16 +48,16 @@
 
         public function setProductos()
         {
-            // dep($_POST);
-            // exit;
             if($_POST){
-                if($_POST['txtNombre'] == "" || $_POST['txtDescripcion'] == "" || $_POST['txtCodigo'] == "" || $_POST['txtPrecio'] == "" || $_POST['listCategorias'] == "" || $_POST['listStatus'] == ""){
+                if($_POST['txtNombre'] == "" || $_POST['txtDescripcion'] == "" || $_POST['txtMarca'] == "" || $_POST['txtCodigo'] == "" || $_POST['txtStock'] == "" || $_POST['txtPrecio'] == "" || $_POST['listCategorias'] == "" || $_POST['listStatus'] == ""){
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdProducto = intval($_POST['idProducto']);
-                    $strNombre = $_POST['txtNombre'];
-                    $strDescripcion  = $_POST['txtDescripcion'];
+                    $strNombre = strClean($_POST['txtNombre']);
+                    $strDescripcion  = strClean($_POST['txtDescripcion']);
+                    $strMarca  = strClean($_POST['txtMarca']);                    
                     $intCodigo = intval($_POST['txtCodigo']);
+                    $intStock = intval($_POST['txtStock']);
                     $strPrecio = strClean($_POST['txtPrecio']);
                     $listCategoria = intval($_POST['listCategorias']);
                     $listStatus = intval($_POST['listStatus']);
@@ -66,11 +66,25 @@
                     if (empty($intProducto)) {
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
-                            $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $intCodigo, $strPrecio, $listCategoria, $listStatus);
+                            $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
                         }
                     }
 
+                    if ($request_producto > 0) {
+                        if ($option == 1) {
+                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                        }
+                        // else{
+                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                        // }
+                    }else if($request_producto == "existe"){
+                        $arrResponse = array('status' => false, 'msg' => 'El codigo del producto a ingresar ya existe.');
+                    }else{
+                        $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
+                    }  
                 }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                die();
             }
         }
 
