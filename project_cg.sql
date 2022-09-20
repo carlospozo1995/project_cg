@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-09-2022 a las 04:04:42
+-- Tiempo de generación: 20-09-2022 a las 23:04:45
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -60,13 +60,13 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (17, 'Laptos', NULL, '2022-09-10 08:00:23', 16, 1),
 (18, 'Computadoras de escritorio', NULL, '2022-09-10 08:00:42', 16, 1),
 (19, 'Teléfonos', NULL, '2022-09-10 08:02:33', 15, 1),
-(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 2),
+(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 1),
 (21, 'Accesorios', NULL, '2022-09-10 08:03:22', 19, 1),
 (22, 'Movilidad', 'img_ba98a55e9dedc2824e02fcfef989b5cf.jpg', '2022-09-14 09:46:54', NULL, 1),
 (23, 'Motos', NULL, '2022-09-14 09:48:14', 22, 1),
 (24, 'Bicicletas', NULL, '2022-09-14 09:48:46', 22, 1),
 (25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', '2022-09-14 09:50:19', NULL, 1),
-(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 0),
+(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 1),
 (27, 'Accesorios', NULL, '2022-09-18 16:00:30', 23, 1),
 (28, 'Accesorios', NULL, '2022-09-18 16:00:47', 24, 1),
 (29, 'Combustión', NULL, '2022-09-18 16:14:49', 23, 1),
@@ -74,6 +74,18 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (31, 'BMX', NULL, '2022-09-18 16:15:25', 24, 1),
 (32, 'Montaña', NULL, '2022-09-18 16:16:02', 24, 1),
 (33, 'Hogar', 'imgCategoria.png', '2022-09-18 16:21:44', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imgproductos`
+--
+
+CREATE TABLE `imgproductos` (
+  `idimgprod` bigint(20) NOT NULL,
+  `productoid` bigint(20) NOT NULL,
+  `imagen` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -172,7 +184,12 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
 (1, 25, 123456789, 'BaByliss - Rastrillo de pelo para mascotas bpprd | Blanco', 'Elimina los enredos ligeros y lleva los aceites de la piel al tallo del pelo para obtener un pelaje brillante.', 'BaByliss', '20.00', 12, NULL, '2022-09-19 03:28:05', 1),
-(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', '1999.00', 100, NULL, '2022-09-19 22:25:54', 1);
+(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', '1999.00', 100, NULL, '2022-09-19 22:25:54', 1),
+(3, 29, 123459876, 'Motocicleta TKZ-150 TUKO', 'La Moto Tuko TKZ-150 es tipo enduro y tiene un motor de 150cc. Además alcanza velocidades de hasta 95km/h', 'TUKO', '1667.36', 0, NULL, '2022-09-20 09:39:37', 1),
+(4, 20, 543216789, 'Celular smartphone Motorola de 32GB con tarjeta de 32GB', 'El celular Motorola Moto E20 tiene una pantalla de 6.5 pulgadas y su sistema operativo es Android 11 Viene con tarjeta de memoria de 32 GB Gratis', 'Motorola', '175.64', 123, NULL, '2022-09-20 10:12:31', 1),
+(5, 32, 129379012, 'Montez - Bicicleta de Montaña A27,5 M | Negro', 'Bicicleta urbana. Ideal para movilizarse dentro y fuera de la ciudad.', 'Montez', '290.00', 10, NULL, '2022-09-20 10:25:28', 1),
+(6, 14, 93284093, 'Direct TV - Antena señal satelital kit prepago | Hd', 'Accede a televisión satelital, con imagen y sonido 100% digital.', 'Direct TV', '1200.00', 1, NULL, '2022-09-20 15:47:20', 1),
+(7, 10, 435345234, 'LG - Minicomponente CJ44', 'Haz tus momentos más divertidos con el sonido envolvente de los mejores parlantes y amplificadores. Marca LG.', 'LG', '1919.00', 2, NULL, '2022-09-20 15:50:26', 1);
 
 -- --------------------------------------------------------
 
@@ -242,6 +259,13 @@ ALTER TABLE `categorias`
   ADD KEY `categoria_father_id` (`categoria_father_id`);
 
 --
+-- Indices de la tabla `imgproductos`
+--
+ALTER TABLE `imgproductos`
+  ADD PRIMARY KEY (`idimgprod`),
+  ADD KEY `productoid` (`productoid`);
+
+--
 -- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
@@ -286,6 +310,12 @@ ALTER TABLE `categorias`
   MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT de la tabla `imgproductos`
+--
+ALTER TABLE `imgproductos`
+  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
@@ -301,7 +331,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -324,6 +354,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `categorias`
   ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`categoria_father_id`) REFERENCES `categorias` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `imgproductos`
+--
+ALTER TABLE `imgproductos`
+  ADD CONSTRAINT `imgproductos_ibfk_1` FOREIGN KEY (`productoid`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `permisos`
