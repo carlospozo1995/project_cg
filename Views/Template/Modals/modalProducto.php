@@ -16,7 +16,7 @@
                         <input type="hidden" id="foto_remove" name="foto_remove" value="0"> -->
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-8">
                                     <div class="form-group">
                                         <label>Nombre</label>
                                         <input type="text" class="form-control" id="txtNombre" autocomplete="off" name="txtNombre" required>
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Marca</label>
                                         <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
@@ -41,7 +41,7 @@
 
                                     <div class="form-group">
                                         <label for="txtCodigo">Código</label>
-                                        <input type="text" class="form-control valid validNumber" placeholder="Cod" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
+                                        <input type="text" class="form-control valid validNumber" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
                                         
                                         <!-- BARCODE (CODIGO DE BARRA) -->
                                         <!-- <div id="divBarCode" class="notBlock text-center">

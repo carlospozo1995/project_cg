@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-buttons/buttons.bootstrap4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/select2/select2.min.css">
+  <!-- Summernote -->
+  <link rel="stylesheet" href="<?php echo media(); ?>js/plugins/summernote/summernote.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/adminlte.min.css">
   <!-- My style -->

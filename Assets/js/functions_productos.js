@@ -100,27 +100,29 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // CONFIGURACION TEXTAREA DESCRIPCION -TINYMCE
-// $('#txtDescGrl').summernote();
-
-$(document).on('focusin', function(e) {
-    if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
-        e.stopImmediatePropagation();
-    }
+$('#txtDescGrl').summernote({
+    height: 80,
 });
 
-tinymce.init({
-    selector: '#txtDescGrl',
-    width: "100%",
-    height: 200,    
-    statubar: true,
-    plugins: [
-        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-        "save table contextmenu directionality emoticons template paste textcolor"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-    branding: false,
-});
+// $(document).on('focusin', function(e) {
+//     if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+//         e.stopImmediatePropagation();
+//     }
+// });
+
+// tinymce.init({
+//     selector: '#txtDescGrl',
+//     width: "100%",
+//     height: 200,    
+//     statubar: true,
+//     plugins: [
+//         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+//         "save table contextmenu directionality emoticons template paste textcolor"
+//     ],
+//     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+//     branding: false,
+// });
 // -------------------------------------------
 
 // CONFIGURACION BARCODE (CODIGODE BARRA JS)
