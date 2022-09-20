@@ -43,6 +43,28 @@
 
                 <tbody>
                   <!-- CALL DATABASE USUARIOS WITH JS -->
+                  <?php
+                    require_once 'Models/ProductosModel.php';
+                    $objLogin = new ProductosModel();
+                    $request = $objLogin->allProductos();
+                    foreach ($request as $key => $value) {
+
+                      if ($value['status'] == 1) {
+                        $value['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                      }else{
+                          $value['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                      }
+                      echo'<tr>';
+                      echo '<td>'.$value['idproducto'].'</td>';
+                      echo '<td>'.$value['codproducto'].'</td>';
+                      echo '<td>'.$value['nombre'].'</td>';
+                      echo '<td>'.$value['precio'].'</td>';
+                      echo '<td>'.$value['stock'].'</td>';
+                      echo '<td>'.$value['status'].'</td>';
+                      echo '<td>ekumunar</td>';
+                      echo'</tr>';
+                    }
+                  ?>
                 </tbody>
               </table>
             </div>

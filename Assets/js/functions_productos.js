@@ -16,25 +16,26 @@ function modalNewProducto(){
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    
     tableProductos = $("#tableProductos").DataTable({
         "aProcessing": true,
         "aServerSide":true,
         "language":{
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
-        "ajax":{
-            "url": base_url + "Productos/tableProductos",
-            "dataSrc":"",
-        },
-        "columns":[
-            {"data":"idproducto"},
-            {"data":"codproducto"},
-            {"data":"nombre"},
-            {"data":"precio"},
-            {"data":"stock"},
-            {"data":"status"},
-            {"data":"actions"},
-        ],
+    //     "ajax":{
+    //         "url": base_url + "Productos/tableProductos",
+    //         "dataSrc":"",
+    //     },
+    //     "columns":[
+    //         {"data":"idproducto"},
+    //         {"data":"codproducto"},
+    //         {"data":"nombre"},
+    //         {"data":"precio"},
+    //         {"data":"stock"},
+    //         {"data":"status"},
+    //         {"data":"actions"},
+    //     ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "dom": 'lBfrtip',
