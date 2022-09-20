@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-09-2022 a las 19:44:56
+-- Tiempo de generación: 20-09-2022 a las 04:04:42
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -66,7 +66,14 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 (23, 'Motos', NULL, '2022-09-14 09:48:14', 22, 1),
 (24, 'Bicicletas', NULL, '2022-09-14 09:48:46', 22, 1),
 (25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', '2022-09-14 09:50:19', NULL, 1),
-(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 1);
+(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 0),
+(27, 'Accesorios', NULL, '2022-09-18 16:00:30', 23, 1),
+(28, 'Accesorios', NULL, '2022-09-18 16:00:47', 24, 1),
+(29, 'Combustión', NULL, '2022-09-18 16:14:49', 23, 1),
+(30, 'Electricas', NULL, '2022-09-18 16:15:03', 23, 1),
+(31, 'BMX', NULL, '2022-09-18 16:15:25', 24, 1),
+(32, 'Montaña', NULL, '2022-09-18 16:16:02', 24, 1),
+(33, 'Hogar', 'imgCategoria.png', '2022-09-18 16:21:44', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -151,8 +158,10 @@ CREATE TABLE `productos` (
   `codproducto` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `marca` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `precio` decimal(11,2) NOT NULL,
-  `imagen` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
+  `stock` int(11) NOT NULL,
+  `imagen` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `datacreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
@@ -161,8 +170,9 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `precio`, `imagen`, `datacreate`, `status`) VALUES
-(1, 13, 1111222233334444, 'Samsung - Televisor Qled QN65Q65BAPXPA 65\" | UHD 4K', 'Pasa horas de entretenimiento viendo tu contenido favorito, con una resolución excelente. Marca Samsung.', '1098.96', 'televisor.png', '2022-09-10 03:45:36', 1);
+INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
+(1, 25, 123456789, 'BaByliss - Rastrillo de pelo para mascotas bpprd | Blanco', 'Elimina los enredos ligeros y lleva los aceites de la piel al tallo del pelo para obtener un pelaje brillante.', 'BaByliss', '20.00', 12, NULL, '2022-09-19 03:28:05', 1),
+(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', '1999.00', 100, NULL, '2022-09-19 22:25:54', 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +224,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
-(2, '456', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-08-06 18:58:01', 1),
+(2, '070671565-3', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-08-06 18:58:01', 1),
 (3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
 (4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
 (5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1),
@@ -273,7 +283,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -291,7 +301,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
