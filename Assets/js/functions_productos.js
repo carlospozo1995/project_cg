@@ -1,4 +1,5 @@
 // document.write(`<script src="${base_url}Assets/js/plugins/barcode/JsBarcode.all.min.js"></script>`);
+var tableProductos;
 
 function modalNewProducto(){
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
@@ -14,6 +15,37 @@ function modalNewProducto(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    tableProductos = $("#tableProductos").DataTable({
+        "aProcessing": true,
+        "aServerSide":true,
+        "language":{
+            "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+        },
+        "ajax":{
+            "url": base_url + "Productos/tableProductos",
+            "dataSrc":"",
+        },
+        "columns":[
+            {"data":"idproducto"},
+            {"data":"codproducto"},
+            {"data":"nombre"},
+            {"data":"precio"},
+            {"data":"stock"},
+            {"data":"status"},
+            {"data":"actions"},
+        ],
+        "responsive": true,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "dom": 'lBfrtip',
+        "buttons": [
+            "copy", "csv", "excel", "pdf", "print", "colvis"
+        ],
+        "bDestroy":true,
+        "order":[[0,"asc"]],
+        "iDisplayLength":15,
+    });
+
     if (document.getElementById('formProducto')) {
         var formProducto = document.getElementById('formProducto');
         formProducto.addEventListener('submit', function (e) {
@@ -49,9 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (request.readyState == 4 && request.status == 200) {
                         var objData = JSON.parse(request.responseText);
                         if(objData.status){
-                            $("#modalFormProducto").modal("hide");
-                            formProducto.reset();
+                            // $("#modalFormProducto").modal("hide");
+                            // formProducto.reset();
+                            document.getElementById('idProducto').value = objData.idproducto;
                             Swal.fire("Productos", objData.msg, "success");
+                            tableProductos.ajax.reload(function () {
+                            });
                         }else{
                             Swal.fire("Error", objData.msg, "error");
                         }
@@ -65,27 +100,27 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // CONFIGURACION TEXTAREA DESCRIPCION -TINYMCE
-// $('#txtDescripcion').summernote();
+// $('#txtDescGrl').summernote();
 
-// $(document).on('focusin', function(e) {
-//     if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
-//         e.stopImmediatePropagation();
-//     }
-// });
+$(document).on('focusin', function(e) {
+    if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        e.stopImmediatePropagation();
+    }
+});
 
-// tinymce.init({
-//     selector: '#txtDescripcion',
-//     width: "100%",
-//     height: 400,    
-//     statubar: true,
-//     plugins: [
-//         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-//         "save table contextmenu directionality emoticons template paste textcolor"
-//     ],
-//     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-//     branding: false,
-// });
+tinymce.init({
+    selector: '#txtDescGrl',
+    width: "100%",
+    height: 200,    
+    statubar: true,
+    plugins: [
+        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+        "save table contextmenu directionality emoticons template paste textcolor"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+    branding: false,
+});
 // -------------------------------------------
 
 // CONFIGURACION BARCODE (CODIGODE BARRA JS)

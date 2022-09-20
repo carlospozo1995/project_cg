@@ -72,7 +72,7 @@
 
                     if ($request_producto > 0) {
                         if ($option == 1) {
-                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                            $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.');
                         }
                         // else{
                         //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
@@ -86,6 +86,43 @@
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 die();
             }
+        }
+
+        public function tableProductos()
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $arrProductos = $this->model->allProductos();
+                
+                for ($i=0; $i < count($arrProductos); $i++) { 
+                    $btnViewProducto = '';
+                    $btnUpdateProducto = '';
+                    $btnDeleteProducto = '';
+
+                    $arrProductos[$i]['precio'] = SMONEY.' '.formatMoney($arrProductos[$i]['precio']);
+
+                    if ($_SESSION['permisosMod']['ver']) {
+                        $btnViewProducto = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('.$arrProductos[$i]['idproducto'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                    }
+
+                    if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                        
+                        $btnUpdateProducto = '<button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'.$arrProductos[$i]['idproducto'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                    }
+
+                    if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
+                        $btnDeleteProducto = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('.$arrProductos[$i]['idproducto'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                    }
+            
+                    if ($arrProductos[$i]['status'] == 1) {
+                        $arrProductos[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                    }else{
+                        $arrProductos[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                    }
+
+                    $arrProductos[$i]['actions'] = '<div class="text-center">'.$btnViewProducto.' '.$btnUpdateProducto.' '.$btnDeleteProducto.'</div>';
+                }
+            }
+            echo json_encode($arrProductos);
         }
 
     }   

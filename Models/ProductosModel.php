@@ -54,5 +54,12 @@
             return $return;
         }
 
+        public function allProductos()
+        {
+            $sql_productos = "SELECT  p.*, c.nombre AS categoria FROM project_cg.productos p INNER JOIN project_cg.categorias c ON p.categoriaid = c.idcategoria WHERE p.status != 0";
+            $request = $this->selectAll($sql_productos);
+            return $request;
+        }
+
     }
 ?>

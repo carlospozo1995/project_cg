@@ -23,20 +23,25 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Marca</label>
-                                        <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
+                                        <label>Descripción principal</label>
+                                        <textarea rows="2" style="width: 100%;" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea rows="4" style="width: 100%;" placeholder="Descripción del producto" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
+                                        <label>Descripción general</label>
+                                        <textarea style="width: 100%;" id="txtDescGrl" autocomplete="off" name="txtDescGrl" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-5">
                                     <div class="form-group">
+                                        <label>Marca</label>
+                                        <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="txtCodigo">Código</label>
-                                        <input type="text" class="form-control valid validNumber" placeholder="Código de barra" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
+                                        <input type="text" class="form-control valid validNumber" placeholder="Cod" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
                                         
                                         <!-- BARCODE (CODIGO DE BARRA) -->
                                         <!-- <div id="divBarCode" class="notBlock text-center">
@@ -75,13 +80,26 @@
                                             <option value="2">Inactivo</option>
                                         </select>
                                     </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <button id="btnSubmitProducto" type="submit" class="btn btn-primary btnText btn-block">Agregar</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-footer">
-                            <button id="btnSubmitProducto" type="submit" class="btn btn-primary btnText">Agregar</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <p>as,ndm</p>
                         </div>
                     </form>
                 </div>

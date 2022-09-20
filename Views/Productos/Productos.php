@@ -28,13 +28,14 @@
 
           <div class="card">
             <div class="card-body">
-              <table id="tableCategorias" class="table_order table table-bordered table-striped">
+              <table id="tableProductos" class="table_order table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>ID</th>
                   <th>Codigo</th>
                   <th>Nombre</th>
                   <th>Precio</th>
+                  <th>Stock</th>
                   <th>Estado</th>
                   <th>Acciones</th>
                 </tr>

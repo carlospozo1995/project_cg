@@ -36,6 +36,8 @@
 <script src="<?php echo media(); ?>js/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo media(); ?>js/plugins/select2/select2.min.js"></script>
+<!-- Tinymce -->
+<script src="<?php echo media(); ?>js/plugins/tinymce/tinymce.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo media(); ?>js/adminlte.min.js"></script>
 <script src="<?php echo media(); ?>js/functions.js"></script>
