@@ -83,17 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "language":{
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
-        "ajax":{
-            "url": base_url + "Categorias/tableCategorias",
-            "dataSrc":"",
-        },
-        "columns":[
-            {"data":"idcategoria"},
-            {"data":"nombre"},
-            {"data":"fathercatname"},
-            {"data":"status"},
-            {"data":"actions"},
-        ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "dom": 'lBfrtip',
@@ -206,8 +195,8 @@ function editCategoria(element, idCategoria) {
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
                 } else{
-                    var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
-                    console.log(option_cat);
+                    // var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                    // console.log(option_cat);
                     if(option_cat.length){
                         option_cat.prop("selected", true);
                     }
@@ -215,7 +204,7 @@ function editCategoria(element, idCategoria) {
                     // document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
                     // console.log(option_cat);
                     // console.log(option_cat.length)
-                    console.log(document.getElementById("listCategorias").value);
+                    // console.log(document.getElementById("listCategorias").value);
                     document.querySelector('.photo').style.display = 'none';
                     document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }
@@ -225,7 +214,17 @@ function editCategoria(element, idCategoria) {
     }     
 }
 
-function deleteCategoria(idCategoria) {
+// function nuevoregistro(){
+//     $("#tableCategorias").DataTable().row.add([
+//         "1",
+//         "Ejemplo",
+//         "Ejemplo Padre",
+//         "<button></button>",
+//         "<button></button><button></button><button></button>"
+//     ]).draw();
+// }
+
+function deleteCategoria(ele, idCategoria) {
     Swal.fire({
         title: 'Eliminar categoria',
         text: "Realmente quiere eliminar la categoria!",
@@ -244,14 +243,17 @@ function deleteCategoria(idCategoria) {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
+                    let row_closest = $(ele).closest("tr");
+                    if(row_closest.length){
+                        $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
+                    }
                     if(objData.status){
                         Swal.fire(
                             'Eliminado!',
                             objData.msg,
                             'success'
                         );
-                        tableCategorias.ajax.reload(function () {
-                        });
+                       
                     }else{
                         Swal.fire(
                             'Atención!',

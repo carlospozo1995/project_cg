@@ -43,7 +43,45 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <!-- CALL DATABASE USUARIOS WITH JS -->
+                  <?php
+                    if($_SESSION['permisosMod']['ver']){
+                      require_once 'Models/CategoriasModel.php';
+                      $objLogin = new CategoriasModel();
+                      $request = $objLogin->allCategorias();
+                      foreach ($request as $key => $value) {
+                        $btnView = '';
+                        $btnUpdate = '';
+                        $btnDelete = '';
+
+                        if ($_SESSION['permisosMod']['ver']) {
+                            $btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('.$value['idcategoria'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                        }
+
+                        if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                            
+                            $btnUpdate = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$value['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                        }
+
+                        if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
+                            $btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'.$value['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                        }
+                
+                        if ($value['status'] == 1) {
+                            $value['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                        }else{
+                            $value['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                        }
+
+                        echo'<tr>';
+                          echo '<td>'.$value['idcategoria'].'</td>';
+                          echo '<td>'.$value['nombre'].'</td>';
+                          echo '<td>'.$value['fathercatname'].'</td>';
+                          echo '<td>'.$value['status'].'</td>';
+                          echo '<td><div class="text-center">'.$btnView.' '.$btnUpdate.' '.$btnDelete.'</div></td>';
+                        echo'</tr>';
+                      }
+                    }
+                  ?>
                   </tbody>
                 </table>
               </div>
@@ -56,7 +94,7 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-      
+      <!-- <button onclick="nuevoregistro();">insertar</button> -->
     </section>
     <!-- /.content -->
   </div>
