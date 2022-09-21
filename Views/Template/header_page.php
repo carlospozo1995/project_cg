@@ -17,9 +17,9 @@
   <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/toastr/toastr.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-bs4/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-responsive/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-buttons/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo media(); ?>css/plugins/select2/select2.min.css">
   <!-- Theme style -->
