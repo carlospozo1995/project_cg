@@ -23,19 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "language":{
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
-    //     "ajax":{
-    //         "url": base_url + "Productos/tableProductos",
-    //         "dataSrc":"",
-    //     },
-    //     "columns":[
-    //         {"data":"idproducto"},
-    //         {"data":"codproducto"},
-    //         {"data":"nombre"},
-    //         {"data":"precio"},
-    //         {"data":"stock"},
-    //         {"data":"status"},
-    //         {"data":"actions"},
-    //     ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "dom": 'lBfrtip',
@@ -101,29 +88,29 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // CONFIGURACION TEXTAREA DESCRIPCION -TINYMCE
-$('#txtDescGrl').summernote({
-    height: 80,
+// $('#txtDescGrl').summernote({
+//     height: 80,
+// });
+
+$(document).on('focusin', function(e) {
+    if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        e.stopImmediatePropagation();
+    }
 });
 
-// $(document).on('focusin', function(e) {
-//     if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
-//         e.stopImmediatePropagation();
-//     }
-// });
-
-// tinymce.init({
-//     selector: '#txtDescGrl',
-//     width: "100%",
-//     height: 200,    
-//     statubar: true,
-//     plugins: [
-//         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
-//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-//         "save table contextmenu directionality emoticons template paste textcolor"
-//     ],
-//     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-//     branding: false,
-// });
+tinymce.init({
+    selector: '#txtDescGrl',
+    width: "100%",
+    height: 200,    
+    statubar: true,
+    plugins: [
+        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+        "save table contextmenu directionality emoticons template paste textcolor"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+    branding: false,
+});
 // -------------------------------------------
 
 // CONFIGURACION BARCODE (CODIGODE BARRA JS)

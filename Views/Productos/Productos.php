@@ -42,27 +42,47 @@
                 </thead>
 
                 <tbody>
-                  <!-- CALL DATABASE USUARIOS WITH JS -->
                   <?php
-                    require_once 'Models/ProductosModel.php';
-                    $objLogin = new ProductosModel();
-                    $request = $objLogin->allProductos();
-                    foreach ($request as $key => $value) {
+                    if($_SESSION['permisosMod']['ver']){
+                      require_once 'Models/ProductosModel.php';
+                      $objLogin = new ProductosModel();
+                      $request = $objLogin->allProductos();
+                      foreach ($request as $key => $value) {
+                        $btnView = '';
+                        $btnUpdate = '';
+                        $btnDelete = '';
 
-                      if ($value['status'] == 1) {
-                        $value['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
-                      }else{
-                          $value['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                        $value['precio'] = SMONEY.' '.formatMoney($value['precio']);
+
+                        if ($_SESSION['permisosMod']['ver']) {
+                          $btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('.$value['idproducto'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                        }
+    
+                        if (!empty($_SESSION['permisosMod']['actualizar'])) {
+                            
+                            $btnUpdate = '<button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'.$value['idproducto'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                        }
+    
+                        if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
+                            $btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('.$value['idproducto'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                        }
+
+                        if ($value['status'] == 1) {
+                          $value['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+                        }else{
+                            $value['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                        }
+
+                        echo'<tr>';
+                          echo '<td>'.$value['idproducto'].'</td>';
+                          echo '<td>'.$value['codproducto'].'</td>';
+                          echo '<td>'.$value['nombre'].'</td>';
+                          echo '<td>'.$value['precio'].'</td>';
+                          echo '<td>'.$value['stock'].'</td>';
+                          echo '<td>'.$value['status'].'</td>';
+                          echo '<td><div class="text-center">'.$btnView.' '.$btnUpdate.' '.$btnDelete.'</div></td>';
+                        echo'</tr>';
                       }
-                      echo'<tr>';
-                      echo '<td>'.$value['idproducto'].'</td>';
-                      echo '<td>'.$value['codproducto'].'</td>';
-                      echo '<td>'.$value['nombre'].'</td>';
-                      echo '<td>'.$value['precio'].'</td>';
-                      echo '<td>'.$value['stock'].'</td>';
-                      echo '<td>'.$value['status'].'</td>';
-                      echo '<td>ekumunar</td>';
-                      echo'</tr>';
                     }
                   ?>
                 </tbody>
