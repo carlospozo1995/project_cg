@@ -116,11 +116,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
                     if(objData.status){
-                        if(rowTable == ""){  
-                            tableCategorias.ajax.reload(function () {
-                            });
+                        let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+
+                        let categoriaText = "";
+                        document.getElementById('listCategorias').value == "" ? categoriaText = "" : categoriaText = $("#listCategorias").find("option:selected").text();
+
+                        if(rowTable == ""){
+                            let btnView = "";
+                            let btnUpdate = "";
+                            let btnDelete = "";  
+
+                            objData.permisos.ver == 1 ? btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>' : btnView = "";
+
+                            objData.permisos.actualizar == 1 ? btnUpdate = ' <button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>' : btnUpdate = "";
+
+                            objData.permisos.eliminar == 1 && objData.idUser == 1 ? btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>' : btnDelete = "";
+
+                            $("#tableCategorias").DataTable().row.add([
+                                objData.idData,
+                                strTitulo,
+                                categoriaText,
+                                htmlStatus,
+                                '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                            ]).draw(false);
                         }else{
-                            let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
                             rowTable.cells[1].textContent = strTitulo;
                             document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
                             rowTable.cells[3].innerHTML = htmlStatus;
@@ -195,7 +214,7 @@ function editCategoria(element, idCategoria) {
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
                 } else{
-                    // var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
+                    var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
                     // console.log(option_cat);
                     if(option_cat.length){
                         option_cat.prop("selected", true);
@@ -214,17 +233,7 @@ function editCategoria(element, idCategoria) {
     }     
 }
 
-// function nuevoregistro(){
-//     $("#tableCategorias").DataTable().row.add([
-//         "1",
-//         "Ejemplo",
-//         "Ejemplo Padre",
-//         "<button></button>",
-//         "<button></button><button></button><button></button>"
-//     ]).draw();
-// }
-
-function deleteCategoria(ele, idCategoria) {
+function deleteCategoria(element, idCategoria) {
     Swal.fire({
         title: 'Eliminar categoria',
         text: "Realmente quiere eliminar la categoria!",
@@ -243,17 +252,16 @@ function deleteCategoria(ele, idCategoria) {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
-                    let row_closest = $(ele).closest("tr");
-                    if(row_closest.length){
-                        $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
-                    }
                     if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                        $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
+                        }
                         Swal.fire(
                             'Eliminado!',
                             objData.msg,
                             'success'
                         );
-                       
                     }else{
                         Swal.fire(
                             'Atención!',

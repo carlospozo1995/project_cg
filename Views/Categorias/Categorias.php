@@ -93,8 +93,6 @@
         </div>
         <!-- /.row -->
       </div>
-      <!-- /.container-fluid -->
-      <!-- <button onclick="nuevoregistro();">insertar</button> -->
     </section>
     <!-- /.content -->
   </div>

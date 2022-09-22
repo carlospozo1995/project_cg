@@ -93,7 +93,7 @@
 
                     if ($request_categoria > 0) {
                         if ($option == 1) {
-                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.', 'idData' => $request_categoria, 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
                         }else{
                             $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
