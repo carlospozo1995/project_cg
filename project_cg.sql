@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 20-09-2022 a las 23:04:45
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+-- Servidor: localhost
+-- Tiempo de generación: 22-09-2022 a las 16:09:49
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -152,11 +152,11 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (919, 4, 3, 1, 0, 0, 0),
 (920, 4, 4, 1, 0, 0, 0),
 (921, 4, 5, 1, 0, 0, 0),
-(942, 1, 1, 1, 0, 0, 0),
-(943, 1, 2, 1, 1, 1, 1),
-(944, 1, 3, 1, 1, 1, 1),
-(945, 1, 4, 1, 1, 1, 1),
-(946, 1, 5, 1, 1, 1, 1);
+(1017, 1, 1, 1, 0, 0, 0),
+(1018, 1, 2, 1, 1, 1, 1),
+(1019, 1, 3, 1, 1, 1, 1),
+(1020, 1, 4, 1, 1, 1, 1),
+(1021, 1, 5, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -325,7 +325,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=947;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1022;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
