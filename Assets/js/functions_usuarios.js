@@ -23,20 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "language":{
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
-        "ajax":{
-            "url": base_url + "Usuarios/getUsuarios",
-            "dataSrc":"",
-        },
-        "columns":[
-            {"data":"idusuario"},
-            {"data":"nombres"},
-            {"data":"apellidos"},
-            {"data":"email_user"},
-            {"data":"telefono"},
-            {"data":"nombrerol"},
-            {"data":"status"},
-            {"data":"actions"},
-        ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "dom": 'lBfrtip',
@@ -83,12 +69,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
                     if (objData.status) {
-                        if (rowTable == "") {
-                            tableUsers.ajax.reload(function () {
-                            });
-                        }else{
-                            let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                        // console.log(objData.idData);
+                        // console.log(objData.permisos);
+                        // console.log(objData.userData);
+                        let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
+                        if (rowTable == "") {
+                            let btnView = "";
+                            let btnUpdate = "";
+                            let btnDelete = ""; 
+
+                            objData.permisos.ver == 1 ? btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>' : btnView = "";
+
+                            // if ( objData.permisos.actualizar == 1) {
+                            //     if () {
+                                    
+                            //     }
+                            // }
+
+                            $("#tableUsuarios").DataTable().row.add([
+                                
+                            ]).draw(false);
+                            
+                        }else{
                             rowTable.cells[1].textContent = strNombre;
                             rowTable.cells[2].textContent = strApellido;
                             rowTable.cells[3].textContent = strEmail;
@@ -218,7 +221,7 @@ function editUser(element, idUsuario) {
 }
 
 // ELIMINAR USUARIO
-function deleteUser(idUsuario) {
+function deleteUser(element, idUsuario) {
     Swal.fire({
         title: 'Eliminar Usuario',
         text: "Realmente quiere eliminar el usuario!",
@@ -237,15 +240,17 @@ function deleteUser(idUsuario) {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
-
+                    console.log(element);
                     if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                            $("#tableUsuarios").DataTable().row(row_closest[0]).remove().draw(false);
+                        }
                         Swal.fire(
                             'Eliminado!',
                             objData.msg,
                             'success'
                         );
-                        tableUsers.ajax.reload(function () {
-                        });
                     }else{
                         Swal.fire(
                             'Atención!',

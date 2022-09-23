@@ -62,7 +62,7 @@
 
                     if ($request_user > 0) {
                         if ($option == 1) {
-                            $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.");
+                            $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.", "idData" => $request_user, 'permisos' => $_SESSION['permisosMod'], "userData" => $_SESSION['userData']);
                         }else{
                             $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente.");
                         }
@@ -81,51 +81,51 @@
             die();
         }
 
-        public function getUsuarios()
-        {
-            if($_SESSION['permisosMod']['ver']){
-                $arrUsers = $this->model->selectUsers();
+        // public function getUsuarios()
+        // {
+        //     if($_SESSION['permisosMod']['ver']){
+        //         $arrUsers = $this->model->selectUsers();
 
-                for ($i=0; $i < count($arrUsers); $i++) { 
-                    $btnViewUser = '';
-                    $btnUpdateUser  =  '';
-                    $btnDeleteUser = '';
+        //         for ($i=0; $i < count($arrUsers); $i++) { 
+        //             $btnViewUser = '';
+        //             $btnUpdateUser  =  '';
+        //             $btnDeleteUser = '';
 
-                    if ($arrUsers[$i]['status'] == 1) {
-                        $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
-                    }else{
-                        $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
-                    }
+        //             if ($arrUsers[$i]['status'] == 1) {
+        //                 $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+        //             }else{
+        //                 $arrUsers[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+        //             }
 
-                    if (!empty($_SESSION['permisosMod']['ver'])) {
-                        $btnViewUser = '<button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
-                    }
+        //             if (!empty($_SESSION['permisosMod']['ver'])) {
+        //                 $btnViewUser = '<button type="button" class="btnViewUser btn btn-secondary btn-sm" onclick="viewUser('.$arrUsers[$i]['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+        //             }
 
-                    if (!empty($_SESSION['permisosMod']['actualizar'])) {
-                        if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
-                            $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser(this,'.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                        }else{
-                            $btnUpdateUser ='';
-                        }
-                    }
+        //             if (!empty($_SESSION['permisosMod']['actualizar'])) {
+        //                 if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
+        //                     $btnUpdateUser = '<button type="button" class="btnEditUser btn btn-primary btn-sm" onclick="editUser(this,'.$arrUsers[$i]['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+        //                 }else{
+        //                     $btnUpdateUser ='';
+        //                 }
+        //             }
                     
-                    if (!empty($_SESSION['permisosMod']['eliminar'])) {
-                        if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
-                            $btnDeleteUser = '<button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
-                        }else{
-                            $btnDeleteUser = '';
-                        }
+        //             if (!empty($_SESSION['permisosMod']['eliminar'])) {
+        //                 if($arrUsers[$i]['idusuario'] != $_SESSION['userData']['idusuario']){
+        //                     $btnDeleteUser = '<button type="button" class="btnDeleteUser btn btn-danger btn-sm" nb="'.$arrUsers[$i]['nombres'].'" onclick="deleteUser('.$arrUsers[$i]['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+        //                 }else{
+        //                     $btnDeleteUser = '';
+        //                 }
                         
-                    }
+        //             }
 
-                    // BTN PERMISOS DELETE EDIT
-                    $arrUsers[$i]['actions']= ' <div class="text-center">'.$btnViewUser.' '.$btnUpdateUser.' '.$btnDeleteUser.'</div>' ;
-                }
+        //             // BTN PERMISOS DELETE EDIT
+        //             $arrUsers[$i]['actions']= ' <div class="text-center">'.$btnViewUser.' '.$btnUpdateUser.' '.$btnDeleteUser.'</div>' ;
+        //         }
 
-                echo json_encode($arrUsers, JSON_UNESCAPED_UNICODE);
-            }
-            die();
-        }
+        //         echo json_encode($arrUsers, JSON_UNESCAPED_UNICODE);
+        //     }
+        //     die();
+        // }
 
         public function viewUsuario($idUser)
         {   
