@@ -39,7 +39,6 @@
                     <th>Categoria padre</th>
                     <th>Estado</th>
                     <th>Acciones</th>
-                    <!-- <th>Acciones</th> -->
                   </tr>
                   </thead>
                   <tbody>

@@ -140,9 +140,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
-                            rowTable.cells[1].textContent = strTitulo;
-                            document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
-                            rowTable.cells[3].innerHTML = htmlStatus;
+                            let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
+                            let n_row = $(rowTable).find("td:eq(0)").html();
+                            let buttons_html = $(rowTable).find("td:eq(4)").html();
+                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw();
                         }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
@@ -185,7 +186,11 @@ function viewCategoria(idCategoria) {
 }
 
 function editCategoria(element, idCategoria) {
-    rowTable = element.parentNode.parentNode.parentNode;
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
@@ -254,8 +259,18 @@ function deleteCategoria(element, idCategoria) {
                     let objData = JSON.parse(request.responseText);
                     if(objData.status){
                         let row_closest = $(element).closest("tr");
+                        console.log(row_closest);
                         if(row_closest.length){
-                        $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableCategorias").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
                         }
                         Swal.fire(
                             'Eliminado!',
