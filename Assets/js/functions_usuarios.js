@@ -69,26 +69,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
                     if (objData.status) {
-                        // console.log(objData.idData);
-                        // console.log(objData.permisos);
-                        // console.log(objData.userData);
                         let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
                         if (rowTable == "") {
-                            let btnView = "";
-                            let btnUpdate = "";
-                            let btnDelete = ""; 
+                            let btnView = "eqwewq";
+                            let btnUpdate = "wwqeq";
+                            let btnDelete = "123"; 
 
-                            objData.permisos.ver == 1 ? btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>' : btnView = "";
+                            // if (objData.permisos.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
-                            // if ( objData.permisos.actualizar == 1) {
-                            //     if () {
-                                    
+                            // if (objData.permisos.actualizar == 1) {
+                            //     if (objData.idData != objData.userData.idusuario) {
+                            //         btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                            //     }
+                            // }
+
+                            // if (objData.permisos.eliminar == 1){
+                            //     if (objData.idData != objData.userData.idusuario) {
+                            //         $btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                             //     }
                             // }
 
                             $("#tableUsuarios").DataTable().row.add([
-                                
+                                // objData.idData,
+                                // strNombre,
+                                // strApellido,
+                                // strEmail,
+                                // intTelefono,
+                                // objData.userData.nombrerol,
+                                // htmlStatus,
+                                // '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                             ]).draw(false);
                             
                         }else{

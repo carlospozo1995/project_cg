@@ -126,11 +126,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             let btnUpdate = "";
                             let btnDelete = "";  
 
-                            objData.permisos.ver == 1 ? btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>' : btnView = "";
+                            if(objData.permisos.ver == 1){btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
-                            objData.permisos.actualizar == 1 ? btnUpdate = ' <button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>' : btnUpdate = "";
+                            if(objData.permisos.actualizar == 1){btnUpdate = ' <button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>'};
 
-                            objData.permisos.eliminar == 1 && objData.idUser == 1 ? btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>' : btnDelete = "";
+                            if(objData.permisos.eliminar == 1 && objData.idUser == 1){btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>'};
 
                             $("#tableCategorias").DataTable().row.add([
                                 objData.idData,
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
                             let n_row = $(rowTable).find("td:eq(0)").html();
                             let buttons_html = $(rowTable).find("td:eq(4)").html();
-                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw();
+                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw(false);
                         }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
@@ -259,7 +259,6 @@ function deleteCategoria(element, idCategoria) {
                     let objData = JSON.parse(request.responseText);
                     if(objData.status){
                         let row_closest = $(element).closest("tr");
-                        console.log(row_closest);
                         if(row_closest.length){
                             let ischild = $(row_closest).hasClass("child");
                             if(ischild){
