@@ -140,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
-                            let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
                             let n_row = $(rowTable).find("td:eq(0)").html();
+                            let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
                             let buttons_html = $(rowTable).find("td:eq(4)").html();
                             $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw(false);
                         }

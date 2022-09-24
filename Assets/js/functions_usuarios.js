@@ -1,3 +1,6 @@
+let tableUsers;
+let rowTable = "";
+
 // OPEN MODAL USERS
 function modalNewUser() {
     document.getElementById("idUsuario").value = "";
@@ -14,8 +17,6 @@ function modalNewUser() {
 }
 
 //LOAD DATA TABLE USERS
-let tableUsers;
-let rowTable = "";
 document.addEventListener('DOMContentLoaded', function () {
     tableUsers = $("#tableUsuarios").DataTable({
         "aProcessing": true,
@@ -72,43 +73,40 @@ document.addEventListener('DOMContentLoaded', function () {
                         let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
                         if (rowTable == "") {
-                            let btnView = "eqwewq";
-                            let btnUpdate = "wwqeq";
-                            let btnDelete = "123"; 
+                            let btnView = "";
+                            let btnUpdate = "";
+                            let btnDelete = ""; 
 
-                            // if (objData.permisos.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
+                            if (objData.permisos.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
-                            // if (objData.permisos.actualizar == 1) {
-                            //     if (objData.idData != objData.userData.idusuario) {
-                            //         btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                            //     }
-                            // }
+                            if (objData.permisos.actualizar == 1) {
+                                if (objData.idData != objData.userData.idusuario) {
+                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                                }
+                            }
 
-                            // if (objData.permisos.eliminar == 1){
-                            //     if (objData.idData != objData.userData.idusuario) {
-                            //         $btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
-                            //     }
-                            // }
+                            if (objData.permisos.eliminar == 1){
+                                if (objData.idData != objData.userData.idusuario) {
+                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                                }
+                            }
 
                             $("#tableUsuarios").DataTable().row.add([
-                                // objData.idData,
-                                // strNombre,
-                                // strApellido,
-                                // strEmail,
-                                // intTelefono,
-                                // objData.userData.nombrerol,
-                                // htmlStatus,
-                                // '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                                objData.idData,
+                                strNombre,
+                                strApellido,
+                                strEmail,
+                                intTelefono,
+                                objData.userData.nombrerol,
+                                htmlStatus,
+                                '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                             ]).draw(false);
                             
                         }else{
-                            rowTable.cells[1].textContent = strNombre;
-                            rowTable.cells[2].textContent = strApellido;
-                            rowTable.cells[3].textContent = strEmail;
-                            rowTable.cells[4].textContent = intTelefono;
-                            rowTable.cells[5].textContent = document.querySelector('#listRolid').selectedOptions[0].text;
-                            rowTable.cells[6].innerHTML = htmlStatus;
-                            
+                            let n_row = $(rowTable).find("td:eq(0)").html();
+                            let rol = document.querySelector('#listRolid').selectedOptions[0].text;
+                            let buttons_html = $(rowTable).find("td:eq(7)").html();
+                            $("#tableUsuarios").DataTable().row(rowTable).data([n_row, strNombre, strApellido ,strEmail, intTelefono ,rol, htmlStatus, buttons_html]).draw(false);
                         }
                         $("#modalFormUser").modal("hide");
                         formNewUser.reset();
@@ -197,7 +195,11 @@ function viewUser(idUsuario) {
 
 // EDITAR USUARIO
 function editUser(element, idUsuario) {
-    rowTable = element.parentNode.parentNode.parentNode;
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
     document.getElementById("btnSubmitUser").classList.replace("btn-primary", "bg-success");
@@ -250,11 +252,19 @@ function deleteUser(element, idUsuario) {
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
-                    console.log(element);
                     if(objData.status){
                         let row_closest = $(element).closest("tr");
                         if(row_closest.length){
-                            $("#tableUsuarios").DataTable().row(row_closest[0]).remove().draw(false);
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableUsuarios").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableUsuarios").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
                         }
                         Swal.fire(
                             'Eliminado!',
