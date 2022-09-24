@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 23-09-2022 a las 01:31:36
--- Versión del servidor: 10.5.16-MariaDB
--- Versión de PHP: 7.3.32
+-- Tiempo de generación: 24-09-2022 a las 02:20:13
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `id19356340_project_cg`
+-- Base de datos: `project_cg`
 --
 
 -- --------------------------------------------------------
@@ -32,9 +31,9 @@ CREATE TABLE `categorias` (
   `idcategoria` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `imgcategoria` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
-  `datecreate` datetime NOT NULL DEFAULT current_timestamp(),
+  `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `categoria_father_id` bigint(20) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -98,7 +97,7 @@ CREATE TABLE `modulos` (
   `idmodulo` bigint(20) NOT NULL,
   `titulo` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -122,10 +121,10 @@ CREATE TABLE `permisos` (
   `idpermiso` bigint(20) NOT NULL,
   `rolid` bigint(20) NOT NULL,
   `moduloid` bigint(20) NOT NULL,
-  `ver` int(11) NOT NULL DEFAULT 0,
-  `crear` int(11) NOT NULL DEFAULT 0,
-  `actualizar` int(11) NOT NULL DEFAULT 0,
-  `eliminar` int(11) NOT NULL DEFAULT 0
+  `ver` int(11) NOT NULL DEFAULT '0',
+  `crear` int(11) NOT NULL DEFAULT '0',
+  `actualizar` int(11) NOT NULL DEFAULT '0',
+  `eliminar` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -138,26 +137,26 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (869, 5, 3, 1, 0, 0, 0),
 (870, 5, 4, 0, 0, 0, 0),
 (871, 5, 5, 0, 0, 0, 0),
-(907, 2, 1, 1, 0, 0, 0),
-(908, 2, 2, 1, 1, 1, 0),
-(909, 2, 3, 1, 0, 0, 0),
-(910, 2, 4, 1, 1, 1, 1),
-(911, 2, 5, 1, 1, 1, 1),
 (912, 3, 1, 1, 0, 0, 0),
 (913, 3, 2, 1, 1, 0, 0),
 (914, 3, 3, 1, 0, 0, 0),
 (915, 3, 4, 1, 1, 1, 0),
 (916, 3, 5, 1, 0, 0, 0),
-(917, 4, 1, 1, 0, 0, 0),
-(918, 4, 2, 1, 1, 0, 0),
-(919, 4, 3, 1, 0, 0, 0),
-(920, 4, 4, 1, 0, 0, 0),
-(921, 4, 5, 1, 0, 0, 0),
-(942, 1, 1, 1, 0, 0, 0),
-(943, 1, 2, 1, 1, 1, 1),
-(944, 1, 3, 1, 1, 1, 1),
-(945, 1, 4, 1, 1, 1, 1),
-(946, 1, 5, 1, 1, 1, 1);
+(947, 2, 1, 1, 0, 0, 0),
+(948, 2, 2, 1, 1, 1, 1),
+(949, 2, 3, 1, 0, 0, 0),
+(950, 2, 4, 1, 1, 1, 1),
+(951, 2, 5, 1, 1, 1, 1),
+(957, 4, 1, 1, 0, 0, 0),
+(958, 4, 2, 1, 1, 0, 0),
+(959, 4, 3, 1, 0, 0, 0),
+(960, 4, 4, 1, 0, 0, 0),
+(961, 4, 5, 1, 0, 0, 0),
+(982, 1, 1, 1, 0, 0, 0),
+(983, 1, 2, 1, 1, 1, 1),
+(984, 1, 3, 1, 1, 1, 1),
+(985, 1, 4, 1, 1, 1, 1),
+(986, 1, 5, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -175,8 +174,8 @@ CREATE TABLE `productos` (
   `precio` decimal(11,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `imagen` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
-  `datacreate` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 1
+  `datacreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -184,13 +183,13 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 25, 123456789, 'BaByliss - Rastrillo de pelo para mascotas bpprd | Blanco', 'Elimina los enredos ligeros y lleva los aceites de la piel al tallo del pelo para obtener un pelaje brillante.', 'BaByliss', 20.00, 12, NULL, '2022-09-19 03:28:05', 1),
-(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', 1999.00, 100, NULL, '2022-09-19 22:25:54', 1),
-(3, 29, 123459876, 'Motocicleta TKZ-150 TUKO', 'La Moto Tuko TKZ-150 es tipo enduro y tiene un motor de 150cc. Además alcanza velocidades de hasta 95km/h', 'TUKO', 1667.36, 0, NULL, '2022-09-20 09:39:37', 1),
-(4, 20, 543216789, 'Celular smartphone Motorola de 32GB con tarjeta de 32GB', 'El celular Motorola Moto E20 tiene una pantalla de 6.5 pulgadas y su sistema operativo es Android 11 Viene con tarjeta de memoria de 32 GB Gratis', 'Motorola', 175.64, 123, NULL, '2022-09-20 10:12:31', 1),
-(5, 32, 129379012, 'Montez - Bicicleta de Montaña A27,5 M | Negro', 'Bicicleta urbana. Ideal para movilizarse dentro y fuera de la ciudad.', 'Montez', 290.00, 10, NULL, '2022-09-20 10:25:28', 1),
-(6, 14, 93284093, 'Direct TV - Antena señal satelital kit prepago | Hd', 'Accede a televisión satelital, con imagen y sonido 100% digital.', 'Direct TV', 1200.00, 1, NULL, '2022-09-20 15:47:20', 1),
-(7, 10, 435345234, 'LG - Minicomponente CJ44', 'Haz tus momentos más divertidos con el sonido envolvente de los mejores parlantes y amplificadores. Marca LG.', 'LG', 1919.00, 2, NULL, '2022-09-20 15:50:26', 1);
+(1, 25, 123456789, 'BaByliss - Rastrillo de pelo para mascotas bpprd | Blanco', 'Elimina los enredos ligeros y lleva los aceites de la piel al tallo del pelo para obtener un pelaje brillante.', 'BaByliss', '20.00', 12, NULL, '2022-09-19 03:28:05', 1),
+(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', '1999.00', 100, NULL, '2022-09-19 22:25:54', 1),
+(3, 29, 123459876, 'Motocicleta TKZ-150 TUKO', 'La Moto Tuko TKZ-150 es tipo enduro y tiene un motor de 150cc. Además alcanza velocidades de hasta 95km/h', 'TUKO', '1667.36', 0, NULL, '2022-09-20 09:39:37', 1),
+(4, 20, 543216789, 'Celular smartphone Motorola de 32GB con tarjeta de 32GB', 'El celular Motorola Moto E20 tiene una pantalla de 6.5 pulgadas y su sistema operativo es Android 11 Viene con tarjeta de memoria de 32 GB Gratis', 'Motorola', '175.64', 123, NULL, '2022-09-20 10:12:31', 1),
+(5, 32, 129379012, 'Montez - Bicicleta de Montaña A27,5 M | Negro', 'Bicicleta urbana. Ideal para movilizarse dentro y fuera de la ciudad.', 'Montez', '290.00', 10, NULL, '2022-09-20 10:25:28', 1),
+(6, 14, 93284093, 'Direct TV - Antena señal satelital kit prepago | Hd', 'Accede a televisión satelital, con imagen y sonido 100% digital.', 'Direct TV', '1200.00', 1, NULL, '2022-09-20 15:47:20', 1),
+(7, 10, 435345234, 'LG - Minicomponente CJ44', 'Haz tus momentos más divertidos con el sonido envolvente de los mejores parlantes y amplificadores. Marca LG.', 'LG', '1919.00', 2, NULL, '2022-09-20 15:50:26', 1);
 
 -- --------------------------------------------------------
 
@@ -202,7 +201,7 @@ CREATE TABLE `roles` (
   `idrol` bigint(20) NOT NULL,
   `nombrerol` varchar(80) COLLATE utf8mb4_swedish_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -232,8 +231,8 @@ CREATE TABLE `usuario` (
   `password` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `toke` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `rolid` bigint(20) NOT NULL,
-  `datecreate` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 1
+  `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 --
@@ -326,7 +325,7 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=947;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
