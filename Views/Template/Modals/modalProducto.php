@@ -9,6 +9,7 @@
             </div>
 
             <div class="modal-body">
+                <p>Los campos que contienen un (<span class="required">*</span>) son obligatorios.</p>
                 <div class="card card-primary">
                     <form id="formProducto" name="formProducto">
                         <input type="hidden" id="idProducto" name="idProducto" value="">
@@ -18,12 +19,12 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <label>Nombre</label>
+                                        <label>Nombre<span class="required"> *</span></label>
                                         <input type="text" class="form-control" id="txtNombre" autocomplete="off" name="txtNombre" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Descripción principal</label>
+                                        <label>Descripción principal<span class="required"> *</span></label>
                                         <textarea rows="2" style="width: 100%;" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
                                     </div>
 
@@ -35,12 +36,12 @@
 
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Marca</label>
+                                        <label>Marca<span class="required"> *</span></label>
                                         <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="txtCodigo">Código</label>
+                                        <label for="txtCodigo">Código<span class="required"> *</span></label>
                                         <input type="text" class="form-control valid validNumber" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
                                         
                                         <!-- BARCODE (CODIGO DE BARRA) -->
@@ -55,26 +56,26 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="txtCodigo">Precio</label>
+                                                <label for="txtCodigo">Precio<span class="required"> *</span></label>
                                                 <input type="text" class="form-control" id="txtPrecio" autocomplete="off" name="txtPrecio" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="txtStock">Stock</label>
+                                                <label for="txtStock">Stock<span class="required"> *</span></label>
                                                 <input type="text" class="form-control valid validNumber" id="txtStock" autocomplete="off" name="txtStock" required>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="listCategorias">Categoria</label>
+                                        <label for="listCategorias">Categoria<span class="required"> *</span></label>
                                         <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required>
                                         </select>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="listStatus">Status Producto</label>
+                                        <label for="listStatus">Status Producto<span class="required"> *</span></label>
                                         <select class="form-control" id="listStatus" name="listStatus" required>
                                             <option value="1">Activo</option>
                                             <option value="2">Inactivo</option>

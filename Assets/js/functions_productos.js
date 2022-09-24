@@ -15,7 +15,6 @@ function modalNewProducto(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
     
     tableProductos = $("#tableProductos").DataTable({
         "aProcessing": true,
@@ -86,11 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 }, false);
-
-// CONFIGURACION TEXTAREA DESCRIPCION -TINYMCE
-// $('#txtDescGrl').summernote({
-//     height: 80,
-// });
 
 $(document).on('focusin', function(e) {
     if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
