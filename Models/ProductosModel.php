@@ -4,7 +4,8 @@
 
         public $intIdProducto;
         public $strNombre;
-        public $strDescripcion;
+        public $strDescPcp;
+        public $strDescGrl;
         public $strMarca;
         public $intCodigo;
         public $intStock;
@@ -29,11 +30,12 @@
             return $request;
         }
 
-        public function insertProducto(string $nombre, string $descripcion, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
+        public function insertProducto(string $nombre, string $descPcp, string $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
         {
             $return = "";
             $this->strNombre = $nombre;
-            $this->strDescripcion = $descripcion;
+            $this->strDescPcp = $descPcp;
+            $this->strDescGrl = $descGrl;
             $this->strMarca = $marca;
             $this->intCodigo = $codigo;
             $this->intStock = $stock;
@@ -45,7 +47,7 @@
 
             $request = $this->selectAll($sql_exist_codigo);
             if(empty($request)){
-                $sql_insert_producto = "INSERT INTO project_cg.productos (categoriaid, codproducto, nombre, descripcion, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescripcion', '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
+                $sql_insert_producto = "INSERT INTO project_cg.productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescGrl' ,'$this->strDescPcp', '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
                 $request = $this->insert($sql_insert_producto);
                 $return = $request;
             }else{

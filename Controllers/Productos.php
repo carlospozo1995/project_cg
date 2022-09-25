@@ -49,12 +49,13 @@
         public function setProductos()
         {
             if($_POST){
-                if($_POST['txtNombre'] == "" || $_POST['txtDescripcion'] == "" || $_POST['txtMarca'] == "" || $_POST['txtCodigo'] == "" || $_POST['txtStock'] == "" || $_POST['txtPrecio'] == "" || $_POST['listCategorias'] == "" || $_POST['listStatus'] == ""){
+                if($_POST['txtNombre'] == "" || $_POST['txtDescPcp'] == "" || $_POST['txtMarca'] == "" || $_POST['txtCodigo'] == "" || $_POST['txtStock'] == "" || $_POST['txtPrecio'] == "" || $_POST['listCategorias'] == "" || $_POST['listStatus'] == ""){
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdProducto = intval($_POST['idProducto']);
                     $strNombre = strClean($_POST['txtNombre']);
-                    $strDescripcion  = strClean($_POST['txtDescripcion']);
+                    $strDescPcp = strClean($_POST['txtDescPcp']);
+                    $strDescGrl = $_POST['txtDescGrl'] != "" ? strClean($_POST['txtDescGrl']) : 'NULL';
                     $strMarca  = strClean($_POST['txtMarca']);                    
                     $intCodigo = intval($_POST['txtCodigo']);
                     $intStock = intval($_POST['txtStock']);
@@ -66,13 +67,13 @@
                     if (empty($intProducto)) {
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
-                            $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
+                            $request_producto = $this->model->insertProducto($strNombre, $strDescPcp, $strDescGrl, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
                         }
                     }
 
                     if ($request_producto > 0) {
                         if ($option == 1) {
-                            $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.');
+                            $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.', 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
                         }
                         // else{
                         //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');

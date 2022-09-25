@@ -59,7 +59,6 @@
                         }
     
                         if (!empty($_SESSION['permisosMod']['actualizar'])) {
-                            
                             $btnUpdate = '<button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'.$value['idproducto'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                         }
     

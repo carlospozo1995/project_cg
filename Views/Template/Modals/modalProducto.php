@@ -25,12 +25,12 @@
 
                                     <div class="form-group">
                                         <label>Descripción principal<span class="required"> *</span></label>
-                                        <textarea rows="2" style="width: 100%;" id="txtDescripcion" autocomplete="off" name="txtDescripcion" required></textarea>
+                                        <textarea rows="2" style="width: 100%;" id="txtDescPcp" autocomplete="off" name="txtDescPcp" required></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Descripción general</label>
-                                        <textarea style="width: 100%;" id="txtDescGrl" autocomplete="off" name="txtDescGrl" required></textarea>
+                                        <textarea style="width: 100%;" id="txtDescGrl" autocomplete="off" name="txtDescGrl"></textarea>
                                     </div>
                                 </div>
 
@@ -43,14 +43,6 @@
                                     <div class="form-group">
                                         <label for="txtCodigo">Código<span class="required"> *</span></label>
                                         <input type="text" class="form-control valid validNumber" id="txtCodigo" autocomplete="off" name="txtCodigo" required>
-                                        
-                                        <!-- BARCODE (CODIGO DE BARRA) -->
-                                        <!-- <div id="divBarCode" class="notBlock text-center">
-                                            <div id="printCode">
-                                                <svg id="barcode"></svg>
-                                            </div>
-                                            <button class="btn bg-success btn-sm" type="button" onclick="fntPrintBarcode('#printCode')"><i class="fas fa-print"></i> <strong>Imprimir</strong></button>
-                                        </div> -->
                                     </div>
 
                                     <div class="row">
