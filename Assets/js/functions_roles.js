@@ -1,3 +1,6 @@
+var tableRoles;
+var rowTable;
+
 // OPEN MODAL NEW ROL
 function modalNewRol() {
     document.getElementById("idRol").value = "";
@@ -8,10 +11,10 @@ function modalNewRol() {
     formNewRol.reset();
 
     $('#modalFormRol').modal('show');
+    rowTable = "";
 }
 
 //LOAD DATA TABLE ROLES
-var tableRoles;
 document.addEventListener('DOMContentLoaded', function () {
     tableRoles = $("#tableRoles").DataTable({
         "aProcessing": true,
@@ -19,17 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "language":{
             "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
         },
-        "ajax":{
-            "url": base_url + "Roles/getRoles",
-            "dataSrc":"",
-        },
-        "columns":[
-            {"data":"idrol"},
-            {"data":"nombrerol"},
-            {"data":"descripcion"},
-            {"data":"status"},
-            {"data":"actions"},
-        ],
         "responsive": true,
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
         "dom": 'lBfrtip',
@@ -65,11 +57,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     var objData = JSON.parse(request.responseText);
                     
                     if (objData.status) {
+                        let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                        if (rowTable == "") {
+                            let btnPermisos = "";
+                            let btnUpdate = "";
+                            let btnDelete = ""; 
+
+                            if(objData.idUser == 1){
+                                btnPermisos = '<button type="button" class="btn btn-secondary btn-sm" onclick="permisos('+objData.idData+')" tilte="Permisos"><i class="fas fa-key"></i></button>';
+                            }
+
+                            if(objData.permisos.actualizar == 1  && objData.idUser == 1){
+                                btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editRol(this, '+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                            }
+
+                            if (objData.permisos.eliminar == 1  && objData.idUser == 1) {
+                                btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteRol(this, '+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                            }
+
+                            $("#tableRoles").DataTable().row.add([
+                                objData.idData,
+                                strNombre,
+                                strDescripcion,
+                                htmlStatus,
+                                '<div class="text-center"> '+btnPermisos+btnUpdate+btnDelete+'</div>'
+                            ]).draw(false);
+                        }else{
+                            let n_row = $(rowTable).find("td:eq(0)").html();
+                            let buttons_html = $(rowTable).find("td:eq(4)").html();
+                            $("#tableRoles").DataTable().row(rowTable).data([n_row, strNombre, strDescripcion, htmlStatus, buttons_html]).draw(false);
+                        }
                         $('#modalFormRol').modal('hide');
                         formNewRol.reset();
                         Swal.fire("Roles de usuario", objData.msg, "success");
-                        tableRoles.ajax.reload(function () {
-                        });
                     }else{
                         Swal.fire("Error", objData.msg, "error");
                     }
@@ -139,16 +159,19 @@ function savePermisos(e) {
 }
 
 // EDITAR ROL
-function editRol(idrol) {
-    
+function editRol(element, idrol) {
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Rol";
     document.getElementById("btnSubmitRol").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
 
-    var idRol = idrol;
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxetUser = base_url + 'Roles/getRol/' + idRol;
+    var ajaxetUser = base_url + 'Roles/getRol/' + idrol;
     request.open("GET", ajaxetUser, true);
     request.send();
 
@@ -173,7 +196,7 @@ function editRol(idrol) {
 
 // ELIMINAR ROL
 
-function deleteRol(idrol) {
+function deleteRol(element, idrol) {
     var idRol = idrol;
     Swal.fire({
         title: 'Eliminar Rol',
@@ -196,13 +219,24 @@ function deleteRol(idrol) {
                 if (request.readyState == 4 && request.status == 200) {
                     var objData = JSON.parse(request.responseText);
                     if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableRoles").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableRoles").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
+                        }
                         Swal.fire(
                             'Eliminado!',
                             objData.msg,
                             'success'
                         );
-                        tableRoles.ajax.reload(function () {
-                        });
                     }else{
                         Swal.fire(
                             'Atención!',

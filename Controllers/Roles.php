@@ -26,40 +26,6 @@
             $this->views->getView($this, "roles", $data);
         }
 
-        public function getRoles()
-        {   
-            if($_SESSION['permisosMod']['ver']){
-                $arrRoles = $this->model->selectAllRoles();
-
-                for ($i=0; $i < count($arrRoles); $i++) { 
-                    $btnPermisosRol = '';
-                    $btnUpdateRol = '';
-                    $btnDeleteRol = '';
-
-                    if ($_SESSION['idUser'] == 1) {
-                        $btnPermisosRol = '<button type="button" class=" btnPermisosRol btn btn-secondary btn-sm" onclick="permisos('.$arrRoles[$i]['idrol'].')" tilte="Permisos"><i class="fas fa-key"></i></button>';
-                    }
-                    if (!empty($_SESSION['permisosMod']['actualizar']) && $_SESSION['idUser'] == 1) {
-                        $btnUpdateRol = '<button type="button" class="btnEditRol btn btn-primary btn-sm" onclick="editRol('.$arrRoles[$i]['idrol'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                    }
-                    if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
-                        $btnDeleteRol = ' <button type="button" class="btnDeleteRol btn btn-danger btn-sm" onclick="deleteRol('.$arrRoles[$i]['idrol'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
-                    }
-
-                    if ($arrRoles[$i]['status'] == 1) {
-                        $arrRoles[$i]['status'] = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
-                    }else{
-                        $arrRoles[$i]['status'] = '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
-                    }
-
-                    // BTN PERMISOS DELETE EDIT
-                    $arrRoles[$i]['actions']=   '<div class="text-center">'.$btnPermisosRol.' '.$btnUpdateRol.' '.$btnDeleteRol.'</div>' ;
-                }
-                echo json_encode($arrRoles, JSON_UNESCAPED_UNICODE);
-            }
-            die();
-        }
-
         public function getSelectRoles()
         {
             if($_SESSION['permisosMod']['ver']){
@@ -100,7 +66,7 @@
 
             if ($request_rol > 0) {
                 if ($option == 1) {
-                    $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.');
+                    $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.', 'idData' => $request_rol, 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
                 }else{
                     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                 }
