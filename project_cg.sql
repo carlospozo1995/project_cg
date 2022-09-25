@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 24-09-2022 a las 02:20:13
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+-- Servidor: localhost
+-- Tiempo de generación: 25-09-2022 a las 22:38:49
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -132,31 +132,31 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
-(867, 5, 1, 1, 0, 0, 0),
-(868, 5, 2, 1, 1, 0, 0),
-(869, 5, 3, 1, 0, 0, 0),
-(870, 5, 4, 0, 0, 0, 0),
-(871, 5, 5, 0, 0, 0, 0),
-(912, 3, 1, 1, 0, 0, 0),
-(913, 3, 2, 1, 1, 0, 0),
-(914, 3, 3, 1, 0, 0, 0),
-(915, 3, 4, 1, 1, 1, 0),
-(916, 3, 5, 1, 0, 0, 0),
-(947, 2, 1, 1, 0, 0, 0),
-(948, 2, 2, 1, 1, 1, 1),
-(949, 2, 3, 1, 0, 0, 0),
-(950, 2, 4, 1, 1, 1, 1),
-(951, 2, 5, 1, 1, 1, 1),
-(957, 4, 1, 1, 0, 0, 0),
-(958, 4, 2, 1, 1, 0, 0),
-(959, 4, 3, 1, 0, 0, 0),
-(960, 4, 4, 1, 0, 0, 0),
-(961, 4, 5, 1, 0, 0, 0),
-(982, 1, 1, 1, 0, 0, 0),
-(983, 1, 2, 1, 1, 1, 1),
-(984, 1, 3, 1, 1, 1, 1),
-(985, 1, 4, 1, 1, 1, 1),
-(986, 1, 5, 1, 1, 1, 1);
+(1022, 1, 1, 1, 0, 0, 0),
+(1023, 1, 2, 1, 1, 1, 1),
+(1024, 1, 3, 1, 1, 1, 1),
+(1025, 1, 4, 1, 1, 1, 1),
+(1026, 1, 5, 1, 1, 1, 1),
+(1027, 2, 1, 1, 0, 0, 0),
+(1028, 2, 2, 1, 1, 1, 1),
+(1029, 2, 3, 1, 0, 0, 0),
+(1030, 2, 4, 1, 1, 1, 1),
+(1031, 2, 5, 1, 1, 1, 1),
+(1032, 3, 1, 1, 0, 0, 0),
+(1033, 3, 2, 1, 1, 0, 0),
+(1034, 3, 3, 1, 0, 0, 0),
+(1035, 3, 4, 1, 1, 1, 0),
+(1036, 3, 5, 1, 0, 0, 0),
+(1037, 4, 1, 1, 0, 0, 0),
+(1038, 4, 2, 1, 1, 0, 0),
+(1039, 4, 3, 1, 0, 0, 0),
+(1040, 4, 4, 1, 0, 0, 0),
+(1041, 4, 5, 1, 0, 0, 0),
+(1042, 5, 1, 1, 0, 0, 0),
+(1043, 5, 2, 1, 1, 0, 0),
+(1044, 5, 3, 1, 0, 0, 0),
+(1045, 5, 4, 0, 0, 0, 0),
+(1046, 5, 5, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,8 @@ CREATE TABLE `productos` (
   `categoriaid` bigint(20) NOT NULL,
   `codproducto` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descprincipal` text COLLATE utf8mb4_swedish_ci NOT NULL,
+  `descgeneral` text COLLATE utf8mb4_swedish_ci,
   `marca` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `precio` decimal(11,2) NOT NULL,
   `stock` int(11) NOT NULL,
@@ -182,14 +183,11 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descripcion`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 25, 123456789, 'BaByliss - Rastrillo de pelo para mascotas bpprd | Blanco', 'Elimina los enredos ligeros y lleva los aceites de la piel al tallo del pelo para obtener un pelaje brillante.', 'BaByliss', '20.00', 12, NULL, '2022-09-19 03:28:05', 1),
-(2, 17, 987654321, 'Apple - MacBook Pro 13 In M2 512 GB| Space Gray', 'Disfrute de gran durabilidad con una laptop diseñada para hacer lo que desea con facilidad.', 'Apple', '1999.00', 100, NULL, '2022-09-19 22:25:54', 1),
-(3, 29, 123459876, 'Motocicleta TKZ-150 TUKO', 'La Moto Tuko TKZ-150 es tipo enduro y tiene un motor de 150cc. Además alcanza velocidades de hasta 95km/h', 'TUKO', '1667.36', 0, NULL, '2022-09-20 09:39:37', 1),
-(4, 20, 543216789, 'Celular smartphone Motorola de 32GB con tarjeta de 32GB', 'El celular Motorola Moto E20 tiene una pantalla de 6.5 pulgadas y su sistema operativo es Android 11 Viene con tarjeta de memoria de 32 GB Gratis', 'Motorola', '175.64', 123, NULL, '2022-09-20 10:12:31', 1),
-(5, 32, 129379012, 'Montez - Bicicleta de Montaña A27,5 M | Negro', 'Bicicleta urbana. Ideal para movilizarse dentro y fuera de la ciudad.', 'Montez', '290.00', 10, NULL, '2022-09-20 10:25:28', 1),
-(6, 14, 93284093, 'Direct TV - Antena señal satelital kit prepago | Hd', 'Accede a televisión satelital, con imagen y sonido 100% digital.', 'Direct TV', '1200.00', 1, NULL, '2022-09-20 15:47:20', 1),
-(7, 10, 435345234, 'LG - Minicomponente CJ44', 'Haz tus momentos más divertidos con el sonido envolvente de los mejores parlantes y amplificadores. Marca LG.', 'LG', '1919.00', 2, NULL, '2022-09-20 15:50:26', 1);
+INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
+(1, 26, 123456, 'producto 1', '<p>producto 1</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 1', 'producto 1 nuevo', '12.33', 21, NULL, '2022-09-25 17:02:28', 1),
+(2, 3, 456789, 'producto 2', '<p>producto 2</p> <ul> <li>tres</li> </ul>', 'producto 2 nuevo', 'nuevo 2', '45.33', 56, NULL, '2022-09-25 17:04:04', 1),
+(3, 14, 789456, 'producto 3', '<p>producto 3</p> <ul> <li><span style=\"color: #e03e2d; background-color: #3598db;\">uno</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">dos</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">tres</span></li> </ul>', 'nuevo producto 3', 'nuevo 3', '45.33', 85, NULL, '2022-09-25 17:07:38', 2),
+(4, 7, 5479354, 'producto 4', '<p>producto 4</p> <ul style=\"list-style-type: circle;\"> <li><strong>uno</strong></li> <li><strong>dos </strong></li> <li><strong>tres</strong></li> </ul>', 'nuevo producto 4', 'nuevo 4', '45.33', 85, NULL, '2022-09-25 17:20:52', 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +211,7 @@ INSERT INTO `roles` (`idrol`, `nombrerol`, `descripcion`, `status`) VALUES
 (2, 'Supervisor', 'Solo ciertos permisos', 1),
 (3, 'Suplente', 'Suplente  Permisos restringidos', 1),
 (4, 'Vendedor', 'Vendedor - No tiene permisos', 1),
-(5, 'Cliente', 'Cliente No hay permisos', 2);
+(5, 'Cliente', 'Cliente No hay permisos', 1);
 
 -- --------------------------------------------------------
 
@@ -244,7 +242,7 @@ INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `t
 (2, '070671565-3', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-08-06 18:58:01', 1),
 (3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
 (4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
-(5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-08-31 01:28:13', 1),
+(5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:28:13', 1),
 (6, '1300', 'Camilo', 'Perez', 1231231231, 'camilo@camilo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-09-02 17:46:02', 1);
 
 --
@@ -325,13 +323,13 @@ ALTER TABLE `modulos`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=987;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1047;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
