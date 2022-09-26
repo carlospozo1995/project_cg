@@ -80,12 +80,22 @@ document.addEventListener('DOMContentLoaded', function () {
                                     btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>';
                                 }
                                 if (objData.permisos.actualizar == 1){
-                                    btnUpdate = '<button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                                 }
 
                                 if (objData.permisos.eliminar == 1 && objData.idUser == 1) {
                                     btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                                 }
+
+                                $("#tableProductos").DataTable().row.add([
+                                    objData.idData,
+                                    codProd,
+                                    nameProd,
+                                    priceProd,
+                                    stock,
+                                    htmlStatus,
+                                    '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                                ]).draw(false);
                             }
 
                             document.getElementById('idProducto').value = objData.idproducto;
