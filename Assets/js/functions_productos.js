@@ -88,14 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
 
                                 $("#tableProductos").DataTable().row.add([
-                                    objData.idData,
+                                    objData.idproducto,
                                     codProd,
                                     nameProd,
-                                    priceProd,
+                                    // '$ '+objData.precioFormat,
+                                    '$ '+ new Intl.NumberFormat('de-DE').format(priceProd),
                                     stock,
                                     htmlStatus,
                                     '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                                 ]).draw(false);
+                            }else{
+                                
                             }
 
                             document.getElementById('idProducto').value = objData.idproducto;
