@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":15,
+        "iDisplayLength":10,
     });
 
     if (document.getElementById('formProducto')) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (request.readyState == 4 && request.status == 200) {
                         var objData = JSON.parse(request.responseText);
                         if(objData.status){
-                            let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                            let htmlStatus = status == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
                             if(rowTable == ""){
                                 let btnView = "";
