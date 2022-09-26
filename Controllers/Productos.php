@@ -89,6 +89,23 @@
             }
         }
 
+        public function viewProducto($idProducto)
+        {
+            if($_SESSION['permisosMod']['ver']){
+                $intIdProducto = intval($idProducto);
+                if ($intIdProducto > 0) {
+                    $arrProducto = $this->model->selectProducto($intIdProducto);
+                    if (empty($arrProducto)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    }else{
+                        $arrResponse = array('status' => true, 'data' => $arrProducto);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                }
+            }
+            die();
+        }
+
     }   
 
 ?>

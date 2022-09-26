@@ -63,5 +63,13 @@
             return $request;
         }
 
+        public function selectProducto($idProducto)
+        {
+            $this->intIdProducto = $idProducto;
+            
+            $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto AND status != 0"; 
+            $request = $this->select( $sql_select_producto);
+            return $request;
+        }
     }
 ?>

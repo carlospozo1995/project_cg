@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                     objData.idproducto,
                                     codProd,
                                     nameProd,
-                                    // '$ '+objData.precioFormat,
                                     '$ '+ new Intl.NumberFormat('de-DE').format(priceProd),
                                     stock,
                                     htmlStatus,
@@ -115,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 }, false);
 
+// TEXT AREA TINYMCE
 $(document).on('focusin', function(e) {
     if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
         e.stopImmediatePropagation();
@@ -140,6 +140,7 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | print preview fullpage | forecolor backcolor",
     branding: false,
 });
+// ----------------------------------------------
 
 function ctgProductos(idProducto) {
     let ajaxUrl = "";
@@ -155,4 +156,20 @@ function ctgProductos(idProducto) {
             $("#listCategorias").select2();
         }
     }
+}
+
+function viewProducto(idProducto) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlProducto = base_url + 'Productos/viewProducto/' + idProducto;
+    request.open("GET", urlProducto, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+
+            }
+        }
+    }   
 }
