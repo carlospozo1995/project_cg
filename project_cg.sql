@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 25-09-2022 a las 22:38:49
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.19
+-- Servidor: localhost:3306
+-- Tiempo de generación: 26-09-2022 a las 05:19:17
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -184,10 +184,24 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 26, 123456, 'producto 1', '<p>producto 1</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 1', 'producto 1 nuevo', '12.33', 21, NULL, '2022-09-25 17:02:28', 1),
-(2, 3, 456789, 'producto 2', '<p>producto 2</p> <ul> <li>tres</li> </ul>', 'producto 2 nuevo', 'nuevo 2', '45.33', 56, NULL, '2022-09-25 17:04:04', 1),
-(3, 14, 789456, 'producto 3', '<p>producto 3</p> <ul> <li><span style=\"color: #e03e2d; background-color: #3598db;\">uno</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">dos</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">tres</span></li> </ul>', 'nuevo producto 3', 'nuevo 3', '45.33', 85, NULL, '2022-09-25 17:07:38', 2),
-(4, 7, 5479354, 'producto 4', '<p>producto 4</p> <ul style=\"list-style-type: circle;\"> <li><strong>uno</strong></li> <li><strong>dos </strong></li> <li><strong>tres</strong></li> </ul>', 'nuevo producto 4', 'nuevo 4', '45.33', 85, NULL, '2022-09-25 17:20:52', 1);
+(1, 27, 1234, 'producto 1', '<p>producto uno</p> <ul> <li><span style=\"color: #e03e2d; background-color: #3598db;\">uno</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">dos</span></li> <li><span style=\"color: #e03e2d; background-color: #3598db;\">tres</span></li> </ul>', 'Nuevo producto uno', 'uno', '12.33', 12, NULL, '2022-09-25 21:43:31', 1),
+(2, 3, 64532, 'Producto 2', '<p>producto dos</p> <ul> <li><span style=\"background-color: #236fa1; color: #f1c40f;\">uno</span></li> <li><span style=\"background-color: #236fa1; color: #f1c40f;\">dos</span></li> <li><span style=\"background-color: #236fa1; color: #f1c40f;\">tres</span></li> </ul>', 'Nuevo producto 2', 'nuevo 2', '34.22', 12, NULL, '2022-09-25 21:47:46', 1),
+(3, 17, 98654, 'prodcuto 3', '<p>producto 3</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 3', 'nuevo 3', '12.44', 98, NULL, '2022-09-25 21:50:22', 1),
+(4, 3, 2133224, 'producto 4', '<p>producto 4</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 4', 'nuevo 4', '45.00', 32, NULL, '2022-09-25 21:55:07', 1),
+(5, 4, 92489, 'producto 5', '<p>producto 5</p> <ul> <li><span style=\"background-color: #b96ad9; color: #f1c40f;\">uno</span></li> <li><span style=\"background-color: #b96ad9; color: #f1c40f;\">dos</span></li> <li><span style=\"background-color: #b96ad9; color: #f1c40f;\">tres</span></li> </ul>', 'nuevo producto 5', 'nuevo 5', '56.33', 43, NULL, '2022-09-25 22:04:35', 2),
+(6, 33, 3934, 'producto 6', '<p>producto 6</p> <ul> <li><span style=\"background-color: #f8cac6; color: #e03e2d;\">uno</span></li> <li><span style=\"background-color: #f8cac6; color: #e03e2d;\">dos</span></li> <li><span style=\"background-color: #f8cac6; color: #e03e2d;\">tres</span></li> </ul>', 'nuevo producto seis', 'nuevo 6', '432.00', 12, NULL, '2022-09-25 22:09:15', 1),
+(7, 28, 846388, 'producto siete', 'NULL', 'nuevo producto 7', 'nuevo 7', '90.00', 9, NULL, '2022-09-25 22:12:30', 1),
+(8, 3, 863972, 'producto 8', '<p>nue</p>', 'nuevo producto 8', 'nuevo 8', '89.00', 7, NULL, '2022-09-25 22:13:20', 1),
+(9, 21, 44239394, 'prodcuto 9', '<p>producto 9</p>', 'nuevo producto 9', 'nuevo 9', '93.88', 12, NULL, '2022-09-25 22:34:38', 1),
+(10, 21, 2342, 'producto 10', '<p>prodcto 10</p>', 'nuebo ptodcuto 10', 'nuevo10', '23.23', 2, NULL, '2022-09-25 22:36:07', 1),
+(11, 3, 3324, 'producto 11', '<p>p11</p>', 'nuevo producto 11', 'nuevo 11', '21.22', 123, NULL, '2022-09-25 22:39:46', 1),
+(12, 3, 565, 'producto 12', '<p>producto 12</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 12', 'nuevo 12', '65.00', 45, NULL, '2022-09-25 22:51:05', 1),
+(13, 28, 3654, 'producto 13', '<p>producto 13</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 13', 'nuevo 13', '64.00', 41, NULL, '2022-09-25 22:53:06', 1),
+(14, 3, 635465, 'producto 14', '<p>prodcuto 14</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo producto 14', 'nuevo 14', '54.23', 45, NULL, '2022-09-25 23:04:45', 1),
+(15, 6, 34, 'producto 15', '<p>producto 15</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo producto 15', 'nuevo 15', '3134.33', 45, NULL, '2022-09-25 23:06:40', 1),
+(16, 21, 654, 'producto 16', '<p>producto 16</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo producto 16', 'nuevo 16', '65478.00', 45, NULL, '2022-09-25 23:14:47', 1),
+(17, 6, 54654, 'prodcuto 17', '<p>producto 1</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo producto 17', 'nuevo 17', '44655.33', 54, NULL, '2022-09-25 23:19:30', 1),
+(18, 21, 65457, 'producto 18', '<ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo p 18', 'nuevo 18', '5465.33', 54, NULL, '2022-09-25 23:24:19', 1);
 
 -- --------------------------------------------------------
 
@@ -329,7 +343,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
