@@ -30,7 +30,7 @@
             return $request;
         }
 
-        public function insertProducto(string $nombre, string $descPcp, string $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
+        public function insertProducto(string $nombre, string $descPcp, $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
         {
             $return = "";
             $this->strNombre = $nombre;
@@ -43,11 +43,15 @@
             $this->intCategoria = $categoria;
             $this->intStatus = $status;
 
+            $dataChange_dg = ""; 
+
+            $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
+
             $sql_exist_codigo = "SELECT * FROM project_cg.productos WHERE codproducto = $this->intCodigo";
 
             $request = $this->selectAll($sql_exist_codigo);
             if(empty($request)){
-                $sql_insert_producto = "INSERT INTO project_cg.productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescGrl' ,'$this->strDescPcp', '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
+                $sql_insert_producto = "INSERT INTO project_cg.productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescPcp' ,$dataChange_dg , '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
                 $request = $this->insert($sql_insert_producto);
                 $return = $request;
             }else{
@@ -67,8 +71,8 @@
         {
             $this->intIdProducto = $idProducto;
             
-            $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto AND status != 0"; 
-            $request = $this->select( $sql_select_producto);
+            $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto AND p.status != 0"; 
+            $request = $this->select($sql_select_producto);
             return $request;
         }
     }

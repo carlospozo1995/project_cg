@@ -92,7 +92,37 @@
                         </div>
 
                         <div class="card-footer">
-                            <p>as,ndm</p>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="containerGallery">
+                                            <span>Galeria de fotos</span>
+                                            <button class="btnAddImage btn btn-info btn-sm" type="button">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </button>
+                                        </div>
+                                        <hr>
+                                        <div id="containerImages">
+                                            <div id="div24">
+                                                <div class="prevImage">
+                                                    <img src="<?= media(); ?>images/uploads/cocina.jpg" alt="">
+                                                </div>
+                                                <input type="file" name="foto" id="img1" class="inputUploadfile">
+                                                <label for="img1" class="btnUploadfile"><i class="fas fa-upload"></i></label>
+                                                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div24')"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                            <div id="div24">
+                                                <div class="prevImage">
+                                                    <img clas="loading" src="<?= media(); ?>images/loading.gif" alt="">
+                                                </div>
+                                                <input type="file" name="foto" id="img1" class="inputUploadfile">
+                                                <label for="img1" class="btnUploadfile"><i class="fas fa-upload"></i></label>
+                                                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div24')"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -101,4 +131,51 @@
            
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalViewProducto">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header header-primary-mc">
+                <h4 class="modal-title">Datos del  producto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                <!-- Table data user -->
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td id="celNombre"></td>
+                            </tr>
+                            <tr>
+                                <td>Imagen:</td>
+                                <td id="celImagen"></td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de registro:</td>
+                                <td id="celFecharegistro"></td>
+                            </tr>
+                            <tr>
+                                <td>Categoria padre</td>
+                                <td id="celCatPadre"></td>
+                            </tr>
+                            <tr>
+                                <td>Estado:</td>
+                                <td id="celEstado"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>

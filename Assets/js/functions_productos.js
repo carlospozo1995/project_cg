@@ -112,6 +112,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    if(document.querySelector('.btnAddImage')){
+        let btnAddImage = document.querySelector('.btnAddImage');
+        btnAddImage.addEventListener('click', function (e) {
+            let key = Date.now();
+            let newElement = document.createElement("div");
+            newElement.id = 'div'+key;
+            newElement.innerHTML = `
+                <div class="prevImage"></div>
+                <input type="file" name="foto" id="img${key}" class="inputUploadfile">
+                <label for="img${key}" class="btnUploadfile"><i class="fas fa-upload"></i></label>
+                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div${key}')"><i class="fas fa-trash"></i></button>`;
+            document.querySelector("#containerImages").appendChild(newElement);
+            document.querySelector('.btnUploadfile').click();
+        });
+    }
 }, false);
 
 // TEXT AREA TINYMCE
@@ -140,8 +156,51 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | print preview fullpage | forecolor backcolor",
     branding: false,
 });
-// ----------------------------------------------
+// ----- -----------------------------------------
+  
+function fntInputFile() {
+    let inputUploadfile = document.querySelectorAll(".inputUploadfile");
+    inputUploadfile.forEach(function(inputUploadfile){
+        inputUploadfile.addEventListener("change", function () {
+            let idProducto = document.getElementById("idProducto").value;
+            let parentId = this.parentNode.getAttribute("id");
+            let idFile = this.getAttribute("id");
+            let uploadFoto = document.getElementById(idFile).value;
+            let fileImg = document.getElementById(idFile).files;
+            let prevImg = document.getElementById(parentId+" .prevImage");
+            let nav = window.URL || window. webkitURL;
 
+            if(uploadFoto != ""){
+                let type = fileImg[0].type;
+                let name = fileImg[0].name;
+                if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
+                    prevImg.innerHTML = "Archivo no valido.";
+                    uploadFoto.value = "";
+                    return false;
+                }else{
+                    let objeto_url = nav.createObjectURL(this.files[0]);
+                    prevImg.innerHTML = `<img class="loading" src="${base_url}Assets/images/loading.gif">`;
+
+                    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    let ajaxUrl = base_url + 'Productos/setImage';
+                    let formData = new FormData;
+                    formData.append('idproducto', idProducto);
+                    formData.append('foto', this.file[0]);
+                    request.open("POST",ajaxUrl,true);
+                    request.send(formData);
+                    request.onreadystatechange = function(){
+                        if (request.readyState != 4) return;
+                        if (request.status == 200) {
+                            let objData = JSON.parse(request.responseText);
+                            prevImg.innerHTML = `<img src="${objeto_url}">`;
+                        }
+                    }
+                }
+            }
+        })
+    });
+}
+ 
 function ctgProductos(idProducto) {
     let ajaxUrl = "";
     idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;
@@ -157,19 +216,22 @@ function ctgProductos(idProducto) {
         }
     }
 }
-
+          
 function viewProducto(idProducto) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let urlProducto = base_url + 'Productos/viewProducto/' + idProducto;
     request.open("GET", urlProducto, true);
     request.send();
-
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
-            if (objData.status) {
-
+            if(objData.status){
+                let status = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                // console.log(status)
+                $('#modalViewProducto').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
             }
-        }
+        }   
     }   
 }
