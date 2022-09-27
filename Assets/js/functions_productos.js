@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>';
                                 }
                                 if (objData.permisos.actualizar == 1){
-                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(element,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                                 }
 
                                 if (objData.permisos.eliminar == 1 && objData.idUser == 1) {
@@ -125,9 +125,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <label for="img${key}" class="btnUploadfile"><i class="fas fa-upload"></i></label>
                 <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div${key}')"><i class="fas fa-trash"></i></button>`;
             document.querySelector("#containerImages").appendChild(newElement);
-            document.querySelector('.btnUploadfile').click();
+            document.querySelector('#div'+key+' .btnUploadfile').click();
+            fntInputFile();
         });
     }
+    fntInputFile();
 }, false);
 
 // TEXT AREA TINYMCE
@@ -167,7 +169,7 @@ function fntInputFile() {
             let idFile = this.getAttribute("id");
             let uploadFoto = document.getElementById(idFile).value;
             let fileImg = document.getElementById(idFile).files;
-            let prevImg = document.getElementById(parentId+" .prevImage");
+            let prevImg = document.querySelector("#"+parentId+" .prevImage");
             let nav = window.URL || window. webkitURL;
 
             if(uploadFoto != ""){
@@ -185,22 +187,29 @@ function fntInputFile() {
                     let ajaxUrl = base_url + 'Productos/setImage';
                     let formData = new FormData;
                     formData.append('idproducto', idProducto);
-                    formData.append('foto', this.file[0]);
+                    formData.append('foto', this.files[0]);
                     request.open("POST",ajaxUrl,true);
                     request.send(formData);
                     request.onreadystatechange = function(){
                         if (request.readyState != 4) return;
                         if (request.status == 200) {
                             let objData = JSON.parse(request.responseText);
-                            prevImg.innerHTML = `<img src="${objeto_url}">`;
+                            if(objData.status){
+                                prevImg.innerHTML = `<img src="${objeto_url}">`;
+                                document.querySelector("#"+parentId+" .btnDeleteImage").setAttribute("imgname", objData.imgname);
+                                document.querySelector("#"+parentId+" .btnUploadfile").classList.add('notBlock');
+                                document.querySelector("#"+parentId+" .btnDeleteImage").classList.remove('notBlock');
+                            }else{
+                                swal("Error", objData.msg, "error");
+                            }
                         }
                     }
                 }
             }
-        })
+        });
     });
 }
- 
+
 function ctgProductos(idProducto) {
     let ajaxUrl = "";
     idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;

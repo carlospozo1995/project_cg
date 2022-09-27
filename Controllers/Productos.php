@@ -106,6 +106,14 @@
             die();
         }
 
+        public function setImage()
+        {
+            // dep($_POST);
+            // dep($_FILES);
+            $arrResponse = array('status' => true, 'imgname' => 'img_1233132213.jpg');
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+
     }   
 
 ?>
