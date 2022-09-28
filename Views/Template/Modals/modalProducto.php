@@ -170,7 +170,7 @@
                             </tr>
                             <tr>
                                 <td>Fotos de referencia:</td>
-                                <td style="display:flex; gap:10px" id="celImages"></td>
+                                <td id="celImages"></td>
                             </tr>
                         </tbody>
                     </table>

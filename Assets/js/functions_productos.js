@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                 let btnDelete = ""; 
 
                                 if (objData.permisos.ver == 1) {
-                                    btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>';
+                                    btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('+objData.idproducto+')" tilte="Ver"><i class="fas fa-eye"></i></button>';
                                 }
                                 if (objData.permisos.actualizar == 1){
-                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(element,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(element,'+objData.idproducto+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                                 }
 
                                 if (objData.permisos.eliminar == 1 && objData.idUser == 1) {
-                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('+objData.idproducto+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                                 }
 
                                 $("#tableProductos").DataTable().row.add([
@@ -236,22 +236,24 @@ function viewProducto(idProducto) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if(objData.status){
-                let dataImages = "";
-                let status = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
-                document.getElementById('celCodigo').innerHTML = objData.data.codproducto;
-                document.getElementById('celNombre').innerHTML = objData.data.nombre;
-                document.getElementById('celMarca').innerHTML = objData.data.marca;
-                document.getElementById('celCtg').innerHTML = objData.data.nameCtg;
-                document.getElementById('celPrecio').innerHTML = objData.data.precio;
-                document.getElementById('celStock').innerHTML = objData.data.stock;
+                let htmlImages = "";
+                let jsData = objData.data; 
+                let status = jsData.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                document.getElementById('celCodigo').innerHTML = jsData.codproducto;
+                document.getElementById('celNombre').innerHTML = jsData.nombre;
+                document.getElementById('celMarca').innerHTML = jsData.marca;
+                document.getElementById('celCtg').innerHTML = jsData.nameCtg;
+                document.getElementById('celPrecio').innerHTML = jsData.precio;
+                document.getElementById('celStock').innerHTML = jsData.stock;
                 document.getElementById('celStatus').innerHTML = status;
-                document.getElementById('celDescPcp').innerHTML = objData.data.descprincipal;
-                document.getElementById('celDescGrl').innerHTML = objData.data.descgeneral;
+                document.getElementById('celDescPcp').innerHTML = jsData.descprincipal;
+                document.getElementById('celDescGrl').innerHTML = jsData.descgeneral;
 
-                for (let i = 0; i < objData.data.imagesProd.length; i++) {
-                    dataImages += `<img class="prevImage" src="${objData.data.imagesProd[i]['url_image']}">`;
+                for (let i = 0; i < jsData.imagesProd.length; i++) {
+                    htmlImages += `<img src="${jsData.imagesProd[i].url_image}">`;
                 }
-                document.getElementById("celImages").innerHTML = dataImages;
+                document.getElementById('celImages').innerHTML = htmlImages;
+                
                 $('#modalViewProducto').modal('show');
             }else{
                 Swal.fire("Error", objData.msg, "error");
