@@ -26,14 +26,14 @@
             $this->views->getView($this, "productos", $data);
         }
 
-        public function getCategorias($idProducto)
+        public function getCategorias()
         {
             if ($_SESSION['permisosMod']['ver']) {
                 $htmlOptions = "";
-                $intIdProducto = "";
+                "";
                 $catFatherName = "";
-                !empty($idProducto) ? $intIdProducto = intval($idProducto) : "";
-                $arrCategorias = $this->model->ctgProductos($intIdProducto);
+                // !empty($idProducto) ? $intIdProducto = intval($idProducto) :  $intIdProducto = "";
+                $arrCategorias = $this->model->ctgProductos();
                 
                 foreach ($arrCategorias as $key => $value) {
                     $value['fathercatname'] != "" ? $catFatherName = ' ('.$value['fathercatname'].')' : $catFatherName = "";

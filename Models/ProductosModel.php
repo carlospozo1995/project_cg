@@ -18,9 +18,9 @@
             parent::__construct();
         }
 
-        public function ctgProductos($idProducto)
+        public function ctgProductos()
         {   
-            $this->intIdProducto = $idProducto;
+            // $this->intIdProducto = $idProducto;
             // $retutnId = "";
             // if (!empty($this->intCategoria)){
             //     $retutnId = " AND idcategoria != $this->intCategoria";

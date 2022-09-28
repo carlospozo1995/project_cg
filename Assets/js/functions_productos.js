@@ -8,7 +8,7 @@ function modalNewProducto(){
     document.getElementById("btnSubmitProducto").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
     var idProducto = document.getElementById('idProducto').value = "";
-    ctgProductos(idProducto);
+    ctgProductos();
     $('#modalFormProducto').modal('show');
     formProducto.reset();
     rowTable = "";
@@ -80,11 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                     btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewProducto('+objData.idproducto+')" tilte="Ver"><i class="fas fa-eye"></i></button>';
                                 }
                                 if (objData.permisos.actualizar == 1){
-                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(element,'+objData.idproducto+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editProducto(this,'+objData.idproducto+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                                 }
 
                                 if (objData.permisos.eliminar == 1 && objData.idUser == 1) {
-                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('+objData.idproducto+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto(this,'+objData.idproducto+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                                 }
 
                                 $("#tableProductos").DataTable().row.add([
@@ -211,9 +211,9 @@ function fntInputFile() {
     });
 }
 
-function ctgProductos(idProducto) {
-    let ajaxUrl = "";
-    idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;
+function ctgProductos() {
+    let ajaxUrl = 'Productos/getCategorias';
+    // idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     request.open('GET', ajaxUrl, true);
@@ -260,4 +260,45 @@ function viewProducto(idProducto) {
             }
         }   
     }   
+}
+
+function editProducto(element, idProducto){
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Producto";
+    document.getElementById("btnSubmitProducto").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    var idProducto = document.getElementById('idProducto').value = idProducto;
+    ctgProductos();
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetProducto = base_url + 'Productos/getProducto/' + idProducto;
+    request.open("GET", ajaxetProducto, true);
+    request.send();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                document.getElementById('txtNombre').value = objData.data.nombre;
+                document.getElementById('txtDescPcp').value = objData.data.descprincipal;
+                if (objData.data.descgeneral != null) {
+                    document.getElementById('txtDescGrl').value = objData.data.descgeneral;
+                    tinymce.activeEditor.setContent(objData.data.descgeneral);
+                }
+                else{ 
+                    document.getElementById('txtDescGrl').value = "";
+                    tinymce.activeEditor.setContent(""); 
+                }
+                document.getElementById('txtMarca').value = objData.data.marca;
+                document.getElementById('txtCodigo').value = objData.data.codproducto;
+                document.getElementById('txtPrecio').value = objData.data.precio;
+                document.getElementById('txtStock').value = objData.data.stock;
+                document.getElementById('listCategorias').value = objData.data.categoriaid;
+                console.log(objData.data.categoriaid);
+                $("#listCategorias").select2();
+                document.getElementById('listStatus').value = objData.data.status;
+                
+                $('#modalFormProducto').modal('show');
+            }
+        }
+    }
 }
