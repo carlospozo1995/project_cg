@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 27-09-2022 a las 05:47:38
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+-- Servidor: localhost
+-- Tiempo de generación: 28-09-2022 a las 03:16:48
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -86,6 +86,17 @@ CREATE TABLE `imgproductos` (
   `productoid` bigint(20) NOT NULL,
   `imagen` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `imgproductos`
+--
+
+INSERT INTO `imgproductos` (`idimgprod`, `productoid`, `imagen`) VALUES
+(4, 3, 'img_753e706d8b0a935db3cdaa98c1811daf.jpg'),
+(5, 3, 'img_6ca5dd06320a30b7dd227f25b0da0e11.jpg'),
+(6, 3, 'img_0435b2207abaf7728707bad7bc6e847b.jpg'),
+(7, 4, 'prod_204c28ab4f90331289c6906165d04df3.jpg'),
+(8, 4, 'prod_2e0d4e83a7718cce7953f0d897347e63.jpg');
 
 -- --------------------------------------------------------
 
@@ -185,7 +196,9 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
 (1, 28, 546546, 'producto 1', 'nuevo producto 1', '<p>producto 1</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 1', '45.33', 54, NULL, '2022-09-26 21:47:05', 1),
-(2, 14, 6354654, 'producto 2', 'nuevo producto 2', NULL, 'nuevo 2', '54245.33', 54, NULL, '2022-09-26 21:48:10', 1);
+(2, 14, 6354654, 'producto 2', 'nuevo producto 2', NULL, 'nuevo 2', '54245.33', 54, NULL, '2022-09-26 21:48:10', 1),
+(3, 7, 411255, 'producto 3', 'nuevo producto 3', '<p>producto 3</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 3', '45.32', 4, NULL, '2022-09-27 21:25:35', 1),
+(4, 20, 456555, 'producto 4', 'nuevo producto 4', '<ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 4', '45.33', 454, NULL, '2022-09-27 21:41:31', 1);
 
 -- --------------------------------------------------------
 
@@ -309,7 +322,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
-  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -327,7 +340,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
