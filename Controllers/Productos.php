@@ -73,7 +73,7 @@
 
                     if ($request_producto > 0) {
                         if ($option == 1) {
-                            $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.', 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
+                            $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.', 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser'], 'price' =>  SMONEY.' '.formatMoney($strPrecio));
                         }
                         // else{
                         //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
@@ -116,16 +116,23 @@
             if($_SESSION['permisosMod']['ver']){
                 $intIdProducto = intval($idProducto);
                 if ($intIdProducto > 0) {
-                    $arrProducto = $this->model->selectProducto($intIdProducto);
-                    // if (empty($arrProducto)) {
-                    //     $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-                    // }else{
-                    //     $arrResponse = array('status' => true, 'data' => $arrProducto);
-                    // }
-                    // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    $arrDataProd = $this->model->selectProducto($intIdProducto);
+                    if (empty($arrDataProd)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    }else{
+                        $arrImgProd = $this->model->selectImages($intIdProducto);
+                        if (count($arrImgProd) > 0) {
+                            for ($i=0; $i < count($arrImgProd); $i++) { 
+                                $arrImgProd[$i]['url_image'] = media().'images/uploads/'.$arrImgProd[$i]['imagen'];
+                            }
+                        }
+                        $arrDataProd['imagesProd'] = $arrImgProd;
+                        $arrResponse = array('status' => true, 'data' => $arrDataProd);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    die();
                 }
             }
-            // die();
         }
 
     }   

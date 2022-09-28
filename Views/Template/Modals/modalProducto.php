@@ -133,24 +133,44 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
+                                <td>Codigo:</td>
+                                <td id="celCodigo"></td>
+                            </tr>
+                            <tr>
                                 <td>Nombre:</td>
                                 <td id="celNombre"></td>
                             </tr>
                             <tr>
-                                <td>Imagen:</td>
-                                <td id="celImagen"></td>
+                                <td>Marca:</td>
+                                <td id="celMarca"></td>
                             </tr>
                             <tr>
-                                <td>Fecha de registro:</td>
-                                <td id="celFecharegistro"></td>
+                                <td>Categoria:</td>
+                                <td id="celCtg"></td>
                             </tr>
                             <tr>
-                                <td>Categoria padre</td>
-                                <td id="celCatPadre"></td>
+                                <td>Precio:</td>
+                                <td id="celPrecio"></td>
                             </tr>
                             <tr>
-                                <td>Estado:</td>
-                                <td id="celEstado"></td>
+                                <td>Stock:</td>
+                                <td id="celStock"></td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td id="celStatus"></td>
+                            </tr>
+                            <tr>
+                                <td>Descripción principal:</td>
+                                <td id="celDescPcp"></td>
+                            </tr>
+                            <tr>
+                                <td>Descripción general:</td>
+                                <td id="celDescGrl"></td>
+                            </tr>
+                            <tr>
+                                <td>Fotos de referencia:</td>
+                                <td id="celImages"></td>
                             </tr>
                         </tbody>
                     </table>

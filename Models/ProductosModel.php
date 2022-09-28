@@ -80,9 +80,16 @@
         public function selectProducto(int $idProducto)
         {
             $this->intIdProducto = $idProducto;
-            
-            $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto AND p.status != 0"; 
+            $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto"; 
             $request = $this->select($sql_select_producto);
+            return $request;
+        }
+
+        public function selectImages(int $idProducto)
+        {
+            $this->intIdProducto = $idProducto;
+            $sql_selec_imgProd = "SELECT * FROM project_cg.imgproductos WHERE productoid = $this->intIdProducto";
+            $request = $this->selectAll($sql_selec_imgProd);
             return $request;
         }
     }

@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     objData.idproducto,
                                     codProd,
                                     nameProd,
-                                    '$ '+ new Intl.NumberFormat('de-DE').format(priceProd),
+                                    objData.price,
                                     stock,
                                     htmlStatus,
                                     '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
@@ -229,7 +229,7 @@ function ctgProductos(idProducto) {
           
 function viewProducto(idProducto) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let urlProducto = base_url + 'Productos/viewProducto/' + idProducto;
+    let urlProducto = base_url + 'Productos/getProducto/' + idProducto;
     request.open("GET", urlProducto, true);
     request.send();
     request.onreadystatechange = function () {
@@ -237,7 +237,17 @@ function viewProducto(idProducto) {
             let objData = JSON.parse(request.responseText);
             if(objData.status){
                 let status = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
-                // console.log(status)
+                document.getElementById('celCodigo').innerHTML = objData.data.codproducto;
+                document.getElementById('celNombre').innerHTML = objData.data.nombre;
+                document.getElementById('celMarca').innerHTML = objData.data.marca;
+                document.getElementById('celCtg').innerHTML = objData.data.nameCtg;
+                document.getElementById('celPrecio').innerHTML = objData.data.precio;
+                document.getElementById('celStock').innerHTML = objData.data.stock;
+                document.getElementById('celStatus').innerHTML = status;
+                document.getElementById('celDescPcp').innerHTML = objData.data.descprincipal;
+                document.getElementById('celDescGrl').innerHTML = objData.data.descgeneral;
+                // document.getElementById('').innerHTML = objData.data;
+                // document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
                 $('#modalViewProducto').modal('show');
             }else{
                 Swal.fire("Error", objData.msg, "error");
