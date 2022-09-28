@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if(document.querySelector('.btnAddImage')){
         let btnAddImage = document.querySelector('.btnAddImage');
-        btnAddImage.addEventListener('click', function (e) {
+        btnAddImage.addEventListener('click', function () {
             let key = Date.now();
             let newElement = document.createElement("div");
             newElement.id = 'div'+key;
@@ -162,8 +162,8 @@ tinymce.init({
   
 function fntInputFile() {
     let inputUploadfile = document.querySelectorAll(".inputUploadfile");
-    inputUploadfile.forEach(function(inputUploadfile){
-        inputUploadfile.addEventListener("change", function () {
+    inputUploadfile.forEach(function(itemUpload){
+        itemUpload.addEventListener("change", function () {
             let idProducto = document.getElementById("idProducto").value;
             let parentId = this.parentNode.getAttribute("id");
             let idFile = this.getAttribute("id");
@@ -186,7 +186,7 @@ function fntInputFile() {
                     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                     let ajaxUrl = base_url + 'Productos/setImage';
                     let formData = new FormData;
-                    formData.append('idproducto', idProducto);
+                    formData.append('idProducto', idProducto);
                     formData.append('foto', this.files[0]);
                     request.open("POST",ajaxUrl,true);
                     request.send(formData);
@@ -199,8 +199,9 @@ function fntInputFile() {
                                 document.querySelector("#"+parentId+" .btnDeleteImage").setAttribute("imgname", objData.imgname);
                                 document.querySelector("#"+parentId+" .btnUploadfile").classList.add('notBlock');
                                 document.querySelector("#"+parentId+" .btnDeleteImage").classList.remove('notBlock');
+                                Swal.fire("Productos", objData.msg, "success");
                             }else{
-                                swal("Error", objData.msg, "error");
+                                Swal.fire("Error", objData.msg, "error");
                             }
                         }
                     }

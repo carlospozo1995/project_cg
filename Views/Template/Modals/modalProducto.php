@@ -96,29 +96,14 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="containerGallery">
-                                            <span>Galeria de fotos</span>
+                                            <span><b>Agregar fotos</b> (440 x 545)</span>
                                             <button class="btnAddImage btn btn-info btn-sm" type="button">
                                                 <i class="fas fa-plus-circle"></i>
                                             </button>
                                         </div>
                                         <hr>
                                         <div id="containerImages">
-                                            <!-- <div id="div24">
-                                                <div class="prevImage">
-                                                    <img src="<?= media(); ?>images/uploads/cocina.jpg" alt="">
-                                                </div>
-                                                <input type="file" name="foto" id="img1" class="inputUploadfile">
-                                                <label for="img1" class="btnUploadfile"><i class="fas fa-upload"></i></label>
-                                                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div24')"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                            <div id="div24">
-                                                <div class="prevImage">
-                                                    <img clas="loading" src="<?= media(); ?>images/loading.gif" alt="">
-                                                </div>
-                                                <input type="file" name="foto" id="img1" class="inputUploadfile">
-                                                <label for="img1" class="btnUploadfile"><i class="fas fa-upload"></i></label>
-                                                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div24')"><i class="fas fa-trash"></i></button>
-                                            </div> -->
+                                            <!-- IMAGENES DE PRODUCTOS POR JS -->
                                         </div>
                                     </div>
                                 </div>

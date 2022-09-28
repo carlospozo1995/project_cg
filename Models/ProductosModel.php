@@ -12,6 +12,7 @@
         public $strPrecio;
         public $intCategoria;
         public $intStatus;
+        public $strImagen;
 
         function __construct(){
             parent::__construct();
@@ -67,12 +68,21 @@
             return $request;
         }
 
-        public function selectProducto($idProducto)
+        public function selectProducto(int $idProducto)
         {
             $this->intIdProducto = $idProducto;
             
             $sql_select_producto = "SELECT p.*, c.nombre AS nameCtg FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria where p.idproducto = $this->intIdProducto AND p.status != 0"; 
             $request = $this->select($sql_select_producto);
+            return $request;
+        }
+
+        public function insertImage(int $idProducto, string $nameImgProd)
+        {
+            $this->intIdProducto = $idProducto;
+            $this->strImagen = $nameImgProd;
+            $sql_insert_img = "INSERT INTO project_cg.imgproductos(productoid, imagen) VALUES($this->intIdProducto, '$this->strImagen')";
+            $request = $this->insert($sql_insert_img);
             return $request;
         }
     }
