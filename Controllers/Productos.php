@@ -89,39 +89,43 @@
             }
         }
 
-        public function viewProducto($idProducto)
+        public function setImage()
+        {
+            if ($_POST) {
+                if(empty($_POST['idProducto'])){
+                    $arrResponse = array('status' => false, 'msg' => 'Error de carga');
+                }else{
+                    $idProducto = intval($_POST['idProducto']);
+                    $foto = $_FILES['foto'];
+                    $imgNameProd = 'prod_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                    $request_image = $this->model->insertImage($idProducto, $imgNameProd);
+                    if ($request_image) {
+                        uploadImage($foto, $imgNameProd);
+                        $arrResponse = array('status' => true, 'imgname' => $imgNameProd, 'msg' => 'Archivo cargado');
+                    }else{
+                        $arrResponse = array('status' => false, 'msg' => 'Error de carga');
+                    }
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                die;
+            }
+        }
+
+        public function getProducto($idProducto)
         {
             if($_SESSION['permisosMod']['ver']){
                 $intIdProducto = intval($idProducto);
                 if ($intIdProducto > 0) {
                     $arrProducto = $this->model->selectProducto($intIdProducto);
-                    if (empty($arrProducto)) {
-                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-                    }else{
-                        $arrResponse = array('status' => true, 'data' => $arrProducto);
-                    }
-                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    // if (empty($arrProducto)) {
+                    //     $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    // }else{
+                    //     $arrResponse = array('status' => true, 'data' => $arrProducto);
+                    // }
+                    // echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 }
             }
-            die();
-        }
-
-        public function setImage()
-        {
-            if ($_POST) {
-                $idProducto = intval($_POST['idProducto']);
-                $foto = $_FILES['foto'];
-                $imgNameProd = 'prod_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                $request_image = $this->model->insertImage($idProducto, $imgNameProd);
-                if ($request_image) {
-                    uploadImage($foto, $imgNameProd);
-                    $arrResponse = array('status' => true, 'imgname' => $imgNameProd, 'msg' => 'Archivo cargado');
-                }else{
-                     $arrResponse = array('status' => false, 'msg' => 'Error de carga');
-                }
-            }
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-            
+            // die();
         }
 
     }   
