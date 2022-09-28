@@ -236,6 +236,7 @@ function viewProducto(idProducto) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if(objData.status){
+                let dataImages = "";
                 let status = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
                 document.getElementById('celCodigo').innerHTML = objData.data.codproducto;
                 document.getElementById('celNombre').innerHTML = objData.data.nombre;
@@ -246,8 +247,11 @@ function viewProducto(idProducto) {
                 document.getElementById('celStatus').innerHTML = status;
                 document.getElementById('celDescPcp').innerHTML = objData.data.descprincipal;
                 document.getElementById('celDescGrl').innerHTML = objData.data.descgeneral;
-                // document.getElementById('').innerHTML = objData.data;
-                // document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
+
+                for (let i = 0; i < objData.data.imagesProd.length; i++) {
+                    dataImages += `<img class="prevImage" src="${objData.data.imagesProd[i]['url_image']}">`;
+                }
+                document.getElementById("celImages").innerHTML = dataImages;
                 $('#modalViewProducto').modal('show');
             }else{
                 Swal.fire("Error", objData.msg, "error");
