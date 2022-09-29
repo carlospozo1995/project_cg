@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     fntInputFile();
+    ctgProductos();
 }, false);
 
 // TEXT AREA TINYMCE
@@ -293,8 +294,8 @@ function editProducto(element, idProducto){
                 document.getElementById('txtPrecio').value = objData.data.precio;
                 document.getElementById('txtStock').value = objData.data.stock;
                 document.getElementById('listCategorias').value = objData.data.categoriaid;
-                console.log(objData.data.categoriaid);
                 $("#listCategorias").select2();
+                // console.log(document.getElementById('listCategorias').value);
                 document.getElementById('listStatus').value = objData.data.status;
                 
                 $('#modalFormProducto').modal('show');
