@@ -206,7 +206,7 @@
                 recursiveChildrens($value['idcategoria'], $arrCategorias, $return);
             }
         }
-        return $return;;
+        return $return;
     }
 
     function recursiveChildrens($idFather, $arrCategorias, &$return){

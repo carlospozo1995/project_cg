@@ -7,8 +7,10 @@ function modalNewProducto(){
     document.querySelector(".modal-title").innerHTML = "Nuevo Producto";
     document.getElementById("btnSubmitProducto").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
-    var idProducto = document.getElementById('idProducto').value = "";
-    ctgProductos();
+    document.getElementById('idProducto').value = "";
+    let valueCtgP = document.getElementById('dataPrimary').value;
+    document.getElementById('listCategorias').value = valueCtgP
+    $("#listCategorias").select2();
     $('#modalFormProducto').modal('show');
     formProducto.reset();
     rowTable = "";
@@ -130,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     fntInputFile();
-    ctgProductos();
 }, false);
 
 // TEXT AREA TINYMCE
@@ -211,22 +212,6 @@ function fntInputFile() {
         });
     });
 }
-
-function ctgProductos() {
-    let ajaxUrl = 'Productos/getCategorias';
-    // idProducto == "" ? ajaxUrl = 'Productos/getCategorias': ajaxUrl = 'Productos/getCategorias/' + idProducto;
-
-    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    request.open('GET', ajaxUrl, true);
-    request.send();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200){
-            document.getElementById("listCategorias").innerHTML = request.responseText;
-            $("#listCategorias").select2();
-        }
-    }
-}
           
 function viewProducto(idProducto) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -269,7 +254,7 @@ function editProducto(element, idProducto){
     document.getElementById("btnSubmitProducto").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
     var idProducto = document.getElementById('idProducto').value = idProducto;
-    ctgProductos();
+    // ctgProductos();
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxetProducto = base_url + 'Productos/getProducto/' + idProducto;

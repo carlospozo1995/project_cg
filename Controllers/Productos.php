@@ -26,26 +26,6 @@
             $this->views->getView($this, "productos", $data);
         }
 
-        public function getCategorias()
-        {
-            if ($_SESSION['permisosMod']['ver']) {
-                $htmlOptions = "";
-                "";
-                $catFatherName = "";
-                // !empty($idProducto) ? $intIdProducto = intval($idProducto) :  $intIdProducto = "";
-                $arrCategorias = $this->model->ctgProductos();
-                
-                foreach ($arrCategorias as $key => $value) {
-                    $value['fathercatname'] != "" ? $catFatherName = ' ('.$value['fathercatname'].')' : $catFatherName = "";
-
-                    if ($value['status'] == 1) {
-                        $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].$catFatherName.'</option>';
-                    }
-                }
-                echo $htmlOptions;
-            }
-        }
-
         public function setProductos()
         {
             if($_POST){

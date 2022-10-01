@@ -92,5 +92,6 @@
             $request = $this->selectAll($sql_selec_imgProd);
             return $request;
         }
+
     }
 ?>

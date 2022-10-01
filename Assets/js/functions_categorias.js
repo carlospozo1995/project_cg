@@ -1,19 +1,20 @@
 var tableCategorias;
 var rowTable;
+var formCategoria = document.getElementById("formCategoria");
 
 function modalNewCategoria() {
+    $('#modalFormCategoria').modal('show');
+    formCategoria.reset();
+    var idCategoria = document.getElementById('idCategoria').value = "";
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
     document.querySelector(".modal-title").innerHTML = "Nueva Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
-    var idCategoria = document.getElementById('idCategoria').value = "";
+    document.getElementById('listCategorias').value = "";
     selectAllCategorias(idCategoria);
-    $('#modalFormCategoria').modal('show');
-    formCategoria.reset();
     document.getElementById('foto_alert').innerHTML = "";
     document.querySelector('.errorCategoria').textContent = "";
     document.querySelector('.photo').style.display = 'block';
-    document.getElementById('listCategorias').value = "";
     removePhoto();
     rowTable = "";
 }
@@ -91,10 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":15,
+        "iDisplayLength":10,
     });
 
-    var formCategoria = document.getElementById("formCategoria");
     formCategoria.addEventListener('submit', function (e) {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
@@ -205,6 +205,7 @@ function editCategoria(element, idCategoria) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
+                $("#modalFormCategoria").modal("show");
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
@@ -219,20 +220,12 @@ function editCategoria(element, idCategoria) {
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
                 } else{
-                    var option_cat = $("#listCategorias").find("option[value='"+ objData.data.categoria_father_id +"']");
-                    // console.log(option_cat);
-                    if(option_cat.length){
-                        option_cat.prop("selected", true);
-                    }
+                    document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
                     $("#listCategorias").select2();
-                    // document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
-                    // console.log(option_cat);
-                    // console.log(option_cat.length)
-                    // console.log(document.getElementById("listCategorias").value);
                     document.querySelector('.photo').style.display = 'none';
                     document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }
-                $("#modalFormCategoria").modal("show");
+                // console.log( document.getElementById("listCategorias").value)
             }
         }
     }     
@@ -283,7 +276,7 @@ function deleteCategoria(element, idCategoria) {
                             'error'
                         );
                     }
-                }
+                }   
             }
 
         }

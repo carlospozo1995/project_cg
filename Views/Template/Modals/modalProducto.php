@@ -63,7 +63,23 @@
                                     <div class="form-group">
                                         <label for="listCategorias">Categoria<span class="required"> *</span></label>
                                         <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required>
+                                            <?php
+                                                if ($_SESSION['permisosMod']['ver']) {
+                                                    $catFatherName = "";
+                                                    require_once 'Models/ProductosModel.php';
+                                                    $objProductos = new ProductosModel();
+                                                    $request = $objProductos->ctgProductos();
+                                                    foreach ($request as $key => $value) {
+                                                        $value['fathercatname'] != "" ? $catFatherName = ' ('.$value['fathercatname'].')' : $catFatherName = "";
+                                    
+                                                        if ($value['status'] == 1) {
+                                                            echo '<option value="'.$value['idcategoria'].'">'.$value['nombre'].$catFatherName.'</option>';
+                                                        }
+                                                    }
+                                                }
+                                            ?>
                                         </select>
+                                        <input type="hidden" value="<?=$request[0]['idcategoria']?>" id="dataPrimary">
                                     </div>
 
                                     <div class="form-group">

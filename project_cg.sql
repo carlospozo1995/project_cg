@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 28-09-2022 a las 03:16:48
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.19
+-- Servidor: localhost:3306
+-- Tiempo de generación: 29-09-2022 a las 15:10:08
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,11 +92,11 @@ CREATE TABLE `imgproductos` (
 --
 
 INSERT INTO `imgproductos` (`idimgprod`, `productoid`, `imagen`) VALUES
-(4, 3, 'img_753e706d8b0a935db3cdaa98c1811daf.jpg'),
-(5, 3, 'img_6ca5dd06320a30b7dd227f25b0da0e11.jpg'),
-(6, 3, 'img_0435b2207abaf7728707bad7bc6e847b.jpg'),
-(7, 4, 'prod_204c28ab4f90331289c6906165d04df3.jpg'),
-(8, 4, 'prod_2e0d4e83a7718cce7953f0d897347e63.jpg');
+(1, 1, 'prod_8e06ed0e0ce181079df60e932a2ee284.jpg'),
+(2, 1, 'prod_763c15fc70acce185e3bc28ddaf0f3df.jpg'),
+(3, 2, 'prod_2cf6096db3b483a838ad6a1c6e8a4196.jpg'),
+(4, 3, 'prod_bd123917707e12a0199e80c6ccde1e3b.jpg'),
+(5, 4, 'prod_26a41521f5152ee606304a3b2537d4df.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,10 +195,18 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 28, 546546, 'producto 1', 'nuevo producto 1', '<p>producto 1</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 1', '45.33', 54, NULL, '2022-09-26 21:47:05', 1),
-(2, 14, 6354654, 'producto 2', 'nuevo producto 2', NULL, 'nuevo 2', '54245.33', 54, NULL, '2022-09-26 21:48:10', 1),
-(3, 7, 411255, 'producto 3', 'nuevo producto 3', '<p>producto 3</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 3', '45.32', 4, NULL, '2022-09-27 21:25:35', 1),
-(4, 20, 456555, 'producto 4', 'nuevo producto 4', '<ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 4', '45.33', 454, NULL, '2022-09-27 21:41:31', 1);
+(1, 18, 534654, 'producto 1', 'nuevo producto 1', '<p>producto1</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 1', '54.00', 54, NULL, '2022-09-27 08:43:50', 2),
+(2, 6, 546546, 'producto 2', 'nuevo producto 2', NULL, 'nuevo 2', '547.00', 45, NULL, '2022-09-27 08:47:28', 1),
+(3, 33, 654654, 'producto 3', 'nuevo producto 3', '<p>producto&nbsp; 3</p>', 'nuevo 3', '78.00', 1, NULL, '2022-09-27 09:02:32', 1),
+(4, 14, 6456564, 'producto 4', 'nuevo p 4', NULL, 'nuevo 4', '963.00', 23, NULL, '2022-09-27 09:04:46', 2),
+(5, 3, 3216541, 'producto 5', 'nuevo producto 5', '<ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 5', '54.00', 54, NULL, '2022-09-28 09:48:48', 1),
+(6, 21, 32546, 'producto 6', 'nuevo producto 6', '<p>producto 6 nuevo</p>', 'nuevo 6', '54512.23', 87, NULL, '2022-09-28 09:50:46', 1),
+(7, 21, 3574, 'producto seis', 'nuevo p 6', NULL, 'nuevo 6', '62.00', 54, NULL, '2022-09-28 09:59:12', 1),
+(8, 3, 354335, 'producto 8', 'nuevo p 8', '<p>producto 8</p> <table style=\"border-collapse: collapse; width: 100%;\" border=\"1\"> <tbody> <tr> <td style=\"width: 31.1205%;\">uno</td> <td style=\"width: 31.1205%;\">1</td> <td style=\"width: 31.1205%;\">1</td> </tr> <tr> <td style=\"width: 31.1205%;\">dos</td> <td style=\"width: 31.1205%;\">2</td> <td style=\"width: 31.1205%;\">2</td> </tr> <tr> <td style=\"width: 31.1205%;\">tres</td> <td style=\"width: 31.1205%;\">3</td> <td style=\"width: 31.1205%;\">3</td> </tr> <tr> <td style=\"width: 31.1205%;\">&nbsp;</td> <td style=\"width: 31.1205%;\">&nbsp;</td> <td style=\"width: 31.1205%;\">&nbsp;</td> </tr> </tbody> </table>', 'nuevo 8', '9612.00', 5, NULL, '2022-09-28 10:03:11', 1),
+(9, 26, 4399, 'producto 9', 'nuevo p 9', '<ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 9', '234.00', 23, NULL, '2022-09-28 12:54:30', 1),
+(10, 3, 9606, 'producto 10', 'nuevo p10', NULL, 'nuevo 10', '12.00', 3, NULL, '2022-09-29 08:45:35', 1),
+(11, 28, 4533, 'producto 11', 'nuevo p 11', NULL, 'nuevo11', '12.00', 2, NULL, '2022-09-29 08:46:51', 1),
+(12, 14, 12312, 'PRODUCTO 12', 'nuevo p 12', NULL, 'nuevo 12', '78.00', 65, NULL, '2022-09-29 08:47:34', 1);
 
 -- --------------------------------------------------------
 
@@ -322,7 +330,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
-  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -340,7 +348,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
