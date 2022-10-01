@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-09-2022 a las 15:10:08
+-- Tiempo de generación: 01-10-2022 a las 18:34:50
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -41,39 +41,26 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
-(1, 'Electrodomesticos', 'img_8d5b66386bdd9d79be7435427de81fc9.jpg', '2022-09-10 03:25:00', NULL, 1),
-(2, 'Climatización', NULL, '2022-09-10 03:25:33', 1, 1),
-(3, 'Aire acondicionados', NULL, '2022-09-10 03:26:12', 2, 1),
-(4, 'Ventiladores', NULL, '2022-09-10 03:26:28', 2, 1),
-(5, 'Cocinas', NULL, '2022-09-10 03:29:51', 1, 1),
-(6, 'Cocinas a gas', NULL, '2022-09-10 03:30:12', 5, 1),
-(7, 'Hornos', NULL, '2022-09-10 03:30:33', 5, 1),
-(8, 'Audio y video', 'img_6fa97208c60433ff1950e439f7db30c5.jpg', '2022-09-10 03:32:33', NULL, 1),
-(9, 'Audio y sonido', NULL, '2022-09-10 03:33:33', 8, 1),
-(10, 'Equipos de sonido', NULL, '2022-09-10 03:34:28', 9, 1),
-(11, 'Barras de sonido', NULL, '2022-09-10 03:35:14', 9, 1),
-(12, 'TV y video', NULL, '2022-09-10 03:36:44', 8, 1),
-(13, 'Televisores', NULL, '2022-09-10 03:37:54', 12, 1),
-(14, 'Antenas prepago', NULL, '2022-09-10 03:38:16', 12, 1),
-(15, 'Tecnología', 'img_132e9fc5b9334216330d97f15ab17134.jpg', '2022-09-10 07:57:22', NULL, 1),
-(16, 'Computadoras', NULL, '2022-09-10 07:59:07', 15, 1),
-(17, 'Laptos', NULL, '2022-09-10 08:00:23', 16, 1),
-(18, 'Computadoras de escritorio', NULL, '2022-09-10 08:00:42', 16, 1),
-(19, 'Teléfonos', NULL, '2022-09-10 08:02:33', 15, 1),
-(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 1),
-(21, 'Accesorios', NULL, '2022-09-10 08:03:22', 19, 1),
-(22, 'Movilidad', 'img_ba98a55e9dedc2824e02fcfef989b5cf.jpg', '2022-09-14 09:46:54', NULL, 1),
-(23, 'Motos', NULL, '2022-09-14 09:48:14', 22, 1),
-(24, 'Bicicletas', NULL, '2022-09-14 09:48:46', 22, 1),
-(25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', '2022-09-14 09:50:19', NULL, 1),
-(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 1),
-(27, 'Accesorios', NULL, '2022-09-18 16:00:30', 23, 1),
-(28, 'Accesorios', NULL, '2022-09-18 16:00:47', 24, 1),
-(29, 'Combustión', NULL, '2022-09-18 16:14:49', 23, 1),
-(30, 'Electricas', NULL, '2022-09-18 16:15:03', 23, 1),
-(31, 'BMX', NULL, '2022-09-18 16:15:25', 24, 1),
-(32, 'Montaña', NULL, '2022-09-18 16:16:02', 24, 1),
-(33, 'Hogar', 'imgCategoria.png', '2022-09-18 16:21:44', NULL, 1);
+(1, 'categoria 1', 'imgCategoria.png', '2022-09-30 06:47:52', NULL, 1),
+(2, 'categoria 1.1', NULL, '2022-09-30 06:48:08', 1, 1),
+(3, 'categoria 1.1.1', NULL, '2022-09-30 06:48:24', 2, 1),
+(4, 'categoria 1.2', NULL, '2022-09-30 06:48:44', 1, 1),
+(5, 'categoria 1.2.1', NULL, '2022-09-30 06:48:58', 4, 1),
+(6, 'categoria 2', 'imgCategoria.png', '2022-09-30 06:49:08', NULL, 1),
+(7, 'categoria 2.1', NULL, '2022-09-30 06:49:25', 6, 1),
+(8, 'categoria 2.1.1', NULL, '2022-09-30 06:49:48', 7, 1),
+(9, 'categoria 2.2', NULL, '2022-09-30 06:50:16', 6, 1),
+(10, 'categoria 2.2.1', NULL, '2022-09-30 06:50:41', 9, 1),
+(11, 'categoria 3', 'imgCategoria.png', '2022-09-30 06:50:53', NULL, 1),
+(12, 'categoria 4', 'imgCategoria.png', '2022-09-30 06:55:00', NULL, 1),
+(13, 'categoria 4.1', 'imgCategoria.png', '2022-09-30 06:55:42', NULL, 1),
+(14, 'categoria 4.1.1', NULL, '2022-09-30 06:55:58', 13, 1),
+(15, 'categoria 4.2', NULL, '2022-09-30 06:56:38', 12, 1),
+(16, 'categoria 4.2.1', NULL, '2022-09-30 06:56:54', 15, 1),
+(17, 'categoria 5', 'imgCategoria.png', '2022-09-30 06:57:06', NULL, 1),
+(18, 'categoria 5.1', NULL, '2022-09-30 06:57:27', 17, 1),
+(19, 'categoria 5.1.1', NULL, '2022-09-30 06:58:01', 18, 1),
+(20, 'categoria 5.2', NULL, '2022-09-30 06:58:25', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -86,17 +73,6 @@ CREATE TABLE `imgproductos` (
   `productoid` bigint(20) NOT NULL,
   `imagen` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
-
---
--- Volcado de datos para la tabla `imgproductos`
---
-
-INSERT INTO `imgproductos` (`idimgprod`, `productoid`, `imagen`) VALUES
-(1, 1, 'prod_8e06ed0e0ce181079df60e932a2ee284.jpg'),
-(2, 1, 'prod_763c15fc70acce185e3bc28ddaf0f3df.jpg'),
-(3, 2, 'prod_2cf6096db3b483a838ad6a1c6e8a4196.jpg'),
-(4, 3, 'prod_bd123917707e12a0199e80c6ccde1e3b.jpg'),
-(5, 4, 'prod_26a41521f5152ee606304a3b2537d4df.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,18 +171,17 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 18, 534654, 'producto 1', 'nuevo producto 1', '<p>producto1</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 1', '54.00', 54, NULL, '2022-09-27 08:43:50', 2),
-(2, 6, 546546, 'producto 2', 'nuevo producto 2', NULL, 'nuevo 2', '547.00', 45, NULL, '2022-09-27 08:47:28', 1),
-(3, 33, 654654, 'producto 3', 'nuevo producto 3', '<p>producto&nbsp; 3</p>', 'nuevo 3', '78.00', 1, NULL, '2022-09-27 09:02:32', 1),
-(4, 14, 6456564, 'producto 4', 'nuevo p 4', NULL, 'nuevo 4', '963.00', 23, NULL, '2022-09-27 09:04:46', 2),
-(5, 3, 3216541, 'producto 5', 'nuevo producto 5', '<ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 5', '54.00', 54, NULL, '2022-09-28 09:48:48', 1),
-(6, 21, 32546, 'producto 6', 'nuevo producto 6', '<p>producto 6 nuevo</p>', 'nuevo 6', '54512.23', 87, NULL, '2022-09-28 09:50:46', 1),
-(7, 21, 3574, 'producto seis', 'nuevo p 6', NULL, 'nuevo 6', '62.00', 54, NULL, '2022-09-28 09:59:12', 1),
-(8, 3, 354335, 'producto 8', 'nuevo p 8', '<p>producto 8</p> <table style=\"border-collapse: collapse; width: 100%;\" border=\"1\"> <tbody> <tr> <td style=\"width: 31.1205%;\">uno</td> <td style=\"width: 31.1205%;\">1</td> <td style=\"width: 31.1205%;\">1</td> </tr> <tr> <td style=\"width: 31.1205%;\">dos</td> <td style=\"width: 31.1205%;\">2</td> <td style=\"width: 31.1205%;\">2</td> </tr> <tr> <td style=\"width: 31.1205%;\">tres</td> <td style=\"width: 31.1205%;\">3</td> <td style=\"width: 31.1205%;\">3</td> </tr> <tr> <td style=\"width: 31.1205%;\">&nbsp;</td> <td style=\"width: 31.1205%;\">&nbsp;</td> <td style=\"width: 31.1205%;\">&nbsp;</td> </tr> </tbody> </table>', 'nuevo 8', '9612.00', 5, NULL, '2022-09-28 10:03:11', 1),
-(9, 26, 4399, 'producto 9', 'nuevo p 9', '<ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 9', '234.00', 23, NULL, '2022-09-28 12:54:30', 1),
-(10, 3, 9606, 'producto 10', 'nuevo p10', NULL, 'nuevo 10', '12.00', 3, NULL, '2022-09-29 08:45:35', 1),
-(11, 28, 4533, 'producto 11', 'nuevo p 11', NULL, 'nuevo11', '12.00', 2, NULL, '2022-09-29 08:46:51', 1),
-(12, 14, 12312, 'PRODUCTO 12', 'nuevo p 12', NULL, 'nuevo 12', '78.00', 65, NULL, '2022-09-29 08:47:34', 1);
+(1, 11, 987239, 'producto 1', 'nuevo producto 1', '<p>producto uno</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo uno', '12.00', 2, NULL, '2022-09-30 07:03:07', 1),
+(2, 5, 98213, 'producto 2', 'nuevoo producto dos', '<p>nuevo producto dos</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo dos', '33.22', 21, NULL, '2022-09-30 07:04:19', 1),
+(3, 8, 1321, 'producto 3', 'nuevo producto tres', NULL, 'nuevo tres', '123.44', 3, NULL, '2022-09-30 07:05:05', 1),
+(4, 3, 383, 'producto 4', 'nuevo producto cuatro', '<p>producto cuatro</p>', 'nuevo cuatro', '123.21', 89, NULL, '2022-09-30 07:06:23', 1),
+(5, 16, 9239, 'producto 5', 'nuevo producto cinco', NULL, 'nuevo cinco', '932.00', 89, NULL, '2022-09-30 07:07:13', 1),
+(6, 20, 9448, 'producto seis', 'nuevo producto seis', '<p>producto seis</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo seis', '89.00', 32, NULL, '2022-09-30 07:08:24', 2),
+(7, 19, 9948392, 'producto 7', 'nuevo producto siete', NULL, 'nuevo siete', '2137128.22', 89, NULL, '2022-09-30 07:09:36', 2),
+(8, 14, 383987, 'producto ocho', 'nuevo producto ocho', '<p>producto 8</p>', 'nuevo ocho', '7383.90', 8, NULL, '2022-09-30 07:10:31', 1),
+(9, 14, 63773, 'producto 9', 'nuevo producto nueve', '<p>producto nueve</p> <ol> <li>uno</li> <li>dos</li> <li>tres</li> </ol>', 'nuevo 9', '8833.90', 21, NULL, '2022-09-30 07:12:39', 1),
+(10, 16, 93298, 'producto 10', 'nuevo producto 10', '<p>producto 10</p> <ul> <li>uno</li> <li>dos</li> <li>tres</li> </ul>', 'nuevo 10', '78.90', 8, NULL, '2022-09-30 10:31:09', 1),
+(11, 11, 238129, 'categoria 11', 'nuevo producto 11', NULL, 'nuevo 11', '12.00', 12, NULL, '2022-09-30 11:13:06', 1);
 
 -- --------------------------------------------------------
 
@@ -324,13 +299,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
-  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idimgprod` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `modulos`
@@ -348,7 +323,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
