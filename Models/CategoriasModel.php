@@ -74,10 +74,30 @@
             if (empty($request)) {
                 $sql_update_categoria = "UPDATE project_cg.categorias SET nombre = '$this->strCategoria',  imgcategoria= $data_img, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
                 $request = $this->update($sql_update_categoria);
+                
+                if ($request) {
+                    $childrensIds = array();
+                    $recursiveData = self::recursiveChildren($this->intIdCategoria, $childrensIds);
+                    $arrImplode = implode(',', $recursiveData);
+                    $update_status = "UPDATE project_cg.categorias set status = $this->intStatus WHERE idcategoria in ($arrImplode)";
+                    $this->update($update_status);
+                }
             }else{
                 $request = 'existe';
             }
             return $request;
+        }
+
+        public function recursiveChildren($idFather, &$arrayIds)
+        {
+            $sql = "SELECT idcategoria FROM project_cg.categorias WHERE categoria_father_id = $idFather";
+            $request = $this->selectAll($sql);
+            foreach ($request as $key => $value) {
+                $idData = $value['idcategoria'];
+                $arrayIds[] = $idData;
+                self::recursiveChildren($idData, $arrayIds);
+            }
+            return $arrayIds;
         }
 
         public function allCategorias()

@@ -197,7 +197,7 @@
     // ----------------------------------------------
 
 
-    // OBTENCION DE LOS HIJOS DE UNA CATEGORIA PADRE
+    // OBTENCION DE LOS HIJOS DE UNA CATEGORIA PADRE (DELETE CATEGORIA)
     function childrensCategoria($arrCategorias, $intCategoria){
         $return = array();
         foreach ($arrCategorias as $key => $value) {

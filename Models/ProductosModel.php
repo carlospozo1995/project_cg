@@ -20,9 +20,8 @@
 
         public function ctgProductos()
         {   
-            // $sql ="SELECT ca.*, ca2.nombre AS fathercatname FROM categorias ca LEFT JOIN categorias ca2 ON ca.categoria_father_id = ca2.idcategoria where ca.idcategoria not in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC) AND ca.status = 1 ORDER BY ca.nombre ASC";
+            $sql ="SELECT ca.*, ca2.nombre AS fathercatname FROM categorias ca LEFT JOIN categorias ca2 ON ca.categoria_father_id = ca2.idcategoria where ca.idcategoria not in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC) AND ca.status = 1 ORDER BY ca.nombre ASC";
 
-            $sql = "SELECT ca.*, ca2.nombre AS fathercatname FROM categorias ca LEFT JOIN categorias ca2 ON ca.categoria_father_id = ca2.idcategoria where ca.idcategoria not in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC) AND ca.status = 1 AND (ca.categoria_father_id in (SELECT ca.idcategoria FROM categorias ca  where (ca.idcategoria in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC)  OR (ca.categoria_father_id is null)) AND ca.status = 1 and (ca.categoria_father_id in (SELECT ca.idcategoria FROM categorias ca  where (ca.idcategoria in (select c.categoria_father_id from categorias c where c.categoria_father_id is not null AND c.status = 1 ORDER BY c.nombre ASC)  OR (ca.categoria_father_id is null)) AND ca.status = 1  ORDER BY ca.nombre ASC) or ca.categoria_father_id is null)  ORDER BY ca.nombre ASC) or ca.categoria_father_id is null) ORDER BY ca.nombre ASC";
             $request = $this->selectAll($sql);
             return $request;
         }

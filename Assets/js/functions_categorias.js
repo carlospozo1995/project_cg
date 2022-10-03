@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         intCategoria = intCategoria.replaceAll("-","");
         var intStatus = document.getElementById('listStatus').value;
 
-        if(strTitulo == "" || intStatus == ""){
+        if(strTitulo == "" || intStatus == "" || intCategoria == ""){
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
             loading.style.display = "flex";

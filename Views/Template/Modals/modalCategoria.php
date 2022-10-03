@@ -24,7 +24,7 @@
 
                                     <div class="form-group">
                                         <label for="categoriaId">Categoria padre</label>
-                                        <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias"></select>
+                                        <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required></select>
                                     </div>
                                 
                                     <div class="form-group">

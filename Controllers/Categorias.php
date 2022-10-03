@@ -38,7 +38,7 @@
         public function setCategoria()
         {
             if($_POST){
-                if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == ""){
+                if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == "" || $_POST['listCategorias'] == ""){
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
