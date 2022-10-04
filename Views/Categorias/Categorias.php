@@ -45,8 +45,8 @@
                   <?php
                     if($_SESSION['permisosMod']['ver']){
                       require_once 'Models/CategoriasModel.php';
-                      $objLogin = new CategoriasModel();
-                      $request = $objLogin->allCategorias();
+                      $objCategorias = new CategoriasModel();
+                      $request = $objCategorias->allCategorias();
                       foreach ($request as $key => $value) {
                         $btnView = '';
                         $btnUpdate = '';
@@ -62,7 +62,7 @@
                         }
 
                         if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
-                            $btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'.$value['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                            $btnDelete = '<button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'.$value['idcategoria'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                         }
                 
                         if ($value['status'] == 1) {

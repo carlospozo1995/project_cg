@@ -1,6 +1,4 @@
-var tableCategorias;
 var rowTable;
-var formCategoria = document.getElementById("formCategoria");
 
 function modalNewCategoria() {
     $('#modalFormCategoria').modal('show');
@@ -10,8 +8,8 @@ function modalNewCategoria() {
     document.querySelector(".modal-title").innerHTML = "Nueva Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Agregar";
-    document.getElementById('listCategorias').value = "";
-    selectAllCategorias(idCategoria);
+    var valCtgList = document.getElementById("listCategorias").value = 0;
+    selectAllCategorias(idCategoria, valCtgList);   
     document.getElementById('foto_alert').innerHTML = "";
     document.querySelector('.errorCategoria').textContent = "";
     document.querySelector('.photo').style.display = 'block';
@@ -23,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let listCategorias = document.getElementById('listCategorias');
     let contPhoto = document.querySelector('.photo');
     listCategorias.onchange = function (e) {
-        if (listCategorias.value == "" ) {
+        if (listCategorias.value == 0 ) {
             contPhoto.style.display = 'block';
             document.querySelector('.errorCategoria').textContent = "";
             document.getElementById('foto_alert').innerHTML = "";
@@ -94,16 +92,19 @@ document.addEventListener('DOMContentLoaded', function () {
         "order":[[0,"asc"]],
         "iDisplayLength":10,
     });
-
     formCategoria.addEventListener('submit', function (e) {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
-        var intCategoria = $("#listCategorias").find("option:selected").text();
-        intCategoria = intCategoria.replaceAll("-","");
+
+        var valCtgList = document.getElementById('listCategorias').value;
+        var ctgTextVal = "";
+        document.getElementById('listCategorias').value == 0 ? ctgTextVal = "" : ctgTextVal = $("#listCategorias").find("option:selected").text();
+        ctgTextVal = ctgTextVal.replaceAll("-","");
+
         var intStatus = document.getElementById('listStatus').value;
 
-        if(strTitulo == "" || intStatus == "" || intCategoria == ""){
+        if(strTitulo == "" || intStatus == "" || valCtgList == ""){
             Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
         }else{
             loading.style.display = "flex";
@@ -118,32 +119,29 @@ document.addEventListener('DOMContentLoaded', function () {
                     if(objData.status){
                         let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
-                        let categoriaText = "";
-                        document.getElementById('listCategorias').value == "" ? categoriaText = "" : categoriaText = $("#listCategorias").find("option:selected").text();
-
                         if(rowTable == ""){
                             let btnView = "";
                             let btnUpdate = "";
                             let btnDelete = "";  
 
-                            if(objData.permisos.ver == 1){btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
+                            if(objData.permisos.ver == 1){btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idCtg+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
-                            if(objData.permisos.actualizar == 1){btnUpdate = ' <button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>'};
+                            if(objData.permisos.actualizar == 1){btnUpdate = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'+objData.idCtg+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>'};
 
-                            if(objData.permisos.eliminar == 1 && objData.idUser == 1){btnDelete = ' <button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>'};
+                            if(objData.permisos.eliminar == 1 && objData.idUser == 1){btnDelete = '<button type="button" class="btnDelete btn btn-danger btn-sm" onclick="deleteCategoria(this,'+objData.idCtg+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>'};
 
                             $("#tableCategorias").DataTable().row.add([
-                                objData.idData,
+                                objData.idCtg,
                                 strTitulo,
-                                categoriaText,
+                                ctgTextVal,
                                 htmlStatus,
-                                '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                                '<div class="text-center"> '+btnView+" "+btnUpdate+" "+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
-                            let n_row = $(rowTable).find("td:eq(0)").html();
-                            let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
-                            let buttons_html = $(rowTable).find("td:eq(4)").html();
-                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw(false);
+                            // let n_row = $(rowTable).find("td:eq(0)").html();
+                            // let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
+                            // let buttons_html = $(rowTable).find("td:eq(4)").html();
+                            // $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw(false);
                         }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
@@ -157,33 +155,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
         }
-    })
+    });
 
 }, false);
-
-function viewCategoria(idCategoria) {
-    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let urlCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
-    request.open("GET", urlCategoria, true);
-    request.send();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            let objData = JSON.parse(request.responseText);
-            if (objData.status) {
-                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
-                document.getElementById('celNombre').innerHTML = objData.data.nombre;
-                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
-                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
-                document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
-                document.getElementById('celEstado').innerHTML = statusCategoria;
-                $('#modalViewCategoria').modal('show');
-            }else{
-                Swal.fire("Error", objData.msg, "error");
-            }
-        }
-    }
-}
 
 function editCategoria(element, idCategoria) {
     rowTable = $(element).closest("tr")[0];
@@ -196,9 +170,10 @@ function editCategoria(element, idCategoria) {
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
     document.getElementById("idCategoria").value = idCategoria;
-    selectAllCategorias(idCategoria);
+    // selectAllCategorias(idCategoria, 1);
+
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxetCategoria = base_url + 'Categorias/viewCategoria/' + idCategoria;
+    let ajaxetCategoria = base_url + 'Categorias/getCategoria/' + idCategoria;
     request.open("GET", ajaxetCategoria, true);
     request.send();
     request.onreadystatechange = function () {
@@ -212,86 +187,28 @@ function editCategoria(element, idCategoria) {
                 document.getElementById("txtTitulo").value = objData.data.nombre;
                 document.getElementById("listStatus").value = objData.data.status;
                 if (objData.data.categoria_father_id == null) {
-                    document.getElementById("listCategorias").value = '';
-                    $("#listCategorias").select2();
+                    document.getElementById("listCategorias").value = 0;
+                    selectAllCategorias(idCategoria, 0);
                     document.querySelector('.prevPhoto div').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';  
                     document.querySelector('.photo').style.display = 'block'
                     document.querySelector('.errorCategoria').textContent = "";
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
                 } else{
-                    document.getElementById("listCategorias").value = objData.data.categoria_father_id; 
-                    $("#listCategorias").select2();
+                    document.getElementById("listCategorias").value = objData.data.categoria_father_id;
+                    selectAllCategorias(idCategoria, objData.data.categoria_father_id)
                     document.querySelector('.photo').style.display = 'none';
                     document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
                 }
-                // console.log( document.getElementById("listCategorias").value)
             }
         }
     }     
 }
 
-function deleteCategoria(element, idCategoria) {
-    Swal.fire({
-        title: 'Eliminar categoria',
-        text: "Realmente quiere eliminar la categoria!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url + 'Categorias/delCategoria/' + idCategoria;
-            request.open("POST", ajaxUrl, true);
-            request.send();
 
-            request.onreadystatechange = function () {
-                if (request.readyState == 4 && request.status == 200) {
-                    let objData = JSON.parse(request.responseText);
-                    if(objData.status){
-                        let row_closest = $(element).closest("tr");
-                        if(row_closest.length){
-                            let ischild = $(row_closest).hasClass("child");
-                            if(ischild){
-                                let prevtr = row_closest.prev();
-                                if(prevtr.length){
-                                    $("#tableCategorias").DataTable().row(prevtr[0]).remove().draw(false);
-                                }
-                            }
-                            else{
-                                $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
-                            }
-                        }
-                        Swal.fire(
-                            'Eliminado!',
-                            objData.msg,
-                            'success'
-                        );
-                    }else{
-                        Swal.fire(
-                            'Atención!',
-                            objData.msg,
-                            'error'
-                        );
-                    }
-                }   
-            }
+// ---------------------------------
 
-        }
-    });
-}
-
-function removePhoto(){
-    document.getElementById('foto').value ="";
-    document.querySelector('.delPhoto').classList.add("notBlock");
-    if (document.getElementById('img')){
-        document.getElementById('img').remove();
-    }
-}
-
-function selectAllCategorias(idCategoria) {
+function selectAllCategorias(idCategoria, valCtgList) {
     let ajaxUrl = "";
     idCategoria == "" ? ajaxUrl = 'Categorias/getCategorias': ajaxUrl = 'Categorias/getCategorias/' + idCategoria;
 
@@ -302,7 +219,16 @@ function selectAllCategorias(idCategoria) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200){
             document.getElementById("listCategorias").innerHTML = request.responseText;
+            document.getElementById("listCategorias").value = valCtgList;
             $("#listCategorias").select2();
         }
+    }
+}
+
+function removePhoto(){
+    document.getElementById('foto').value ="";
+    document.querySelector('.delPhoto').classList.add("notBlock");
+    if (document.getElementById('img')){
+        document.getElementById('img').remove();
     }
 }

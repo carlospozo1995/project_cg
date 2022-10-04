@@ -174,7 +174,7 @@
     // OBTENCION DE CATEGORIAS PARA EL SELECT
     function addCategorias($arrCategorias){
         $htmlOptions = "";
-        $optionStatic = '<option value="">-- CATEGORIA SUPERIOR --</option>';
+        $optionStatic = '<option value="0">-- CATEGORIA SUPERIOR --</option>';
         foreach ($arrCategorias as $key => $value) {
             if ($value['status'] == 1 && $value['categoria_father_id'] == "") {
                 $htmlOptions .= '<option value="'.$value['idcategoria'].'">'.$value['nombre'].'</option>'; 
