@@ -1,4 +1,5 @@
 var rowTable;
+var hijos;
 
 function modalNewCategoria() {
     $('#modalFormCategoria').modal('show');
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":10,
+        "iDisplayLength":12,
     });
     formCategoria.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -138,10 +139,30 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<div class="text-center"> '+btnView+" "+btnUpdate+" "+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
-                            // let n_row = $(rowTable).find("td:eq(0)").html();
-                            // let l_cat = document.getElementById('listCategorias').value == "" ?  rowTable.cells[2].textContent = "": rowTable.cells[2].textContent = intCategoria;
-                            // let buttons_html = $(rowTable).find("td:eq(4)").html();
-                            // $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo,l_cat, htmlStatus, buttons_html]).draw(false);
+                            // for (let i = 0; i < hijos.length; i++) {
+                            //     console.log(hijos[i].idcategoria);
+                            // }
+                            // $("#tableCategorias tbody tr").each(element => {
+                            //     console.log(element+1);
+                            // });
+                            
+                            let tableCtgtr = $("#tableCategorias tbody tr");
+                            
+                            // for (let h = 0; h < hijos.length; h++) {
+                            //     let idHijo = hijos[h].idcategoria;
+                                // for (let i = 0; i < tableCtgtr.length; i++) {
+                                    // console.log(tableCtgtr[0])
+                                // }
+                            // }
+
+                            for (let i = 0; i < hijos.length; i++) {
+                                let dta = hijos[i].idcategoria - 1;
+                                console.log(tableCtgtr[dta])
+                            }
+
+                            let n_row = $(rowTable).find("td:eq(0)").html();
+                            let buttons_html = $(rowTable).find("td:eq(4)").html();
+                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo, ctgTextVal, htmlStatus, buttons_html]).draw(false);
                         }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
@@ -170,7 +191,6 @@ function editCategoria(element, idCategoria) {
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
     document.getElementById("idCategoria").value = idCategoria;
-    // selectAllCategorias(idCategoria, 1);
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxetCategoria = base_url + 'Categorias/getCategoria/' + idCategoria;
@@ -181,6 +201,7 @@ function editCategoria(element, idCategoria) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
                 $("#modalFormCategoria").modal("show");
+                hijos = objData.children;
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
@@ -203,6 +224,58 @@ function editCategoria(element, idCategoria) {
             }
         }
     }     
+}
+
+function deleteCategoria(element, idCategoria) {
+    Swal.fire({
+        title: 'Eliminar categoria',
+        text: "Realmente quiere eliminar la categoria!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Categorias/delCategoria/' + idCategoria;
+            request.open("POST", ajaxUrl, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableCategorias").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableCategorias").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
+                        }
+                        Swal.fire(
+                            'Eliminado!',
+                            objData.msg,
+                            'success'
+                        );
+                    }else{
+                        Swal.fire(
+                            'Atención!',
+                            objData.msg,
+                            'error'
+                        );
+                    }
+                }   
+            }
+
+        }
+    });
 }
 
 

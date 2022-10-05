@@ -61,42 +61,41 @@
                             }else{  
                                 // AGREGAR CATEGORIA - CON IMAGEN
                                 if (!empty($name_foto)) {
-                                    $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
                                 }
                                 if ($name_foto != '') {uploadImage($foto, $imgPortada);}
                             }
                             $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intListCtg, $intStatus );
                         }
                     }else{
-                        // $option = 2;
-                        // if($_SESSION['permisosMod']['actualizar']){
-                        //     if($intListCtg != 'NULL'){
-                        //         $imgPortada = 'NULL';
-                        //     }else{
-                        //         if($name_foto == ""){
-                        //             if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
-                        //                 $imgPortada = $_POST['foto_actual'];
-                        //             }
+                        $option = 2;
+                        if($_SESSION['permisosMod']['actualizar']){
+                            if($intListCtg != 'NULL'){
+                                $imgPortada = 'NULL';
+                            }else{
+                                if($name_foto == ""){
+                                    if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
+                                        $imgPortada = $_POST['foto_actual'];
+                                    }
                                     
-                        //             if($imgPortada == ""){
-                        //                 $imgPortada = 'imgCategoria.png';
-                        //             }
-                        //         }else{
-                        //             $imgPortada = 'img_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                        //             uploadImage($foto, $imgPortada);   
-                        //         }
-                        //     }
-                        //     $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $intListCtg, $intStatus);
-                        // }
+                                    if($imgPortada == ""){
+                                        $imgPortada = 'imgCategoria.png';
+                                    }
+                                }else{
+                                    $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($foto, $imgPortada);   
+                                }
+                            }
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $intListCtg, $intStatus);
+                        }
                     }
 
                     if ($request_categoria > 0) {
                         if ($option == 1) {
                             $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.', 'idCtg' => $request_categoria, 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
+                        }else{
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
-                        // else{
-                        //     $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                        // }
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{
@@ -111,21 +110,46 @@
         public function getCategoria($idCategoria)
         {
             if($_SESSION['permisosMod']['ver']){
-                $intIdcategoria = intval($idCategoria);
-                if ($intIdcategoria > 0) {
-                    $arrCategoria = $this->model->selectCategoria($intIdcategoria);
+                $intIdCategoria = intval($idCategoria);
+                $arrCategorias = $this->model->sqlCategorias("");
+                $dataChildren = childrensCategoria($arrCategorias, $intIdCategoria);
+
+                if ($intIdCategoria > 0) {
+                    $arrCategoria = $this->model->selectCategoria($intIdCategoria);
                     if (empty($arrCategoria)) {
                         $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
                     }else{
                         if (!empty($arrCategoria['imgcategoria'])) {
                             $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];    
                         }
-                        $arrResponse = array('status' => true, 'data' => $arrCategoria);
+                        $arrResponse = array('status' => true, 'data' => $arrCategoria, 'children' => $dataChildren);
                     }
                     echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 }
             }
             die();
+        }
+
+        public function delCategoria($idCategoria)
+        {
+            $request_categoria = "";
+            $intCategoria = intval($idCategoria);
+            if($_SESSION['permisosMod']['eliminar']){
+                $arrCategorias = $this->model->sqlCategorias("");
+                $dataChildren = childrensCategoria($arrCategorias, $intCategoria);
+                !empty($dataChildren) ? $request_categoria = "categoryExist" : $request_categoria = $this->model->deleteCategoria($intCategoria);
+            }
+
+            if($request_categoria == "ok"){
+                $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado la categoria.');
+            }elseif ($request_categoria == "categoryExist") {
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria que contiene subcategorias.');
+            }elseif($request_categoria == "productExist"){
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar una categoria que contiene productos.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la categoria.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
     }
         
