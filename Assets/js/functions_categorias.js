@@ -164,6 +164,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
+function viewCategoria(idCategoria) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCategoria = base_url + 'Categorias/getCategoria/' + idCategoria;
+    request.open("GET", urlCategoria, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                document.getElementById('celNombre').innerHTML = objData.data.nombre;
+                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
+                document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
+                document.getElementById('celEstado').innerHTML = statusCategoria;
+                $('#modalViewCategoria').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }
+        }
+    }
+}
+
 function editCategoria(element, idCategoria) {
     rowTable = $(element).closest("tr")[0];
     let ischild = $(rowTable).hasClass("child");
