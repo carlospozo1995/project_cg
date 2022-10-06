@@ -75,7 +75,7 @@
                           echo '<td>'.$value['idcategoria'].'</td>';
                           echo '<td>'.$value['nombre'].'</td>';
                           echo '<td>'.$value['fathercatname'].'</td>';
-                          echo '<td>'.$value['status'].'</td>';
+                          echo '<td id="'.$value['idcategoria'].'">'.$value['status'].'</td>';
                           echo '<td><div class="text-center">'.$btnView.' '.$btnUpdate.' '.$btnDelete.'</div></td>';
                         echo'</tr>';
                       }

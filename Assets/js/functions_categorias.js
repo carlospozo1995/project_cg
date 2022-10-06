@@ -91,8 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":12,
+        "iDisplayLength":8,
     });
+
     formCategoria.addEventListener('submit', function (e) {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
@@ -139,30 +140,13 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<div class="text-center"> '+btnView+" "+btnUpdate+" "+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
-                            // for (let i = 0; i < hijos.length; i++) {
-                            //     console.log(hijos[i].idcategoria);
-                            // }
-                            // $("#tableCategorias tbody tr").each(element => {
-                            //     console.log(element+1);
-                            // });
-                            
-                            let tableCtgtr = $("#tableCategorias tbody tr");
-                            
-                            // for (let h = 0; h < hijos.length; h++) {
-                            //     let idHijo = hijos[h].idcategoria;
-                                // for (let i = 0; i < tableCtgtr.length; i++) {
-                                    // console.log(tableCtgtr[0])
-                                // }
-                            // }
-
-                            for (let i = 0; i < hijos.length; i++) {
-                                let dta = hijos[i].idcategoria - 1;
-                                console.log(tableCtgtr[dta])
-                            }
-
                             let n_row = $(rowTable).find("td:eq(0)").html();
                             let buttons_html = $(rowTable).find("td:eq(4)").html();
                             $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo, ctgTextVal, htmlStatus, buttons_html]).draw(false);
+
+                            for (let i = 0; i < hijos.length; i++) {
+                                $("#tableCategorias").DataTable().cell(`#${hijos[i].idcategoria}`).data(htmlStatus);
+                            }
                         }
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
