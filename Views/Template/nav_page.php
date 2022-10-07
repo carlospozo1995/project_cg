@@ -76,7 +76,7 @@
               <li class="nav-item">
                 <a href="<?php base_url(); ?>categorias" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categoría</p>
+                  <p>Categorias</p>
                 </a>
               </li>
               <?php } ?>

@@ -1,5 +1,5 @@
 var rowTable;
-var hijos;
+var sonsCtg;
 
 function modalNewCategoria() {
     $('#modalFormCategoria').modal('show');
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":8,
+        "iDisplayLength":15,
     });
 
     formCategoria.addEventListener('submit', function (e) {
@@ -144,8 +144,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             let buttons_html = $(rowTable).find("td:eq(4)").html();
                             $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo, ctgTextVal, htmlStatus, buttons_html]).draw(false);
 
-                            for (let i = 0; i < hijos.length; i++) {
-                                $("#tableCategorias").DataTable().cell(`#${hijos[i].idcategoria}`).data(htmlStatus);
+                            for (let i = 0; i < sonsCtg.length; i++) {
+                                $("#tableCategorias").DataTable().cell(`#${sonsCtg[i].idcategoria}`).data(htmlStatus);
                             }
                         }
                         $("#modalFormCategoria").modal("hide");
@@ -209,7 +209,7 @@ function editCategoria(element, idCategoria) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
                 $("#modalFormCategoria").modal("show");
-                hijos = objData.children;
+                sonsCtg = objData.children;
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
