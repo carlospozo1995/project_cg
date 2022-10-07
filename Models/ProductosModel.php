@@ -56,6 +56,27 @@
             return $return;
         }
 
+        public function updateProducto(int $idProducto, string $nombre, string $descPcp, $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
+        {
+            $this->intIdProducto = $idProducto;
+            $this->strNombre = $nombre;
+            $this->strDescPcp = $descPcp;
+            $this->strDescGrl = $descGrl;
+            $this->strMarca = $marca;
+            $this->intCodigo = $codigo;
+            $this->intStock = $stock;
+            $this->strPrecio = $precio;
+            $this->intCategoria = $categoria;
+            $this->intStatus = $status;
+
+            $dataChange_dg = ""; 
+            $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
+
+            $sql_exists_codigo = "SELECT * FROM project_cg.productos WHERE codproducto = $this->intCodigo AND idproducto != $this->intIdProducto";
+            $request = $this->selectAll($sql_exist_codigo);
+
+        }
+
         public function allProductos()
         {
             $sql_productos = "SELECT  p.*, c.nombre AS categoria FROM project_cg.productos p INNER JOIN project_cg.categorias c ON p.categoriaid = c.idcategoria WHERE p.status != 0";

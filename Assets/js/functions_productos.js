@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             document.getElementById('idProducto').value = objData.idproducto;
                             Swal.fire("Productos", objData.msg, "success");
+                            validFocus();
                         }else{
                             Swal.fire("Error", objData.msg, "error");
                         }
@@ -250,6 +251,11 @@ function viewProducto(idProducto) {
 }
 
 function editProducto(element, idProducto){
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Producto";
     document.getElementById("btnSubmitProducto").classList.replace("btn-primary", "bg-success");
@@ -264,6 +270,7 @@ function editProducto(element, idProducto){
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
+                validFocus();
                 let htmlImage = "";
                 let dataProd  = objData.data;
                 document.getElementById('txtNombre').value = dataProd.nombre;
@@ -286,7 +293,6 @@ function editProducto(element, idProducto){
                 
                 if (dataProd.imagesProd.length > 0) {
                     for (let p = 0; p < dataProd.imagesProd.length; p++) {
-                        // console.log(dataProd.imagesProd[p].url_image);
                         let key = Date.now()+p;
                         htmlImage += `
                             <div id="div${key}">
