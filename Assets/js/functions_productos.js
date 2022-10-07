@@ -15,6 +15,7 @@ function modalNewProducto(){
     formProducto.reset();
     rowTable = "";
     validFocus();
+    document.querySelector("#containerImages").innerHTML = "";
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -254,7 +255,6 @@ function editProducto(element, idProducto){
     document.getElementById("btnSubmitProducto").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
     var idProducto = document.getElementById('idProducto').value = idProducto;
-    // ctgProductos();
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxetProducto = base_url + 'Productos/getProducto/' + idProducto;
@@ -264,25 +264,42 @@ function editProducto(element, idProducto){
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
-                document.getElementById('txtNombre').value = objData.data.nombre;
-                document.getElementById('txtDescPcp').value = objData.data.descprincipal;
-                if (objData.data.descgeneral != null) {
-                    document.getElementById('txtDescGrl').value = objData.data.descgeneral;
-                    tinymce.activeEditor.setContent(objData.data.descgeneral);
+                let htmlImage = "";
+                let dataProd  = objData.data;
+                document.getElementById('txtNombre').value = dataProd.nombre;
+                document.getElementById('txtDescPcp').value = dataProd.descprincipal;
+                if (dataProd.descgeneral != null) {
+                    document.getElementById('txtDescGrl').value = dataProd.descgeneral;
+                    tinymce.activeEditor.setContent(dataProd.descgeneral);
                 }
                 else{ 
                     document.getElementById('txtDescGrl').value = "";
                     tinymce.activeEditor.setContent(""); 
                 }
-                document.getElementById('txtMarca').value = objData.data.marca;
-                document.getElementById('txtCodigo').value = objData.data.codproducto;
-                document.getElementById('txtPrecio').value = objData.data.precio;
-                document.getElementById('txtStock').value = objData.data.stock;
-                document.getElementById('listCategorias').value = objData.data.categoriaid;
+                document.getElementById('txtMarca').value = dataProd.marca;
+                document.getElementById('txtCodigo').value = dataProd.codproducto;
+                document.getElementById('txtPrecio').value = dataProd.precio;
+                document.getElementById('txtStock').value = dataProd.stock;
+                document.getElementById('listCategorias').value = dataProd.categoriaid;
                 $("#listCategorias").select2();
-                // console.log(document.getElementById('listCategorias').value);
-                document.getElementById('listStatus').value = objData.data.status;
+                document.getElementById('listStatus').value = dataProd.status;
                 
+                if (dataProd.imagesProd.length > 0) {
+                    for (let p = 0; p < dataProd.imagesProd.length; p++) {
+                        // console.log(dataProd.imagesProd[p].url_image);
+                        let key = Date.now()+p;
+                        htmlImage += `
+                            <div id="div${key}">
+                                <div class="prevImage">
+                                    <img src="${dataProd.imagesProd[p].url_image}">
+                                </div>
+                                <button type="button" class="btnDeleteImage" onclick="fntDelItem('#div(${key})')" imgname= "${dataProd.imagesProd[p].imagen}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        `;
+                    }
+                }
+                document.querySelector("#containerImages").innerHTML = htmlImage;
+
                 $('#modalFormProducto').modal('show');
             }
         }

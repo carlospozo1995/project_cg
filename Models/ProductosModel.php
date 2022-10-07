@@ -87,12 +87,5 @@
             $request = $this->selectAll($sql_selec_imgProd);
             return $request;
         }
-
-        public function allCategorias()
-        {
-            $sql = "SELECT * FROM project_cg.categorias WHERE status = 1";
-            $request = $this->selectAll($sql);
-            return $request;
-        }
     }
 ?>

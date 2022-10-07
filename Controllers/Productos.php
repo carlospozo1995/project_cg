@@ -77,7 +77,7 @@
                 }else{
                     $idProducto = intval($_POST['idProducto']);
                     $foto = $_FILES['foto'];
-                    $imgNameProd = 'prod_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                    $imgNameProd = 'prod_'.$idProducto.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
                     $request_image = $this->model->insertImage($idProducto, $imgNameProd);
                     if ($request_image) {
                         uploadImage($foto, $imgNameProd);
