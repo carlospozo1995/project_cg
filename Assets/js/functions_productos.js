@@ -1,6 +1,7 @@
 
 var tableProductos;
 var rowTable;
+console.log();
 
 function modalNewProducto(){
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
