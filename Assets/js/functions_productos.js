@@ -1,7 +1,7 @@
 
 var tableProductos;
 var rowTable;
-s
+
 function modalNewProducto(){
     document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
     document.querySelector(".modal-title").innerHTML = "Nuevo Producto";
