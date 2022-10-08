@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="prevImage"></div>
                 <input type="file" name="foto" id="img${key}" class="inputUploadfile">
                 <label for="img${key}" class="btnUploadfile"><i class="fas fa-upload"></i></label>
-                <button class="btnDeleteImage" type="button" onclick="ftnDelitem('div${key}')"><i class="fas fa-trash"></i></button>`;
+                <button class="btnDeleteImage" type="button" onclick="ftnDelItem('#div${key}')"><i class="fas fa-trash"></i></button>`;
             document.querySelector("#containerImages").appendChild(newElement);
             document.querySelector('#div'+key+' .btnUploadfile').click();
             fntInputFile();
@@ -218,6 +218,32 @@ function fntInputFile() {
             }
         });
     });
+}
+
+function ftnDelItem(element) {
+    let nameImg = document.querySelector(element+' .btnDeleteImage').getAttribute("imgname");
+    let idProducto =  document.getElementById("idProducto").value;
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url + 'Productos/delFile';
+
+    let formData = new FormData();
+    formData.append('idProducto', idProducto);
+    formData.append('file', nameImg);
+    request.open("POST", ajaxUrl, true);
+    request.send(formData);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                let itemRemove = document.querySelector(element); // select div container image
+                itemRemove.parentNode.removeChild(itemRemove); //select parend div and remove div
+                Swal.fire("", objData.msg, "success");
+            }else{
+                Swal.fire("", objData.msg, "error");
+            }
+        }
+    }
 }
           
 function viewProducto(idProducto) {
@@ -305,7 +331,7 @@ function editProducto(element, idProducto){
                                 <div class="prevImage">
                                     <img src="${dataProd.imagesProd[p].url_image}">
                                 </div>
-                                <button type="button" class="btnDeleteImage" onclick="fntDelItem('#div(${key})')" imgname= "${dataProd.imagesProd[p].imagen}"><i class="fas fa-trash"></i></button>
+                                <button type="button" class="btnDeleteImage" onclick="ftnDelItem('#div${key}')" imgname= "${dataProd.imagesProd[p].imagen}"><i class="fas fa-trash"></i></button>
                             </div>
                         `;
                     }

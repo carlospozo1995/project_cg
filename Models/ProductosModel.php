@@ -115,5 +115,15 @@
             $request = $this->selectAll($sql_selec_imgProd);
             return $request;
         }
+
+        public function deleteImage(int $idProducto, string $imgName)
+        {
+            $this->intIdProducto = $idProducto;
+            $this->strImagen = $imgName;
+
+            $query = "DELETE FROM project_cg.imgproductos WHERE productoid = $this->intIdProducto AND imagen = '$this->strImagen'";
+            $request_delete = $this->delete($query);
+            return $request_delete;
+        }
     }
 ?>

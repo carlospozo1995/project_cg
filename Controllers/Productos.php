@@ -119,6 +119,27 @@
             }
         }
 
+        public function delFile()
+        {
+            if ($_POST) {
+                if (empty($_POST['idProducto']) || empty($_POST['file'])) {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
+                }else{
+                    $idProducto = intval($_POST['idProducto']);
+                    $imgName = strClean($_POST['file']);
+
+                    $request_image = $this->model->deleteImage($idProducto, $imgName);
+                    if ($request_image) {
+                        deleteFile($imgName);
+                        $arrResponse = array('status' => true, 'msg' => 'Archivo eliminado');
+                    }else{
+                        $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el archivo');
+                    }
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+
     }   
 
 ?>

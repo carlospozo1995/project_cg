@@ -171,6 +171,11 @@
         return $move;
     }
 
+    // ELIMINAR IMAGEN SELECIONADA DEL UPLOAD
+    function deleteFile(string $name){
+        unlink('Assets/images/uploads/'.$name);
+    }
+
     // OBTENCION DE CATEGORIAS PARA EL SELECT
     function addCategorias($arrCategorias){
         $htmlOptions = "";
