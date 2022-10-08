@@ -15,6 +15,7 @@ function modalNewProducto(){
     formProducto.reset();
     rowTable = "";
     validFocus();
+    document.querySelector(".card-footer").style.display = "none";
     document.querySelector("#containerImages").innerHTML = "";
 }
 
@@ -100,8 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                     '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                                 ]).draw(false);
                             }else{
-                                
+                                let n_row = $(rowTable).find("td:eq(0)").html();
+                                let buttons_html = $(rowTable).find("td:eq(6)").html();
+
+                                $("#tableProductos").DataTable().row(rowTable).data([n_row, codProd, nameProd, objData.priceUpdate ,stock, htmlStatus, buttons_html]).draw(false);
                             }
+                            $('#modalFormProducto').modal('hide');
 
                             document.getElementById('idProducto').value = objData.idproducto;
                             Swal.fire("Productos", objData.msg, "success");
@@ -260,6 +265,7 @@ function editProducto(element, idProducto){
     document.querySelector(".modal-title").innerHTML = "Actualizar Producto";
     document.getElementById("btnSubmitProducto").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
+    document.querySelector(".card-footer").style.display = "block";
     var idProducto = document.getElementById('idProducto').value = idProducto;
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

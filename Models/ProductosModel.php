@@ -73,8 +73,15 @@
             $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
 
             $sql_exists_codigo = "SELECT * FROM project_cg.productos WHERE codproducto = $this->intCodigo AND idproducto != $this->intIdProducto";
-            $request = $this->selectAll($sql_exist_codigo);
+            $request = $this->selectAll($sql_exists_codigo);
 
+            if (empty($request)) {
+                $sql_update_producto = "UPDATE project_cg.productos SET categoriaid = $this->intCategoria, codproducto = $this->intCodigo, nombre = '$this->strNombre', descprincipal = '$this->strDescPcp', descgeneral = $dataChange_dg, marca = '$this->strMarca', precio = '$this->strPrecio', stock = $this->intStock, status = $this->intStatus WHERE idproducto = $this->intIdProducto";
+                $request = $this->update($sql_update_producto);
+            }else{
+                $request = 'existe';
+            }
+            return $request;
         }
 
         public function allProductos()

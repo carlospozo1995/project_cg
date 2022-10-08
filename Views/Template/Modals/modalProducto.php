@@ -116,6 +116,7 @@
                                             <button class="btnAddImage btn btn-info btn-sm" type="button">
                                                 <i class="fas fa-plus-circle"></i>
                                             </button>
+
                                         </div>
                                         <hr>
                                         <div id="containerImages">

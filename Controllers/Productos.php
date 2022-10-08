@@ -44,24 +44,23 @@
                     $listStatus = intval($_POST['listStatus']);
                     $request_producto = "";
 
-                    if (empty($intProducto)) {
+                    if (empty($intIdProducto)) {
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
                             $request_producto = $this->model->insertProducto($strNombre, $strDescPcp, $strDescGrl, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
                         }
-                    }
-                    else{
+                    }else{
                         $option = 2;
                         if ($_SESSION['permisosMod']['actualizar']) {
-                               $request_producto = $this->model->updateProducto($intIdProducto, $strNombre, $strDescPcp, $strDescGrl, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus)
-                           }   
+                            $request_producto = $this->model->updateProducto($intIdProducto, $strNombre, $strDescPcp, $strDescGrl, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
+                        }   
                     }
 
                     if ($request_producto > 0) {
                         if ($option == 1) {
                             $arrResponse = array('status' => true, 'idproducto' => $request_producto, 'msg' => 'Datos ingresados correctamente.', 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser'], 'price' =>  SMONEY.' '.formatMoney($strPrecio));
                         }else{
-                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.', 'priceUpdate' =>  SMONEY.' '.formatMoney($strPrecio));
                         }
                     }else if($request_producto == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'El codigo del producto a ingresar ya existe.');
