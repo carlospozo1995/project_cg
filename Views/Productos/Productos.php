@@ -62,7 +62,7 @@
                         }
     
                         if (!empty($_SESSION['permisosMod']['eliminar']) && $_SESSION['idUser'] == 1){
-                            $btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto('.$value['idproducto'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                            $btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteProducto(this,'.$value['idproducto'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                         }
 
                         if ($value['status'] == 1) {

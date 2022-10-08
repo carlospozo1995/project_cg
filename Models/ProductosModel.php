@@ -125,5 +125,12 @@
             $request_delete = $this->delete($query);
             return $request_delete;
         }
+
+        public function deleteProducto(int $idProducto)
+        {
+            $this->intIdProducto = $idProducto;
+            $sql_delete = "UPDATE project_cg.productos SET status = 0 WHERE idproducto = $this->intIdProducto";
+            return $this->update($sql_delete);
+        }
     }
 ?>

@@ -140,6 +140,20 @@
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
 
+        public function delProducto($idProducto)
+        {
+            if ($_SESSION['permisosMod']['eliminar']) {
+                $UpStatusProd = $this->model->deleteProducto($idProducto);
+                if ($UpStatusProd) {
+                    $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el producto.');
+                }else{
+                    $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el producto.');
+                }
+
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+        }
+
     }   
 
 ?>

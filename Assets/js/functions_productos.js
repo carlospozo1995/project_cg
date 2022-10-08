@@ -343,3 +343,55 @@ function editProducto(element, idProducto){
         }
     }
 }
+
+function deleteProducto(element, idProducto) {
+    Swal.fire({
+        title: 'Eliminar producto',
+        text: "Realmente quiere eliminar el Producto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Productos/delProducto/' + idProducto;
+            request.open("POST", ajaxUrl, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableProductos").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableProductos").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
+                        }
+                        Swal.fire(
+                            'Eliminado!',
+                            objData.msg,
+                            'success'
+                        );
+                    }else{
+                        Swal.fire(
+                            'Atención!',
+                            objData.msg,
+                            'error'
+                        );
+                    }
+                }   
+            }
+
+        }
+    });
+}
