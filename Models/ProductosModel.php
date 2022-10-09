@@ -43,11 +43,11 @@
 
             $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
 
-            $sql_exist_codigo = "SELECT * FROM project_cg.productos WHERE codproducto = $this->intCodigo";
+            $sql_exist_codigo = "SELECT * FROM productos WHERE codproducto = $this->intCodigo";
 
             $request = $this->selectAll($sql_exist_codigo);
             if(empty($request)){
-                $sql_insert_producto = "INSERT INTO project_cg.productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescPcp' ,$dataChange_dg , '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
+                $sql_insert_producto = "INSERT INTO productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescPcp' ,$dataChange_dg , '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
                 $request = $this->insert($sql_insert_producto);
                 $return = $request;
             }else{
@@ -72,11 +72,11 @@
             $dataChange_dg = ""; 
             $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
 
-            $sql_exists_codigo = "SELECT * FROM project_cg.productos WHERE codproducto = $this->intCodigo AND idproducto != $this->intIdProducto";
+            $sql_exists_codigo = "SELECT * FROM productos WHERE codproducto = $this->intCodigo AND idproducto != $this->intIdProducto";
             $request = $this->selectAll($sql_exists_codigo);
 
             if (empty($request)) {
-                $sql_update_producto = "UPDATE project_cg.productos SET categoriaid = $this->intCategoria, codproducto = $this->intCodigo, nombre = '$this->strNombre', descprincipal = '$this->strDescPcp', descgeneral = $dataChange_dg, marca = '$this->strMarca', precio = '$this->strPrecio', stock = $this->intStock, status = $this->intStatus WHERE idproducto = $this->intIdProducto";
+                $sql_update_producto = "UPDATE productos SET categoriaid = $this->intCategoria, codproducto = $this->intCodigo, nombre = '$this->strNombre', descprincipal = '$this->strDescPcp', descgeneral = $dataChange_dg, marca = '$this->strMarca', precio = '$this->strPrecio', stock = $this->intStock, status = $this->intStatus WHERE idproducto = $this->intIdProducto";
                 $request = $this->update($sql_update_producto);
             }else{
                 $request = 'existe';
@@ -86,7 +86,7 @@
 
         public function allProductos()
         {
-            $sql_productos = "SELECT  p.*, c.nombre AS categoria FROM project_cg.productos p INNER JOIN project_cg.categorias c ON p.categoriaid = c.idcategoria WHERE p.status != 0";
+            $sql_productos = "SELECT  p.*, c.nombre AS categoria FROM productos p INNER JOIN categorias c ON p.categoriaid = c.idcategoria WHERE p.status != 0";
             $request = $this->selectAll($sql_productos);
             return $request;
         }
@@ -95,7 +95,7 @@
         {
             $this->intIdProducto = $idProducto;
             $this->strImagen = $nameImgProd;
-            $sql_insert_img = "INSERT INTO project_cg.imgproductos(productoid, imagen) VALUES($this->intIdProducto, '$this->strImagen')";
+            $sql_insert_img = "INSERT INTO imgproductos(productoid, imagen) VALUES($this->intIdProducto, '$this->strImagen')";
             $request = $this->insert($sql_insert_img);
             return $request;
         }
@@ -111,7 +111,7 @@
         public function selectImages(int $idProducto)
         {
             $this->intIdProducto = $idProducto;
-            $sql_selec_imgProd = "SELECT * FROM project_cg.imgproductos WHERE productoid = $this->intIdProducto";
+            $sql_selec_imgProd = "SELECT * FROM imgproductos WHERE productoid = $this->intIdProducto";
             $request = $this->selectAll($sql_selec_imgProd);
             return $request;
         }
@@ -121,7 +121,7 @@
             $this->intIdProducto = $idProducto;
             $this->strImagen = $imgName;
 
-            $query = "DELETE FROM project_cg.imgproductos WHERE productoid = $this->intIdProducto AND imagen = '$this->strImagen'";
+            $query = "DELETE FROM imgproductos WHERE productoid = $this->intIdProducto AND imagen = '$this->strImagen'";
             $request_delete = $this->delete($query);
             return $request_delete;
         }
@@ -129,7 +129,7 @@
         public function deleteProducto(int $idProducto)
         {
             $this->intIdProducto = $idProducto;
-            $sql_delete = "UPDATE project_cg.productos SET status = 0 WHERE idproducto = $this->intIdProducto";
+            $sql_delete = "UPDATE productos SET status = 0 WHERE idproducto = $this->intIdProducto";
             return $this->update($sql_delete);
         }
     }

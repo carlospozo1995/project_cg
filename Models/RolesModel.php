@@ -18,7 +18,7 @@
                 $whereAdmin = " AND idrol != 1 AND idrol >= '".sessionUser($_SESSION['idUser'])['idrol']."'";
 
             }
-            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0" . $whereAdmin;
+            $sql_all_rol = "SELECT  * FROM roles WHERE status != 0" . $whereAdmin;
             $request = $this->selectAll($sql_all_rol);
             return $request;
         }
@@ -26,7 +26,7 @@
         // CONSULTA PARA LA TABLA ROLES
         public function selectAllRoles()
         {
-            $sql_all_rol = "SELECT  * FROM project_cg.roles WHERE status != 0";
+            $sql_all_rol = "SELECT  * FROM roles WHERE status != 0";
             $request = $this->selectAll($sql_all_rol);
             return $request;
         }
@@ -39,12 +39,12 @@
             $this->strDescripcion = $descripcion;
             $this->intStatus = $status;
 
-            $sql_exists_rol = "SELECT * FROM project_cg.roles WHERE nombrerol = '$this->strRol'";
+            $sql_exists_rol = "SELECT * FROM roles WHERE nombrerol = '$this->strRol'";
 
             $request = $this->selectAll($sql_exists_rol);
 
             if (empty($request)) {
-                $sql_insert_rol = "INSERT INTO project_cg.roles(nombrerol, descripcion, status) VALUES('$this->strRol', '$this->strDescripcion', $this->intStatus)";
+                $sql_insert_rol = "INSERT INTO roles(nombrerol, descripcion, status) VALUES('$this->strRol', '$this->strDescripcion', $this->intStatus)";
                 
                 $request = $this->insert($sql_insert_rol);;
                 $return = $request;
@@ -58,7 +58,7 @@
         public function selectRol(int $idRol)
         {
             $this->intIdrol = $idRol;
-            $sql_select_rol = "SELECT * FROM project_cg.roles WHERE idrol = $this->intIdrol";
+            $sql_select_rol = "SELECT * FROM roles WHERE idrol = $this->intIdrol";
 
             $request = $this->select($sql_select_rol);
             return $request;
@@ -67,7 +67,7 @@
         public function selectIdRol(int $idRol)
         {
             $this->intIdrol = $idRol;
-            $sql_select_rol = "SELECT idrol FROM project_cg.roles WHERE idrol = $this->intIdrol";
+            $sql_select_rol = "SELECT idrol FROM roles WHERE idrol = $this->intIdrol";
 
             $request = $this->select($sql_select_rol);
             return $request;
@@ -80,11 +80,11 @@
             $this->strDescripcion = $descripcion;
             $this->intStatus = $status;
 
-            $sql_exists_rol = "SELECT * FROM project_cg.roles WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
+            $sql_exists_rol = "SELECT * FROM roles WHERE nombrerol = '$this->strRol' AND idrol != $this->intIdrol";
             $request = $this->selectAll($sql_exists_rol);
 
             if (empty($request)) {
-                $sql_update_rol = "UPDATE project_cg.roles SET nombrerol = '$this->strRol', descripcion = '$this->strDescripcion', status = $this->intStatus WHERE idrol = $this->intIdrol";
+                $sql_update_rol = "UPDATE roles SET nombrerol = '$this->strRol', descripcion = '$this->strDescripcion', status = $this->intStatus WHERE idrol = $this->intIdrol";
                 
                 $request = $this->update($sql_update_rol);
             }else{
@@ -96,11 +96,11 @@
         public function deleteRol(int $idRol)
         {
             $this->intIdrol = $idRol;
-            $sql_exists_user_rol = "SELECT * FROM project_cg.usuario WHERE rolid = $this->intIdrol";
+            $sql_exists_user_rol = "SELECT * FROM usuario WHERE rolid = $this->intIdrol";
             $request = $this->selectAll($sql_exists_user_rol);
 
             if (empty($request)) {
-                $sql_update_status_rol = "UPDATE project_cg.roles SET status = 0 WHERE idrol = $this->intIdrol";
+                $sql_update_status_rol = "UPDATE roles SET status = 0 WHERE idrol = $this->intIdrol";
                 
                 $request = $this->update($sql_update_status_rol);
 

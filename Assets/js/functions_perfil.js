@@ -1,7 +1,7 @@
 function openModalUpdate() {
     $("#modalUpdateUser").modal("show");
     validFocus();
-    formUpdateUser.reset();
+    // formUpdateUser.reset();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

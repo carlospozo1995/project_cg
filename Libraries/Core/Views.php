@@ -3,6 +3,7 @@
     class Views{
         public function getView($controller, $view, $data = "")
         {
+            $view = ucwords($view);
             $controller = get_class($controller);
 
             if ($controller == "Index") {

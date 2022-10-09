@@ -22,14 +22,14 @@ class  PerfilModel extends Mysql{
         $this->strEmail = $email;
         $this->strPassword = $password;
 
-        $sql_exist_email = "SELECT * FROM project_cg.usuario WHERE email_user = '{$this-> strEmail}' AND idusuario != $this->intIdUsuario";
+        $sql_exist_email = "SELECT * FROM usuario WHERE email_user = '{$this-> strEmail}' AND idusuario != $this->intIdUsuario";
         $request_email = $this->selectAll($sql_exist_email);
 
         if (empty($request_email)) {
             if ($this->strPassword != "") {
-                $sql_update_user = "UPDATE project_cg.usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword' WHERE idusuario = $this->intIdUsuario";
+                $sql_update_user = "UPDATE usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword' WHERE idusuario = $this->intIdUsuario";
             }else{
-                $sql_update_user = "UPDATE project_cg.usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail' WHERE idusuario = $this->intIdUsuario";
+                $sql_update_user = "UPDATE usuario SET nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail' WHERE idusuario = $this->intIdUsuario";
             }
             $request = $this->update($sql_update_user);
         }else{

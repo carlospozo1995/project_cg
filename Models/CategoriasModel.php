@@ -20,7 +20,7 @@
                 $retutnId = " AND idcategoria != $this->intCategoria";
             }
 
-            $sql = "SELECT * FROM project_cg.categorias WHERE status != 0" .$retutnId;
+            $sql = "SELECT * FROM categorias WHERE status != 0" .$retutnId;
             $request = $this->selectAll($sql);
             return $request;
         }
@@ -47,12 +47,12 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
-            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '$this->strCategoria' AND categoria_father_id is null";
+            $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '$this->strCategoria' AND categoria_father_id is null";
 
             $request = $this->selectAll($sql_exists_categoria);
 
             if(empty($request)){
-                $sql_insert_categoria = "INSERT INTO project_cg.categorias(nombre, imgCategoria, categoria_father_id, status) VALUES('$this->strCategoria', $data_img, $this->intCategoria, $this->intStatus)";
+                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, categoria_father_id, status) VALUES('$this->strCategoria', $data_img, $this->intCategoria, $this->intStatus)";
                 $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{
@@ -84,18 +84,18 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
-            $sql_exists_categoria = "SELECT * FROM project_cg.categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria AND categoria_father_id is null";
+            $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria AND categoria_father_id is null";
             $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
-                $sql_update_categoria = "UPDATE project_cg.categorias SET nombre = '$this->strCategoria',  imgcategoria= $data_img, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria',  imgcategoria= $data_img, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
                 $request = $this->update($sql_update_categoria);
                 
                 if ($request) {
                     $childrensIds = array();
                     $recursiveData = self::recursiveChildren($this->intIdCategoria, $childrensIds);
                     $arrImplode = implode(',', $recursiveData);
-                    $update_status = "UPDATE project_cg.categorias set status = $this->intStatus WHERE idcategoria in ($arrImplode)";
+                    $update_status = "UPDATE categorias set status = $this->intStatus WHERE idcategoria in ($arrImplode)";
                     $this->update($update_status);
                 }
             }else{
@@ -106,7 +106,7 @@
 
         public function recursiveChildren($idFather, &$arrayIds)
         {
-            $sql = "SELECT idcategoria FROM project_cg.categorias WHERE categoria_father_id = $idFather";
+            $sql = "SELECT idcategoria FROM categorias WHERE categoria_father_id = $idFather";
             $request = $this->selectAll($sql);
             foreach ($request as $key => $value) {
                 $idData = $value['idcategoria'];
@@ -119,12 +119,12 @@
         public function deleteCategoria(int $idcategoria)
         {
             $this->intIdCategoria = $idcategoria;
-            $sql_exists_productos = "SELECT * FROM project_cg.productos WHERE categoriaid = $this->intIdCategoria";
+            $sql_exists_productos = "SELECT * FROM productos WHERE categoriaid = $this->intIdCategoria";
             $request = $this->selectAll($sql_exists_productos);
             
 
             if (empty($request)) {
-                $sql_update_status_categoria = "UPDATE project_cg.categorias SET status = 0 WHERE idcategoria = $this->intIdCategoria";
+                $sql_update_status_categoria = "UPDATE categorias SET status = 0 WHERE idcategoria = $this->intIdCategoria";
                 
                 $request = $this->update($sql_update_status_categoria);
 
