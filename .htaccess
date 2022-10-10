@@ -1,12 +1,6 @@
 
 Options All -Indexes
 RewriteEngine On
-
-#Redirigir http a https
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
-Header always set Content-Security-Policy "upgrade-insecure-requests;"
-
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
