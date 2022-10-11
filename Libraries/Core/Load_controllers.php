@@ -11,10 +11,12 @@
             $controller->{$method}($params);
         }
         else{
-            echo "no existe el methodo " . $method;
+            // echo "no existe el methodo " . $method;
+            require_once("Views/404.php");
         }
     }else{
-        echo "no existe el controlador " . $controller;
+        // echo "no existe el controlador " . $controller;
+        require_once("Views/404.php");
     }
 
 ?>

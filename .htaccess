@@ -1,6 +1,8 @@
 
 Options All -Indexes
 RewriteEngine On
+ErrorDocument 404 /carlos/project_cg/Views/404.php
+ErrorDocument 403 /carlos/project_cg/Views/403.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
