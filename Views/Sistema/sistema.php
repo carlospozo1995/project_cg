@@ -16,6 +16,7 @@
     <!-- Main content -->
     <section class="content">
         <?php dep(sessionUser($_SESSION['idUser']));
+        dep($_SESSION['permisos']);
         ?>
     </section>
     <!-- /.content -->

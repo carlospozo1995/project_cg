@@ -62,6 +62,15 @@
           </li>
           <?php } ?>
 
+          <?php if (!empty($_SESSION['permisos'][6]['ver'])) {?>
+            <li class="nav-item">
+              <a href="<?php base_url(); ?>clientes" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Clientes</p>
+              </a>
+            </li>
+          <?php } ?>
+
           <?php if (!empty($_SESSION['permisos'][4]['ver']) || !empty($_SESSION['permisos'][5]['ver'])) {?>
           <li class="nav-item">
             <a href="#" class="nav-link">

@@ -15,7 +15,7 @@
 
         public function usuarios()
         {
-            if(empty($_SESSION['permisos'][2]['ver'])){
+            if(empty($_SESSION['permisosMod']['ver'])){
                 header('Location: '.base_url().'sistema');
             }
 

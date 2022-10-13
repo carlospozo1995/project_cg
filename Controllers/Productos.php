@@ -14,7 +14,7 @@
 
         public function productos()
         {
-            if(empty($_SESSION['permisos'][4]['ver'])){
+            if(empty($_SESSION['permisosMod']['ver'])){
                 header('Location: '.base_url().'sistema');
             }
 

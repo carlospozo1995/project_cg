@@ -14,7 +14,7 @@
 
         public function roles()
         {
-            if(empty($_SESSION['permisos'][3]['ver'])){
+            if(empty($_SESSION['permisosMod']['ver'])){
                 header('Location: '.base_url().'sistema');
             }
             $data['page_id'] = 3;

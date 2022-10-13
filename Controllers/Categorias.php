@@ -12,7 +12,7 @@
 
         public function categorias()
         {
-            if(empty($_SESSION['permisos'][5]['ver'])){
+            if(empty($_SESSION['permisosMod']['ver'])){
                 header('Location: '.base_url().'sistema');
             }
 
