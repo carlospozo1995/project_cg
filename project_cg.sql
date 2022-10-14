@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 08-10-2022 a las 17:02:59
+-- Tiempo de generación: 14-10-2022 a las 11:34:58
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -78,6 +78,34 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_pedido`
+--
+
+CREATE TABLE `detalle_pedido` (
+  `id` bigint(20) NOT NULL,
+  `pedidoid` bigint(20) NOT NULL,
+  `productoid` bigint(20) NOT NULL,
+  `precio` decimal(11,2) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_temp`
+--
+
+CREATE TABLE `detalle_temp` (
+  `id` bigint(20) NOT NULL,
+  `productoid` bigint(20) NOT NULL,
+  `precio` decimal(11,2) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `token` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `imgproductos`
 --
 
@@ -123,7 +151,23 @@ INSERT INTO `modulos` (`idmodulo`, `titulo`, `descripcion`, `status`) VALUES
 (2, 'Usuarios', 'Pagina - Usuarios', 1),
 (3, 'Roles', 'Pagina - Roles', 1),
 (4, 'Productos', 'Pagina - Productos', 1),
-(5, 'Categorias', 'Pagina - Categorias', 1);
+(5, 'Categorias', 'Pagina - Categorias', 1),
+(6, 'Clientes', 'Pagina - Clientes', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `idpedido` bigint(20) NOT NULL,
+  `usuarioid` bigint(20) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `monto` decimal(11,2) NOT NULL,
+  `tipopagoid` bigint(20) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -146,11 +190,6 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
-(1022, 1, 1, 1, 0, 0, 0),
-(1023, 1, 2, 1, 1, 1, 1),
-(1024, 1, 3, 1, 1, 1, 1),
-(1025, 1, 4, 1, 1, 1, 1),
-(1026, 1, 5, 1, 1, 1, 1),
 (1027, 2, 1, 1, 0, 0, 0),
 (1028, 2, 2, 1, 1, 1, 1),
 (1029, 2, 3, 1, 0, 0, 0),
@@ -166,11 +205,18 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (1039, 4, 3, 1, 0, 0, 0),
 (1040, 4, 4, 1, 0, 0, 0),
 (1041, 4, 5, 1, 0, 0, 0),
-(1042, 5, 1, 1, 0, 0, 0),
-(1043, 5, 2, 1, 1, 0, 0),
-(1044, 5, 3, 1, 0, 0, 0),
-(1045, 5, 4, 0, 0, 0, 0),
-(1046, 5, 5, 0, 0, 0, 0);
+(1047, 1, 1, 1, 0, 0, 0),
+(1048, 1, 2, 1, 1, 1, 1),
+(1049, 1, 3, 1, 1, 1, 1),
+(1050, 1, 4, 1, 1, 1, 1),
+(1051, 1, 5, 1, 1, 1, 1),
+(1052, 1, 6, 1, 1, 1, 1),
+(1053, 5, 1, 1, 0, 0, 0),
+(1054, 5, 2, 1, 0, 0, 0),
+(1055, 5, 3, 1, 0, 0, 0),
+(1056, 5, 4, 0, 0, 0, 0),
+(1057, 5, 5, 0, 0, 0, 0),
+(1058, 5, 6, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -280,6 +326,21 @@ ALTER TABLE `categorias`
   ADD KEY `categoria_father_id` (`categoria_father_id`);
 
 --
+-- Indices de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pedidoid` (`pedidoid`),
+  ADD KEY `productoid` (`productoid`);
+
+--
+-- Indices de la tabla `detalle_temp`
+--
+ALTER TABLE `detalle_temp`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productoid` (`productoid`);
+
+--
 -- Indices de la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
@@ -291,6 +352,13 @@ ALTER TABLE `imgproductos`
 --
 ALTER TABLE `modulos`
   ADD PRIMARY KEY (`idmodulo`);
+
+--
+-- Indices de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`idpedido`),
+  ADD KEY `usuarioid` (`usuarioid`);
 
 --
 -- Indices de la tabla `permisos`
@@ -331,6 +399,18 @@ ALTER TABLE `categorias`
   MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_temp`
+--
+ALTER TABLE `detalle_temp`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
@@ -340,13 +420,19 @@ ALTER TABLE `imgproductos`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idmodulo` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `idpedido` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1047;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1059;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -377,10 +463,29 @@ ALTER TABLE `categorias`
   ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`categoria_father_id`) REFERENCES `categorias` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `detalle_pedido`
+--
+ALTER TABLE `detalle_pedido`
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedidoid`) REFERENCES `pedido` (`idpedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_pedido_ibfk_2` FOREIGN KEY (`productoid`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalle_temp`
+--
+ALTER TABLE `detalle_temp`
+  ADD CONSTRAINT `detalle_temp_ibfk_1` FOREIGN KEY (`productoid`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `imgproductos`
 --
 ALTER TABLE `imgproductos`
   ADD CONSTRAINT `imgproductos_ibfk_1` FOREIGN KEY (`productoid`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`usuarioid`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `permisos`
