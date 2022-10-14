@@ -95,10 +95,31 @@ function valid(data, input) {
 }
 
 // VALIDAR EL FOCUS DE LOS INPUTS
-    function validFocus() {
-        let valid = document.querySelectorAll(".valid");
-        valid.forEach(function (valid) {
-            valid.classList.remove("is-invalid");
-            valid.classList.remove("is-valid");
-        });
-    }
+function validFocus() {
+    let valid = document.querySelectorAll(".valid");
+    valid.forEach(function (valid) {
+        valid.classList.remove("is-invalid");
+        valid.classList.remove("is-valid");
+    });
+}
+
+// MOSTRAR Y OCULTAR CONTRASEÑA
+function showPassword() {
+    let inputPassword = document.getElementById('txtPassword');
+    let iconEye = document.querySelector('.show-password');
+
+    iconEye.addEventListener('click', function (e) {
+        let eye = e.target;
+        if (eye.classList.contains('show-password')) {
+            eye.classList.remove('show-password');
+            eye.classList.remove('fa-eye-slash');
+            eye.classList.add('fa-eye');            
+            inputPassword.type = 'text';
+        }else{
+            eye.classList.remove('fa-eye');
+            eye.classList.add('fa-eye-slash');
+            eye.classList.add('show-password');
+            inputPassword.type = 'password';
+        }
+    })
+}

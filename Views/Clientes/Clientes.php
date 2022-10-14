@@ -36,8 +36,6 @@
                     <th>Apellidos</th>
                     <th>Email</th>
                     <th>Teléfono</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>

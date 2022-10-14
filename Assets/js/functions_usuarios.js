@@ -142,27 +142,6 @@ function rolesUsuario() {
     }
 }
 
-// MOSTRAR Y OCULTAR CONTRASEÑA
-function showPassword() {
-    let inputPassword = document.getElementById('txtPassword');
-    let iconEye = document.querySelector('.show-password');
-
-    iconEye.addEventListener('click', function (e) {
-        let eye = e.target;
-        if (eye.classList.contains('show-password')) {
-            eye.classList.remove('show-password');
-            eye.classList.remove('fa-eye-slash');
-            eye.classList.add('fa-eye');            
-            inputPassword.type = 'text';
-        }else{
-            eye.classList.remove('fa-eye');
-            eye.classList.add('fa-eye-slash');
-            eye.classList.add('show-password');
-            inputPassword.type = 'password';
-        }
-    })
-}
-
 // VER DATOS DEL USUARIO
 function viewUser(idUsuario) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
