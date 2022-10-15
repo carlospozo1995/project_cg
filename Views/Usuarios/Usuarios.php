@@ -19,17 +19,15 @@
             
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
     
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
 
             <div class="card">
-              <!-- /.card-header -->
               <div class="card-body">
                 <table id="tableUsuarios" class="table_order table table-bordered table-striped">
                   <thead>
@@ -59,20 +57,12 @@
                             $btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('.$value['idusuario'].')" tilte="Ver"><i class="fas fa-eye"></i></button>';
                         }
 
-                        if (!empty($_SESSION['permisosMod']['actualizar'])) {
-                          if($value['idusuario'] != $_SESSION['userData']['idusuario']){
+                        if (!empty($_SESSION['permisosMod']['actualizar']) && $value['idusuario'] != $_SESSION['userData']['idusuario']) {
                             $btnUpdate = '<button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'.$value['idusuario'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                          }else{
-                            $btnUpdate ='';
-                          }
                         }
 
-                        if (!empty($_SESSION['permisosMod']['eliminar'])){
-                          if($value['idusuario'] != $_SESSION['userData']['idusuario']){
+                        if (!empty($_SESSION['permisosMod']['eliminar']) && $value['idusuario'] != $_SESSION['userData']['idusuario']){
                             $btnDelete = '<button type="button" class="btn btn-danger btn-sm" nb="'.$value['nombres'].'" onclick="deleteUser(this,'.$value['idusuario'].')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
-                          }else{
-                            $btnDelete = '';
-                          }
                         }
                 
                         if ($value['status'] == 1) {
@@ -97,19 +87,11 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </div>
-      <!-- /.container-fluid -->
-      
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
 <?php footerPage($data); ?>

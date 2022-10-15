@@ -79,16 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
                             if (objData.permisos.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewUser('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
-                            if (objData.permisos.actualizar == 1) {
-                                if (objData.idData != objData.userData.idusuario) {
-                                    btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
-                                }
+                            if (objData.permisos.actualizar == 1 && objData.idData != objData.userData.idusuario){
+                                btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                             }
 
-                            if (objData.permisos.eliminar == 1){
-                                if (objData.idData != objData.userData.idusuario) {
-                                    btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
-                                }
+                            if (objData.permisos.eliminar == 1 objData.idData != objData.userData.idusuario){
+                                btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                             }
 
                             $("#tableUsuarios").DataTable().row.add([
