@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editUser(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                             }
 
-                            if (objData.permisos.eliminar == 1 objData.idData != objData.userData.idusuario){
+                            if (objData.permisos.eliminar == 1 && objData.idData != objData.userData.idusuario){
                                 btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
                             }
 

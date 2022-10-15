@@ -79,11 +79,11 @@
 
 
 
-<div class="modal fade" id="modalViewUser">
+<div class="modal fade" id="modalViewCliente">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header header-primary-mc">
-                <h4 class="modal-title">Datos del usuario</h4>
+                <h4 class="modal-title">Datos del cliente</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>

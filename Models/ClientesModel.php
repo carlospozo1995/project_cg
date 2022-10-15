@@ -65,6 +65,61 @@
             return  $this->selectAll($sql_select_clientes);
         }
 
+        public function selectCliente(int $idCliente)
+        {
+            $this->intIdCliente= $idCliente;
+            
+            $sql_select_cliente = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, r.idrol, r.nombrerol, u.status, DATE_FORMAT(u.datecreate, '%d-%m-%Y') AS fechaRegistro FROM usuario u INNER JOIN roles r ON u.rolid = r.idrol WHERE u.idusuario = $this->intIdCliente";
+            $request = $this->select( $sql_select_cliente);
+            return $request;
+        }
+
+        public function updateCliente(int $idCliente, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password)
+        {
+            $this->intIdCliente = $idCliente;
+            $this->strIdentificacion = $identificacion;
+            $this->strNombre = $nombre;
+            $this->strApellido = $apellido;
+            $this->intTelefono = $telefono;
+            $this->strEmail = $email;
+            $this->strPassword = $password;
+
+            $sql_exists_cliente = "SELECT * FROM usuario WHERE (identificacion = '{$this->strIdentificacion}' AND idusuario != $this->intIdCliente) OR (email_user = '{$this-> strEmail}' AND idusuario != $this->intIdCliente)";
+            $request = $this->selectAll($sql_exists_cliente);
+
+            if (empty($request)) {
+                if ($this->strPassword != '') {
+                    $sql_update_cliente = "UPDATE usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword' WHERE idusuario = $this->intIdCliente";
+                }else{
+                    $sql_update_cliente = "UPDATE usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail' WHERE idusuario = $this->intIdCliente";
+                }
+
+                $request = $this->update($sql_update_cliente);
+            }else{
+                $idenValidate = false;
+                $emailValidate = false;
+                
+                array_filter($request, function ($data) use(&$idenValidate, &$emailValidate)
+                {
+                    if ($data['identificacion'] == $this->strIdentificacion) {
+                        $idenValidate = true;
+                    }
+                    if ($data['email_user'] == $this->strEmail) {
+                        $emailValidate = true;
+                    }
+                });
+
+                if ($idenValidate && $emailValidate) {
+                    $request = "Existe correo e identificacion";
+                }elseif ($idenValidate) {
+                    $request = "Existe identificacion"; 
+                }elseif ($emailValidate) {
+                    $request = "Existe correo"; 
+                }
+
+            }
+            return $request;
+        }
     }
 
 ?>

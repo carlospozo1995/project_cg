@@ -9,6 +9,7 @@ function modalNewCliente() {
     document.querySelector(".modal-title").innerHTML = "Nuevo Cliente";
     document.getElementById("btnSubmitCliente").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Guardar";
+    document.getElementById("txtPassword").setAttribute("required", "");
 	document.getElementById('formNewCliente').reset();
 	$('#modalFormCliente').modal('show');
 	validFocus();
@@ -71,13 +72,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (request.readyState == 4 && request.status == 200) {
                     let objData = JSON.parse(request.responseText);
                     if (objData.status) {
-                    	// let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
+                    	let htmlStatus = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
 
-                    	// if (rowTable == "") {
-                    	// 	let btnView = "";
-                     //        let btnUpdate = "";
-                     //        let btnDelete = ""; 
-                    	// }
+                    	if (rowTable == "") {
+                    		let btnView = "";
+                            let btnUpdate = "";
+                            let btnDelete = ""; 
+                    		
+                    		 if (objData.permisosMod.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewCliente('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
+
+                            if (objData.permisosMod.actualizar == 1 && objData.userId == 1){
+                                btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editCliente(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                            }
+
+                            if (objData.permisosMod.eliminar == 1 && objData.userId == 1){
+                                btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCliente(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                            }
+
+                            $("#tableClientes").DataTable().row.add([
+                                objData.idData,
+                                strNombre,
+                                strApellido,
+                                strEmail,
+                                intTelefono,
+                                htmlStatus,
+                                '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                            ]).draw(false);
+                    	}else{
+
+                    	}
 
                     	$("#modalFormCliente").modal("hide");
                         formNewCliente.reset();
@@ -92,3 +115,74 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 	}
 });
+
+
+
+function viewCliente(idCliente) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    request.open("GET", urlCliente, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                let statusUser = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                
+                document.getElementById("celIdentificacion").innerHTML = objData.data.identificacion;
+                document.getElementById("celNombre").innerHTML = objData.data.nombres;
+                document.getElementById("celApellido").innerHTML = objData.data.apellidos;
+                document.getElementById("celTelefono").innerHTML = objData.data.telefono;
+                document.getElementById("celEmailUser").innerHTML = objData.data.email_user;
+                document.getElementById("celTipoUsuario").innerHTML = objData.data.nombrerol;
+                document.getElementById("celEstado").innerHTML = statusUser;
+                document.getElementById("celFecharegistro").innerHTML = objData.data.fechaRegistro;
+                $('#modalViewCliente').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }  
+        }
+    }
+}
+
+function editCliente(element, idCliente) {
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
+    document.getElementById("btnSubmitCliente").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    document.getElementById("txtPassword").removeAttribute("required");
+
+    validFocus();
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    request.open("GET", ajaxetCliente, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                document.getElementById("idCliente").value = objData.data.idusuario;
+                document.getElementById("txtIdentificacion").value = objData.data.identificacion;
+                document.getElementById("txtNombre").value = objData.data.nombres;
+                document.getElementById("txtApellido").value = objData.data.apellidos;
+                document.getElementById("txtTelefono").value = objData.data.telefono;
+                document.getElementById("txtEmail").value = objData.data.email_user;
+                $('#modalFormCliente').modal('show');
+            }
+        }
+    }
+}
+
+function deleteCliente(element, idCliente) {
+	console.log(idCliente);
+}
