@@ -9,7 +9,6 @@ function modalNewCliente() {
     document.querySelector(".modal-title").innerHTML = "Nuevo Cliente";
     document.getElementById("btnSubmitCliente").classList.replace("bg-success", "btn-primary");
     document.querySelector(".btnText").innerHTML = "Guardar";
-    document.getElementById("txtPassword").setAttribute("required", "");
 	document.getElementById('formNewCliente').reset();
 	$('#modalFormCliente').modal('show');
 	validFocus();
@@ -48,12 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let intTelefono = document.getElementById("txtTelefono").value;
         let strEmail = document.getElementById("txtEmail").value;
         let strPassword = document.getElementById("txtPassword").value;
-
-        if (strIdentificacion == '' || strNombre == '' || strApellido == '' || intTelefono == '' || strEmail == '' || strPassword == '')  {
-        	Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
-            return false;
-        }
-        else{
+    
+        if (strIdentificacion == '' || strNombre == '' || strApellido == '' || intTelefono == '' || strEmail == '') {
+      			Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+            	return false;
+      	}else{
+        
         	let elementsValid = document.getElementsByClassName("valid");
             for (let i = 0; i < elementsValid.length; i++) {
                 if (elementsValid[i].classList.contains("is-invalid")) {
@@ -99,7 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                             ]).draw(false);
                     	}else{
-
+                    		let n_row = $(rowTable).find("td:eq(0)").html();
+                            let buttons_html = $(rowTable).find("td:eq(6)").html();
+                            $("#tableClientes").DataTable().row(rowTable).data([n_row, strNombre, strApellido ,strEmail, intTelefono, htmlStatus, buttons_html]).draw(false);
                     	}
 
                     	$("#modalFormCliente").modal("hide");
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function viewCliente(idCliente) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let urlCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    let urlCliente = base_url + 'Usuarios/viewUsuario/' + idCliente;
     request.open("GET", urlCliente, true);
     request.send();
 
@@ -157,12 +158,10 @@ function editCliente(element, idCliente) {
     document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
     document.getElementById("btnSubmitCliente").classList.replace("btn-primary", "bg-success");
     document.querySelector(".btnText").innerHTML = "Actualizar";
-    document.getElementById("txtPassword").removeAttribute("required");
-
     validFocus();
 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxetCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    let ajaxetCliente = base_url + 'Usuarios/viewUsuario/' + idCliente;
     request.open("GET", ajaxetCliente, true);
     request.send();
 
@@ -184,5 +183,52 @@ function editCliente(element, idCliente) {
 }
 
 function deleteCliente(element, idCliente) {
-	console.log(idCliente);
+    Swal.fire({
+        title: 'Eliminar Cliente',
+        text: "Realmente quiere eliminar el cliente!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Usuarios/delUser/' + idCliente;
+            request.open("POST", ajaxUrl, true);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        let row_closest = $(element).closest("tr");
+                        if(row_closest.length){
+                            let ischild = $(row_closest).hasClass("child");
+                            if(ischild){
+                                let prevtr = row_closest.prev();
+                                if(prevtr.length){
+                                    $("#tableClientes").DataTable().row(prevtr[0]).remove().draw(false);
+                                }
+                            }
+                            else{
+                                $("#tableClientes").DataTable().row(row_closest[0]).remove().draw(false);
+                            }
+                        }
+                        Swal.fire(
+                            'Eliminado!',
+                            objData.msg,
+                            'success'
+                        );
+                    }else{
+                        Swal.fire(
+                            'Atención!',
+                            objData.msg,
+                            'error'
+                        );
+                    }
+                }
+            }
+        }
+    });
 }

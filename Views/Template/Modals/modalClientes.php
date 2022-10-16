@@ -54,7 +54,7 @@
                                     <div class="form-group ">
                                         <label for="txtPassword">Contraseña</label>
                                         <div class="eye-show-mc">
-                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword" required>
+                                            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
                                             <span title="Mostrar" class="container-eye-mc"><i class="fas fa-eye-slash show-password"></i></span>
                                         </div>
                                     </div>

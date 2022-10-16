@@ -65,15 +65,6 @@
             return  $this->selectAll($sql_select_clientes);
         }
 
-        public function selectCliente(int $idCliente)
-        {
-            $this->intIdCliente= $idCliente;
-            
-            $sql_select_cliente = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, r.idrol, r.nombrerol, u.status, DATE_FORMAT(u.datecreate, '%d-%m-%Y') AS fechaRegistro FROM usuario u INNER JOIN roles r ON u.rolid = r.idrol WHERE u.idusuario = $this->intIdCliente";
-            $request = $this->select( $sql_select_cliente);
-            return $request;
-        }
-
         public function updateCliente(int $idCliente, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password)
         {
             $this->intIdCliente = $idCliente;

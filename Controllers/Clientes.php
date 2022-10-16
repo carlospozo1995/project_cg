@@ -31,7 +31,7 @@
         public function setCliente()
         {
             if ($_POST) {
-                if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtTelefono']) || empty($_POST['txtPassword'])) {
+                if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtTelefono'])) {
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 }else{
                     $intIdCliente= intval($_POST['idCliente']);
@@ -43,9 +43,10 @@
                     $strPassword =  hash("SHA256", $_POST['txtPassword']);
                     $intRoluser = 5;
                     $request_cliente = "";
-                    if (empty($intUserid)) {
+                    if (empty($intIdCliente)) {
                         // CLIENTE CREATE
                         $option = 1;
+                        $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
 
                         if($_SESSION['permisosMod']['crear']){
                             $request_cliente = $this->model->insertCliente($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $strPassword);
@@ -80,23 +81,7 @@
             }
             die();
         }
-
-         public function getCliente($idCliente)
-        {   
-            if($_SESSION['permisosMod']['ver']){
-                $idCliente = intval($idCliente);
-                if ($idCliente > 0) {
-                    $arrCliente = $this->model->selectCliente($idCliente);
-                    if (empty($arrCliente)) {
-                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
-                    }else{
-                        $arrResponse = array('status' => true, 'data' => $arrCliente);
-                    }
-                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-                }
-            }
-            die();
-        }
+        
     }
 
 ?>
