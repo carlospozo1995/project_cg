@@ -10,9 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="<?php echo media(); ?>ecommerce/css/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/plugins/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/mainTwo.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/normalize.css">
     <title><?= $data['page_title'] ?></title>
 </head>
 <body class="animsition">
@@ -21,21 +22,21 @@
         <div class="container-menu-desktop">
 
             <div class="top-bar">
-                <div class="content-topbar flex-sb-m h-full container">
+                <div class="content-topbar container">
                     <div class="left-top-bar">
                         Envios gratis desde $100
                     </div>
 
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <div class="right-top-bar">
+                        <a href="#" class="">
                             Ayuda / Preguntas frecuentes
                         </a>
 
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        <a href="#" class="">
                             Iniciar Sesión
                         </a>
 
-                        <span class="flex-c-m trans-04 p-lr-25">
+                        <span class="">
                             Atención al cliente: 0123456789
                         </span>
                     </div>
@@ -100,6 +101,9 @@
             </div>  
         </div>
     </header>
+
+    <script src="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/js/popper.js"></script>
+    <script src="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>
