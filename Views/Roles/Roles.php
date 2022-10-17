@@ -1,5 +1,5 @@
 <?php 
-  headerPage($data); 
+  headerAdmin($data); 
   getModal("modalRoles", $data);
 ?>
   <!-- Content Wrapper. Contains page content -->
@@ -98,4 +98,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-<?php footerPage($data); ?>
+<?php footerAdmin($data); ?>

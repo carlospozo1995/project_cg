@@ -77,4 +77,4 @@
 
   <!-- Aside nav -->
 
-    <?php require_once("nav_page.php"); ?>
+    <?php require_once("nav_admin.php"); ?>

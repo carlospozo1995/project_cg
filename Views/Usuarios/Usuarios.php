@@ -1,5 +1,5 @@
 <?php 
-  headerPage($data);
+  headerAdmin($data);
   getModal("modalUsuarios", $data);
 ?>
 
@@ -94,4 +94,4 @@
     </section>
   </div>
 
-<?php footerPage($data); ?>
+<?php footerAdmin($data); ?>

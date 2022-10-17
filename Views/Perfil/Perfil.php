@@ -1,5 +1,5 @@
 <?php 
-    headerPage($data);
+    headerAdmin($data);
     getModal("modalPerfil", $data);
 ?>
 
@@ -90,4 +90,4 @@
         </section>
     </div>
 
-<?php footerPage($data); ?>
+<?php footerAdmin($data); ?>

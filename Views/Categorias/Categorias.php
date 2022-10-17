@@ -1,5 +1,5 @@
 <?php 
-  headerPage($data);
+  headerAdmin($data);
   getModal("modalCategoria", $data);
 ?>
 
@@ -97,4 +97,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-<?php footerPage($data); ?>
+<?php footerAdmin($data); ?>

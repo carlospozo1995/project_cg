@@ -1,4 +1,4 @@
-<?php headerPage($data); ?>
+<?php headerAdmin($data); ?>
   
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -23,4 +23,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-<?php footerPage($data); ?>
+<?php footerAdmin($data); ?>

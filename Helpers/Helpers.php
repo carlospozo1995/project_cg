@@ -47,13 +47,13 @@
 
     // RETORNA LOS DIFERENTES TEMPLATES
 
-    function headerPage($data=""){
-        $view_header = "Views/Template/header_page.php";
+    function headerAdmin($data=""){
+        $view_header = "Views/Template/header_admin.php";
         require_once($view_header);
     }
 
-    function footerPage($data=""){
-        $view_footer = "Views/Template/footer_page.php";
+    function footerAdmin($data=""){
+        $view_footer = "Views/Template/footer_admin.php";
         require_once($view_footer);
     }
 
