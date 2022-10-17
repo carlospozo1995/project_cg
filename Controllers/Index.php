@@ -9,10 +9,7 @@
         
         public function index()
         {
-            $data['page_id'] = 1;
-            $data['page_tag'] = 'Home';
-            $data['page_title'] = 'Pagina principal';
-            $data['page_name'] = 'Home';
+            $data['page_title'] = 'Créditos GUAMAN - Todo para el hogar';
             $this->views->getView($this, "index", $data);
         }
     }
