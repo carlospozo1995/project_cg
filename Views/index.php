@@ -16,7 +16,7 @@
     <title><?= $data['page_title'] ?></title>
 </head>
 <body class="animsition">
-    <p>prueba</p>
+    
     <header>
         <div class="container-menu-desktop">
 
