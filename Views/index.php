@@ -47,11 +47,12 @@
                 </div>
             </div>
 
-            <!-- <div class="wrap-menu-desktop">
+            <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container">
                         
                     <a href="#" class="logo">
                         <img src="<?php echo media(); ?>ecommerce/images/logo_text.png" alt="IMG-LOGO">
+                        <img src="<?php echo media(); ?>ecommerce/images/electrodomesticos.png" alt="IMG-LOGO">
                     </a>
 
                     <div class="menu-desktop">
@@ -101,7 +102,7 @@
                         </a>
                     </div>
                 </nav>
-            </div>  -->
+            </div> 
 
         </div>
     </header>

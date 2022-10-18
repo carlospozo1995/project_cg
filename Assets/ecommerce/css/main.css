@@ -8,6 +8,12 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+:root{
+    --g1:  #fe0000;
+    --g2: #1700c2;
+    --g3: #b2b2b2;
+}
+
 /* VIEW DESKTOP */
 
 .container-menu-desktop{
@@ -32,7 +38,7 @@
 }
 
 .left-top-bar{
-	color: #b2b2b2;
+	color:var(--g3);
 }
 
 .right-top-bar{
@@ -44,15 +50,20 @@
 }
 
 .right-top-bar a, .right-top-bar span {
-	color: #b2b2b2;
+	color:var(--g3);
 	border-right: 1px solid rgba(255,255,255,0.3);
 	padding-left: 25px;
 	padding-right: 25px;
 	text-decoration: none;
+	transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
 }
 
 .right-top-bar a:hover {
-  color: #6c7ae0;
+  color: var(--g1);
 }
 
 /*------ // STYLE RESPONSIVE // ------*/
