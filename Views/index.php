@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/mainTwo.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/mainUtils.css">
     <title><?= $data['page_title'] ?></title>
 </head>
 <body class="animsition">
@@ -22,28 +22,32 @@
         <div class="container-menu-desktop">
 
             <div class="top-bar">
-                <div class="content-topbar container">
+                <div class="content-topbar c-full container">
                     <div class="left-top-bar">
+                        <i class="fa-solid fa-truck mr-2"></i>
                         Envios gratis desde $100
                     </div>
 
-                    <div class="right-top-bar">
-                        <a href="#" class="">
-                            Ayuda / Preguntas frecuentes
+                    <div class="right-top-bar h-full d-flex flex-wrap">
+                        <a href="#" class="c-full">
+                            <i class="fa-solid fa-question mr-2"></i>
+                            Help & FAQs
                         </a>
 
-                        <a href="#" class="">
+                        <a href="#" class="c-full">
+                            <i class="fa-solid fa-user mr-2"></i>
                             Iniciar Sesión
                         </a>
 
-                        <span class="">
+                        <span class="c-full">
+                            <i class="fa-solid fa-phone-volume mr-2"></i>
                             Atención al cliente: 0123456789
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div class="wrap-menu-desktop">
+            <!-- <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container">
                         
                     <a href="#" class="logo">
@@ -83,7 +87,6 @@
                         </ul>
                     </div>  
 
-                    <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -98,7 +101,8 @@
                         </a>
                     </div>
                 </nav>
-            </div>  
+            </div>  -->
+
         </div>
     </header>
 
