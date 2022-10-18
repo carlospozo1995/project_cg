@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+
+    /*UPLOAD IMG CATEGORIA*/
     if (document.getElementById('foto')){
         var foto = document.getElementById('foto');
         foto.onchange = function (e) {
@@ -76,6 +78,54 @@ document.addEventListener('DOMContentLoaded', function () {
             removePhoto();  
         }
     }
+    // -------------------------
+
+
+    // UOLOAD ICON CATEGORIA
+    if (document.getElementById('icono')) {
+        var icono = document.getElementById('icono');
+        icono.onchange = function (e) {
+            var uploadIcono = document.getElementById('icono').value;
+            var fileIcono = document.getElementById('icono').files;
+            var navIcon = window.URL || window.webkitURL;
+            var alertIcono =  document.getElementById('icono_alert');
+            if (uploadIcono != "") {
+                var typeIcono = fileIcono[0].type;
+                var nameIcono = fileIcono[0].name;
+                if (typeIcono != 'image/jpeg' && typeIcono != "image/png" && typeIcono != "image/jpg") {
+                    alertIcono.innerHTML = '<p class="errorArchivo">El archivo selecionado no es válido. Intentelo de nuevo.</p>';
+                    if(document.getElementById('iconImg')){
+                        document.getElementById('iconImg').remove();
+                    }
+                    document.querySelector('.delIcono').classList.add("notBlock");
+                    icono.value = "";
+                    return false;
+                }else{
+                    alertIcono.innerHTML = "";
+                    if(document.getElementById('iconImg')){
+                        document.getElementById('iconImg').remove();
+                    }
+                    document.querySelector('.delIcono').classList.remove("notBlock");
+                    var url_icono = navIcon.createObjectURL(this.files[0]);
+                    document.querySelector('.prevIcono div').innerHTML = "<img style='width: 100%' id='iconImg' src="+url_icono+">";
+                }
+            }else{
+                alert('Seleccione una foto');
+                if(document.getElementById('iconImg')){
+                    document.getElementById('iconImg').remove();
+                }
+            }
+        }
+    }
+
+    if(document.querySelector(".delIcono")){
+        var delIcono = document.querySelector(".delIcono");
+        delIcono.onclick = function(e) {
+            // document.getElementById('foto_remove').value = 1;
+            removeIcono();  
+        }
+    }
+    // -------------------------
 
     tableCategorias = $("#tableCategorias").DataTable({
         "aProcessing": true,
@@ -311,5 +361,13 @@ function removePhoto(){
     document.querySelector('.delPhoto').classList.add("notBlock");
     if (document.getElementById('img')){
         document.getElementById('img').remove();
+    }
+}
+
+function removeIcono(){
+    document.getElementById('icono').value ="";
+    document.querySelector('.delIcono').classList.add("notBlock");
+    if (document.getElementById('iconImg')){
+        document.getElementById('iconImg').remove();
     }
 }

@@ -9,6 +9,7 @@
             </div>
 
             <div class="modal-body">
+                <p>Los campos que contienen un (<span class="required">*</span>) son obligatorios.</p>
                 <div class="card card-primary">
                     <form id="formCategoria" name="formCategoria">
                         <input type="hidden" id="idCategoria" name="idCategoria" value="">
@@ -18,7 +19,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Titulo</label>
+                                        <label>Titulo<span class="required"> *</span></label>
                                         <input type="text" class="form-control" placeholder="Titulo de la categoria" id="txtTitulo" autocomplete="off" name="txtTitulo" required>
                                     </div>
 
@@ -26,31 +27,51 @@
                                         <label for="categoriaId">Categoria padre</label>
                                         <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required></select>
                                     </div>
-                                
+
+                                    <div class="form-group">
+                                        <p class="errorArchivo errorIcono"></p>
+                                        <div class="icon">
+                                            <label for="icono">Icono (64x64)<span class="required"> *</span></label>
+                                            <div class="prevIcono">
+                                                <span class="delIcono notBlock">X</span>
+                                                <label for="icono"></label>
+                                                <div> 
+                                                    <!-- Carga de icono (js) -->
+                                                </div>
+                                            </div>
+                                            <div class="upimg">
+                                                <input type="file" name="icono" id="icono">
+                                            </div>
+                                            <div id="icono_alert"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p class="errorArchivo errorCategoria"></p>
+                                        <div class="photo">
+                                            <label for="foto">Foto (570x380)</label>
+                                            <div class="prevPhoto">
+                                                <span class="delPhoto notBlock">X</span>
+                                                <label for="foto"></label>
+                                                <div>
+                                                    <img src="<?= media(); ?>images/uploads/imgCategoria.png" id="img" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="upimg">
+                                                <input type="file" name="foto" id="foto">
+                                            </div>
+                                            <div id="foto_alert"></div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="listStatus">Status Categoria</label>
                                         <select class="form-control" id="listStatus" name="listStatus" required>
                                             <option value="1">Activo</option>
                                             <option value="2">Inactivo</option>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <p class="errorArchivo errorCategoria"></p>
-                                    <div class="photo">
-                                        <label for="foto">Foto (570x380)</label>
-                                        <div class="prevPhoto">
-                                            <span class="delPhoto notBlock">X</span>
-                                            <label for="foto"></label>
-                                            <div>
-                                                <img src="<?= media(); ?>images/uploads/imgCategoria.png" id="img" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="upimg">
-                                            <input type="file" name="foto" id="foto">
-                                        </div>
-                                        <div id="foto_alert"></div>
                                     </div>
                                 </div>
                             </div>
