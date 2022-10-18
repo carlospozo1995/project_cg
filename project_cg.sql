@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-10-2022 a las 11:34:58
+-- Tiempo de generación: 18-10-2022 a las 03:53:37
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -31,6 +31,7 @@ CREATE TABLE `categorias` (
   `idcategoria` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8mb4_swedish_ci NOT NULL,
   `imgcategoria` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
+  `icon_category_father` varchar(100) COLLATE utf8mb4_swedish_ci DEFAULT NULL,
   `datecreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `categoria_father_id` bigint(20) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
@@ -40,40 +41,40 @@ CREATE TABLE `categorias` (
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `datecreate`, `categoria_father_id`, `status`) VALUES
-(1, 'Electrodomesticos', 'img_8d5b66386bdd9d79be7435427de81fc9.jpg', '2022-09-10 03:25:00', NULL, 1),
-(2, 'Climatización', NULL, '2022-09-10 03:25:33', 1, 1),
-(3, 'Aire acondicionados', NULL, '2022-09-10 03:26:12', 2, 1),
-(4, 'Ventiladores', NULL, '2022-09-10 03:26:28', 2, 1),
-(5, 'Cocinas', NULL, '2022-09-10 03:29:51', 1, 1),
-(6, 'Cocinas a gas', NULL, '2022-09-10 03:30:12', 5, 1),
-(7, 'Hornos', NULL, '2022-09-10 03:30:33', 5, 1),
-(8, 'Audio y video', 'img_6fa97208c60433ff1950e439f7db30c5.jpg', '2022-09-10 03:32:33', NULL, 1),
-(9, 'Audio y sonido', NULL, '2022-09-10 03:33:33', 8, 1),
-(10, 'Equipos de sonido', NULL, '2022-09-10 03:34:28', 9, 1),
-(11, 'Barras de sonido', NULL, '2022-09-10 03:35:14', 9, 1),
-(12, 'TV y video', NULL, '2022-09-10 03:36:44', 8, 1),
-(13, 'Televisores', NULL, '2022-09-10 03:37:54', 12, 1),
-(14, 'Antenas prepago', NULL, '2022-09-10 03:38:16', 12, 1),
-(15, 'Tecnología', 'img_132e9fc5b9334216330d97f15ab17134.jpg', '2022-09-10 07:57:22', NULL, 1),
-(16, 'Computadoras', NULL, '2022-09-10 07:59:07', 15, 1),
-(17, 'Laptos', NULL, '2022-09-10 08:00:23', 16, 1),
-(18, 'Computadoras de escritorio', NULL, '2022-09-10 08:00:42', 16, 1),
-(19, 'Teléfonos', NULL, '2022-09-10 08:02:33', 15, 1),
-(20, 'Smartphones', NULL, '2022-09-10 08:03:06', 19, 1),
-(21, 'Accesorios', NULL, '2022-09-10 08:03:22', 19, 1),
-(22, 'Movilidad', 'img_ba98a55e9dedc2824e02fcfef989b5cf.jpg', '2022-09-14 09:46:54', NULL, 1),
-(23, 'Motos', NULL, '2022-09-14 09:48:14', 22, 1),
-(24, 'Bicicletas', NULL, '2022-09-14 09:48:46', 22, 1),
-(25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', '2022-09-14 09:50:19', NULL, 1),
-(26, 'Accesorios', NULL, '2022-09-18 13:58:50', 25, 1),
-(27, 'Accesorios', NULL, '2022-09-18 16:00:30', 23, 1),
-(28, 'Accesorios', NULL, '2022-09-18 16:00:47', 24, 1),
-(29, 'Combustión', NULL, '2022-09-18 16:14:49', 23, 1),
-(30, 'Electricas', NULL, '2022-09-18 16:15:03', 23, 1),
-(31, 'BMX', NULL, '2022-09-18 16:15:25', 24, 1),
-(32, 'Montaña', NULL, '2022-09-18 16:16:02', 24, 1),
-(33, 'Hogar', 'imgCategoria.png', '2022-09-18 16:21:44', NULL, 1);
+INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `icon_category_father`, `datecreate`, `categoria_father_id`, `status`) VALUES
+(1, 'Electrodomesticos', 'img_8d5b66386bdd9d79be7435427de81fc9.jpg', NULL, '2022-09-10 03:25:00', NULL, 1),
+(2, 'Climatización', NULL, NULL, '2022-09-10 03:25:33', 1, 1),
+(3, 'Aire acondicionados', NULL, NULL, '2022-09-10 03:26:12', 2, 1),
+(4, 'Ventiladores', NULL, NULL, '2022-09-10 03:26:28', 2, 1),
+(5, 'Cocinas', NULL, NULL, '2022-09-10 03:29:51', 1, 1),
+(6, 'Cocinas a gas', NULL, NULL, '2022-09-10 03:30:12', 5, 1),
+(7, 'Hornos', NULL, NULL, '2022-09-10 03:30:33', 5, 1),
+(8, 'Audio y video', 'img_6fa97208c60433ff1950e439f7db30c5.jpg', NULL, '2022-09-10 03:32:33', NULL, 1),
+(9, 'Audio y sonido', NULL, NULL, '2022-09-10 03:33:33', 8, 1),
+(10, 'Equipos de sonido', NULL, NULL, '2022-09-10 03:34:28', 9, 1),
+(11, 'Barras de sonido', NULL, NULL, '2022-09-10 03:35:14', 9, 1),
+(12, 'TV y video', NULL, NULL, '2022-09-10 03:36:44', 8, 1),
+(13, 'Televisores', NULL, NULL, '2022-09-10 03:37:54', 12, 1),
+(14, 'Antenas prepago', NULL, NULL, '2022-09-10 03:38:16', 12, 1),
+(15, 'Tecnología', 'img_132e9fc5b9334216330d97f15ab17134.jpg', NULL, '2022-09-10 07:57:22', NULL, 1),
+(16, 'Computadoras', NULL, NULL, '2022-09-10 07:59:07', 15, 1),
+(17, 'Laptos', NULL, NULL, '2022-09-10 08:00:23', 16, 1),
+(18, 'Computadoras de escritorio', NULL, NULL, '2022-09-10 08:00:42', 16, 1),
+(19, 'Teléfonos', NULL, NULL, '2022-09-10 08:02:33', 15, 1),
+(20, 'Smartphones', NULL, NULL, '2022-09-10 08:03:06', 19, 1),
+(21, 'Accesorios', NULL, NULL, '2022-09-10 08:03:22', 19, 1),
+(22, 'Movilidad', 'img_ba98a55e9dedc2824e02fcfef989b5cf.jpg', NULL, '2022-09-14 09:46:54', NULL, 1),
+(23, 'Motos', NULL, NULL, '2022-09-14 09:48:14', 22, 1),
+(24, 'Bicicletas', NULL, NULL, '2022-09-14 09:48:46', 22, 1),
+(25, 'Mascotas', 'img_d0f2d36afa3bbfbf463ed64399bb6114.jpg', NULL, '2022-09-14 09:50:19', NULL, 1),
+(26, 'Accesorios', NULL, NULL, '2022-09-18 13:58:50', 25, 1),
+(27, 'Accesorios', NULL, NULL, '2022-09-18 16:00:30', 23, 1),
+(28, 'Accesorios', NULL, NULL, '2022-09-18 16:00:47', 24, 1),
+(29, 'Combustión', NULL, NULL, '2022-09-18 16:14:49', 23, 1),
+(30, 'Electricas', NULL, NULL, '2022-09-18 16:15:03', 23, 1),
+(31, 'BMX', NULL, NULL, '2022-09-18 16:15:25', 24, 1),
+(32, 'Montaña', NULL, NULL, '2022-09-18 16:16:02', 24, 1),
+(33, 'Hogar', 'imgCategoria.png', NULL, '2022-09-18 16:21:44', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -190,11 +191,6 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actualizar`, `eliminar`) VALUES
-(1027, 2, 1, 1, 0, 0, 0),
-(1028, 2, 2, 1, 1, 1, 1),
-(1029, 2, 3, 1, 0, 0, 0),
-(1030, 2, 4, 1, 1, 1, 1),
-(1031, 2, 5, 1, 1, 1, 1),
 (1032, 3, 1, 1, 0, 0, 0),
 (1033, 3, 2, 1, 1, 0, 0),
 (1034, 3, 3, 1, 0, 0, 0),
@@ -211,12 +207,18 @@ INSERT INTO `permisos` (`idpermiso`, `rolid`, `moduloid`, `ver`, `crear`, `actua
 (1050, 1, 4, 1, 1, 1, 1),
 (1051, 1, 5, 1, 1, 1, 1),
 (1052, 1, 6, 1, 1, 1, 1),
-(1053, 5, 1, 1, 0, 0, 0),
-(1054, 5, 2, 1, 0, 0, 0),
-(1055, 5, 3, 1, 0, 0, 0),
-(1056, 5, 4, 0, 0, 0, 0),
-(1057, 5, 5, 0, 0, 0, 0),
-(1058, 5, 6, 0, 0, 0, 0);
+(1059, 5, 1, 1, 0, 0, 0),
+(1060, 5, 2, 0, 0, 0, 0),
+(1061, 5, 3, 0, 0, 0, 0),
+(1062, 5, 4, 0, 0, 0, 0),
+(1063, 5, 5, 0, 0, 0, 0),
+(1064, 5, 6, 0, 0, 0, 0),
+(1071, 2, 1, 1, 0, 0, 0),
+(1072, 2, 2, 1, 1, 1, 1),
+(1073, 2, 3, 1, 0, 0, 0),
+(1074, 2, 4, 1, 1, 1, 0),
+(1075, 2, 5, 1, 1, 1, 0),
+(1076, 2, 6, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -244,7 +246,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `marca`, `precio`, `stock`, `imagen`, `datacreate`, `status`) VALUES
-(1, 11, 7399, 'producto 1', 'nuevo p 1', NULL, 'nuevo 1', '67.00', 3, NULL, '2022-10-08 07:25:42', 1),
+(1, 11, 7399, 'producto 1', 'nuevo p 1', '<p>pantalla</p> <ul> <li>65pulgada</li> <li>4k</li> </ul>', 'nuevo 1', '67.00', 3, NULL, '2022-10-08 07:25:42', 1),
 (2, 17, 45352, 'producto 2', 'nuevo p 2', '<table style=\"border-collapse: collapse; width: 100%;\" border=\"1\"> <tbody> <tr> <td style=\"width: 46.5845%;\">uno</td> <td style=\"width: 46.5805%;\">p1</td> </tr> <tr> <td style=\"width: 46.5845%;\">dos</td> <td style=\"width: 46.5805%;\">p1</td> </tr> <tr> <td style=\"width: 46.5845%;\">tres</td> <td style=\"width: 46.5805%;\">p1</td> </tr> </tbody> </table>', 'nuevo 2', '89.99', 42, NULL, '2022-10-08 07:27:28', 1),
 (3, 11, 938, 'producto 3', 'nuevo p 3', '<ol> <li><span style=\"background-color: #e03e2d; color: #f1c40f;\">uno</span></li> <li><span style=\"background-color: #e03e2d; color: #f1c40f;\">dos</span></li> <li><span style=\"background-color: #e03e2d; color: #f1c40f;\">tres</span></li> </ol>', 'nuevo 3', '56.00', 3, NULL, '2022-10-08 11:41:00', 1),
 (4, 29, 73839, 'producto 3', 'nuevo p 3', NULL, 'nuevo 3', '89.89', 3, NULL, '2022-10-08 11:46:56', 1),
@@ -308,11 +310,19 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
-(2, '070671565-3', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-08-06 18:58:01', 1),
+(2, '070671565-3', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
 (3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
 (4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
 (5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:28:13', 1),
-(6, '1300', 'Camilo', 'Perez', 1231231231, 'camilo@camilo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-09-02 17:46:02', 1);
+(6, '1300', 'Camilo', 'Perez', 1231231231, 'camilo@camilo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-09-02 17:46:02', 1),
+(7, '86238479', 'Alfonsoo', 'Guevara', 98123821, 'alfo@alfo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 08:21:53', 1),
+(8, '987234987', 'Manuel', 'Carilllo', 89727983, 'man@man.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 08:23:55', 1),
+(9, '8732482634', 'Jessica', 'Ramirez', 3289428376, 'je@je.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 08:26:07', 1),
+(10, '9837498', 'Prueba', 'Abeurb', 982771276, 'pru@pru.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-10-15 14:00:16', 1),
+(11, '8732638613', 'Jose', 'Mero', 29386, 'jo@jo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 16:47:30', 1),
+(12, '5365377', 'Juan', 'Mariscal', 12163178, 'ju@ju.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 16:58:47', 1),
+(13, '9874988', 'Marlon', 'Astudillo', 98237489, 'mar@mar.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 17:12:56', 1),
+(14, '3123123', 'Jeniiferr', 'Zambranoo', 2342342, 'jen@jen.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-16 17:37:31', 1);
 
 --
 -- Índices para tablas volcadas
@@ -432,7 +442,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1059;
+  MODIFY `idpermiso` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1077;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -450,7 +460,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
