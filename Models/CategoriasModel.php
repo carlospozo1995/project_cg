@@ -6,6 +6,7 @@
         public $strCategoria;
         public $intCategoria;
         public $strImgPortada;
+        public $strIcono;
         public $intStatus;
 
         function __construct(){
@@ -32,12 +33,14 @@
             return $request;
         }
 
-        public function insertCategoria(string $titulo, string $imgPortada, $fatherCategoria, int $status )
+        public function insertCategoria(string $titulo, string $imgPortada, string $iconoCtg, $fatherCategoria, int $status )
         {
             $return = "";
             $data_img = "";
+            $data_icon = "";
             $this->strCategoria = $titulo;
             $this->strImgPortada = $imgPortada;
+            $this->strIcono = $iconoCtg;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
             
@@ -47,12 +50,18 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
+            if ($this->strIcono == 'NULL') {
+                $data_icon = $this->strIcono;
+            }else{
+                $data_icon = "'$this->strIcono'";
+            }
+
             $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '$this->strCategoria' AND categoria_father_id is null";
 
             $request = $this->selectAll($sql_exists_categoria);
 
             if(empty($request)){
-                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, categoria_father_id, status) VALUES('$this->strCategoria', $data_img, $this->intCategoria, $this->intStatus)";
+                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, icon_category_father, categoria_father_id, status) VALUES('$this->strCategoria', $data_img, $data_icon, $this->intCategoria, $this->intStatus)";
                 $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{
@@ -70,11 +79,12 @@
             return $request;
         }
 
-        public function updateCategoria(int $idcategoria, string $titulo, string $imgPortada, $fatherCategoria, int $status)
+        public function updateCategoria(int $idcategoria, string $titulo, string $imgPortada, string $iconoCtg, $fatherCategoria, int $status)
         {
             $this->intIdCategoria = $idcategoria;
             $this->strCategoria = $titulo;
             $this->strImgPortada = $imgPortada;
+            $this->strIcono = $iconoCtg;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
 
@@ -84,11 +94,17 @@
                 $data_img = "'$this->strImgPortada'";
             }
 
+            if ($this->strIcono == 'NULL') {
+                $data_icon = $this->strIcono;
+            }else{
+                $data_icon = "'$this->strIcono'";
+            }
+
             $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria AND categoria_father_id is null";
             $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
-                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria',  imgcategoria= $data_img, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria',  imgcategoria = $data_img, icon_category_father = $data_icon, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
                 $request = $this->update($sql_update_categoria);
                 
                 if ($request) {

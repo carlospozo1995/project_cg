@@ -14,22 +14,34 @@ function modalNewCategoria() {
     document.getElementById('foto_alert').innerHTML = "";
     document.querySelector('.errorCategoria').textContent = "";
     document.querySelector('.photo').style.display = 'block';
+
+    document.getElementById('icono_alert').innerHTML = "";
+    document.querySelector('.errorIcono').textContent = "";
+    document.querySelector('.icon').style.display = 'block';
     removePhoto();
+    removeIcono();
     rowTable = "";
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     let listCategorias = document.getElementById('listCategorias');
     let contPhoto = document.querySelector('.photo');
+    let contIcon = document.querySelector('.icon');
     listCategorias.onchange = function (e) {
         if (listCategorias.value == 0 ) {
             contPhoto.style.display = 'block';
+            contIcon.style.display = 'block';
             document.querySelector('.errorCategoria').textContent = "";
+            document.querySelector('.errorIcono').textContent = "";
             document.getElementById('foto_alert').innerHTML = "";
+            document.getElementById('icono_alert').innerHTML = "";
         }else{
             contPhoto.style.display = 'none';
-            document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
+            contIcon.style.display = 'none';
+            document.querySelector('.errorCategoria').textContent = 'Las categorias superiores solo pueden tener una imagen.';
+            document.querySelector('.errorIcono').textContent = 'Las categorias superiores solo pueden tener un icono.';
             removePhoto();
+            removeIcono();
         }
     };
 
@@ -107,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     document.querySelector('.delIcono').classList.remove("notBlock");
                     var url_icono = navIcon.createObjectURL(this.files[0]);
-                    document.querySelector('.prevIcono div').innerHTML = "<img style='width: 100%' id='iconImg' src="+url_icono+">";
+                    document.querySelector('.prevIcono div').innerHTML = "<img style='width:100%' id='iconImg' src="+url_icono+">";
                 }
             }else{
                 alert('Seleccione una foto');
@@ -121,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if(document.querySelector(".delIcono")){
         var delIcono = document.querySelector(".delIcono");
         delIcono.onclick = function(e) {
-            // document.getElementById('foto_remove').value = 1;
+            document.getElementById('icono_remove').value = 1;
             removeIcono();  
         }
     }
@@ -148,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
+        var iconCtg = document.getElementById('icono').value;
 
         var valCtgList = document.getElementById('listCategorias').value;
         var ctgTextVal = "";
@@ -157,8 +170,17 @@ document.addEventListener('DOMContentLoaded', function () {
         var intStatus = document.getElementById('listStatus').value;
 
         if(strTitulo == "" || intStatus == "" || valCtgList == ""){
-            Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+            Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
+            return false;
         }else{
+            // console.log(valCtgList);
+            // console.log(iconCtg);
+            // if (valCtgList == 0) {
+            //     if (iconCtg == "") {
+            //         Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
+            //         return false;
+            //     }
+            // }
             loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'); 
             var ajaxUrl = base_url + 'Categorias/setCategoria';
@@ -227,6 +249,7 @@ function viewCategoria(idCategoria) {
                 let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
                 document.getElementById('celNombre').innerHTML = objData.data.nombre;
                 document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
+                document.getElementById('celIcono').innerHTML = '<img id="iconImg" src="'+ objData.data.url_icon +'" alt="">';
                 document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
                 document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
                 document.getElementById('celEstado').innerHTML = statusCategoria;
@@ -260,9 +283,14 @@ function editCategoria(element, idCategoria) {
             if (objData.status) {
                 $("#modalFormCategoria").modal("show");
                 sonsCtg = objData.children;
+
                 document.getElementById("idCategoria").value = objData.data.idcategoria;
                 document.getElementById('foto_actual').value = objData.data.imgcategoria;
                 document.getElementById('foto_remove').value = 0;
+
+                document.getElementById('icono_actual').value = objData.data.icon_category_father;
+                document.getElementById('icono_remove').value = 0;
+
                 document.getElementById("txtTitulo").value = objData.data.nombre;
                 document.getElementById("listStatus").value = objData.data.status;
                 if (objData.data.categoria_father_id == null) {
@@ -273,11 +301,19 @@ function editCategoria(element, idCategoria) {
                     document.querySelector('.errorCategoria').textContent = "";
                     objData.data.imgcategoria != 'imgCategoria.png' && objData.data.imgcategoria != "" ? document.querySelector('.delPhoto').classList.remove("notBlock") : document.querySelector('.delPhoto').classList.add("notBlock");
                     document.getElementById('foto_alert').innerHTML = "";
+
+                    document.querySelector('.prevIcono div').innerHTML = '<img style="width:100%" id="iconImg" src="'+ objData.data.url_icon +'">';
+                    document.querySelector('.icon').style.display = 'block'
+                    document.querySelector('.errorIcono').textContent = "";
+                    objData.data.icon_category_father != "" ? document.querySelector('.delIcono').classList.remove("notBlock") : document.querySelector('.delIcono').classList.add("notBlock");
+                    document.getElementById('icono_alert').innerHTML = "";
                 } else{
                     document.getElementById("listCategorias").value = objData.data.categoria_father_id;
                     selectAllCategorias(idCategoria, objData.data.categoria_father_id)
                     document.querySelector('.photo').style.display = 'none';
-                    document.querySelector('.errorCategoria').textContent = 'Las categorias principales solo pueden tener una imagen, no las subcategorias.';
+                    document.querySelector('.icon').style.display = 'none';
+                    document.querySelector('.errorCategoria').textContent = 'Las categorias superiores solo pueden tener una imagen.';
+                    document.querySelector('.errorIcono').textContent = 'Las categorias superiores solo pueden tener un icono.';
                 }
             }
         }

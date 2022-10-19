@@ -51,6 +51,10 @@
                     $type = $foto['type'];
                     $url_temp = $foto['tmp_name'];
                     $imgPortada = 'imgCategoria.png';
+                    
+                    $icono = $_FILES['icono'];
+                    $name_icono = $icono['name'];
+                    $iconoCtg = "";
 
                     if (empty($intIdCategoria)) {
                         $option = 1;
@@ -58,20 +62,26 @@
                             if($intListCtg != 'NULL'){
                                 // AGREGAR SUBCATEGORIA - SIN IMAGEN
                                 $imgPortada = 'NULL';
+                                $iconoCtg = 'NULL';
                             }else{  
                                 // AGREGAR CATEGORIA - CON IMAGEN
                                 if (!empty($name_foto)) {
                                     $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($foto, $imgPortada);
                                 }
-                                if ($name_foto != '') {uploadImage($foto, $imgPortada);}
+                                if (!empty($name_icono)) {
+                                    $iconoCtg = 'icono_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($icono, $iconoCtg);
+                                }
                             }
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $intListCtg, $intStatus );
+                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $iconoCtg, $intListCtg, $intStatus );
                         }
                     }else{
                         $option = 2;
                         if($_SESSION['permisosMod']['actualizar']){
                             if($intListCtg != 'NULL'){
                                 $imgPortada = 'NULL';
+                                $iconoCtg = 'NULL';
                             }else{
                                 if($name_foto == ""){
                                     if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
@@ -85,8 +95,17 @@
                                     $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
                                     uploadImage($foto, $imgPortada);   
                                 }
+
+                                if ($name_icono == "") {
+                                    if ($_POST['icono_actual'] != '' && $_POST['icono_remove'] == 0) {
+                                        $iconoCtg = $_POST['icono_actual'];
+                                    }
+                                }else{
+                                    $iconoCtg = 'icono_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($icono, $iconoCtg);   
+                                }
                             }
-                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $intListCtg, $intStatus);
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $iconoCtg, $intListCtg, $intStatus);
                         }
                     }
 
@@ -119,6 +138,10 @@
                     if (empty($arrCategoria)) {
                         $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
                     }else{
+                        if(!empty($arrCategoria['icon_category_father'])){
+                            $arrCategoria['url_icon'] = media().'images/uploads/'.$arrCategoria['icon_category_father'];  
+                        }
+
                         if (!empty($arrCategoria['imgcategoria'])) {
                             $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];    
                         }

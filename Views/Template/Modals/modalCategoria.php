@@ -15,6 +15,8 @@
                         <input type="hidden" id="idCategoria" name="idCategoria" value="">
                         <input type="hidden" id="foto_actual" name="foto_actual" value="">
                         <input type="hidden" id="foto_remove" name="foto_remove" value="0">
+                        <input type="hidden" id="icono_actual" name="icono_actual" value="">
+                        <input type="hidden" id="icono_remove" name="icono_remove" value="0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -24,7 +26,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="categoriaId">Categoria padre</label>
+                                        <label for="categoriaId">Categoria padre<span class="required"> *</span></label>
                                         <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required></select>
                                     </div>
 
@@ -35,8 +37,8 @@
                                             <div class="prevIcono">
                                                 <span class="delIcono notBlock">X</span>
                                                 <label for="icono"></label>
-                                                <div> 
-                                                    <!-- Carga de icono (js) -->
+                                                <div class="iconStyle"> 
+                                                    <!-- Carga de icono js -->
                                                 </div>
                                             </div>
                                             <div class="upimg">
@@ -67,7 +69,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="listStatus">Status Categoria</label>
+                                        <label for="listStatus">Status Categoria<span class="required"> *</span></label>
                                         <select class="form-control" id="listStatus" name="listStatus" required>
                                             <option value="1">Activo</option>
                                             <option value="2">Inactivo</option>
@@ -111,6 +113,10 @@
                             <tr>
                                 <td>Imagen:</td>
                                 <td id="celImagen"></td>
+                            </tr>
+                            <tr>
+                                <td>Icono:</td>
+                                <td id="celIcono"></td>
                             </tr>
                             <tr>
                                 <td>Fecha de registro:</td>

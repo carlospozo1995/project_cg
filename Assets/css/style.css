@@ -220,6 +220,14 @@
 	z-index: 10;
 }
 
+#celImagen{
+    text-align:center;
+}
+
+#celImagen img{
+    width: 200px;
+    margin: auto;
+}
 /*AGREGAR ICONO CATEGORIA (MENU)*/
 .prevIcono {
     display: flex;
@@ -264,20 +272,21 @@
     z-index: 10;
 }
 
+.iconStyle{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
 #tbl_list_productos img{
 	width: 50px;
 }
 .imgProductoDelete{
 	width: 175px;
 }
-
-#celImagen{
+#celIcono{
     text-align:center;
-}
-#celImagen img{
-    width: 200px;
-    margin: auto;
-
 }
 
 /* UPLOADS IMAGES PRODUCTOS */
