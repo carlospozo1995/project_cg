@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var intIdCategoria = document.getElementById('idCategoria').value;
         var strTitulo = document.getElementById('txtTitulo').value;
         var iconCtg = document.getElementById('icono').value;
+        var iconoActual = document.getElementById('icono_actual').value;
 
         var valCtgList = document.getElementById('listCategorias').value;
         var ctgTextVal = "";
@@ -173,14 +174,18 @@ document.addEventListener('DOMContentLoaded', function () {
             Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
             return false;
         }else{
-            // console.log(valCtgList);
-            // console.log(iconCtg);
-            // if (valCtgList == 0) {
-            //     if (iconCtg == "") {
-            //         Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
-            //         return false;
-            //     }
-            // }
+            if (valCtgList == 0) {
+                if (intIdCategoria == "") {
+                    if (iconCtg == "") {
+                        Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
+                        return false;}
+                }else{
+                    if (iconCtg == "" && iconoActual == "") {
+                        Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
+                        return false;}
+                }
+            }
+
             loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'); 
             var ajaxUrl = base_url + 'Categorias/setCategoria';
@@ -267,6 +272,7 @@ function editCategoria(element, idCategoria) {
     if(ischild){
         rowTable = $(rowTable).prev()[0];
     }
+
     document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
     document.querySelector(".modal-title").innerHTML = "Actualizar Categoria";
     document.getElementById("btnSubmitCategoria").classList.replace("btn-primary", "bg-success");
