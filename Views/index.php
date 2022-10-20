@@ -104,7 +104,7 @@
                     {
                         foreach ($dataCtg as $key => $value) {
                             if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                                echo '<li class="first-item">';
+                                echo '<li class="item-menu-desktop">';
                                     echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
                                         echo '<ul class="submenu-desktop">';
                                             levelSecond($dataCtg, $value['idcategoria']);
@@ -118,7 +118,7 @@
                     {
                         foreach ($dataCtg as $key => $value) {
                             if ($value['categoria_father_id'] == $fatherId) {
-                                echo '<li>';
+                                echo '<li class="item-submenu-desktop">';
                                     echo '<a href="">'.$value['nombre'].'</a>';
                                     echo '<ul class="next-sub-desktop">';
                                         levelThird($dataCtg, $value['idcategoria']);
@@ -132,7 +132,7 @@
                     {
                         foreach ($dataCtg as $key => $value) {
                             if ($value['categoria_father_id'] == $fatherId) {
-                                echo '<li>';
+                                echo '<li class="item-nextSub-desktop">';
                                     echo '<a href="">'.$value['nombre'].'</a>';
                                 echo '</li>';
                             }        
