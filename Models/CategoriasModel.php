@@ -155,6 +155,14 @@
             }
             return $request;
         }
+
+        public function menuCategorias()
+        {
+            $sql = "SELECT * FROM categorias WHERE status = 1";
+            return $this->selectAll($sql);
+        }
     }
+
+
     
 ?>

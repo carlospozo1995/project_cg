@@ -1,20 +1,21 @@
 *{
 	margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    list-style: none;
-    text-decoration: none;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
 	font-family: 'Montserrat', sans-serif;
 }
 
 :root{
-    --g1:  #fe0000;
+    --g1: #fe0000;
     --g2: #1700c2;
     --g3: #b2b2b2;
+    --g4: #585858;
 }
 
-/* VIEW DESKTOP */
+/*----------- VIEW DESKTOP HEADER-MENU -----------*/
 
 .container-menu-desktop{
 	height: auto;
@@ -27,14 +28,14 @@
 	-o-transition: all 0.3s;
 }
 
+/*Header desktop*/
 .top-bar{
 	height: 40px;
 	background-color: #222;
 }
 
-
 .content-topbar{
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .left-top-bar{
@@ -56,15 +57,79 @@
 	padding-right: 25px;
 	text-decoration: none;
 	transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -ms-transition: all 0.4s;
-    -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
 }
 
 .right-top-bar a:hover {
   color: var(--g1);
 }
+
+/*Navigation desktop*/
+.wrap-nav-desktop{
+}
+
+.limiter-nav-desktop{
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.logo{
+	margin-right: 40px;
+}
+
+.nav-desktop{
+	display: flex;
+}
+
+.main-nav{
+	display: flex;
+	align-items: center;
+	height: 100%;
+	margin: auto;
+}
+
+
+.main-nav li a{
+	padding: 0px 14px 0px 14px;
+	font-size: 16px;
+	text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	color: var(--g4);
+}
+
+.main-nav li a:hover{
+	color: var(--g2);
+}
+
+.cont-icon-nav{
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	display: flex;
+}
+
+.cont-icon-nav .icon-nav{
+	margin-left: 20px;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	font-size: 20px;
+	color: var(--g4);
+	cursor: pointer;
+}
+
+.cont-icon-nav .icon-nav:hover{
+	color: var(--g2);
+}
+
 
 /*------ // STYLE RESPONSIVE // ------*/
 

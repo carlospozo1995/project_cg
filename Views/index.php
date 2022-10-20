@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="<?php echo media(); ?>ecommerce/css/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/plugins/animate/animate.css">
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/css/bootstrap.min.css">
@@ -47,68 +50,104 @@
                 </div>
             </div>
 
-            <div class="wrap-menu-desktop">
-                <nav class="limiter-menu-desktop container">
+            <div class="wrap-nav-desktop">
+                <nav class="limiter-nav-desktop container">
                         
-                    <a href="#" class="logo">
-                        <img src="<?php echo media(); ?>ecommerce/images/logo_text.png" alt="IMG-LOGO">
-                        <img src="<?php echo media(); ?>ecommerce/images/electrodomesticos.png" alt="IMG-LOGO">
+                    <a href="<?= base_url(); ?>" class="logo">
+                        <img src="<?= media(); ?>ecommerce/images/logo_text.png" alt="Logo - Creditos Guaman">
                     </a>
 
-                    <div class="menu-desktop">
-                        <ul class="main-menu">
-                            <li class="active-menu">
-                                <a href="index.html">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Homepage 1</a></li>
-                                    <li><a href="home-02.html">Homepage 2</a></li>
-                                    <li><a href="home-03.html">Homepage 3</a></li>
-                                </ul>
+                    <div class="nav-desktop">
+                        <ul class="main-nav">
+                            <li class="active-nav">
+                                <a href="<?= base_url(); ?>">Inicio</a>
                             </li>
 
                             <li>
-                                <a href="product.html">Shop</a>
-                            </li>
-
-                            <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.html">Features</a>
+                                <a href="<?= base_url(); ?>tienda">Tienda</a>
                             </li>
 
                             <li>
-                                <a href="blog.html">Blog</a>
+                                <a href="<?= base_url(); ?>carrito">Carrito</a>
                             </li>
 
                             <li>
-                                <a href="about.html">About</a>
-                            </li>
-
-                            <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="<?= base_url(); ?>contacto">Contacto</a>
                             </li>
                         </ul>
                     </div>  
 
-                    <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                    <div class="cont-icon-nav">
+                        <div class="icon-nav">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
 
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                        <div class="icon-nav" >
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
-
-                        <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
                     </div>
                 </nav>
-            </div> 
+            </div>
 
+            <div class="wrap-menu-desktop container">
+                <?php
+                    require_once 'Models/CategoriasModel.php';
+                    $objCategorias = new CategoriasModel();
+                    $request = $objCategorias->menuCategorias();
+                    if (count($request) > 0) {
+                        echo '<ul class="menu-desktop">';
+                            levelFirst($request);
+                        echo '</ul>';
+                    }
+
+                    function levelFirst($dataCtg)
+                    {
+                        foreach ($dataCtg as $key => $value) {
+                            if($value['categoria_father_id'] == "" && $value['status'] == 1){
+                                echo '<li class="first-item">';
+                                    echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                        echo '<ul class="submenu-desktop">';
+                                            levelSecond($dataCtg, $value['idcategoria']);
+                                        echo '</ul>';
+                                echo  '</li>';
+                            }
+                        }
+                    }
+
+                    function levelSecond($dataCtg, $fatherId)
+                    {
+                        foreach ($dataCtg as $key => $value) {
+                            if ($value['categoria_father_id'] == $fatherId) {
+                                echo '<li>';
+                                    echo '<a href="">'.$value['nombre'].'</a>';
+                                    echo '<ul class="next-sub-desktop">';
+                                        levelThird($dataCtg, $value['idcategoria']);
+                                    echo '</ul>';
+                                echo '</li>';
+                            }        
+                        }       
+                    }
+
+                    function levelThird($dataCtg, $fatherId)
+                    {
+                        foreach ($dataCtg as $key => $value) {
+                            if ($value['categoria_father_id'] == $fatherId) {
+                                echo '<li>';
+                                    echo '<a href="">'.$value['nombre'].'</a>';
+                                echo '</li>';
+                            }        
+                        }   
+                    }
+                ?>
+            </div>
         </div>
     </header>
 
+    <footer></footer>
+
+    <!-- <script src="<?php echo media(); ?>ecommerce/js/plugins/jquery/jquery.min.js"></script>
     <script src="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/js/popper.js"></script>
-    <script src="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo media(); ?>ecommerce/css/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 
 </body>
 </html>
