@@ -32,17 +32,17 @@
                     </div>
 
                     <div class="right-top-bar h-full d-flex flex-wrap">
-                        <a href="#" class="c-full">
+                        <a href="#" class="c-full tx-none">
                             <i class="fa-solid fa-question mr-2"></i>
                             Help & FAQs
                         </a>
 
-                        <a href="#" class="c-full">
+                        <a href="#" class="c-full tx-none">
                             <i class="fa-solid fa-user mr-2"></i>
                             Iniciar Sesión
                         </a>
 
-                        <span class="c-full">
+                        <span class="c-full tx-none">
                             <i class="fa-solid fa-phone-volume mr-2"></i>
                             Atención al cliente: 0123456789
                         </span>
@@ -60,19 +60,19 @@
                     <div class="nav-desktop">
                         <ul class="main-nav">
                             <li class="active-nav">
-                                <a href="<?= base_url(); ?>">Inicio</a>
+                                <a href="<?= base_url(); ?>" class="tx-none">Inicio</a>
                             </li>
 
                             <li>
-                                <a href="<?= base_url(); ?>tienda">Tienda</a>
+                                <a href="<?= base_url(); ?>tienda" class="tx-none">Tienda</a>
                             </li>
 
                             <li>
-                                <a href="<?= base_url(); ?>carrito">Carrito</a>
+                                <a href="<?= base_url(); ?>carrito" class="tx-none">Carrito</a>
                             </li>
 
                             <li>
-                                <a href="<?= base_url(); ?>contacto">Contacto</a>
+                                <a href="<?= base_url(); ?>contacto" class="tx-none">Contacto</a>
                             </li>
                         </ul>
                     </div>  
@@ -105,7 +105,7 @@
                         foreach ($dataCtg as $key => $value) {
                             if($value['categoria_father_id'] == "" && $value['status'] == 1){
                                 echo '<li class="item-menu-desktop">';
-                                    echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                    echo '<a href="" class="tx-none"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
                                         echo '<ul class="submenu-desktop">';
                                             levelSecond($dataCtg, $value['idcategoria']);
                                         echo '</ul>';
@@ -119,7 +119,7 @@
                         foreach ($dataCtg as $key => $value) {
                             if ($value['categoria_father_id'] == $fatherId) {
                                 echo '<li class="item-submenu-desktop">';
-                                    echo '<a href="">'.$value['nombre'].'</a>';
+                                    echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
                                     echo '<ul class="next-sub-desktop">';
                                         levelThird($dataCtg, $value['idcategoria']);
                                     echo '</ul>';
@@ -133,7 +133,7 @@
                         foreach ($dataCtg as $key => $value) {
                             if ($value['categoria_father_id'] == $fatherId) {
                                 echo '<li class="item-nextSub-desktop">';
-                                    echo '<a href="">'.$value['nombre'].'</a>';
+                                    echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
                                 echo '</li>';
                             }        
                         }   

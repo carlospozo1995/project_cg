@@ -4,7 +4,6 @@
   box-sizing: border-box;
   outline: none;
   list-style: none;
-  text-decoration: none;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -55,7 +54,6 @@
 	border-right: 1px solid rgba(255,255,255,0.3);
 	padding-left: 25px;
 	padding-right: 25px;
-	text-decoration: none;
 	transition: all 0.4s;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -96,8 +94,7 @@
 
 .main-nav li a{
 	padding: 0px 14px 0px 14px;
-	font-size: 16px;
-	text-decoration: none;
+	font-size: 16px
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
 	color: var(--g4);
@@ -138,6 +135,7 @@
 .menu-desktop{
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 0;
 }
 
 .item-menu-desktop{
@@ -147,6 +145,45 @@
 
 .item-menu-desktop:hover{
   --clip: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.item-menu-desktop > a{
+	position: relative;
+  display: block;
+  text-align: center;
+  z-index: 2;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  transition: .3s ease all;
+  -webkit-transition: .3s ease all;
+  -moz-transition: .3s ease all;
+  -ms-transition: .3s ease all;
+  -o-transition: .3s ease all;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.item-menu-desktop > a::after{
+	content: '';
+	width: 210%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: calc(-100% - 250px);
+  border-bottom: 118px solid rgba(107, 107, 107, 0.2);
+  border-right: 100px solid transparent;
+  transition: .3s ease all;
+  -webkit-transition: .3s ease all;
+  -moz-transition: .3s ease all;
+  -ms-transition: .3s ease all;
+  -o-transition: .3s ease all;
+}
+
+.item-menu-desktop:hover > a::after{
+	left: 0;
 }
 
 .submenu-desktop{
@@ -170,3 +207,7 @@
 @media (max-width: 991px){
 	.container-menu-desktop{display: none;}
 }
+
+
+
+
