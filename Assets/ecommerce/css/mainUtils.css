@@ -12,3 +12,23 @@
 .tx-none{
   text-decoration: none !important;
 }
+
+.scale-link{
+	transition-timing-function: ease-out;
+  transition-duration: 250ms;
+  transform: scale(1.0);
+  -webkit-transform: scale(1.0);
+  -moz-transform: scale(1.0);
+  -ms-transform: scale(1.0);
+  -o-transform: scale(1.0);
+}
+
+.scale-link:hover{
+	transition-timing-function: ease-out;
+  transition-duration: 100ms;
+  transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  -moz-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -o-transform: scale(1.1, 1.1);
+}

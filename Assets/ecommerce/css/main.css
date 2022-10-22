@@ -12,6 +12,7 @@
     --g2: #1700c2;
     --g3: #b2b2b2;
     --g4: #585858;
+    --g5: #fbbb01;
 }
 
 /*----------- VIEW DESKTOP HEADER-MENU -----------*/
@@ -94,10 +95,11 @@
 
 .main-nav li a{
 	padding: 0px 14px 0px 14px;
-	font-size: 16px
+	font-size: 17px
 	font-family: 'Poppins', sans-serif;
 	font-weight: 500;
 	color: var(--g4);
+	font-weight: 600;
 }
 
 .main-nav li a:hover{
@@ -164,6 +166,9 @@
   -o-transition: .3s ease all;
   padding: 15px;
   overflow: hidden;
+  color: var(--g2);
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .item-menu-desktop > a::after{
@@ -173,7 +178,7 @@
 	z-index: 1;
 	top: 0;
 	left: calc(-100% - 250px);
-  border-bottom: 118px solid rgba(107, 107, 107, 0.2);
+  border-bottom: 118px solid rgba(107, 107, 107, 0.1);
   border-right: 100px solid transparent;
   transition: .3s ease all;
   -webkit-transition: .3s ease all;
@@ -186,6 +191,10 @@
 	left: 0;
 }
 
+.item-menu-desktop:hover > a{
+	color: var(--g5);
+}
+
 .submenu-desktop{
 	position: absolute;
 	clip-path: var(--clip);
@@ -194,6 +203,46 @@
 	-moz-transition: all 0.3s;
 	-ms-transition: all 0.3s;
 	-o-transition: all 0.3s;
+	display: flex;
+	background-color: #fff;
+	border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+	padding: 10px;
+}
+
+.item-submenu-desktop{
+	padding: 0px 10px;
+}
+
+.item-submenu-desktop > a{
+	display: flex;
+	width: max-content;
+	color: black;
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.item-nextSub-desktop{
+	list-style: initial;
+	list-style-type: circle;
+	margin-left: 20px;
+}
+
+.item-nextSub-desktop > a{
+	display: flex;
+	width: max-content;
+	padding: 8px 0px 8px 4px;
+	font-size: 15px;
+	/*color: #3b5998;*/
+}
+
+.item-menu-desktop:last-child .submenu-desktop,
+.item-menu-desktop:nth-last-child(2) .submenu-desktop,
+.item-menu-desktop:nth-last-child(3) .submenu-desktop{
+	right: 0;
 }
 
 /*------ // STYLE RESPONSIVE // ------*/
@@ -204,7 +253,7 @@
   .container {max-width: 1200px;}
 }
 
-@media (max-width: 991px){
+@media (max-width: 1100px){
 	.container-menu-desktop{display: none;}
 }
 
