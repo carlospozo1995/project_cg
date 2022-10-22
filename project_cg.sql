@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-10-2022 a las 05:15:23
+-- Tiempo de generación: 22-10-2022 a las 04:30:35
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -42,7 +42,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `icon_category_father`, `datecreate`, `categoria_father_id`, `status`) VALUES
-(1, 'ELECTRODOMESTICOS', 'imgCategoria.png', 'icono_ELECTRODOMESTICOS_a4c5378a1c3ade90a0374d451316d066.jpg', '2022-10-19 17:12:57', NULL, 1),
+(1, 'ELECTRODOMÉSTICOS', 'imgCategoria.png', 'icono_ELECTRODOMESTICOS_a4c5378a1c3ade90a0374d451316d066.jpg', '2022-10-19 17:12:57', NULL, 1),
 (2, 'Climatización', NULL, NULL, '2022-10-19 17:14:18', 1, 1),
 (3, 'Ventiladores', NULL, NULL, '2022-10-19 17:14:36', 2, 1),
 (4, 'Aires acondicionados', NULL, NULL, '2022-10-19 17:15:10', 2, 1),
@@ -50,19 +50,76 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `icon_categor
 (6, 'Cocinas a gas', NULL, NULL, '2022-10-19 17:16:06', 5, 1),
 (7, 'Hornos', NULL, NULL, '2022-10-19 17:16:37', 5, 1),
 (8, 'Cocinas de inducción', NULL, NULL, '2022-10-19 17:18:41', 5, 1),
-(9, 'TECNOLOGIA', 'imgCategoria.png', 'icono_TECNOLOGIA_2fac132709478d8e0277b8a524849b62.jpg', '2022-10-20 00:36:07', NULL, 1),
-(10, 'Proyectores', NULL, NULL, '2022-10-20 00:36:56', 9, 1),
-(11, 'Smartwatch', NULL, NULL, '2022-10-20 00:37:11', 9, 1),
-(12, 'Computadoras', NULL, NULL, '2022-10-20 07:40:14', 9, 1),
-(13, 'Laptos', NULL, NULL, '2022-10-20 07:45:42', 12, 1),
-(14, 'De escritorios', NULL, NULL, '2022-10-20 07:50:20', 12, 1),
-(15, 'Accesorios', NULL, NULL, '2022-10-20 07:52:33', 12, 1),
-(16, 'Impresoras', NULL, NULL, '2022-10-20 07:56:53', 12, 1),
-(17, 'Teléfonos', NULL, NULL, '2022-10-20 07:59:33', 9, 1),
-(18, 'Smartphone', NULL, NULL, '2022-10-20 07:59:54', 17, 1),
-(19, 'Accesorios', NULL, NULL, '2022-10-20 08:00:10', 17, 1),
-(20, 'CUIDADO PERSONAL', 'imgCategoria.png', 'icono_CUIDADO PERSONAL_2fb5ca48f53417b539b340e2ac759681.jpg', '2022-10-21 00:02:23', NULL, 1),
-(21, 'HOGAR', 'imgCategoria.png', 'icono_c_fb9f356d0c03f23f17a56e20b3ae28b7.jpg', '2022-10-21 00:07:29', NULL, 1);
+(9, 'Lavado y secado', NULL, NULL, '2022-10-21 15:28:05', 1, 1),
+(10, 'Lavadoras', NULL, NULL, '2022-10-21 15:28:23', 9, 1),
+(11, 'Secadoras', NULL, NULL, '2022-10-21 15:28:38', 9, 1),
+(12, 'Refrigeración', NULL, NULL, '2022-10-21 15:29:07', 1, 1),
+(13, 'Refrigeradoras', NULL, NULL, '2022-10-21 15:29:24', 12, 1),
+(14, 'Congeladores', NULL, NULL, '2022-10-21 15:29:39', 12, 1),
+(15, 'AUDIO & VIDEO', 'imgCategoria.png', 'icono_AUDIO & VIDEO_84295d7a28171cb4dfc6ea0a7e75c76e.jpg', '2022-10-21 15:33:08', NULL, 1),
+(16, 'Audio & sonido', NULL, NULL, '2022-10-21 15:33:55', 15, 1),
+(17, 'Equipos de sonido', NULL, NULL, '2022-10-21 15:34:16', 16, 1),
+(18, 'Parlantes portátiles', NULL, NULL, '2022-10-21 15:34:32', 16, 1),
+(19, 'Barras de sonido', NULL, NULL, '2022-10-21 15:35:40', 16, 1),
+(20, 'Audífonos', NULL, NULL, '2022-10-21 15:36:21', 16, 1),
+(21, 'Micrófonos', NULL, NULL, '2022-10-21 15:36:37', 16, 1),
+(22, 'Tv & video', NULL, NULL, '2022-10-21 15:40:20', 15, 1),
+(23, 'Televisores', NULL, NULL, '2022-10-21 15:40:36', 22, 1),
+(24, 'Soporte de pared', NULL, NULL, '2022-10-21 15:41:09', 22, 1),
+(25, 'Antenas prepago', NULL, NULL, '2022-10-21 15:41:27', 22, 1),
+(26, 'TECNOLOGÍA', 'imgCategoria.png', 'icono_TECNOLOGÍA_087c43184b2f687cc19e7475eb151624.jpg', '2022-10-21 15:44:12', NULL, 1),
+(27, 'Computadoras', NULL, NULL, '2022-10-21 15:46:51', 26, 1),
+(28, 'De escritorio', NULL, NULL, '2022-10-21 15:47:13', 27, 1),
+(29, 'Laptos', NULL, NULL, '2022-10-21 15:47:25', 27, 1),
+(30, 'Monitores', NULL, NULL, '2022-10-21 15:48:19', 27, 1),
+(31, 'Impresoras', NULL, NULL, '2022-10-21 15:48:33', 27, 1),
+(32, 'Smartphones', NULL, NULL, '2022-10-21 15:48:55', 26, 1),
+(33, 'Celulares', NULL, NULL, '2022-10-21 15:49:17', 32, 1),
+(34, 'Tablets', NULL, NULL, '2022-10-21 15:49:30', 32, 1),
+(35, 'Proyectores', NULL, NULL, '2022-10-21 15:50:02', 26, 1),
+(36, 'ELECTROMENORES', 'imgCategoria.png', 'icono_ELECTROMENORES_43c60dfbff4414ec61cc9688b9bfebd9.jpg', '2022-10-21 16:00:26', NULL, 1),
+(37, 'Ayudantes del hogar', NULL, NULL, '2022-10-21 16:00:50', 36, 1),
+(38, 'Arroceras', NULL, NULL, '2022-10-21 16:01:33', 37, 1),
+(39, 'Ollas eléctricas', NULL, NULL, '2022-10-21 16:01:50', 37, 1),
+(40, 'Exprimidores', NULL, NULL, '2022-10-21 16:02:20', 37, 1),
+(41, 'Planchas de ropa', NULL, NULL, '2022-10-21 16:02:39', 37, 1),
+(42, 'Licuadoras', NULL, NULL, '2022-10-21 16:03:38', 37, 1),
+(43, 'Dispensadores', NULL, NULL, '2022-10-21 16:04:05', 37, 1),
+(44, 'Air fryer', NULL, NULL, '2022-10-21 16:04:37', 37, 1),
+(45, 'Batidoras', NULL, NULL, '2022-10-21 16:04:53', 37, 1),
+(46, 'Cafeteras', NULL, NULL, '2022-10-21 16:05:21', 37, 1),
+(47, 'Sanducheras y wafleras', NULL, NULL, '2022-10-21 16:05:55', 37, 1),
+(48, 'HOGAR', 'imgCategoria.png', 'icono_HOGAR_ef6fe3bfbea8a099386b929606024c46.jpg', '2022-10-21 16:06:54', NULL, 1),
+(49, 'Cocina', NULL, NULL, '2022-10-21 16:07:32', 48, 1),
+(50, 'Ollas y sartenes', NULL, NULL, '2022-10-21 16:08:18', 49, 1),
+(51, 'Utensilios', NULL, NULL, '2022-10-21 16:08:57', 49, 1),
+(52, 'Dormitorio', NULL, NULL, '2022-10-21 16:10:13', 48, 1),
+(53, 'Colchones', NULL, NULL, '2022-10-21 16:10:43', 52, 1),
+(54, 'Base de colchones', NULL, NULL, '2022-10-21 16:11:04', 52, 1),
+(55, 'Almohadas', NULL, NULL, '2022-10-21 16:11:31', 52, 1),
+(56, 'Camas y sofacamas', NULL, NULL, '2022-10-21 16:11:48', 52, 1),
+(57, 'Aspirado y limpieza', NULL, NULL, '2022-10-21 16:14:44', 48, 1),
+(58, 'Aspiradoras', NULL, NULL, '2022-10-21 16:15:29', 57, 1),
+(59, 'Hidrolavadoras', NULL, NULL, '2022-10-21 16:15:48', 57, 1),
+(60, 'Muebles', NULL, NULL, '2022-10-21 16:16:14', 48, 1),
+(61, 'Muebles de dormitorio', NULL, NULL, '2022-10-21 16:16:41', 60, 1),
+(62, 'Muebles de sala', NULL, NULL, '2022-10-21 16:16:56', 60, 1),
+(63, 'Muebles de cocina', NULL, NULL, '2022-10-21 16:17:44', 60, 1),
+(64, 'MOVILIDAD', 'imgCategoria.png', 'icono_Movilidad_250ae9069d0512af7da8fa858bf95d58.jpg', '2022-10-21 16:18:29', NULL, 1),
+(65, 'Motos', NULL, NULL, '2022-10-21 16:20:17', 64, 1),
+(66, 'Motos eléctricas', NULL, NULL, '2022-10-21 16:20:45', 65, 1),
+(67, 'Motos de combustión', NULL, NULL, '2022-10-21 16:22:01', 65, 1),
+(68, 'Bicicletas', NULL, NULL, '2022-10-21 17:07:46', 64, 1),
+(69, 'BMX', NULL, NULL, '2022-10-21 17:08:23', 68, 1),
+(70, 'Montaña', NULL, NULL, '2022-10-21 17:08:43', 68, 1),
+(71, 'Infantiles', NULL, NULL, '2022-10-21 17:09:07', 68, 1),
+(72, 'Accesorios', NULL, NULL, '2022-10-21 17:09:22', 64, 1),
+(73, 'Cascos', NULL, NULL, '2022-10-21 17:09:36', 72, 1),
+(74, 'CUIDADO PERSONAL', 'imgCategoria.png', 'icono_CUIDADO PERSONAL_b99396b1d2483219e4b35a1c1b89c047.jpg', '2022-10-21 17:11:04', NULL, 1),
+(75, 'Belleza', NULL, NULL, '2022-10-21 17:18:03', 74, 1),
+(76, 'Rizadores y planchas', NULL, NULL, '2022-10-21 17:18:47', 75, 1),
+(77, 'Afeitadoras y cortadoras de pelo', NULL, NULL, '2022-10-21 17:19:29', 75, 1),
+(78, 'Secadoras de pelo', NULL, NULL, '2022-10-21 17:19:44', 75, 1);
 
 -- --------------------------------------------------------
 
@@ -361,7 +418,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
