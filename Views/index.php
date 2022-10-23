@@ -60,10 +60,10 @@
             </div>
 
             <div class="wrap-nav-desktop">
-                <nav class="limiter-nav-desktop container">
+                <nav class="container-nav-desktop container">
                         
-                    <a href="<?= base_url(); ?>" class="logo">
-                        <img style="width: 200px" src="<?= media(); ?>ecommerce/images/log.png" alt="Logo - Creditos Guaman">
+                    <a href="<?= base_url(); ?>" class="logo animate__animated animate__backInLeft">
+                        <img src="<?= media(); ?>ecommerce/images/logo_text.png" alt="Logo - Creditos Guaman">
                     </a>
 
                     <div class="nav-desktop">
@@ -96,61 +96,161 @@
                         </div>
                     </div>
                 </nav>
-            </div>
 
-            <div class="wrap-menu-desktop container">
-                <?php
-                    require_once 'Models/CategoriasModel.php';
-                    $objCategorias = new CategoriasModel();
-                    $request = $objCategorias->menuCategorias();
-                    if (count($request) > 0) {
-                        echo '<ul class="menu-desktop">';
-                            levelFirst($request);
-                        echo '</ul>';
-                    }
+                <div class="wrap-menu-desktop container">
+                    <?php
+                        require_once 'Models/CategoriasModel.php';
+                        $objCategorias = new CategoriasModel();
+                        $request = $objCategorias->menuCategorias();
+                        if (count($request) > 0) {
+                            echo '<ul class="menu-desktop">';
+                                levelFirst($request);
+                            echo '</ul>';
+                        }
 
-                    function levelFirst($dataCtg)
-                    {
-                        foreach ($dataCtg as $key => $value) {
-                            if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                                echo '<li class="item-menu-desktop">';
-                                    echo '<a href="" class="tx-none"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
-                                        echo '<ul class="submenu-desktop">';
-                                            levelSecond($dataCtg, $value['idcategoria']);
-                                        echo '</ul>';
-                                echo  '</li>';
+                        function levelFirst($dataCtg)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if($value['categoria_father_id'] == "" && $value['status'] == 1){
+                                    echo '<li class="item-menu-desktop">';
+                                        echo '<a href="" class="tx-none"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                            echo '<ul class="submenu-desktop">';
+                                                levelSecond($dataCtg, $value['idcategoria']);
+                                            echo '</ul>';
+                                    echo  '</li>';
+                                }
                             }
                         }
-                    }
 
-                    function levelSecond($dataCtg, $fatherId)
-                    {
-                        foreach ($dataCtg as $key => $value) {
-                            if ($value['categoria_father_id'] == $fatherId) {
-                                echo '<li class="item-submenu-desktop">';
-                                    echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
-                                    echo '<ul class="next-sub-desktop">';
-                                        levelThird($dataCtg, $value['idcategoria']);
-                                    echo '</ul>';
-                                echo '</li>';
-                            }        
-                        }       
-                    }
+                        function levelSecond($dataCtg, $fatherId)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if ($value['categoria_father_id'] == $fatherId) {
+                                    echo '<li class="item-submenu-desktop">';
+                                        echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
+                                        echo '<ul class="next-sub-desktop">';
+                                            levelThird($dataCtg, $value['idcategoria']);
+                                        echo '</ul>';
+                                    echo '</li>';
+                                }        
+                            }       
+                        }
 
-                    function levelThird($dataCtg, $fatherId)
-                    {
-                        foreach ($dataCtg as $key => $value) {
-                            if ($value['categoria_father_id'] == $fatherId) {
-                                echo '<li class="item-nextSub-desktop">';
-                                    echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
-                                echo '</li>';
-                            }        
-                        }   
-                    }
-                ?>
+                        function levelThird($dataCtg, $fatherId)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if ($value['categoria_father_id'] == $fatherId) {
+                                    echo '<li class="item-nextSub-desktop">';
+                                        echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
+                                    echo '</li>';
+                                }        
+                            }   
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </header>
+
+    <section class="limiter-fixed-scroll section-slider"></section>
+    <section class="container-pages">
+        <p>CARLOS POZO ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
 
     <footer></footer>
 
