@@ -68,33 +68,28 @@
 
 /*Navigation desktop*/
 .wrap-nav-desktop{
-	/*position: relative;*/
+	position: fixed;
   z-index: 1100;
   background-color: transparent;
   width: 100%;
   top: 40px;
-  left: 0px; 
-
-  -webkit-transition: height 0.3s, background-color 0.3s;
-  -o-transition: height 0.3s, background-color 0.3s;
-  -moz-transition: height 0.3s, background-color 0.3s;
-  transition: height 0.3s, background-color 0.3s;
+  left: 0px;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
-.menu-fixed{
-	position: fixed;
-	top: 0;
-}
 
-.top{
-	margin-top: 0px !important;
-}
+.fix-nav-desktop .wrap-nav-desktop {
 
-.two{
-	position: sticky;
-	top: 232px;
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+  -o-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+  -ms-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
 }
-
 
 .container-nav-desktop{
 	display: flex;
@@ -159,7 +154,7 @@
 
 /*Menu Desktop*/
 .wrap-menu-desktop{
-
+	position: relative;
 }
 
 .menu-desktop{
@@ -232,7 +227,7 @@
 	-ms-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	display: flex;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.9);
 	border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -284,7 +279,3 @@
 @media (max-width: 1100px){
 	.container-menu-desktop{display: none;}
 }
-
-
-
-

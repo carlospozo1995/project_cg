@@ -66,3 +66,14 @@
     transform: scale(1);
     opacity: 0; } 
 }
+
+/*Time item*/
+.time-one{
+  animation-duration: 1.3s;
+}
+.time-two{
+  animation-duration: 1.8s;
+}
+.time-three{
+  animation-duration: 2.3s;
+}

@@ -19,17 +19,37 @@ $(document).ready(function() {
         transition: function(url){ window.location.href = url; }
     });
 
-    console.log($('header').height());
+    // ============================================== //
+    // HEADER FIXED DESKTOP
+    var headerDesktop = $('.container-menu-desktop');
+    var navDesktop = $('.wrap-nav-desktop');
+
+    if($('.top-bar').length > 0) {
+        var topBarDesktop = $('.top-bar').height();
+    }
+    else {
+        var topBarDesktop = 0;
+    }
+    
+    if($(window).scrollTop() > topBarDesktop) {
+        $(headerDesktop).addClass('fix-nav-desktop');
+        $(navDesktop).css('top',0); 
+    }  
+    else {
+        $(headerDesktop).removeClass('fix-nav-desktop');
+        $(navDesktop).css('top',topBarDesktop - $(this).scrollTop()); 
+    }
 
     $(window).on('scroll',function(){
-    	let limiteScroll = $('.limiter-fixed-scroll').offset().top;
-     	if($(this).scrollTop() > limiteScroll) {
-     		$('.wrap-nav-desktop').addClass('menu-fixed');
-     		$('.container-nav-desktop').addClass('top');
-     	}else{
-    		$('.wrap-nav-desktop').removeClass('menu-fixed');
- 			$('.container-nav-desktop').removeClass('top');
-     	}	
-    })
+        if($(this).scrollTop() > topBarDesktop) {
+            $(headerDesktop).addClass('fix-nav-desktop');
+            $(navDesktop).css('top',0); 
+        }  
+        else {
+            $(headerDesktop).removeClass('fix-nav-desktop');
+            $(navDesktop).css('top',topBarDesktop - $(this).scrollTop()); 
+        } 
+    });
+    // ============================================== //
 
 });
