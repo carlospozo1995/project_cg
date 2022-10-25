@@ -20,7 +20,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/animate/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/splide/css/splide.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/css/normalize.css">
     <!--===============================================================================================-->
@@ -155,61 +155,45 @@
     </header>
 
     <section class="section-slide">
-        <div class="wrap-slick1">
-            <div class="slick1">
-                <div class="item-slick1" style="background-image: url(<?= media(); ?>ecommerce/images/slider.png)">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-                                <span class="ltext-101 cl2 respon2">
-                                    Women Collection 2018
-                                </span>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                    NEW SEASON
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="wrap-splide1">
+            <div class="splide" aria-label="Splide Basic HTML Example">
+                <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev">
+                        <img src="<?= media(); ?>ecommerce/images/arrow-left.png">
+                    </button>
+                    <button class="splide__arrow splide__arrow--next">
+                        <img src="<?= media(); ?>ecommerce/images/arrow-right.png">
+                    </button>
                 </div>
 
-                <div class="item-slick1" style="background-image: url(<?= media(); ?>ecommerce/images/slider-two.png)">
-                    <div class="container h-full">
-                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                            <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                                <span class="ltext-101 cl2 respon2">
-                                    Men New-Season
-                                </span>
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <div class="splide__slide item-splide1" style="background-image: url(<?= media(); ?>ecommerce/images/slider.png)">
+                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
+                                <span class="">Women Collection 2018</span>
                             </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                    Jackets & Coats
-                                </h2>
-                            </div>
-                                
-                            <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                    Shop Now
-                                </a>
+
+                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
+                                <h2>NEW SEASON</h2>
                             </div>
                         </div>
-                    </div>
-                </div>
 
+                        <div class="splide__slide item-splide1" style="background-image: url(<?= media(); ?>ecommerce/images/slider-two.png)">
+                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
+                                <span class="">Lorem ipsum dolor sit amet</span>
+                            </div>
+
+                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
+                                <h2>LOCALHOST</h2>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- <section class="container-pages">
+    <section class="container-pages">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -222,7 +206,20 @@
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </section> -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    </section>
 
     <footer></footer>
 
@@ -233,8 +230,8 @@
     <script src="<?= media(); ?>ecommerce/plugins/bootstrap/js/popper.js"></script>
     <script src="<?= media(); ?>ecommerce/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="<?= media(); ?>ecommerce/plugins/slick/slick.min.js"></script>
-    <script src="<?= media(); ?>ecommerce/js/slick-custom.js"></script>
+    <script src="<?= media(); ?>ecommerce/plugins/splide/js/splide.min.js"></script>
+    <script src="<?= media(); ?>ecommerce/js/splide-custom.js"></script>
     <!--===============================================================================================-->
     <script src="<?= media(); ?>ecommerce/js/main.js"></script>
 

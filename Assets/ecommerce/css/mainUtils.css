@@ -77,3 +77,8 @@
 .time-three{
   animation-duration: 2.3s;
 }
+
+
+/*Slider span animate*/
+.visible-false {visibility: hidden;}
+.visible-true {visibility: visible;}
