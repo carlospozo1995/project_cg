@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shorcut icon" type="imagen" href="<?php echo media(); ?>ecommerce/images/logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"> 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet"> 
@@ -168,23 +174,35 @@
 
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <div class="splide__slide item-splide1" style="background-image: url(<?= media(); ?>ecommerce/images/slider.png)">
-                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                <span class="">Women Collection 2018</span>
-                            </div>
+                        <div class="splide__slide item-splide1 slider-one">
+                            <div class="layer-container">
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
+                                    <h2 class="text-layer text01">Lleva la fiesta a todas partes</h2>
+                                </div>
 
-                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
-                                <h2>NEW SEASON</h2>
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInUp" data-delay="800">
+                                    <img class="marc-slider text-layer" src="<?= media(); ?>ecommerce/images/sony-logo.png">
+                                </div>
+
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
+                                    <span class="text-layer text02">Speaker de 15"<br>Potencia 75000W<br>USB<br>Bluetooth<br>MicroSD<br>Control Remoto<br> FM</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="splide__slide item-splide1" style="background-image: url(<?= media(); ?>ecommerce/images/slider-two.png)">
-                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                <span class="">Lorem ipsum dolor sit amet</span>
-                            </div>
+                        <div class="splide__slide item-splide1 slider-two">
+                            <div class="layer-container">
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
+                                    <h2 class="text-layer text01">Apoya a la Tri en 4k</h2>
+                                </div>
 
-                            <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
-                                <h2>LOCALHOST</h2>
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__rollIn" data-delay="800">
+                                    <img class="text-layer marc-slider" src="<?= media(); ?>ecommerce/images/riviera-logo.png">
+                                </div>
+
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
+                                    <span class="text-layer text02">Bluetooth®<br>Dolby Vision<br>Natural Colour Enhancer<br>DTS Studio Sound<br>Audio equalizer<br>Google Assistant</span>
+                                </div>
                             </div>
                         </div>
                     </ul>

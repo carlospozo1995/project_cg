@@ -271,6 +271,42 @@
 /* ///////////////////////////// */
 /*Splide library*/
 
+@media (min-width: 1024px) {
+	.slider-one{
+		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one-global.png");
+	}
+
+	.slider-two{
+		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two-global.png");
+	}
+
+	.layer-container{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		height: 100%;
+		border: 1px solid green;
+		padding-left: 10%;
+		padding-top: 	5%;
+	}
+}
+
+@media (max-width: 1024px) {
+ .slider-one{
+		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one1024px.png");
+	}
+
+	.slider-two{
+		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two1024px.png");
+	} 
+
+	.layer-container{
+		padding-top: 	25%;	
+		padding-left: 15%;
+	}
+}
+
 .item-splide1 {
   height: calc(100vh - 0px);
   background-size: cover;
@@ -286,20 +322,51 @@
 	height: 0;
 	background: none;
 	opacity: 0.4;
+	outline: none;
 }
 
 .splide:hover .splide__arrows{
 	opacity: 1;
 }
 
-.text-slider{
-	text-align: center;
-	align-items: center;
-	height: 100%;
-	display: flex;
-	justify-content: flex-end;
-	margin-right: 100px;
-} 
+.layer-splide1{
+	margin-top: 15px;
+}
+
+
+.text01{
+	font-size: 40px;
+	font-family: 'Permanent Marker', cursive;
+	color: var(--g2);
+	font-weight: 	600;
+}
+
+.text02{
+	font-size: 18px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+}
+
+@media(max-width: 768px){
+	.layer-container{
+		padding-top: 40%;
+	}
+
+
+
+	.text01{
+		font-size: 20px;
+	}
+
+	.marc-slider{
+		width: 200px;
+	}
+
+	.text02{
+		display: none;
+	}
+}
+
 /* ///////////////////////////// */
 
 
