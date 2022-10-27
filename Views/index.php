@@ -175,6 +175,8 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <div class="splide__slide item-splide1 slider-one">
+                            <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-one-global.png">
+                            <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-one-small.png">
                             <div class="layer-container">
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
                                     <h2 class="text-layer text01">Lleva la fiesta a todas partes</h2>
@@ -191,6 +193,8 @@
                         </div>
 
                         <div class="splide__slide item-splide1 slider-two">
+                            <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-two-global.png">
+                            <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-two-small.png">
                             <div class="layer-container">
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
                                     <h2 class="text-layer text01">Apoya a la Tri en 4k</h2>

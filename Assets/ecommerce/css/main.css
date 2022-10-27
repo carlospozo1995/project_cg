@@ -269,50 +269,7 @@
 }
 
 /* ///////////////////////////// */
-/*Splide library*/
-
-@media (min-width: 1024px) {
-	.slider-one{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one-global.png");
-	}
-
-	.slider-two{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two-global.png");
-	}
-
-	.layer-container{
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		height: 100%;
-		border: 1px solid green;
-		padding-left: 10%;
-		padding-top: 	5%;
-	}
-}
-
-@media (max-width: 1024px) {
- .slider-one{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one1024px.png");
-	}
-
-	.slider-two{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two1024px.png");
-	} 
-
-	.layer-container{
-		padding-top: 	25%;	
-		padding-left: 15%;
-	}
-}
-
-.item-splide1 {
-  height: calc(100vh - 0px);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
+/*Splide library*/	
 
 .splide__arrows{
 	opacity: 0;
@@ -329,41 +286,76 @@
 	opacity: 1;
 }
 
+.item-splide1{
+	position: relative;
+}
+
+.item-splide1 > img{
+	width: 100%;
+}
+
+.layer-container{
+	position: absolute;
+	top: 40%;
+	left: 10%;
+}
+
 .layer-splide1{
-	margin-top: 15px;
+		margin-top: 10px;
 }
 
 
 .text01{
-	font-size: 40px;
 	font-family: 'Permanent Marker', cursive;
 	color: var(--g2);
-	font-weight: 	600;
 }
 
 .text02{
-	font-size: 18px;
+	font-weight: 700;
 	font-family: 'Poppins', sans-serif;
-	font-weight: 500;
 }
 
-@media(max-width: 768px){
-	.layer-container{
-		padding-top: 40%;
+@media (min-width: 1024px){
+	.img-slide-global{
+		display: block;
 	}
-
-
+	.img-slide-small{
+		display: none;
+	}
 
 	.text01{
-		font-size: 20px;
-	}
-
-	.marc-slider{
-		width: 200px;
+		font-size: 38px;
 	}
 
 	.text02{
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 1024px){
+	.img-slide-global{
 		display: none;
+	}
+
+	.img-slide-small{
+		display: block;
+	}
+
+	.text01{
+		font-size: 25px;
+	}
+
+	.text02{
+		font-size: 15px;
+	}
+	
+	.marc-slider {
+	    width: 200px;
+	}
+
+	.layer-container{
+		top: 30%;
+		left: 8%;
 	}
 }
 
