@@ -24,6 +24,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/hamburgers/hamburgers.min.css">    
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/animate/animate.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?php echo media(); ?>ecommerce/plugins/splide/css/splide.min.css">
@@ -60,8 +62,8 @@
                         </a>
 
                         <span class="c-full tx-none">
-                            <i class="fa-solid fa-phone-volume mr-2"></i>
-                            Atención al cliente: 0123456789
+                            <i class="fa-brands fa-whatsapp mr-2"></i>
+                            0123456789
                         </span>
                     </div>
                 </div>
@@ -156,6 +158,71 @@
                         }
                     ?>
                 </div>
+            </div>
+        </div>
+
+        <div class="container-menu-mobile">
+            <div class="logo-mobile animate__animated animate__backInLeft">
+                <a href="<?= base_url(); ?>">
+                    <img src="<?= media(); ?>ecommerce/images/logo_text.png" alt="Logo - Creditos Guaman">
+                </a>
+            </div>
+
+            <div class="cont-icon-nav">
+                <div class="icon-nav">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div class="icon-nav" >
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+            </div>
+
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="menu-mobile">
+            <div class="top-bar-mobile p-2">
+                <div class="left-top-bar">
+                    <i class="fa-solid fa-truck mr-2"></i>
+                    Envios gratis desde $100
+                </div>
+
+                <div class="right-top-bar d-flex mt-2">
+                    <a href="#" class="c-full tx-none">
+                        <i class="fa-solid fa-question mr-2"></i>
+                        Help & FAQs
+                    </a>
+
+                    <a href="#" class="c-full tx-none">
+                        <i class="fa-solid fa-user mr-2"></i>
+                        Iniciar Sesión
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-mobile">
+                <ul>
+                    <li class="">
+                        <a href="<?= base_url(); ?>" class="tx-none">Inicio</a>
+                    </li>
+
+                    <li class="">
+                        <a href="<?= base_url(); ?>tienda" class="tx-none">Tienda</a>
+                    </li>
+
+                    <li class="">
+                        <a href="<?= base_url(); ?>carrito" class="tx-none">Carrito</a>
+                    </li>
+                    
+                    <li class="">
+                        <a href="<?= base_url(); ?>contacto" class="tx-none">Contacto</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>

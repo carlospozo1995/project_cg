@@ -52,4 +52,10 @@ $(document).ready(function() {
     });
     // ============================================== //
 
+    // MENU MOBILE
+
+    $('.btn-show-menu-mobile').on('click', function(){
+        $(this).toggleClass('is-active');
+        $('.menu-mobile').slideToggle();
+    });
 });
