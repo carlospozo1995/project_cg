@@ -56,6 +56,24 @@ $(document).ready(function() {
 
     $('.btn-show-menu-mobile').on('click', function(){
         $(this).toggleClass('is-active');
-        $('.menu-mobile').slideToggle();
+        $('.wrap-nav-mobile').slideToggle();
     });
+
+    var arrowMainMenu = $('.arrow-main-menu-m');
+
+    for(var i=0; i<arrowMainMenu.length; i++){
+        $(arrowMainMenu[i]).on('click', function(){
+            $(this).parent().find('.submenu-mobile').slideToggle();
+            $(this).toggleClass('turn-arrow-main-menu-m');
+        })
+    }
+
+    var arrowMainSubmenu = $('.arrow-main-submenu-m');
+
+    for(var i=0; i<arrowMainSubmenu.length; i++){
+        $(arrowMainSubmenu[i]).on('click', function(){
+            $(this).parent().find('.next-sub-mobile').slideToggle();
+            $(this).toggleClass('turn-arrow-main-menu-m');
+        })
+    }
 });

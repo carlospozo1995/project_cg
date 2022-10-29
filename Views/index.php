@@ -185,7 +185,7 @@
             </div>
         </div>
 
-        <div class="menu-mobile">
+        <div class="wrap-nav-mobile">
             <div class="top-bar-mobile p-2">
                 <div class="left-top-bar">
                     <i class="fa-solid fa-truck mr-2"></i>
@@ -224,6 +224,62 @@
                     </li>
                 </ul>
             </div>
+
+            <?php
+                require_once 'Models/CategoriasModel.php';
+                $objCategorias = new CategoriasModel();
+                $request = $objCategorias->menuCategorias();
+                if (count($request) > 0) {
+                    echo '<ul class="menu-mobile">';
+                        levelFirstMobile($request);
+                    echo '</ul>';
+                }
+
+                function levelFirstMobile($dataCtg)
+                {
+                    foreach ($dataCtg as $key => $value) {
+                        if($value['categoria_father_id'] == "" && $value['status'] == 1){
+                            echo '<li>';
+                                echo '<a href="" class="tx-none"> <img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
+                                    echo '<ul class="submenu-mobile">';
+                                        levelSecondMobile($dataCtg, $value['idcategoria']);
+                                    echo '</ul>';
+                                    echo '<span class="arrow-main-menu-m">';
+                                        echo '<i class="fa-solid fa-angle-right" aria-hidden="true"></i>';
+                                    echo '</span>';
+                            echo  '</li>';
+                        }
+                    }
+                }
+
+                function levelSecondMobile($dataCtg, $fatherId)
+                {
+                    foreach ($dataCtg as $key => $value) {
+                        if ($value['categoria_father_id'] == $fatherId) {
+                            echo '<li>';
+                                echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
+                                echo '<ul class="next-sub-mobile">';
+                                    levelThirdMobile($dataCtg, $value['idcategoria']);
+                                echo '</ul>';
+                                echo '<span class="arrow-main-submenu-m">';
+                                    echo '<i class="fa-solid fa-angle-right" aria-hidden="true"></i>';
+                                echo '</span>';
+                            echo '</li>';
+                        }        
+                    }       
+                }
+
+                function levelThirdMobile($dataCtg, $fatherId)
+                {
+                    foreach ($dataCtg as $key => $value) {
+                        if ($value['categoria_father_id'] == $fatherId) {
+                            echo '<li>';
+                                echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
+                            echo '</li>';
+                        }        
+                    }   
+                }
+            ?>
         </div>
     </header>
 
