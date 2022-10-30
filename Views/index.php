@@ -274,7 +274,7 @@
                     foreach ($dataCtg as $key => $value) {
                         if ($value['categoria_father_id'] == $fatherId) {
                             echo '<li>';
-                                echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
+                                echo '<a href="" class="tx-none px-3">'.$value['nombre'].'</a>';
                             echo '</li>';
                         }        
                     }   
