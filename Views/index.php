@@ -97,7 +97,7 @@
                     </div>  
 
                     <div class="cont-icon-nav">
-                        <div class="icon-nav">
+                        <div class="icon-nav js-show-modal-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
 
@@ -169,7 +169,7 @@
             </div>
 
             <div class="cont-icon-nav">
-                <div class="icon-nav">
+                <div class="icon-nav js-show-modal-search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
 
@@ -280,6 +280,26 @@
                     }   
                 }
             ?>
+        </div>
+
+        <!-- Modal search -->
+        <div class="modal-search-header js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="btn-hide-modal-search js-hide-modal-search">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+
+                <div class="assistant-search">
+                    <span>¿Qué deseas buscar?</span>
+                </div>
+
+                <form class="wrap-search-header">
+                    <button class="">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input class="searchInput" type="text" name="search" placeholder="Search...">
+                </form>
+            </div>
         </div>
     </header>
 

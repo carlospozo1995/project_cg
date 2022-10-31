@@ -422,6 +422,31 @@
 
 /* ///////////////////////////// */
 
+/*Modal search*/ 
+
+.modal-search-header {
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  bottom: 101%;
+  left: 0;
+  background-color: rgba(255,255,255,0.9);
+  padding: 50px 15px 100px 15px;
+  transition: transition: all 0.4s;;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.show-modal-search {
+  bottom: 0;
+}
+
+.container-search-header{
+	text-align: center;
+}
 
 /*------ // STYLE RESPONSIVE // ------*/
 
