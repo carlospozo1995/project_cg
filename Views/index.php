@@ -284,17 +284,18 @@
 
         <!-- Modal search -->
         <div class="modal-search-header js-hide-modal-search">
-            <div class="container-search-header">
-                <button class="btn-hide-modal-search js-hide-modal-search">
-                    <i class="fa-regular fa-circle-xmark"></i>
-                </button>
 
-                <div class="assistant-search">
-                    <span>¿Qué deseas buscar?</span>
+            <button class="btn-hide-modal-search js-hide-modal-search">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+
+            <div class="container-search-header mt-5">
+                <div class="assistant-search mt-4">
+                    <span>¿Qué producto deseas buscar?</span>
                 </div>
 
-                <form class="wrap-search-header">
-                    <button class="">
+                <form class="wrap-search-header mt-4">
+                    <button>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                     <input class="searchInput" type="text" name="search" placeholder="Search...">
@@ -322,7 +323,7 @@
                             <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-one-small.png">
                             <div class="layer-container">
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                    <h2 class="text-layer text01">Lleva la fiesta a todas partes</h2>
+                                    <img class="marc-slider text-layer" src="<?= media(); ?>ecommerce/images/text-slider-one.png">
                                 </div>
 
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInUp" data-delay="800">

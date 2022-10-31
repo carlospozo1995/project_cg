@@ -386,7 +386,6 @@
 	height: 0;
 	background: none;
 	opacity: 0.4;
-	outline: none;
 }
 
 .splide:hover .splide__arrows{
@@ -426,12 +425,12 @@
 
 .modal-search-header {
   position: fixed;
-  z-index: 2000;
+  z-index: 3000;
   width: 100%;
   height: 100%;
   bottom: 101%;
   left: 0;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 50px 15px 100px 15px;
   transition: transition: all 0.4s;;
   -webkit-transition: all 0.4s;
@@ -445,7 +444,63 @@
 }
 
 .container-search-header{
+	width: 600px;
+	margin: auto;
+}
+
+
+.btn-hide-modal-search {
+	color: #fff;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 40px;
+}
+
+.modal-search-header button{
+	cursor: pointer;
+}
+
+.modal-search-header button,
+.wrap-search-header input{
+	border: none;
+	outline: none;
+	background: transparent;
+}
+
+.assistant-search{
+	color: #fff;
+	font-size: 40px;
+	font-weight: 500;
 	text-align: center;
+}
+
+.assistant-search span{
+	font-family: 'Permanent Marker', cursive;
+}
+
+.wrap-search-header{
+	background-color: #fff;
+	display: flex;
+	padding: 15px 10px;
+	border-radius: 6px;
+}
+
+.wrap-search-header button{
+	font-size: 20px;
+	color: var(--g3);
+	font-weight: 500;
+}
+
+.wrap-search-header button:hover{	
+	color: var(--g2);
+	font-weight: 600;
+}
+
+.wrap-search-header input{
+	width: 100%;
+	font-size: 20px;
+	padding: 0px 20px;
 }
 
 /*------ // STYLE RESPONSIVE // ------*/
@@ -536,11 +591,24 @@
 	.layer-splide1{
     margin-top: 30px;
   }
+
+	.container-search-header{
+		width: 100%;
+	}
 }
 
 @media (max-width: 768px){
 	.logo-mobile a img{
 		width: 300px;
+	}
+
+	.assistant-search{
+		font-size: 20px;
+	}
+
+	.wrap-search-header button,
+	.wrap-search-header input{
+		font-size: 18px;
 	}
 }
 
@@ -626,5 +694,18 @@
 	.submenu-mobile>li>a,
 	.next-sub-mobile>li>a{
 		font-size: 11px;
+	}
+
+	.assistant-search, .wrap-search-header button,
+	.wrap-search-header input{
+		font-size: 15px;
+	}
+
+	.wrap-search-header{
+		padding: 10px;
+	}
+
+	.btn-hide-modal-search {
+		font-size: 30px;
 	}
 }
