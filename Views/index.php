@@ -239,7 +239,7 @@
                 {
                     foreach ($dataCtg as $key => $value) {
                         if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                            echo '<li>';
+                            echo '<li class="pst-rel">';
                                 echo '<a href="" class="tx-none"> <img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
                                     echo '<ul class="submenu-mobile">';
                                         levelSecondMobile($dataCtg, $value['idcategoria']);
@@ -256,7 +256,7 @@
                 {
                     foreach ($dataCtg as $key => $value) {
                         if ($value['categoria_father_id'] == $fatherId) {
-                            echo '<li>';
+                            echo '<li class="pst-rel">';
                                 echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
                                 echo '<ul class="next-sub-mobile">';
                                     levelThirdMobile($dataCtg, $value['idcategoria']);

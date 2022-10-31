@@ -306,7 +306,6 @@
 
 .menu-mobile{
 	background-color: #D2D2D2;
-	/*padding: 10px;*/
 }
 
 .menu-mobile li a{
@@ -319,16 +318,19 @@
 	width: 48px;
 }
 
-.menu-mobile > li{
-	position: relative;
+.menu-mobile>li>a{
+	color: var(--g2);
+	font-weight: 600;
 }
 
 .arrow-main-menu-m{
 	position: absolute;
-	top: 2px;
+	top: 5px;
 	padding: 10px;
 	right: 10px;
 	cursor: pointer;
+	padding: 0px 20px;
+	color: var(--g2);
 }
 
 .arrow-main-menu-m i {
@@ -349,27 +351,29 @@
 
 .submenu-mobile{
 	display: none;
-	background-color: #fff;
+	background-color: #E7E7E7;
 }
 
-.submenu-mobile > li{
-	position: relative;
-}
-
-.submenu-mobile > li a{
-	
+.submenu-mobile>li>a{
+	color: black;
+	font-weight: 500;
 }
 
 .arrow-main-submenu-m{
 	position: absolute;
 	right: 40px;
 	cursor: pointer;
-	top: 0;
+	top: 3px;
+	padding: 0px 20px;
 }
 
 .next-sub-mobile{
 	display: none;
-	background-color: orange;
+	background-color: #fff;
+}
+
+.next-sub-mobile>li>a{
+	color: var(--g4);
 }
 /* ///////////////////////////// */
 /*Splide library*/	
@@ -540,6 +544,12 @@
 	.menu-mobile > li a img{
 		width: 32px;
 	}
+
+	.menu-mobile>li>a,
+	.submenu-mobile>li>a,
+	.next-sub-mobile>li>a{
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 350px){
@@ -572,5 +582,24 @@
 	.layer-container{
 		top: 12%;
 		left: 3%;
+	}
+
+	.top-bar-mobile{
+		font-size: 12px;
+	}
+
+	.right-top-bar a{
+		padding: 0px 20px;
+	} 
+
+	.nav-mobile ul li a {
+		font-size: 12px;
+		padding: 4px 0px;
+	}
+
+	.menu-mobile>li>a,
+	.submenu-mobile>li>a,
+	.next-sub-mobile>li>a{
+		font-size: 11px;
 	}
 }

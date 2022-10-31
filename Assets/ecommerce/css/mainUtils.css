@@ -17,6 +17,10 @@ ul{
   text-decoration: none !important;
 }
 
+.pst-rel{
+  position: relative;
+}
+
 .scale-link{
 	transition-timing-function: ease-out;
   transition-duration: 250ms;
