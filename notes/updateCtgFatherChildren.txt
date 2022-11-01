@@ -1,0 +1,8 @@
+UPDATE categorias c1
+LEFT JOIN categorias c2 ON c1.idcategoria = c2.categoria_father_id
+SET c1.status = 1 AND c2.status = 1 
+WHERE c1.idcategoria = c2.categoria_father_id;
+
+UPDATE categorias SET status = 1 WHERE idcategoria in (21,22,23,24);
+
+https://project-cg.000webhostapp.com/sistema

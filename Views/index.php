@@ -51,17 +51,17 @@
                     </div>
 
                     <div class="right-top-bar h-full d-flex flex-wrap">
-                        <a href="#" class="c-full tx-none">
+                        <a href="#" class="c-full ">
                             <i class="fa-solid fa-question mr-2"></i>
                             Help & FAQs
                         </a>
 
-                        <a href="#" class="c-full tx-none">
+                        <a href="#" class="c-full ">
                             <i class="fa-solid fa-user mr-2"></i>
                             Iniciar Sesión
                         </a>
 
-                        <span class="c-full tx-none">
+                        <span class="c-full ">
                             <i class="fa-brands fa-whatsapp mr-2"></i>
                             0123456789
                         </span>
@@ -79,19 +79,19 @@
                     <div class="nav-desktop">
                         <ul class="main-nav">
                             <li class="active-nav animate__animated animate__fadeInDown">
-                                <a href="<?= base_url(); ?>" class="tx-none">Inicio</a>
+                                <a href="<?= base_url(); ?>" >Inicio</a>
                             </li>
 
                             <li class="animate__animated animate__fadeInDown time-one">
-                                <a href="<?= base_url(); ?>tienda" class="tx-none">Tienda</a>
+                                <a href="<?= base_url(); ?>tienda" >Tienda</a>
                             </li>
 
                             <li class="animate__animated animate__fadeInDown time-two">
-                                <a href="<?= base_url(); ?>carrito" class="tx-none">Carrito</a>
+                                <a href="<?= base_url(); ?>carrito" >Carrito</a>
                             </li>
                             
                             <li class="animate__animated animate__fadeInDown time-three">
-                                <a href="<?= base_url(); ?>contacto" class="tx-none">Contacto</a>
+                                <a href="<?= base_url(); ?>contacto" >Contacto</a>
                             </li>
                         </ul>
                     </div>  
@@ -123,7 +123,7 @@
                             foreach ($dataCtg as $key => $value) {
                                 if($value['categoria_father_id'] == "" && $value['status'] == 1){
                                     echo '<li class="item-menu-desktop">';
-                                        echo '<a href="" class="tx-none"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                        echo '<a href="" > <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
                                             echo '<ul class="submenu-desktop">';
                                                 levelSecond($dataCtg, $value['idcategoria']);
                                             echo '</ul>';
@@ -137,7 +137,7 @@
                             foreach ($dataCtg as $key => $value) {
                                 if ($value['categoria_father_id'] == $fatherId) {
                                     echo '<li class="item-submenu-desktop">';
-                                        echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
+                                        echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
                                         echo '<ul class="next-sub-desktop">';
                                             levelThird($dataCtg, $value['idcategoria']);
                                         echo '</ul>';
@@ -151,7 +151,7 @@
                             foreach ($dataCtg as $key => $value) {
                                 if ($value['categoria_father_id'] == $fatherId) {
                                     echo '<li class="item-nextSub-desktop">';
-                                        echo '<a href="" class="tx-none scale-link">'.$value['nombre'].'</a>';
+                                        echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
                                     echo '</li>';
                                 }        
                             }   
@@ -193,12 +193,12 @@
                 </div>
 
                 <div class="right-top-bar d-flex mt-2">
-                    <a href="#" class="c-full tx-none">
+                    <a href="#" class="c-full ">
                         <i class="fa-solid fa-question mr-2"></i>
                         Help & FAQs
                     </a>
 
-                    <a href="#" class="c-full tx-none">
+                    <a href="#" class="c-full ">
                         <i class="fa-solid fa-user mr-2"></i>
                         Iniciar Sesión
                     </a>
@@ -208,19 +208,19 @@
             <div class="nav-mobile">
                 <ul>
                     <li class="">
-                        <a href="<?= base_url(); ?>" class="tx-none">Inicio</a>
+                        <a href="<?= base_url(); ?>" >Inicio</a>
                     </li>
 
                     <li class="">
-                        <a href="<?= base_url(); ?>tienda" class="tx-none">Tienda</a>
+                        <a href="<?= base_url(); ?>tienda" >Tienda</a>
                     </li>
 
                     <li class="">
-                        <a href="<?= base_url(); ?>carrito" class="tx-none">Carrito</a>
+                        <a href="<?= base_url(); ?>carrito" >Carrito</a>
                     </li>
                     
                     <li class="">
-                        <a href="<?= base_url(); ?>contacto" class="tx-none">Contacto</a>
+                        <a href="<?= base_url(); ?>contacto" >Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -240,7 +240,7 @@
                     foreach ($dataCtg as $key => $value) {
                         if($value['categoria_father_id'] == "" && $value['status'] == 1){
                             echo '<li class="pst-rel">';
-                                echo '<a href="" class="tx-none"> <img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
+                                echo '<a href="" > <img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
                                     echo '<ul class="submenu-mobile">';
                                         levelSecondMobile($dataCtg, $value['idcategoria']);
                                     echo '</ul>';
@@ -257,7 +257,7 @@
                     foreach ($dataCtg as $key => $value) {
                         if ($value['categoria_father_id'] == $fatherId) {
                             echo '<li class="pst-rel">';
-                                echo '<a href="" class="tx-none">'.$value['nombre'].'</a>';
+                                echo '<a href="" >'.$value['nombre'].'</a>';
                                 echo '<ul class="next-sub-mobile">';
                                     levelThirdMobile($dataCtg, $value['idcategoria']);
                                 echo '</ul>';
@@ -274,7 +274,7 @@
                     foreach ($dataCtg as $key => $value) {
                         if ($value['categoria_father_id'] == $fatherId) {
                             echo '<li>';
-                                echo '<a href="" class="tx-none px-3">'.$value['nombre'].'</a>';
+                                echo '<a href="" class=" px-3">'.$value['nombre'].'</a>';
                             echo '</li>';
                         }        
                     }   
@@ -321,17 +321,19 @@
                         <div class="splide__slide item-splide1 slider-one">
                             <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-one-global.png">
                             <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-one-small.png">
+
                             <div class="layer-container">
+
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                    <img class="marc-slider text-layer" src="<?= media(); ?>ecommerce/images/text-slider-one.png">
+                                    <img class="img-text-slider-one" src="<?= media(); ?>ecommerce/images/text-slider-one.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInUp" data-delay="800">
-                                    <img class="marc-slider text-layer" src="<?= media(); ?>ecommerce/images/sony-logo.png">
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
+                                    <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-one.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
-                                    <span class="text-layer text02">Speaker de 15"<br>Potencia 75000W<br>USB<br>Bluetooth<br>MicroSD<br>Control Remoto<br> FM</span>
+                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__rollIn" data-delay="1600">
+                                    <a href="">VER PRODUCTO</a>
                                 </div>
                             </div>
                         </div>
@@ -340,17 +342,19 @@
                             <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-two-global.png">
                             <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-two-small.png">
                             <div class="layer-container">
+                                
                                 <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
-                                    <h2 class="text-layer text01">Apoya a la Tri en 4k</h2>
+                                    <img class="img-text-slider-one" src="<?= media(); ?>ecommerce/images/text-slider-two.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__rollIn" data-delay="800">
-                                    <img class="text-layer marc-slider" src="<?= media(); ?>ecommerce/images/riviera-logo.png">
+                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
+                                    <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-two.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
-                                    <span class="text-layer text02">Bluetooth®<br>Dolby Vision<br>Natural Colour Enhancer<br>DTS Studio Sound<br>Audio equalizer<br>Google Assistant</span>
+                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__rollIn" data-delay="1600">
+                                    <a href="">VER PRODUCTO</a>
                                 </div>
+
                             </div>
                         </div>
                     </ul>

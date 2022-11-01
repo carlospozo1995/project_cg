@@ -22,10 +22,6 @@ button{
   overflow: hidden;
 }
 
-.tx-none{
-  text-decoration: none !important;
-}
-
 .pst-rel{
   position: relative;
 }

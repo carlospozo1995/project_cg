@@ -1,0 +1,541 @@
+let formNewCliente = document.getElementById('formNewCliente');
+let tableClientes;
+let rowTable = "";
+
+
+function modalNewCliente() {
+	document.getElementById("idCliente").value = "";
+    document.querySelector(".modal-header").classList.replace("headerUpdate-mc", "headerRegister-mc");
+    document.querySelector(".modal-title").innerHTML = "Nuevo Cliente";
+    document.getElementById("btnSubmitCliente").classList.replace("bg-success", "btn-primary");
+    document.querySelector(".btnText").innerHTML = "Guardar";
+    document.getElementById("txtPassword").setAttribute("required", "");
+	document.getElementById('formNewCliente').reset();
+	$('#modalFormCliente').modal('show');
+	validFocus();
+	rowTable = "";
+}
+
+window.addEventListener('load', function () {
+	showPassword();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    tableClientes = $("#tableClientes").DataTable({
+        "aProcessing": true,
+        "aServerSide":true,
+        "language":{
+            "url":"//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+        },
+        "responsive": true,
+        "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Todos"] ],
+        "dom": 'lBfrtip',
+        "buttons": [
+            "copy", "csv", "excel", "pdf", "print", "colvis"
+        ],
+        "bDestroy":true,
+        "iDisplayLength":10,
+        "order":[[0,"asc"]],
+    });
+
+	tableClientes = $('#tableClientes').DataTable();
+	formNewCliente.onsubmit = function (e) {
+		e.preventDefault();
+
+		let strIdentificacion = document.getElementById("txtIdentificacion").value;
+        let strNombre = document.getElementById("txtNombre").value;
+        let strApellido = document.getElementById("txtApellido").value;
+        let intTelefono = document.getElementById("txtTelefono").value;
+        let strEmail = document.getElementById("txtEmail").value;
+        let strPassword = document.getElementById("txtPassword").value;
+    
+        // if (document.getElementById('idCliente').value == "") {
+        // }
+    
+        if (strIdentificacion == '' || strNombre == '' || strApellido == '' || intTelefono == '' || strEmail == '' || strPassword == '') {
+      			Swal.fire("Atención", "Asegúrese de llenar todos los campos.", "error");
+            	return false;
+      	}else{
+        
+        	let elementsValid = document.getElementsByClassName("valid");
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains("is-invalid")) {
+                    Swal.fire("Atención", "Por favor asegúrese de no tener campos en rojo.", "error");
+                    return false;
+                }
+            }
+
+            loading.style.display = "flex";
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + 'Clientes/setCliente';
+            let formData = new FormData(formNewCliente);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange =function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                    	let htmlStatus = '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>';
+
+                    	if (rowTable == "") {
+                    		let btnView = "";
+                            let btnUpdate = "";
+                            let btnDelete = ""; 
+                    		
+                    		 if (objData.permisosMod.ver == 1) {btnView = '<button type="button" class="btn btn-secondary btn-sm" onclick="viewCliente('+objData.idData+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
+
+                            if (objData.permisosMod.actualizar == 1 && objData.userId == 1){
+                                btnUpdate = ' <button type="button" class="btn btn-primary btn-sm" onclick="editCliente(this,'+objData.idData+')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
+                            }
+
+                            if (objData.permisosMod.eliminar == 1 && objData.userId == 1){
+                                btnDelete = ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCliente(this,'+objData.idData+')" tilte="Eliminar"><i class="fas fa-trash"></i></button>';
+                            }
+
+                            $("#tableClientes").DataTable().row.add([
+                                objData.idData,
+                                strNombre,
+                                strApellido,
+                                strEmail,
+                                intTelefono,
+                                htmlStatus,
+                                '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
+                            ]).draw(false);
+                    	}else{
+
+                    	}
+
+                    	$("#modalFormCliente").modal("hide");
+                        formNewCliente.reset();
+                        Swal.fire("Cliente", objData.msg, "success");
+                  	}else{
+                  		Swal.fire("Error", objData.msg, "error");
+                  	}
+                }
+                loading.style.display = "none";
+                return false;
+            }
+        }
+	}
+});
+
+
+
+function viewCliente(idCliente) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let urlCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    request.open("GET", urlCliente, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                let statusUser = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                
+                document.getElementById("celIdentificacion").innerHTML = objData.data.identificacion;
+                document.getElementById("celNombre").innerHTML = objData.data.nombres;
+                document.getElementById("celApellido").innerHTML = objData.data.apellidos;
+                document.getElementById("celTelefono").innerHTML = objData.data.telefono;
+                document.getElementById("celEmailUser").innerHTML = objData.data.email_user;
+                document.getElementById("celTipoUsuario").innerHTML = objData.data.nombrerol;
+                document.getElementById("celEstado").innerHTML = statusUser;
+                document.getElementById("celFecharegistro").innerHTML = objData.data.fechaRegistro;
+                $('#modalViewCliente').modal('show');
+            }else{
+                Swal.fire("Error", objData.msg, "error");
+            }  
+        }
+    }
+}
+
+function editCliente(element, idCliente) {
+    rowTable = $(element).closest("tr")[0];
+    let ischild = $(rowTable).hasClass("child");
+    if(ischild){
+        rowTable = $(rowTable).prev()[0];
+    }
+    document.querySelector(".modal-header").classList.replace("headerRegister-mc", "headerUpdate-mc");
+    document.querySelector(".modal-title").innerHTML = "Actualizar Usuario";
+    document.getElementById("btnSubmitCliente").classList.replace("btn-primary", "bg-success");
+    document.querySelector(".btnText").innerHTML = "Actualizar";
+    document.getElementById("txtPassword").removeAttribute("required");
+
+    validFocus();
+
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxetCliente = base_url + 'Clientes/getCliente/' + idCliente;
+    request.open("GET", ajaxetCliente, true);
+    request.send();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            let objData = JSON.parse(request.responseText);
+
+            if (objData.status) {
+                document.getElementById("idCliente").value = objData.data.idusuario;
+                document.getElementById("txtIdentificacion").value = objData.data.identificacion;
+                document.getElementById("txtNombre").value = objData.data.nombres;
+                document.getElementById("txtApellido").value = objData.data.apellidos;
+                document.getElementById("txtTelefono").value = objData.data.telefono;
+                document.getElementById("txtEmail").value = objData.data.email_user;
+                $('#modalFormCliente').modal('show');
+            }
+        }
+    }
+}
+
+function deleteCliente(element, idCliente) {
+	console.log(idCliente);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+CONTROLLLER
+<?php
+
+	class Clientes extends Controller {
+        
+        public function __construct()
+        {
+            sessionStart();
+            parent::__construct();
+            if (empty($_SESSION['login'])){
+                header("Location: ".base_url()."login");
+            }
+
+            getPermisos(6);
+        }
+
+        public function clientes()
+        {
+            if(empty($_SESSION['permisosMod']['ver'])){
+                header('Location: '.base_url().'sistema');
+            }
+
+            $data['page_tag'] = 'Sistema';
+            $data['page_title'] = 'Empresa - Clientes';
+            // $data['page_title'] = 'Créditos GUAMAN - Clientes';
+            $data['page_name'] = 'Clientes';
+            $data['page_functions_js'] = 'functions_clientes.js';
+            $this->views->getView($this, "clientes", $data);
+        }
+
+
+        public function setCliente()
+        {
+            if ($_POST) {
+                if (empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtTelefono']) || empty($_POST['txtPassword'])) {
+                    $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+                }else{
+                    $intIdCliente= intval($_POST['idCliente']);
+                    $strIdentificacion = strClean($_POST['txtIdentificacion']);
+                    $strNombre = ucwords(strClean($_POST['txtNombre']));
+                    $strApellido = ucwords(strClean($_POST['txtApellido']));
+                    $intTelefono = intval(strClean($_POST['txtTelefono']));
+                    $strEmail = strClean($_POST['txtEmail']);
+                    $strPassword =  hash("SHA256", $_POST['txtPassword']);
+                    $intRoluser = 5;
+                    $request_cliente = "";
+                    if (empty($intIdCliente)) {
+                        // CLIENTE CREATE
+                        $option = 1;
+
+                        if($_SESSION['permisosMod']['crear']){
+                            $request_cliente = $this->model->insertCliente($strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $intRoluser, $strPassword);
+                        }
+                    }else{
+                        // UPDATE CLIENTE
+                        $option = 2;
+                        $strPassword = empty($_POST['txtPassword']) ? '' : hash("SHA256", $_POST['txtPassword']);
+                        if($_SESSION['permisosMod']['actualizar']){
+                            $request_cliente = $this->model->updateCliente($intIdCliente, $strIdentificacion, $strNombre, $strApellido, $intTelefono, $strEmail, $strPassword);
+                        }
+                    }
+
+                    if ($request_cliente > 0) {
+                        if ($option == 1) {
+                            $arrResponse = array("status" => true, "msg" => "Datos guardados correctamente.", "permisosMod" => $_SESSION['permisosMod'], "idData" => $request_cliente, "userId" => $_SESSION['idUser']);
+
+                        }else{
+                            $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente.");
+                        }
+                    }else if ($request_cliente == "Existe correo e identificacion"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! La identificación y el correo ya existen. Intentelo de nuevo por favor.");
+                    }else if ($request_cliente == "Existe identificacion"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! La identificación ya existe. Intentelo de nuevo por favor.");
+                    }else if ($request_cliente == "Existe correo"){
+                        $arrResponse = array("status" => false, "msg" => "!Atención! El email ya existe. Intentelo de nuevo por favor.");
+                    }else{
+                        $arrResponse = array("status" => false, "msg" => "No es posible ingresar los datos.");
+                    }
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
+
+         public function getCliente($idCliente)
+        {   
+            if($_SESSION['permisosMod']['ver']){
+                $idCliente = intval($idCliente);
+                if ($idCliente > 0) {
+                    $arrCliente = $this->model->selectCliente($idCliente);
+                    if (empty($arrCliente)) {
+                        $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
+                    }else{
+                        $arrResponse = array('status' => true, 'data' => $arrCliente);
+                    }
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                }
+            }
+            die();
+        }
+    }
+
+?>
+
+
+
+
+
+
+
+MODEL
+<?php
+
+     class  ClientesModel extends Mysql{
+
+        private $intIdCliente;
+        private $strIdentificacion;
+        private $strNombre;
+        private $strApellido;
+        private $intTelefono;
+        private $strEmail;
+        private $strToken;
+        private $intClienteRol;
+        private $strPassword;
+
+        public function __construct()
+        {
+            parent::__construct();
+        }
+
+        public function insertCliente(string $identificacion, string $nombre, string $apellido, int $telefono, string $email, int $rolUser, string $password)
+        {
+            $this->strIdentificacion = $identificacion;
+            $this->strNombre = $nombre;
+            $this->strApellido = $apellido;
+            $this->intTelefono = $telefono;
+            $this->strEmail = $email;
+            $this->intClienteRol = $rolUser;
+            $this->strPassword = $password;
+
+            $return = 0;
+
+            $sql_exists_user = "SELECT * FROM usuario WHERE identificacion = '{$this->strIdentificacion}' OR email_user = '{$this-> strEmail}'";
+
+            $request = $this->selectAll($sql_exists_user);
+           
+            if (empty($request)) {
+                $sql_insert_cliente = "INSERT INTO usuario(identificacion, nombres, apellidos, telefono, email_user, password, rolid) VALUES('$this->strIdentificacion', '$this->strNombre', '$this->strApellido', $this->intTelefono, '$this->strEmail', '$this->strPassword', $this->intClienteRol)";
+                
+                $request = $this->insert($sql_insert_cliente);
+                $return = $request;
+            }else{
+                $sql_exists_user = "SELECT   IF(con.joinIdentificacion LIKE '%".$this->strIdentificacion."%',1,0) AS identificaciones,
+                                                IF(con.joinEmail_user LIKE '%".$this->strEmail."%',1,0) AS correos
+                                                FROM (SELECT GROUP_CONCAT(identificacion) AS joinIdentificacion, 
+                                                             GROUP_CONCAT(email_user) AS joinEmail_user FROM usuario 
+                                                             WHERE identificacion = '".$this->strIdentificacion."' OR email_user = '".$this->strEmail."') AS con";
+                $request = $this->concat($sql_exists_user);
+               
+                if(!empty($request)){
+                    if($request['identificaciones'] && $request['correos']){
+                        $return = "Existe correo e identificacion";
+                    }elseif ($request['identificaciones']) {
+                        $return = "Existe identificacion"; 
+                    }elseif ($request['correos']) {
+                        $return = "Existe correo";
+                    }
+                }   
+            }
+            return $return;
+        }
+    
+        public function selectClientes()
+        {
+            $sql_select_clientes = "SELECT * FROM usuario where rolid = 5 AND status != 0";
+            return  $this->selectAll($sql_select_clientes);
+        }
+
+        public function selectCliente(int $idCliente)
+        {
+            $this->intIdCliente= $idCliente;
+            
+            $sql_select_cliente = "SELECT u.idusuario, u.identificacion, u.nombres, u.apellidos, u.telefono, u.email_user, r.idrol, r.nombrerol, u.status, DATE_FORMAT(u.datecreate, '%d-%m-%Y') AS fechaRegistro FROM usuario u INNER JOIN roles r ON u.rolid = r.idrol WHERE u.idusuario = $this->intIdCliente";
+            $request = $this->select( $sql_select_cliente);
+            return $request;
+        }
+
+        public function updateCliente(int $idCliente, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password)
+        {
+            $this->intIdCliente = $idCliente;
+            $this->strIdentificacion = $identificacion;
+            $this->strNombre = $nombre;
+            $this->strApellido = $apellido;
+            $this->intTelefono = $telefono;
+            $this->strEmail = $email;
+            $this->strPassword = $password;
+
+            $sql_exists_cliente = "SELECT * FROM usuario WHERE (identificacion = '{$this->strIdentificacion}' AND idusuario != $this->intIdCliente) OR (email_user = '{$this-> strEmail}' AND idusuario != $this->intIdCliente)";
+            $request = $this->selectAll($sql_exists_cliente);
+
+            if (empty($request)) {
+                if ($this->strPassword != '') {
+                    $sql_update_cliente = "UPDATE usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail', password = '$this->strPassword' WHERE idusuario = $this->intIdCliente";
+                }else{
+                    $sql_update_cliente = "UPDATE usuario SET identificacion = '$this->strIdentificacion', nombres = '$this->strNombre', apellidos = '$this->strApellido', telefono = $this->intTelefono, email_user = '$this->strEmail' WHERE idusuario = $this->intIdCliente";
+                }
+
+                $request = $this->update($sql_update_cliente);
+            }else{
+                $idenValidate = false;
+                $emailValidate = false;
+                
+                array_filter($request, function ($data) use(&$idenValidate, &$emailValidate)
+                {
+                    if ($data['identificacion'] == $this->strIdentificacion) {
+                        $idenValidate = true;
+                    }
+                    if ($data['email_user'] == $this->strEmail) {
+                        $emailValidate = true;
+                    }
+                });
+
+                if ($idenValidate && $emailValidate) {
+                    $request = "Existe correo e identificacion";
+                }elseif ($idenValidate) {
+                    $request = "Existe identificacion"; 
+                }elseif ($emailValidate) {
+                    $request = "Existe correo"; 
+                }
+
+            }
+            return $request;
+        }
+    }
+
+?>
+
+
+
+ <!-- <section class="section-slider"></section>
+    <section class="container-pages">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section> -->

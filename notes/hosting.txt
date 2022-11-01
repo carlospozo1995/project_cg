@@ -1,0 +1,5 @@
+namedb :project_cg - id19356340_project_cg
+nameuser: carlospozo95 - id19356340_carlospozo95
+password: /j!%1&{+xEk{ebYC
+
+host:localhost
