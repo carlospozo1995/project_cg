@@ -14,163 +14,17 @@ celular mami
 2000x500 min-width 1025px	
 660x600 max-width 1025px
 
-pc yeye
+pantalla pc
 max-width 2134px
 
+pantalla2 lapto
+max-width: 1600px
+
+pantalla original lapto
+max-width: 1024px 
 
 
 
 
 
 
-ANTIGUA SECTION
-<section class="section-slide">
-        <div class="wrap-splide1">
-            <div class="splide" aria-label="Splide Basic HTML Example">
-                <div class="splide__arrows">
-                    <button class="splide__arrow splide__arrow--prev">
-                        <img src="<?= media(); ?>ecommerce/images/arrow-left.png">
-                    </button>
-                    <button class="splide__arrow splide__arrow--next">
-                        <img src="<?= media(); ?>ecommerce/images/arrow-right.png">
-                    </button>
-                </div>
-
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <div class="splide__slide item-splide1 slider-one">
-                            <div class="layer-container">
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                    <h2 class="text-layer text01">Lleva la fiesta a todas partes</h2>
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInUp" data-delay="800">
-                                    <img class="marc-slider text-layer" src="<?= media(); ?>ecommerce/images/sony-logo.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
-                                    <span class="text-layer text02">Speaker de 15"<br>Potencia 75000W<br>USB<br>Bluetooth<br>MicroSD<br>Control Remoto<br> FM</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="splide__slide item-splide1 slider-two">
-                            <div class="layer-container">
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
-                                    <h2 class="text-layer text01">Apoya a la Tri en 4k</h2>
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__rollIn" data-delay="800">
-                                    <img class="text-layer marc-slider" src="<?= media(); ?>ecommerce/images/riviera-logo.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="1600">
-                                    <span class="text-layer text02">Bluetooth®<br>Dolby Vision<br>Natural Colour Enhancer<br>DTS Studio Sound<br>Audio equalizer<br>Google Assistant</span>
-                                </div>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-ANTIGUO CSS SLIDER
-/*Splide library*/
-
-@media (min-width: 1024px) {
-	.slider-one{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one-global.png");
-	}
-
-	.slider-two{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two-global.png");
-	}
-
-	.layer-container{
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
-		height: 100%;
-		border: 1px solid green;
-		padding-left: 10%;
-		padding-top: 	5%;
-	}
-}
-
-@media (max-width: 1024px) {
- .slider-one{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-one1024px.png");
-	}
-
-	.slider-two{
-		background-image: url("http://localhost/carlos/project_cg/Assets/ecommerce/images/slider-two1024px.png");
-	} 
-
-	.layer-container{
-		padding-top: 	25%;	
-		padding-left: 15%;
-	}
-}
-
-.item-splide1 {
-  height: calc(100vh - 0px);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.splide__arrows{
-	opacity: 0;
-}
-
-.splide__arrow{
-	height: 0;
-	background: none;
-	opacity: 0.4;
-	outline: none;
-}
-
-.splide:hover .splide__arrows{
-	opacity: 1;
-}
-
-.layer-splide1{
-	margin-top: 15px;
-}
-
-
-.text01{
-	font-size: 40px;
-	font-family: 'Permanent Marker', cursive;
-	color: var(--g2);
-	font-weight: 	600;
-}
-
-.text02{
-	font-size: 18px;
-	font-family: 'Poppins', sans-serif;
-	font-weight: 500;
-}
-
-@media(max-width: 768px){
-	.layer-container{
-		padding-top: 40%;
-	}
-
-	.text01{
-		font-size: 20px;
-	}
-
-	.marc-slider{
-		width: 200px;
-	}
-
-	.text02{
-		display: none;
-	}
-}
