@@ -306,7 +306,7 @@
 
     <section class="section-slide">
         <div class="wrap-splide1">
-            <div class="splide" aria-label="Splide Basic HTML Example">
+            <div class="splide">
                 <div class="splide__arrows">
                     <button class="splide__arrow splide__arrow--prev">
                         <img src="<?= media(); ?>ecommerce/images/arrow-left.png">
@@ -354,7 +354,7 @@
                                 <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__backInUp" data-delay="1600">
                                     <a href="">VER PRODUCTO</a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </ul>
@@ -364,6 +364,21 @@
     </section>
 
     <section class="container-pages">
+        
+        <!-- <section class="section-categories" style="border: 1px solid red;">
+
+            <section class="splide" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">Slide 01</li>
+                        <li class="splide__slide">Slide 02</li>
+                        <li class="splide__slide">Slide 03</li>
+                    </ul>
+                </div>
+            </section>
+
+        </section> -->
+
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
