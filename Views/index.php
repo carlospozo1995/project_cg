@@ -332,7 +332,7 @@
                                     <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-one.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__rollIn" data-delay="1600">
+                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__backInUp" data-delay="1600">
                                     <a href="">VER PRODUCTO</a>
                                 </div>
                             </div>
@@ -351,10 +351,10 @@
                                     <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-two.png">
                                 </div>
 
-                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__rollIn" data-delay="1600">
+                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__backInUp" data-delay="1600">
                                     <a href="">VER PRODUCTO</a>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </ul>
