@@ -366,29 +366,25 @@
     <section class="container-pages">
         
         <section class="section-category">
-            <div class="splide" id="slider2" role="group" aria-label="Splide Basic HTML Example">
+           <div class="splide" id="slider2" role="group" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
-                    <div class="splide__list">
+                    <div class="splide__list center">
                         <?php
-
                             foreach ($request as $key => $value) {
                                 if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                                    echo '<div class="splide__slide">';
+                                    echo '<div class="splide__slide text-center slide-item-category">';
                                         echo '<a href="">';
-                                            echo '<img src="'.media().'images/uploads/'.$value['imgcategoria'].'" style="border:1px solid red">';
+                                            echo '<img src="'.media().'images/uploads/'.$value['imgcategoria'].'">';
+                                            echo '<p>'.$value['nombre'].'</p>';
                                         echo '</a>';
                                     echo '</div>';
                                 }
                             }
-
                         ?>
-                        <!-- 
-                        <div class="splide__slide">Slide 02</div>
-                        <div class="splide__slide">Slide 03</div> -->
-
                     </div>
                 </div>
             </div>
+
         </section>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

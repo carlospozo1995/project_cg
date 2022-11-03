@@ -66,8 +66,23 @@ $(document).ready(function() {
 
     var category = new Splide( '#slider2', {
         type   : 'loop',
-        perPage: 5,
-    } );
+        perPage: 6,
+        perMove: 1,
+        breakpoints: {
+            1200: {
+                perPage: 5,
+            },
+            1000: {
+                perPage: 4,
+            },
+            800: {
+                perPage: 3,
+            },
+            600: {
+                perPage: 2,
+            },
+        }
+    });
 
     category.mount();
 
