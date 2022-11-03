@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
+                // --------- SPLIDE (BANNER AND TEXT BANNER) --------- //
     $('.wrap-splide1').each(function(){
-        var wrapSplide1 = $(this);
-        var splide = $(this).find('.splide');
+        var splide = $(this).find('#slider1');
 
         var itemSplide1 = $(splide).find('.item-splide1');
         var layerSplide1 = $(splide).find('.layer-splide1');
@@ -26,7 +26,7 @@ $(document).ready(function() {
             }
         })        
 
-        var banner = new Splide('.splide', {
+        var banner = new Splide('#slider1', {
             type    : 'loop',
             perPage : 1,
             autoplay: true,
@@ -60,5 +60,15 @@ $(document).ready(function() {
         });
     
     });
+
+
+                    // --------- SPLIDE (CATEGORY) --------- //
+
+    var category = new Splide( '#slider2', {
+        type   : 'loop',
+        perPage: 5,
+    } );
+
+    category.mount();
 
 });

@@ -708,6 +708,11 @@ transition: all 0.4s;
 }
 
 @media (max-width: 768px){
+
+	.splide__arrow img{
+		width: 80%;
+	}
+
 	.logo-mobile a img{
 		width: 300px;
 	}
@@ -735,6 +740,10 @@ transition: all 0.4s;
 }
 
 @media (max-width: 500px){
+	.splide__arrow img{
+		width: 60%;
+	}
+
 	.logo-mobile a img{
 		width: 250px;
 	}

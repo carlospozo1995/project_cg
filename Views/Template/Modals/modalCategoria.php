@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <p class="errorArchivo errorCategoria"></p>
                                         <div class="photo">
-                                            <label for="foto">Foto (570x380)</label>
+                                            <label for="foto">Foto (150 x 150)</label>
                                             <div class="prevPhoto">
                                                 <span class="delPhoto notBlock">X</span>
                                                 <label for="foto"></label>
