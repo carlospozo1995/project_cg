@@ -10,7 +10,8 @@
 
 		public function tienda()
 		{
-			$this->views->getView($this, "tienda");
+			$data['page_title'] = 'Créditos GUAMAN - Todo para el hogar';
+			$this->views->getView($this, "tienda", $data);
 		}
 	}
 

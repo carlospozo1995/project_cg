@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
                 // --------- SPLIDE (BANNER AND TEXT BANNER) --------- //
-    $('.wrap-splide1').each(function(){
+    
+    if (document.querySelector('.section-slide')) {
+        $('.wrap-splide1').each(function(){
         var splide = $(this).find('#slider1');
 
         var itemSplide1 = $(splide).find('.item-splide1');
@@ -60,11 +62,12 @@ $(document).ready(function() {
         });
     
     });
-
+    }
 
                     // --------- SPLIDE (CATEGORY) --------- //
 
-    var category = new Splide( '#slider2', {
+    if (document.querySelector('.section-category')) {
+        var category = new Splide( '#slider2', {
         type   : 'loop',
         perPage: 6,
         perMove: 1,
@@ -79,8 +82,9 @@ $(document).ready(function() {
                 perPage: 3,
             },
         }
-    });
+        });
 
-    category.mount();
+        category.mount();
+    }
 
 });
