@@ -12,11 +12,11 @@
         }
         else{
             // echo "no existe el methodo " . $method;
-            require_once("Views/404.php");
+            // require_once("Views/Index.php");
         }
     }else{
         // echo "no existe el controlador " . $controller;
-        require_once("Views/404.php");
+        // require_once("Views/Index.php");
     }
 
 ?>

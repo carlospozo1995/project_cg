@@ -69,17 +69,14 @@ $(document).ready(function() {
         perPage: 6,
         perMove: 1,
         breakpoints: {
-            1200: {
+            1100: {
                 perPage: 5,
             },
-            1000: {
+            768: {
                 perPage: 4,
             },
-            800: {
-                perPage: 3,
-            },
             600: {
-                perPage: 2,
+                perPage: 3,
             },
         }
     });

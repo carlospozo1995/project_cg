@@ -57,6 +57,14 @@
         require_once($view_footer);
     }
 
+    function headerStore($data=""){
+        require_once("Views/Template/header_store.php");
+    }
+
+    function footerStore($data=""){
+        require_once("Views/Template/footer_store.php");
+    }
+
     // MUESTRA INFORMACION FORMATEADA
     function dep($data){
         $format = print_r('<pre>');
