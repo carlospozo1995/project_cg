@@ -1,6 +1,6 @@
 <?php headerStore($data); ?>
 
-    <section class="section-slide">
+<section class="section-slide">
         <div class="wrap-splide1">
             <div class="splide" id="slider1">
                 <div class="splide__arrows">
@@ -87,5 +87,4 @@
         </section>
 
     </section>
-
 <?php footerStore($data); ?>

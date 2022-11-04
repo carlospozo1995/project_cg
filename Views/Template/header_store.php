@@ -227,6 +227,9 @@
             </div>
 
             <?php
+                require_once 'Models/CategoriasModel.php';
+                $objCategorias = new CategoriasModel();
+                $request = $objCategorias->menuCategorias();
                 if (count($request) > 0) {
                     echo '<ul class="menu-mobile">';
                         levelFirstMobile($request);
