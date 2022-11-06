@@ -130,8 +130,12 @@
                         {
                             foreach ($dataCtg as $key => $value) {
                                 if($value['categoria_father_id'] == "" && $value['status'] == 1){
+                                    
+                                    $cleanName = deleteAcent($value['nombre']);
+                                    $nameUrl = str_replace(' ', '-',strtolower($cleanName));
+
                                     echo '<li class="item-menu-desktop">';
-                                        echo '<a href="" > <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                        echo '<a href=" '.base_url().'categoria/'.$nameUrl.'"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
                                             echo '<ul class="submenu-desktop">';
                                                 levelSecond($dataCtg, $value['idcategoria']);
                                             echo '</ul>';
