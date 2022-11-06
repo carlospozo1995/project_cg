@@ -2,7 +2,9 @@
 
     <script src="<?= media(); ?>ecommerce/plugins/jquery/jquery.min.js"></script>
     <!--===============================================================================================-->
-     <script src="<?= media(); ?>ecommerce/plugins/animsition/js/animsition.min.js"></script>
+    <script src="<?= media(); ?>ecommerce/plugins/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="<?= media(); ?>ecommerce/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <!--===============================================================================================-->
     <script src="<?= media(); ?>ecommerce/plugins/bootstrap/js/popper.js"></script>
     <script src="<?= media(); ?>ecommerce/plugins/bootstrap/js/bootstrap.min.js"></script>

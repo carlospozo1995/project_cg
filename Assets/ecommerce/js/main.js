@@ -168,9 +168,25 @@ $(document).ready(function() {
 
     $('.js-show-cart').on('click',function(){
         $('.js-panel-cart').addClass('show-header-cart');
+        disableScroll();
     });
 
     $('.js-hide-cart').on('click',function(){
         $('.js-panel-cart').removeClass('show-header-cart');
+        enableScroll();
+    });
+
+    $('.js-pscroll').each(function(){
+        $(this).css('position','relative');
+        $(this).css('overflow','hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function(){
+            ps.update();
+        })
     });
 });
