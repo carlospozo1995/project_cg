@@ -1,14 +1,14 @@
 <?php
 
-    define("BASE_URL", "https://projectcg-production.up.railway.app/");
+    define("BASE_URL", "http://localhost/carlos/project_cg/");
     // define('RUTA_INCLUDES', 'C:/laragon/www/carlos/project_cg/Libraries/');
 
     // VAR A CONEXION BASE DE DATOS
-    define('DB_HOST', 'containers-us-west-98.railway.app');
-    define('DB_NAME', 'railway');
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'project_cg');
     define('DB_USER', 'root');
-    define('DB_PASSWORD', '100d79iRUJ3q8YObUL7w');
-    define('DB_PORT', 6030);
+    define('DB_PASSWORD', '');
+    define('PORT', 3306)
     define('DB_CHARSET', 'utf8');
 
     // ZONA HORARIA
