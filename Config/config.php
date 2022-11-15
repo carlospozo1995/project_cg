@@ -8,7 +8,7 @@
     define('DB_NAME', 'project_cg');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
-    define('PORT', 3306)
+    define('DB_PORT', 3306);
     define('DB_CHARSET', 'utf8');
 
     // ZONA HORARIA
