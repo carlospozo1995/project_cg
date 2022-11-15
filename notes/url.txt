@@ -1,0 +1,4 @@
+echo '<a href=" '.base_url().'tienda/categoria/'.$nameUrl.'"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                      
+ $cleanName = deleteAcent($value['nombre']);
+                                    $nameUrl = str_replace(' ', '-',strtolower($cleanName));

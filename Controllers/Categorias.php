@@ -35,9 +35,10 @@
         }
     
         public function setCategoria()
-        {
+        {   
             if($_POST){
-                if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == "" || $_POST['listCategorias'] == ""){
+                
+                if($_POST['txtTitulo'] == "" || $_POST['listStatus'] == "" || $_POST['listCategorias'] == "") {
                     $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
                 }else{
                     $intIdCategoria = intval($_POST['idCategoria']);
@@ -46,66 +47,73 @@
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
 
-                    $foto = $_FILES['foto'];
-                    $name_foto = $foto['name'];
-                    $type = $foto['type'];
-                    $url_temp = $foto['tmp_name'];
-                    $imgPortada = 'imgCategoria.png';
-                    
-                    $icono = $_FILES['icono'];
-                    $name_icono = $icono['name'];
-                    $iconoCtg = "";
+                    $image = $_FILES['imagen'];
+                    $name_image = $image['name'];
+                    $imgBackup = 'imgCategoria.png';
+
+                    $icon = $_FILES['icono'];
+                    $name_icon = $icon['name'];   
+                    $iconBackup = ""; 
+
+                    $strNotSpace = str_replace(' ', '-', $strCategoria);
 
                     if (empty($intIdCategoria)) {
+
                         $option = 1;
                         if($_SESSION['permisosMod']['crear']){
+
                             if($intListCtg != 'NULL'){
-                                // AGREGAR SUBCATEGORIA - SIN IMAGEN
-                                $imgPortada = 'NULL';
-                                $iconoCtg = 'NULL';
+                                // AGREGAR SUBCATEGORIA - SIN IMAGEN/SIN ICONO
+                                $imgBackup = 'NULL';
+                                $iconBackup = 'NULL';
                             }else{  
-                                // AGREGAR CATEGORIA - CON IMAGEN
-                                if (!empty($name_foto)) {
-                                    $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($foto, $imgPortada);
+                                // AGREGAR CATEGORIA - CON IMAGEN-CON ICONO
+                                
+                                if (!empty($name_icon)) {
+                                    $iconBackup = 'icono_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($icon, $iconBackup);
                                 }
-                                if (!empty($name_icono)) {
-                                    $iconoCtg = 'icono_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($icono, $iconoCtg);
+
+                                if (!empty($name_image)) {
+                                    $imgBackup = 'img_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($image, $imgBackup);
                                 }
                             }
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgPortada, $iconoCtg, $intListCtg, $intStatus );
+
+                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgBackup, $iconBackup, $intListCtg, $intStatus );
+                            
                         }
                     }else{
                         $option = 2;
                         if($_SESSION['permisosMod']['actualizar']){
                             if($intListCtg != 'NULL'){
-                                $imgPortada = 'NULL';
-                                $iconoCtg = 'NULL';
+                                $imgBackup = 'NULL';
+                                $iconBackup = 'NULL';
                             }else{
-                                if($name_foto == ""){
-                                    if (($_POST['foto_actual'] != 'imgCategoria.png' || $_POST['foto_actual'] != '') && $_POST['foto_remove'] == 0) {
-                                        $imgPortada = $_POST['foto_actual'];
+                                if($name_image == ""){
+                                    if (($_POST['photo_actual'] != 'imgCategoria.png' || $_POST['photo_actual'] != '') && $_POST['photo_remove'] == 0) {
+                                        $imgBackup = $_POST['photo_actual'];
                                     }
                                     
-                                    if($imgPortada == ""){
-                                        $imgPortada = 'imgCategoria.png';
+                                    if(($_POST['photo_remove'] == 1 && $_POST['photo_actual'] == 'imgCategoria.png') || ($_POST['photo_remove'] == 0 && $_POST['photo_actual'] == 'imgCategoria.png') || ($_POST['photo_remove'] == 0 && $_POST['photo_actual'] == '')){
+                                        $imgBackup = 'imgCategoria.png';
                                     }
                                 }else{
-                                    $imgPortada = 'img_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($foto, $imgPortada);   
+                                    $imgBackup = 'img_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($image, $imgBackup);   
                                 }
 
-                                if ($name_icono == "") {
-                                    if ($_POST['icono_actual'] != '' && $_POST['icono_remove'] == 0) {
-                                        $iconoCtg = $_POST['icono_actual'];
+                                if($name_icon == ""){
+                                    if ($_POST['icon_actual'] != "" && $_POST['icon_remove'] == 0) {
+                                        $iconBackup = $_POST['icon_actual'];
                                     }
                                 }else{
-                                    $iconoCtg = 'icono_'.$strCategoria.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($icono, $iconoCtg);   
+                                    $iconBackup = 'icono_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($icon, $iconBackup); 
                                 }
                             }
-                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgPortada, $iconoCtg, $intListCtg, $intStatus);
+
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgBackup, $iconBackup, $intListCtg, $intStatus);
                         }
                     }
 
@@ -115,11 +123,14 @@
                         }else{
                             $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                         }
+                    }else if($request_categoria == "notIcon"){
+                        $arrResponse = array('status' => false, 'msg' => 'Ingrese un icono.');
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{
                         $arrResponse = array('status' => false, 'msg' => 'No se ha podido ingresar los datos.');
-                    }  
+                    }
+
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 die();
@@ -138,13 +149,12 @@
                     if (empty($arrCategoria)) {
                         $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
                     }else{
-                        if(!empty($arrCategoria['icon_category_father'])){
-                            $arrCategoria['url_icon'] = media().'images/uploads/'.$arrCategoria['icon_category_father'];  
+
+                        if (!empty($arrCategoria['imgcategoria']) && !empty($arrCategoria['icono'])) {
+                            $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];
+                            $arrCategoria['url_icono'] = media().'images/uploads/'.$arrCategoria['icono'];   
                         }
 
-                        if (!empty($arrCategoria['imgcategoria'])) {
-                            $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];    
-                        }
                         $arrResponse = array('status' => true, 'data' => $arrCategoria, 'children' => $dataChildren);
                     }
                     echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

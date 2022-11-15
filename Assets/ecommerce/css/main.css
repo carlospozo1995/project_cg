@@ -145,10 +145,33 @@
 	font-size: 20px;
 	color: var(--g4);
 	cursor: pointer;
+	position: relative;
+}
+
+.icon-header-noti::after {
+  content: '0';
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 15px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: -9px;
+  right: -8px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  background-color: var(--g2);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 .cont-icon-nav .icon-nav:hover{
-	color: var(--g2);
+	color: var(--g5);
 }
 
 /*Menu Desktop*/
@@ -787,6 +810,39 @@
 .splide__pagination__page.is-active{
 	background-color: blue;
 }*/
+
+					/*----------- // BUTTON BACK TO TOP // -----------*/
+
+.btn-back-to-top {
+  display: none;
+  position: fixed;
+  width: 40px;
+  height: 38px;
+  bottom: 0px;
+  right: 40px;
+  background-color: var(--g2);
+  opacity: 0.5;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+.symbol-btn-back-to-top {
+  font-size: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-back-to-top:hover {
+  opacity: 1;
+}
 
 				/*----------- // STYLE RESPONSIVE // -----------*/
 

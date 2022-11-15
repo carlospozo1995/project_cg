@@ -73,7 +73,7 @@
                             foreach ($request as $key => $value) {
                                 if($value['categoria_father_id'] == "" && $value['status'] == 1){
                                     echo '<div class="splide__slide text-center slide-item-category">';
-                                        echo '<a href="'.base_url().'tienda">';
+                                        echo '<a href="">';
                                             echo '<img src="'.media().'images/uploads/'.$value['imgcategoria'].'">';
                                             echo '<p>'.$value['nombre'].'</p>';
                                         echo '</a>';

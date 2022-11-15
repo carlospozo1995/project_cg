@@ -13,10 +13,7 @@
                 <div class="card card-primary">
                     <form id="formCategoria" name="formCategoria">
                         <input type="hidden" id="idCategoria" name="idCategoria" value="">
-                        <input type="hidden" id="foto_actual" name="foto_actual" value="">
-                        <input type="hidden" id="foto_remove" name="foto_remove" value="0">
-                        <input type="hidden" id="icono_actual" name="icono_actual" value="">
-                        <input type="hidden" id="icono_remove" name="icono_remove" value="0">
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -30,43 +27,103 @@
                                         <select class="form-control" style="width:100%" id="listCategorias" name="listCategorias" required></select>
                                     </div>
 
+                                    <!-- =========== UPLOAD ICON =========== -->
                                     <div class="form-group">
-                                        <p class="errorArchivo errorIcono"></p>
-                                        <div class="icon">
-                                            <label for="icono">Icono (64x64)<span class="required"> *</span></label>
-                                            <div class="prevIcono">
-                                                <span class="delIcono notBlock">X</span>
-                                                <label for="icono"></label>
-                                                <div class="iconStyle"> 
-                                                    <!-- Carga de icono js -->
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="icon_actual" id="icono_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="icon_remove" value="0">
+
+                                            <label>Icono (64x64)<span class="required rqdIcon"> *</span></label>
+
+                                            <p class="errorArchivo errorIcono"></p>
+                                            <div class="contImage">
+                                                <div class="prevImgUpload prevIcono">
+                                                    <span class="delImgUpload notBlock delIcon">X</span>
+                                                    <label for="icono"></label>
+                                                    <div></div>
                                                 </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="icono" id="icono" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
                                             </div>
-                                            <div class="upimg">
-                                                <input type="file" name="icono" id="icono">
-                                            </div>
-                                            <div id="icono_alert"></div>
                                         </div>
                                     </div>
+                                    <!-- ============================== -->
+
+                                    <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
+                                    <div class="form-group">
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="sliderDst_actual" id="slideDst_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="sliderDst_remove" value="0">
+
+                                            <label>Slider desktop (1920x850)</label>
+
+                                            <!-- <p class="errorArchivo errorIcono"></p> -->
+                                            <div class="contSlider">
+                                                <div class="prevImgUpload prevSliderDst">
+                                                    <span class="delImgUpload notBlock delSliderDst">X</span>
+                                                    <label for="sliderDst"></label>
+                                                    <div></div>
+                                                </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="sliderDst" id="sliderDst" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================== -->
                                 </div>
 
                                 <div class="col-sm-6">
+                                    <!-- =========== UPLOAD PHOTO =========== -->
                                     <div class="form-group">
-                                        <p class="errorArchivo errorCategoria"></p>
-                                        <div class="photo">
-                                            <label for="foto">Foto (150 x 150)</label>
-                                            <div class="prevPhoto">
-                                                <span class="delPhoto notBlock">X</span>
-                                                <label for="foto"></label>
-                                                <div>
-                                                    <img src="<?= media(); ?>images/uploads/imgCategoria.png" id="img" alt="">
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="photo_actual"  id="photo_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="photo_remove" value="0">
+
+                                            <label>Foto (150 x 150)</label>
+
+                                            <p class="errorArchivo errorCategoria"></p>
+                                            <div class="contImage">
+                                                <div class="prevImgUpload prevPhoto">
+                                                    <span class="delImgUpload notBlock delPhoto">X</span>
+                                                    <label for="imagen"></label>
+                                                    <div></div>
                                                 </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="imagen" id="imagen" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
                                             </div>
-                                            <div class="upimg">
-                                                <input type="file" name="foto" id="foto">
-                                            </div>
-                                            <div id="foto_alert"></div>
                                         </div>
                                     </div>
+                                    <!-- ============================== -->
+
+                                    <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
+                                    <div class="form-group">
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="sliderMbl_actual" id="slideMbl_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="sliderMbl_remove" value="0">
+
+                                            <label>Slider desktop (800x500)</label>
+
+                                            <!-- <p class="errorArchivo errorIcono"></p> -->
+                                            <div class="contSlider">
+                                                <div class="prevImgUpload prevSliderMbl">
+                                                    <span class="delImgUpload notBlock delSliderMbl">X</span>
+                                                    <label for="sliderMbl"></label>
+                                                    <div></div>
+                                                </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="sliderMbl" id="sliderMbl" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================== -->
 
                                     <div class="form-group">
                                         <label for="listStatus">Status Categoria<span class="required"> *</span></label>
@@ -75,6 +132,7 @@
                                             <option value="2">Inactivo</option>
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -108,27 +166,27 @@
                         <tbody>
                             <tr>
                                 <td>Nombre:</td>
-                                <td id="celNombre"></td>
+                                <td id="celNombre" class="celData"></td>
                             </tr>
                             <tr>
                                 <td>Imagen:</td>
-                                <td id="celImagen"></td>
+                                <td id="celImagen" class="celData imgData"></td>
                             </tr>
                             <tr>
                                 <td>Icono:</td>
-                                <td id="celIcono"></td>
+                                <td id="celIcono" class="celData imgData"></td>
                             </tr>
                             <tr>
                                 <td>Fecha de registro:</td>
-                                <td id="celFecharegistro"></td>
+                                <td id="celFecharegistro" class="celData"></td>
                             </tr>
                             <tr>
                                 <td>Categoria padre</td>
-                                <td id="celCatPadre"></td>
+                                <td id="celCatPadre" class="celData"></td>
                             </tr>
                             <tr>
                                 <td>Estado:</td>
-                                <td id="celEstado"></td>
+                                <td id="celEstado" class="celData"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -138,7 +196,5 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>

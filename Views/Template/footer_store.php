@@ -1,5 +1,11 @@
     <footer></footer>
 
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top h-full">
+            <i class="fa-solid fa-chevron-up"></i>
+        </span>
+    </div>
+
     <script src="<?= media(); ?>ecommerce/plugins/jquery/jquery.min.js"></script>
     <!--===============================================================================================-->
     <script src="<?= media(); ?>ecommerce/plugins/animsition/js/animsition.min.js"></script>

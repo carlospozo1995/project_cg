@@ -100,7 +100,7 @@ $(document).ready(function() {
         }
     });
 
-    // ------------ Modal Search ------------ //
+    // ------------ MODAL SEARCH ------------ //
 
     // *Disable and enable scroll
     var keys = {37: 1, 38: 1, 39: 1, 40: 1};
@@ -164,8 +164,7 @@ $(document).ready(function() {
     });
     
 
-    // *Show modal cart
-
+    // ------------ MODAL CART ------------ //
     $('.js-show-cart').on('click',function(){
         $('.js-panel-cart').addClass('show-header-cart');
         disableScroll();
@@ -188,5 +187,20 @@ $(document).ready(function() {
         $(window).on('resize', function(){
             ps.update();
         })
+    });
+
+    // ----------- BACK TO TOP ----------- //
+    var windowH = $(window).height()/2;
+
+    $(window).on('scroll',function(){
+        if ($(this).scrollTop() > windowH) {
+            $("#myBtn").css('display','flex');
+        } else {
+            $("#myBtn").css('display','none');
+        }
+    });
+
+    $('#myBtn').on("click", function(){
+        $('html, body').animate({scrollTop: 0}, 300);
     });
 });

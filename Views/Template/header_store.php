@@ -108,7 +108,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
 
-                        <div class="icon-nav" >
+                        <div class="icon-nav icon-header-noti" >
                             <i class="fa-solid fa-cart-shopping js-show-cart"></i>
                         </div>
                     </div>
@@ -130,12 +130,8 @@
                         {
                             foreach ($dataCtg as $key => $value) {
                                 if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                                    
-                                    $cleanName = deleteAcent($value['nombre']);
-                                    $nameUrl = str_replace(' ', '-',strtolower($cleanName));
-
                                     echo '<li class="item-menu-desktop">';
-                                        echo '<a href=" '.base_url().'categoria/'.$nameUrl.'"> <div><img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                        echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icono'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
                                             echo '<ul class="submenu-desktop">';
                                                 levelSecond($dataCtg, $value['idcategoria']);
                                             echo '</ul>';
@@ -185,7 +181,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
 
-                <div class="icon-nav" >
+                <div class="icon-nav icon-header-noti" >
                     <i class="fa-solid fa-cart-shopping js-show-cart"></i>
                 </div>
             </div>
@@ -263,7 +259,7 @@
                     foreach ($dataCtg as $key => $value) {
                         if($value['categoria_father_id'] == "" && $value['status'] == 1){
                             echo '<li class="pst-rel">';
-                                echo '<a href="" > <img src="'.media().'images/uploads/'.$value['icon_category_father'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
+                                echo '<a href="" > <img src="'.media().'images/uploads/'.$value['icono'].'" alt=""> <span>'.$value["nombre"].'</span></a>';
                                     echo '<ul class="submenu-mobile">';
                                         levelSecondMobile($dataCtg, $value['idcategoria']);
                                     echo '</ul>';
