@@ -54,12 +54,11 @@
                                     <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
                                     <div class="form-group">
                                         <div class="contImgUpload">
-                                            <input type="hidden" class="imagen_actual" name="sliderDst_actual" id="slideDst_actual" value="">
+                                            <input type="hidden" class="imagen_actual" name="sliderDst_actual" id="sliderDst_actual" value="">
                                             <input type="hidden" class="imagen_remove" name="sliderDst_remove" value="0">
 
                                             <label>Slider desktop (1920x850)</label>
 
-                                            <!-- <p class="errorArchivo errorIcono"></p> -->
                                             <div class="contSlider">
                                                 <div class="prevImgUpload prevSliderDst">
                                                     <span class="delImgUpload notBlock delSliderDst">X</span>
@@ -101,15 +100,14 @@
                                     </div>
                                     <!-- ============================== -->
 
-                                    <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
+                                    <!-- =========== UPLOAD SLIDER MOBILE =========== -->
                                     <div class="form-group">
                                         <div class="contImgUpload">
-                                            <input type="hidden" class="imagen_actual" name="sliderMbl_actual" id="slideMbl_actual" value="">
+                                            <input type="hidden" class="imagen_actual" name="sliderMbl_actual" id="sliderMbl_actual" value="">
                                             <input type="hidden" class="imagen_remove" name="sliderMbl_remove" value="0">
 
-                                            <label>Slider desktop (800x500)</label>
+                                            <label>Slider mobile (800x500)</label>
 
-                                            <!-- <p class="errorArchivo errorIcono"></p> -->
                                             <div class="contSlider">
                                                 <div class="prevImgUpload prevSliderMbl">
                                                     <span class="delImgUpload notBlock delSliderMbl">X</span>
@@ -161,7 +159,6 @@
             </div>
             <div class="modal-body">
                 <div class="card card-primary">
-                <!-- Table data user -->
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
@@ -175,6 +172,14 @@
                             <tr>
                                 <td>Icono:</td>
                                 <td id="celIcono" class="celData imgData"></td>
+                            </tr>
+                            <tr>
+                                <td>Slider desktop:</td>
+                                <td id="celSlrDesktop" class="celData imgData"></td>
+                            </tr>
+                            <tr>
+                                <td>Slider mobile:</td>
+                                <td id="celSlrMobile" class="celData imgData"></td>
                             </tr>
                             <tr>
                                 <td>Fecha de registro:</td>

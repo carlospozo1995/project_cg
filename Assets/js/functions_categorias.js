@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-
     tableCategorias = $("#tableCategorias").DataTable({
         "aProcessing": true,
         "aServerSide":true,
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
         "bDestroy":true,
         "order":[[0,"asc"]],
-        "iDisplayLength":15,
+        "iDisplayLength":25,
     });
 
     formCategoria.addEventListener('submit', function (e) {
@@ -231,6 +230,8 @@ function viewCategoria(idCategoria) {
                 document.getElementById('celNombre').innerHTML = objData.data.nombre;
                 document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
                 document.getElementById('celIcono').innerHTML = '<img src="'+ objData.data.url_icono +'" alt="">';
+                document.getElementById('celSlrDesktop').innerHTML = '<img src="'+ objData.data.url_sliderDts +'" alt="">';
+                document.getElementById('celSlrMobile').innerHTML = '<img src="'+ objData.data.url_sliderMbl +'" alt="">';
                 document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
                 document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
                 document.getElementById('celEstado').innerHTML = statusCategoria;
@@ -269,11 +270,23 @@ function editCategoria(element, idCategoria) {
 
                 document.getElementById('photo_actual').value = dataCtg.imgcategoria;
                 document.getElementById('icono_actual').value = dataCtg.icono;
+                document.getElementById('sliderDst_actual').value = dataCtg.sliderDesktop;
+                document.getElementById('sliderMbl_actual').value = dataCtg.sliderMobile;
 
                 document.querySelectorAll('.contImgUpload').forEach(function (item) {
                     item.querySelector('.imagen_remove').value = 0;
                     item.querySelector('.imagen').value = "";
-                })
+                });
+
+                if (dataCtg.sliderDesktop != null && dataCtg.sliderMobile != null){
+                    document.querySelector('.prevSliderDst div').innerHTML = '<img class="imgUpload" src="'+ dataCtg.url_sliderDts +'" alt="">'; 
+                    document.querySelector('.delSliderDst').classList.remove('notBlock');
+                    document.querySelector('.prevSliderMbl div').innerHTML = '<img class="imgUpload" src="'+ dataCtg.url_sliderMbl +'" alt="">'; 
+                    document.querySelector('.delSliderMbl').classList.remove('notBlock');
+                }else{
+                    document.querySelector('.prevSliderDst div').innerHTML = "";
+                    document.querySelector('.prevSliderMbl div').innerHTML = ""
+                }
 
                 document.getElementById("txtTitulo").value = dataCtg.nombre;
                 document.getElementById("listStatus").value = dataCtg.status;
@@ -307,7 +320,7 @@ function editCategoria(element, idCategoria) {
 
                     document.querySelectorAll('.contImgUpload').forEach(function (item) {
                         if (item.querySelector('.contImage')) {item.querySelector('.contImage').style.display = "none"}
-                        removeImagen(item);
+                        if (dataCtg.sliderDesktop == null && dataCtg.sliderMobile == null) {removeImagen(item)}
                     });
 
                     document.querySelector('.errorCategoria').textContent = 'Las categorias superiores solo pueden tener una imagen.';
@@ -369,7 +382,6 @@ function deleteCategoria(element, idCategoria) {
         }
     });
 }
-
 
 // ---------------------------------
 

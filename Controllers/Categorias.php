@@ -55,6 +55,14 @@
                     $name_icon = $icon['name'];   
                     $iconBackup = ""; 
 
+                    $sliderDst = $_FILES['sliderDst'];
+                    $name_slrDst = $sliderDst['name'];
+                    $slrDstBackup = ""; 
+
+                    $sliderMbl = $_FILES['sliderMbl'];
+                    $name_slrMbl = $sliderMbl['name'];
+                    $slrMblBackup = ""; 
+
                     $strNotSpace = str_replace(' ', '-', $strCategoria);
 
                     if (empty($intIdCategoria)) {
@@ -80,8 +88,21 @@
                                 }
                             }
 
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgBackup, $iconBackup, $intListCtg, $intStatus );
-                            
+                            if (!empty($name_slrDst)) {
+                                $slrDstBackup = 'sliderDesktop_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                uploadImage($sliderDst, $slrDstBackup);
+                            }else{
+                                $slrDstBackup = 'NULL';
+                            }
+
+                            if (!empty($name_slrMbl)) {
+                                $slrMblBackup = 'sliderMobile_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                uploadImage($sliderMbl, $slrMblBackup);
+                            }else{
+                                $slrMblBackup = 'NULL';
+                            }
+
+                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $intListCtg, $intStatus);
                         }
                     }else{
                         $option = 2;
@@ -113,7 +134,33 @@
                                 }
                             }
 
-                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgBackup, $iconBackup, $intListCtg, $intStatus);
+                            if (!empty($name_slrDst)) {
+                                if (!empty($_POST['sliderDst_actual']) || empty($_POST['sliderDst_actual'])) {
+                                    $slrDstBackup = 'sliderDesktop_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($sliderDst, $slrDstBackup);   
+                                }
+                            }else{
+                                if (!empty($_POST['sliderDst_actual'])) {
+                                    $slrDstBackup = $_POST['sliderDst_actual'];
+                                }else{
+                                    $slrDstBackup = 'NULL';   
+                                }
+                            }
+
+                            if (!empty($name_slrMbl)) {
+                                if (!empty($_POST['sliderMbl_actual']) || empty($_POST['sliderMbl_actual'])) {
+                                    $slrMblBackup = 'sliderMobile_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
+                                    uploadImage($sliderMbl, $slrMblBackup);   
+                                }
+                            }else{
+                                if (!empty($_POST['sliderMbl_actual'])) {
+                                    $slrMblBackup = $_POST['sliderMbl_actual'];
+                                }else{
+                                    $slrMblBackup = 'NULL';   
+                                }
+                            }
+
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $intListCtg, $intStatus);
                         }
                     }
 
@@ -125,6 +172,8 @@
                         }
                     }else if($request_categoria == "notIcon"){
                         $arrResponse = array('status' => false, 'msg' => 'Ingrese un icono.');
+                    }else if($request_categoria == "bothFull"){
+                        $arrResponse = array('status' => false, 'msg' => 'Si quiere ingresar sliders. Debe ingresar ambos(Desktop-Mobile).');
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{
@@ -152,8 +201,11 @@
 
                         if (!empty($arrCategoria['imgcategoria']) && !empty($arrCategoria['icono'])) {
                             $arrCategoria['url_imgcategoria'] = media().'images/uploads/'.$arrCategoria['imgcategoria'];
-                            $arrCategoria['url_icono'] = media().'images/uploads/'.$arrCategoria['icono'];   
+                            $arrCategoria['url_icono'] = media().'images/uploads/'.$arrCategoria['icono']; 
                         }
+
+                        $arrCategoria['url_sliderDts'] = media().'images/uploads/'.$arrCategoria['sliderDesktop'];
+                        $arrCategoria['url_sliderMbl'] = media().'images/uploads/'.$arrCategoria['sliderMobile'];
 
                         $arrResponse = array('status' => true, 'data' => $arrCategoria, 'children' => $dataChildren);
                     }

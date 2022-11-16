@@ -7,6 +7,8 @@
         public $intCategoria;
         public $strImg;
         public $strIcon;
+        public $strSliderDst;
+        public $strSliderMbl;
         public $intStatus;
 
         function __construct(){
@@ -33,15 +35,19 @@
             return $request;
         }
 
-        public function insertCategoria(string $titulo, string $img, string $icon, $fatherCategoria, int $status )
+        public function insertCategoria(string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, $fatherCategoria, int $status )
         {
             $return = "";
             $dataImg;
             $dataIcon;
+            $dataSliderDst;
+            $dataSliderMbl;
 
             $this->strCategoria = $titulo;
             $this->strImg = $img;
             $this->strIcon = $icon;
+            $this->strSliderDst = $sliderDst;
+            $this->strSliderMbl = $sliderMbl;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
 
@@ -53,12 +59,24 @@
                 return "notIcon";
             }
 
+            if (($this->strSliderDst == 'NULL' && $this->strSliderMbl != 'NULL') || ($this->strSliderDst != 'NULL' && $this->strSliderMbl == 'NULL')) {
+                return "bothFull";
+            }
+
+            if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
+                $dataSliderDst = $this->strSliderDst;
+                $dataSliderMbl = $this->strSliderMbl;
+            }else{
+                $dataSliderDst = "'$this->strSliderDst'";
+                $dataSliderMbl = "'$this->strSliderMbl'";
+            }
+
             $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '$this->strCategoria' AND categoria_father_id is null";
 
             $request = $this->selectAll($sql_exists_categoria);
 
             if(empty($request)){
-                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, icono, categoria_father_id, status) VALUES('$this->strCategoria', $dataImg, $dataIcon, $this->intCategoria, $this->intStatus)";
+                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, icono, sliderDesktop, sliderMobile, categoria_father_id, status) VALUES('$this->strCategoria', $dataImg, $dataIcon, $dataSliderDst, $dataSliderMbl, $this->intCategoria, $this->intStatus)";
                 $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{
@@ -77,15 +95,19 @@
             return $request;
         }
 
-        public function updateCategoria(int $idcategoria, string $titulo, string $img, string $icon, $fatherCategoria, int $status)
+        public function updateCategoria(int $idcategoria, string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, $fatherCategoria, int $status)
         {
             $dataImg;
             $dataIcon;
+            $dataSliderDst;
+            $dataSliderMbl;
 
             $this->intIdCategoria = $idcategoria;
             $this->strCategoria = $titulo;
             $this->strImg = $img;
             $this->strIcon = $icon;
+            $this->strSliderDst = $sliderDst;
+            $this->strSliderMbl = $sliderMbl;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
 
@@ -97,11 +119,23 @@
                 return "notIcon";
             }
 
+            if (($this->strSliderDst == 'NULL' && $this->strSliderMbl != 'NULL') || ($this->strSliderDst != 'NULL' && $this->strSliderMbl == 'NULL')) {
+                return "bothFull";
+            }
+
+            if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
+                $dataSliderDst = $this->strSliderDst;
+                $dataSliderMbl = $this->strSliderMbl;
+            }else{
+                $dataSliderDst = "'$this->strSliderDst'";
+                $dataSliderMbl = "'$this->strSliderMbl'";
+            }
+
             $sql_exists_categoria = "SELECT * FROM categorias WHERE nombre = '{$this-> strCategoria}' AND idcategoria != $this->intIdCategoria AND categoria_father_id is null";
             $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
-                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria',  imgcategoria = $dataImg, icono  = $dataIcon, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria', imgcategoria = $dataImg, icono = $dataIcon, sliderDesktop = $dataSliderDst, sliderMobile = $dataSliderMbl, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
                 $request = $this->update($sql_update_categoria);
                 
                 if ($request) {
