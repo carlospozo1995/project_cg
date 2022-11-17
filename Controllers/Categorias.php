@@ -79,25 +79,21 @@
                                 
                                 if (!empty($name_icon)) {
                                     $iconBackup = 'icono_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($icon, $iconBackup);
                                 }
 
                                 if (!empty($name_image)) {
                                     $imgBackup = 'img_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($image, $imgBackup);
                                 }
                             }
 
                             if (!empty($name_slrDst)) {
                                 $slrDstBackup = 'sliderDesktop_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                uploadImage($sliderDst, $slrDstBackup);
                             }else{
                                 $slrDstBackup = 'NULL';
                             }
 
                             if (!empty($name_slrMbl)) {
                                 $slrMblBackup = 'sliderMobile_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                uploadImage($sliderMbl, $slrMblBackup);
                             }else{
                                 $slrMblBackup = 'NULL';
                             }
@@ -121,7 +117,6 @@
                                     }
                                 }else{
                                     $imgBackup = 'img_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($image, $imgBackup);   
                                 }
 
                                 if($name_icon == ""){
@@ -130,14 +125,12 @@
                                     }
                                 }else{
                                     $iconBackup = 'icono_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($icon, $iconBackup); 
                                 }
                             }
 
                             if (!empty($name_slrDst)) {
                                 if (!empty($_POST['sliderDst_actual']) || empty($_POST['sliderDst_actual'])) {
                                     $slrDstBackup = 'sliderDesktop_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($sliderDst, $slrDstBackup);   
                                 }
                             }else{
                                 if (!empty($_POST['sliderDst_actual'])) {
@@ -150,7 +143,6 @@
                             if (!empty($name_slrMbl)) {
                                 if (!empty($_POST['sliderMbl_actual']) || empty($_POST['sliderMbl_actual'])) {
                                     $slrMblBackup = 'sliderMobile_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
-                                    uploadImage($sliderMbl, $slrMblBackup);   
                                 }
                             }else{
                                 if (!empty($_POST['sliderMbl_actual'])) {
@@ -165,10 +157,24 @@
                     }
 
                     if ($request_categoria > 0) {
+                        $dataDesktop;
+                        $dataMobile;
+
+                        $slrDstBackup != 'NULL' ? $dataDesktop = media().'images/uploads/'.$slrDstBackup : $dataDesktop = "";
+                        $slrMblBackup != 'NULL' ? $dataMobile = media().'images/uploads/'.$slrMblBackup : $dataMobile = "";
+
                         if ($option == 1) {
-                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.', 'idCtg' => $request_categoria, 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
+                            $arrResponse = array('status' => true, 'msg' => 'Datos ingresados correctamente.', 'idCtg' => $request_categoria, 'sliderDesktop' => $dataDesktop, 'sliderMobile' => $dataMobile, 'permisos' => $_SESSION['permisosMod'], 'idUser'=> $_SESSION['idUser']);
+                            uploadImage($icon, $iconBackup);
+                            uploadImage($image, $imgBackup);
+                            uploadImage($sliderDst, $slrDstBackup);
+                            uploadImage($sliderMbl, $slrMblBackup);
                         }else{
-                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                            $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.', 'sliderDesktop' => $dataDesktop, 'sliderMobile' => $dataMobile);
+                            uploadImage($icon, $iconBackup);
+                            uploadImage($image, $imgBackup);
+                            uploadImage($sliderDst, $slrDstBackup);
+                            uploadImage($sliderMbl, $slrMblBackup);
                         }
                     }else if($request_categoria == "notIcon"){
                         $arrResponse = array('status' => false, 'msg' => 'Ingrese un icono.');
@@ -204,8 +210,10 @@
                             $arrCategoria['url_icono'] = media().'images/uploads/'.$arrCategoria['icono']; 
                         }
 
-                        $arrCategoria['url_sliderDts'] = media().'images/uploads/'.$arrCategoria['sliderDesktop'];
-                        $arrCategoria['url_sliderMbl'] = media().'images/uploads/'.$arrCategoria['sliderMobile'];
+                        if (!empty($arrCategoria['sliderDesktop']) && !empty($arrCategoria['sliderMobile'])) {
+                            $arrCategoria['url_sliderDts'] = media().'images/uploads/'.$arrCategoria['sliderDesktop'];
+                            $arrCategoria['url_sliderMbl'] = media().'images/uploads/'.$arrCategoria['sliderMobile'];
+                        }
 
                         $arrResponse = array('status' => true, 'data' => $arrCategoria, 'children' => $dataChildren);
                     }

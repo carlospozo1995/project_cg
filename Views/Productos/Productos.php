@@ -35,6 +35,8 @@
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>Stock</th>
+                  <th>Slider Desktop</th>
+                  <th>Slider Mobile</th>
                   <th>Estado</th>
                   <th>Acciones</th>
                 </tr>
@@ -77,6 +79,16 @@
                           echo '<td>'.$value['nombre'].'</td>';
                           echo '<td>'.$value['precio'].'</td>';
                           echo '<td>'.$value['stock'].'</td>';
+                          echo '<td class="celData">';
+                            if (!empty($value['sliderDesktop'])) {
+                              echo '<img style = "width: 80px" src="'.media().'images/uploadsProduct/'.$value['sliderDesktop'].'">';
+                            }
+                          echo '</td>';
+                          echo '<td class="celData imgData">';
+                            if (!empty($value['sliderMobile'])) {
+                              echo '<img style = "width: 50px" src="'.media().'images/uploadsProduct/'.$value['sliderMobile'].'">';
+                            }
+                          echo '</td>';
                           echo '<td>'.$value['status'].'</td>';
                           echo '<td><div class="text-center">'.$btnView.' '.$btnUpdate.' '.$btnDelete.'</div></td>';
                         echo'</tr>';

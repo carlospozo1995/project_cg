@@ -210,7 +210,7 @@
         }
     }
 
-    // AGREGAR LA IMAGEN A UPLOAD
+    // AGREGAR LA IMAGEN A UPLOAD CATEGORIA
     function uploadImage(array $data, string $name){
         $url_temp = $data['tmp_name'];
         $destino = 'Assets/images/uploads/'.$name;
@@ -218,9 +218,17 @@
         return $move;
     }
 
-    // ELIMINAR IMAGEN SELECIONADA DEL UPLOAD
+    // AGREGAR IMAGENES A UPLOAD PRODUCTO
+    function uploadImgProd(array $data, string $name){
+        $url_temp = $data['tmp_name'];
+        $destino = 'Assets/images/uploadsProduct/'.$name;
+        $move = move_uploaded_file($url_temp, $destino);
+        return $move;
+    }
+
+    // ELIMINAR IMAGEN SELECIONADA DEL UPLOAD PRODUCTO
     function deleteFile(string $name){
-        unlink('Assets/images/uploads/'.$name);
+        unlink('Assets/images/uploadsProduct/'.$name);
     }
 
     // OBTENCION DE CATEGORIAS PARA EL SELECT

@@ -173,10 +173,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     if(objData.status){
                         let htmlStatus = intStatus == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
+                        let dataSliderDesktop = "";
+                        let dataSliderMobile = "";
+
+                        if (objData.sliderDesktop != "") {dataSliderDesktop = '<img style="width:80px; display:flex; margin:auto" src="'+objData.sliderDesktop+'">'}
+                        if (objData.sliderMobile != "") {dataSliderMobile = '<img style="width:50px; display:flex; margin:auto" src="'+objData.sliderMobile+'">'}
+
                         if(rowTable == ""){
                             let btnView = "";
                             let btnUpdate = "";
-                            let btnDelete = "";  
+                            let btnDelete = ""; 
 
                             if(objData.permisos.ver == 1){btnView = '<button type="button" class=" btnViewCategory btn btn-secondary btn-sm" onclick="viewCategoria('+objData.idCtg+')" tilte="Ver"><i class="fas fa-eye"></i></button>'};
 
@@ -188,18 +194,21 @@ document.addEventListener('DOMContentLoaded', function () {
                                 objData.idCtg,
                                 strTitulo,
                                 ctgTextVal,
+                                dataSliderDesktop,
+                                dataSliderMobile,
                                 htmlStatus,
                                 '<div class="text-center"> '+btnView+" "+btnUpdate+" "+btnDelete+'</div>'
                             ]).draw(false);
                         }else{
                             let n_row = $(rowTable).find("td:eq(0)").html();
-                            let buttons_html = $(rowTable).find("td:eq(4)").html();
-                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo, ctgTextVal, htmlStatus, buttons_html]).draw(false);
+                            let buttons_html = $(rowTable).find("td:eq(6)").html();
+                            $("#tableCategorias").DataTable().row(rowTable).data([n_row,strTitulo, ctgTextVal, dataSliderDesktop, dataSliderMobile, htmlStatus, buttons_html]).draw(false);
 
                             for (let i = 0; i < sonsCtg.length; i++) {
                                 $("#tableCategorias").DataTable().cell(`#${sonsCtg[i].idcategoria}`).data(htmlStatus);
                             }
                         }
+
                         $("#modalFormCategoria").modal("hide");
                         formCategoria.reset();
                         Swal.fire("Categorias", objData.msg, "success");
@@ -403,7 +412,7 @@ function selectAllCategorias(idCategoria, valCtgList) {
 }
 
 
-// FUNCTION REMOVE IMG UPLOAD ICON DELETE
+// FUNCTION REMOVE IMG UPLOAD DELETE
 function removeImagen(item){
     item.querySelector('.imagen').value = "";
     item.querySelector('.delImgUpload').classList.add('notBlock');

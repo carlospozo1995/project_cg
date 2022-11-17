@@ -30,9 +30,55 @@
                                         <label>Descripción general</label>
                                         <textarea style="width: 100%;" id="txtDescGrl" autocomplete="off" name="txtDescGrl"></textarea>
                                     </div>
+
+                                     <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
+                                    <div class="form-group">
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="sliderDst_actual" id="sliderDst_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="sliderDst_remove" value="0">
+
+                                            <label>Slider desktop (1920x850)</label>
+
+                                            <div class="contSlider">
+                                                <div class="prevImgUpload prevSliderDst">
+                                                    <span class="delImgUpload notBlock delSliderDst">X</span>
+                                                    <label for="sliderDst"></label>
+                                                    <div></div>
+                                                </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="sliderDst" id="sliderDst" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================== -->
                                 </div>
 
                                 <div class="col-sm-4">
+                                    <!-- =========== UPLOAD SLIDER MOBILE =========== -->
+                                    <div class="form-group">
+                                        <div class="contImgUpload">
+                                            <input type="hidden" class="imagen_actual" name="sliderMbl_actual" id="sliderMbl_actual" value="">
+                                            <input type="hidden" class="imagen_remove" name="sliderMbl_remove" value="0">
+
+                                            <label>Slider mobile (800x500)</label>
+
+                                            <div class="contSlider">
+                                                <div class="prevImgUpload prevSliderMbl">
+                                                    <span class="delImgUpload notBlock delSliderMbl">X</span>
+                                                    <label for="sliderMbl"></label>
+                                                    <div></div>
+                                                </div>
+                                                <div class="upimg">
+                                                    <input type="file" name="sliderMbl" id="sliderMbl" class="imagen">
+                                                </div>
+                                                <div class="alertImgUpload"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ============================== -->
+                                    
                                     <div class="form-group">
                                         <label>Marca<span class="required"> *</span></label>
                                         <input type="text" class="form-control" id="txtMarca" autocomplete="off" name="txtMarca" required>
@@ -170,6 +216,14 @@
                             <tr>
                                 <td>Stock:</td>
                                 <td id="celStock"></td>
+                            </tr>
+                            <tr>
+                                <td>Slider desktop:</td>
+                                <td id="celSlrDesktop" class="celData imgData"></td>
+                            </tr>
+                            <tr>
+                                <td>Slider mobile:</td>
+                                <td id="celSlrMobile" class="celData imgData"></td>
                             </tr>
                             <tr>
                                 <td>Status:</td>

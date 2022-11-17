@@ -13,6 +13,8 @@
         public $intCategoria;
         public $intStatus;
         public $strImagen;
+        public $strSliderDst;
+        public $strSliderMbl;
 
         function __construct(){
             parent::__construct();
@@ -26,9 +28,12 @@
             return $request;
         }
 
-        public function insertProducto(string $nombre, string $descPcp, $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
+        public function insertProducto(string $nombre, string $descPcp, $descGrl, string $sliderDst, string $sliderMbl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
         {
             $return = "";
+            $dataSliderDst;
+            $dataSliderMbl;
+
             $this->strNombre = $nombre;
             $this->strDescPcp = $descPcp;
             $this->strDescGrl = $descGrl;
@@ -38,16 +43,30 @@
             $this->strPrecio = $precio;
             $this->intCategoria = $categoria;
             $this->intStatus = $status;
+            $this->strSliderDst = $sliderDst;
+            $this->strSliderMbl = $sliderMbl;
 
             $dataChange_dg = ""; 
 
             $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
 
+            if (($this->strSliderDst == 'NULL' && $this->strSliderMbl != 'NULL') || ($this->strSliderDst != 'NULL' && $this->strSliderMbl == 'NULL')) {
+                return "bothFull";
+            }
+
+            if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
+                $dataSliderDst = $this->strSliderDst;
+                $dataSliderMbl = $this->strSliderMbl;
+            }else{
+                $dataSliderDst = "'$this->strSliderDst'";
+                $dataSliderMbl = "'$this->strSliderMbl'";
+            }
+
             $sql_exist_codigo = "SELECT * FROM productos WHERE codproducto = $this->intCodigo";
 
             $request = $this->selectAll($sql_exist_codigo);
             if(empty($request)){
-                $sql_insert_producto = "INSERT INTO productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescPcp' ,$dataChange_dg , '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
+                $sql_insert_producto = "INSERT INTO productos(categoriaid, codproducto, nombre, descprincipal, descgeneral, sliderDesktop, sliderMobile, marca, precio, stock, status) VALUES($this->intCategoria, $this->intCodigo, '$this->strNombre', '$this->strDescPcp' ,$dataChange_dg , $dataSliderDst, $dataSliderMbl, '$this->strMarca', '$this->strPrecio', $this->intStock, $this->intStatus)";
                 $request = $this->insert($sql_insert_producto);
                 $return = $request;
             }else{
@@ -56,8 +75,11 @@
             return $return;
         }
 
-        public function updateProducto(int $idProducto, string $nombre, string $descPcp, $descGrl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
+        public function updateProducto(int $idProducto, string $nombre, string $descPcp, $descGrl, string $sliderDst, string $sliderMbl, string $marca, int $codigo, int $stock ,string $precio, int $categoria, int $status)
         {
+            $dataSliderDst;
+            $dataSliderMbl;
+
             $this->intIdProducto = $idProducto;
             $this->strNombre = $nombre;
             $this->strDescPcp = $descPcp;
@@ -68,15 +90,29 @@
             $this->strPrecio = $precio;
             $this->intCategoria = $categoria;
             $this->intStatus = $status;
+            $this->strSliderDst = $sliderDst;
+            $this->strSliderMbl = $sliderMbl;
 
             $dataChange_dg = ""; 
             $this->strDescGrl != "NULL" ? $dataChange_dg = "'$this->strDescGrl'" : $dataChange_dg = $this->strDescGrl; 
+
+            if (($this->strSliderDst == 'NULL' && $this->strSliderMbl != 'NULL') || ($this->strSliderDst != 'NULL' && $this->strSliderMbl == 'NULL')) {
+                return "bothFull";
+            }
+
+            if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
+                $dataSliderDst = $this->strSliderDst;
+                $dataSliderMbl = $this->strSliderMbl;
+            }else{
+                $dataSliderDst = "'$this->strSliderDst'";
+                $dataSliderMbl = "'$this->strSliderMbl'";
+            }
 
             $sql_exists_codigo = "SELECT * FROM productos WHERE codproducto = $this->intCodigo AND idproducto != $this->intIdProducto";
             $request = $this->selectAll($sql_exists_codigo);
 
             if (empty($request)) {
-                $sql_update_producto = "UPDATE productos SET categoriaid = $this->intCategoria, codproducto = $this->intCodigo, nombre = '$this->strNombre', descprincipal = '$this->strDescPcp', descgeneral = $dataChange_dg, marca = '$this->strMarca', precio = '$this->strPrecio', stock = $this->intStock, status = $this->intStatus WHERE idproducto = $this->intIdProducto";
+                $sql_update_producto = "UPDATE productos SET categoriaid = $this->intCategoria, codproducto = $this->intCodigo, nombre = '$this->strNombre', descprincipal = '$this->strDescPcp', descgeneral = $dataChange_dg, sliderDesktop = $dataSliderDst, sliderMobile = $dataSliderMbl, marca = '$this->strMarca', precio = '$this->strPrecio', stock = $this->intStock, status = $this->intStatus WHERE idproducto = $this->intIdProducto";
                 $request = $this->update($sql_update_producto);
             }else{
                 $request = 'existe';

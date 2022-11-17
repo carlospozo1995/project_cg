@@ -17,9 +17,75 @@ function modalNewProducto(){
     validFocus();
     document.querySelector(".card-footer").style.display = "none";
     document.querySelector("#containerImages").innerHTML = "";
+
+    document.querySelectorAll('.contImgUpload').forEach(function (item) {
+        item.querySelector('.alertImgUpload').innerHTML = "";
+        item.querySelector('.imagen_remove').value = 0;
+        item.querySelector('.imagen_actual').value = "";
+        removeImagen(item);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+/*UPLOAD DIFFERENT IMAGES PRODUCTO*/
+    if (document.getElementById('formProducto')) {
+        document.querySelectorAll('.contImgUpload').forEach(function (item) {
+            if (item.querySelector('.imagen')) {
+                var imagen = item.querySelector('.imagen');
+                imagen.onchange =  function (e) {
+                    var uploadImagen = item.querySelector('.imagen').value;
+                    var fileImagen = item.querySelector('.imagen').files;
+                    var nav = window.URL || window.webkitURL;
+                    var alertImagen = item.querySelector('.alertImgUpload');
+
+                    if (uploadImagen != "") {
+                        var typeImagen = fileImagen[0].type;
+                        var nameImagen = fileImagen[0].name;
+
+                        if (typeImagen != 'image/jpeg' && typeImagen != "image/png" && typeImagen != "image/jpg") {
+                            alertImagen.innerHTML = '<p class="errorArchivo">El archivo selecionado no es válido. Intentelo de nuevo.</p>';
+                            
+                            if (item.querySelector('.imgUpload')) {
+                                item.querySelector('.imgUpload').remove();
+                            }
+
+                            item.querySelector('.delImgUpload').classList.add("notBlock");
+                            imagen.value = "";
+                            return false;
+                        }else{
+                            alertImagen.innerHTML = "";
+
+                            if (item.querySelector('.imgUpload')) {
+                                item.querySelector('.imgUpload').remove();
+                            }
+
+                            item.querySelector('.delImgUpload').classList.remove("notBlock");
+                            var objeto_url = nav.createObjectURL(this.files[0]);
+                            item.querySelector('.prevImgUpload div').style.backgroundColor = "#fff";
+                            item.querySelector('.prevImgUpload div').innerHTML = '<img class="imgUpload" src="'+objeto_url+'">';
+
+                        }
+                    }else{
+                        alert("No ha seleccionado una imagen.")
+                        if (item.querySelector('.imgUpload')) {
+                            item.querySelector('.imgUpload').remove();
+                        }
+                    }
+                }
+            } 
+
+            if (item.querySelector('.delImgUpload')) {
+                var delImagen = item.querySelector('.delImgUpload');
+                delImagen.onclick = function () {
+                    item.querySelector('.imagen_remove').value = 1;
+                    removeImagen(item);
+                }
+            }   
+        })
+
+    }
+    // ------------------------------------------- //
     
     tableProductos = $("#tableProductos").DataTable({
         "aProcessing": true,
@@ -75,6 +141,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         if(objData.status){
                             let htmlStatus = status == 1 ? '<div class="text-center"><span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span></div>' : '<div class="text-center"><span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span></div>';
 
+                            let dataSliderDesktop = "";
+                            let dataSliderMobile = "";
+
+                            if (objData.sliderDesktop != "") {dataSliderDesktop = '<img style="width:80px; display:flex; margin:auto" src="'+objData.sliderDesktop+'">'}
+                            if (objData.sliderMobile != "") {dataSliderMobile = '<img style="width:50px; display:flex; margin:auto" src="'+objData.sliderMobile+'">'}
+
                             if(rowTable == ""){
                                 let btnView = "";
                                 let btnUpdate = "";
@@ -97,14 +169,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                     nameProd,
                                     objData.price,
                                     stock,
+                                    dataSliderDesktop,
+                                    dataSliderMobile,
                                     htmlStatus,
                                     '<div class="text-center"> '+btnView+btnUpdate+btnDelete+'</div>'
                                 ]).draw(false);
                             }else{
                                 let n_row = $(rowTable).find("td:eq(0)").html();
-                                let buttons_html = $(rowTable).find("td:eq(6)").html();
+                                let buttons_html = $(rowTable).find("td:eq(8)").html();
 
-                                $("#tableProductos").DataTable().row(rowTable).data([n_row, codProd, nameProd, objData.priceUpdate ,stock, htmlStatus, buttons_html]).draw(false);
+                                $("#tableProductos").DataTable().row(rowTable).data([n_row, codProd, nameProd, objData.priceUpdate ,stock, dataSliderDesktop, dataSliderMobile, htmlStatus, buttons_html]).draw(false);
                             }
                             $('#modalFormProducto').modal('hide');
 
@@ -264,6 +338,8 @@ function viewProducto(idProducto) {
                 document.getElementById('celCtg').innerHTML = jsData.nameCtg;
                 document.getElementById('celPrecio').innerHTML = jsData.precio;
                 document.getElementById('celStock').innerHTML = jsData.stock;
+                document.getElementById('celSlrDesktop').innerHTML = '<img src="'+ jsData.url_sliderDts +'" alt="">';
+                document.getElementById('celSlrMobile').innerHTML = '<img src="'+ jsData.url_sliderMbl +'" alt="">';
                 document.getElementById('celStatus').innerHTML = status;
                 document.getElementById('celDescPcp').innerHTML = jsData.descprincipal;
                 document.getElementById('celDescGrl').innerHTML = jsData.descgeneral;
@@ -307,6 +383,28 @@ function editProducto(element, idProducto){
                 let dataProd  = objData.data;
                 document.getElementById('txtNombre').value = dataProd.nombre;
                 document.getElementById('txtDescPcp').value = dataProd.descprincipal;
+
+                document.getElementById('sliderDst_actual').value = dataProd.sliderDesktop;
+                document.getElementById('sliderMbl_actual').value = dataProd.sliderMobile;
+
+                document.querySelectorAll('.contImgUpload').forEach(function (item) {
+                    item.querySelector('.imagen_remove').value = 0;
+                    item.querySelector('.imagen').value = "";
+                    item.querySelector('.alertImgUpload').innerHTML = "";
+                });
+
+                if (dataProd.sliderDesktop != null && dataProd.sliderMobile != null){
+                    document.querySelector('.prevSliderDst div').innerHTML = '<img class="imgUpload" src="'+ dataProd.url_sliderDts +'" alt="">'; 
+                    document.querySelector('.delSliderDst').classList.remove('notBlock');
+                    document.querySelector('.prevSliderMbl div').innerHTML = '<img class="imgUpload" src="'+ dataProd.url_sliderMbl +'" alt="">'; 
+                    document.querySelector('.delSliderMbl').classList.remove('notBlock');
+                }else{
+                    document.querySelector('.prevSliderDst div').innerHTML = "";
+                    document.querySelector('.prevSliderMbl div').innerHTML = ""
+                    document.querySelector('.delSliderDst').classList.add('notBlock');
+                    document.querySelector('.delSliderMbl').classList.add('notBlock');
+                }
+
                 if (dataProd.descgeneral != null) {
                     document.getElementById('txtDescGrl').value = dataProd.descgeneral;
                     tinymce.activeEditor.setContent(dataProd.descgeneral);
@@ -394,4 +492,14 @@ function deleteProducto(element, idProducto) {
 
         }
     });
+}
+
+// FUNCTION REMOVE IMG UPLOAD DELETE
+function removeImagen(item){
+    item.querySelector('.imagen').value = "";
+    item.querySelector('.delImgUpload').classList.add('notBlock');
+    
+    if (item.querySelector('.imgUpload')) {
+        item.querySelector('.imgUpload').remove();
+    }
 }

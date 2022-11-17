@@ -3,9 +3,7 @@
   getModal("modalCategoria", $data);
 ?>
 
- <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -31,6 +29,8 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Categoria padre</th>
+                    <th>Slider Desktop</th>
+                    <th>Slider Mobile</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
@@ -51,7 +51,6 @@
                         }
 
                         if (!empty($_SESSION['permisosMod']['actualizar'])) {
-                            
                             $btnUpdate = '<button type="button" class="btnEditCategoria btn btn-primary btn-sm" onclick="editCategoria(this,'.$value['idcategoria'].')" tilte="Editar"><i class="fas fa-pencil-alt"></i></button>';
                         }
 
@@ -67,8 +66,18 @@
 
                         echo'<tr>';
                           echo '<td>'.$value['idcategoria'].'</td>';
-                          echo '<td>'.$value['nombre'].'</td>';
+                          echo '<td>'.$value['nombre'].'</td>';   
                           echo '<td>'.$value['fathercatname'].'</td>';
+                          echo '<td class="celData">';
+                            if (!empty($value['sliderDesktop'])) {
+                              echo '<img style = "width: 80px" src="'.media().'images/uploads/'.$value['sliderDesktop'].'">';
+                            }
+                          echo '</td>';
+                          echo '<td class="celData imgData">';
+                            if (!empty($value['sliderMobile'])) {
+                              echo '<img style = "width: 50px"src="'.media().'images/uploads/'.$value['sliderMobile'].'">';
+                            }
+                          echo '</td>';
                           echo '<td id="'.$value['idcategoria'].'">'.$value['status'].'</td>';
                           echo '<td><div class="text-center">'.$btnView.' '.$btnUpdate.' '.$btnDelete.'</div></td>';
                         echo'</tr>';
