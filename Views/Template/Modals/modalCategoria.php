@@ -73,6 +73,11 @@
                                         </div>
                                     </div>
                                     <!-- ============================== -->
+
+                                    <div class="form-group">
+                                        <label>Slider Descripción 1</label>
+                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" type="text" name="sliderDscOne" id="sliderDscOne"></textarea>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -124,6 +129,11 @@
                                     <!-- ============================== -->
 
                                     <div class="form-group">
+                                        <label>Slider Descripción 2</label>
+                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" name="sliderDscTwo" id="sliderDscTwo"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="listStatus">Status Categoria<span class="required"> *</span></label>
                                         <select class="form-control" id="listStatus" name="listStatus" required>
                                             <option value="1">Activo</option>
@@ -142,8 +152,6 @@
                     </form>
                 </div>
             </div>
-
-           
         </div>
     </div>
 </div>
@@ -180,6 +188,14 @@
                             <tr>
                                 <td>Slider mobile:</td>
                                 <td id="celSlrMobile" class="celData imgData"></td>
+                            </tr>
+                            <tr>
+                                <td>Descripción slider 1:</td>
+                                <td id="celSlrDscOne" class="celData"></td>
+                            </tr>
+                            <tr>
+                                <td>Descrición slider 2:</td>
+                                <td id="celSlrDscTwo" class="celData"></td>
                             </tr>
                             <tr>
                                 <td>Fecha de registro:</td>

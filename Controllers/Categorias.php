@@ -47,6 +47,12 @@
                     $intStatus = intval($_POST['listStatus']);
                     $request_categoria = "";
 
+                    $descSliderOne = $_POST['sliderDscOne'];
+                    $bkDescSliderOne = "";
+
+                    $descSliderTwo = $_POST['sliderDscTwo'];
+                    $bkDescSliderTwo = "";
+
                     $image = $_FILES['imagen'];
                     $name_image = $image['name'];
                     $imgBackup = 'imgCategoria.png';
@@ -76,7 +82,6 @@
                                 $iconBackup = 'NULL';
                             }else{  
                                 // AGREGAR CATEGORIA - CON IMAGEN-CON ICONO
-                                
                                 if (!empty($name_icon)) {
                                     $iconBackup = 'icono_'.$strNotSpace.'_'.md5(date('d-m-Y H:m:s')).'.jpg';
                                 }
@@ -98,7 +103,15 @@
                                 $slrMblBackup = 'NULL';
                             }
 
-                            $request_categoria = $this->model->insertCategoria($strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $intListCtg, $intStatus);
+                            if (!empty($name_slrDst) && !empty($name_slrMbl)) {
+                                $descSliderOne != "" ? $bkDescSliderOne = $descSliderOne : $bkDescSliderOne = 'NULL';
+                                $descSliderTwo != "" ? $bkDescSliderTwo = $descSliderTwo : $bkDescSliderTwo = 'NULL';
+                            }else{
+                                $bkDescSliderOne = 'NULL';
+                                $bkDescSliderTwo = 'NULL';
+                            }
+
+                             $request_categoria = $this->model->insertCategoria($strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $bkDescSliderOne, $bkDescSliderTwo, $intListCtg, $intStatus);
                         }
                     }else{
                         $option = 2;
@@ -151,8 +164,16 @@
                                     $slrMblBackup = 'NULL';   
                                 }
                             }
+                            
+                            if ((!empty($_POST['sliderDst_actual']) && !empty($_POST['sliderMbl_actual'])) || (!empty($name_slrDst) && !empty($name_slrMbl))) {
+                                $descSliderOne != "" ? $bkDescSliderOne = $descSliderOne : $bkDescSliderOne = 'NULL';
+                                $descSliderTwo != "" ? $bkDescSliderTwo = $descSliderTwo : $bkDescSliderTwo = 'NULL';
+                            }else{
+                                $bkDescSliderOne = 'NULL';
+                                $bkDescSliderTwo = 'NULL';
+                            }
 
-                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $intListCtg, $intStatus);
+                            $request_categoria = $this->model->updateCategoria($intIdCategoria, $strCategoria, $imgBackup, $iconBackup, $slrDstBackup, $slrMblBackup, $bkDescSliderOne, $bkDescSliderTwo ,$intListCtg, $intStatus);
                         }
                     }
 
@@ -180,6 +201,8 @@
                         $arrResponse = array('status' => false, 'msg' => 'Ingrese un icono.');
                     }else if($request_categoria == "bothFull"){
                         $arrResponse = array('status' => false, 'msg' => 'Si quiere ingresar sliders. Debe ingresar ambos(Desktop-Mobile).');
+                    }else if($request_categoria == "addSliderDesc"){
+                        $arrResponse = array('status' => false, 'msg' => 'Si agrego sliders también debe llenar por lo menos el campo Slider descripcion 1.');
                     }else if($request_categoria == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'La categoria a ingresar ya existe.');
                     }else{

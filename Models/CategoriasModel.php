@@ -9,6 +9,8 @@
         public $strIcon;
         public $strSliderDst;
         public $strSliderMbl;
+        public $descSliderOne;
+        public $descSliderTwo;
         public $intStatus;
 
         function __construct(){
@@ -35,25 +37,28 @@
             return $request;
         }
 
-        public function insertCategoria(string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, $fatherCategoria, int $status )
+        public function insertCategoria(string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, string $descSliderOne, string $descSliderTwo, $fatherCategoria, int $status )
         {
             $return = "";
             $dataImg;
             $dataIcon;
             $dataSliderDst;
             $dataSliderMbl;
+            $dataDescSliderOne;
+            $dataDescSliderTwo;
 
             $this->strCategoria = $titulo;
             $this->strImg = $img;
             $this->strIcon = $icon;
             $this->strSliderDst = $sliderDst;
             $this->strSliderMbl = $sliderMbl;
+            $this->descSliderOne = $descSliderOne;
+            $this->descSliderTwo = $descSliderTwo;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
 
             $this->strImg == 'NULL' ? $dataImg = $this->strImg: $dataImg = "'$this->strImg'";
-
-            $this->strIcon == 'NULL' ? $dataIcon = $this->strIcon: $dataIcon = "'$this->strIcon'";
+            $this->strIcon == 'NULL' ? $dataIcon = $this->strIcon: $dataIcon = "'$this->strIcon'";          
 
             if ($this->strIcon == "") {
                 return "notIcon";
@@ -62,6 +67,15 @@
             if (($this->strSliderDst == 'NULL' && $this->strSliderMbl != 'NULL') || ($this->strSliderDst != 'NULL' && $this->strSliderMbl == 'NULL')) {
                 return "bothFull";
             }
+
+            if ($this->strSliderDst != 'NULL' && $this->strSliderMbl != 'NULL') {
+                if ($this->descSliderOne == 'NULL') {
+                    return "addSliderDesc";
+                }
+            }   
+
+            $this->descSliderOne == 'NULL' ? $dataDescSliderOne = $this->descSliderOne: $dataDescSliderOne = "'$this->descSliderOne'";
+            $this->descSliderTwo == 'NULL' ? $dataDescSliderTwo = $this->descSliderTwo: $dataDescSliderTwo = "'$this->descSliderTwo'";  
 
             if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
                 $dataSliderDst = $this->strSliderDst;
@@ -76,7 +90,7 @@
             $request = $this->selectAll($sql_exists_categoria);
 
             if(empty($request)){
-                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, icono, sliderDesktop, sliderMobile, categoria_father_id, status) VALUES('$this->strCategoria', $dataImg, $dataIcon, $dataSliderDst, $dataSliderMbl, $this->intCategoria, $this->intStatus)";
+                $sql_insert_categoria = "INSERT INTO categorias(nombre, imgCategoria, icono, sliderDesktop, sliderMobile, sliderDscOne, sliderDscTwo, categoria_father_id, status) VALUES('$this->strCategoria', $dataImg, $dataIcon, $dataSliderDst, $dataSliderMbl, $dataDescSliderOne, $dataDescSliderTwo, $this->intCategoria, $this->intStatus)";
                 $request = $this->insert($sql_insert_categoria);
                 $return = $request;
             }else{
@@ -95,12 +109,14 @@
             return $request;
         }
 
-        public function updateCategoria(int $idcategoria, string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, $fatherCategoria, int $status)
+        public function updateCategoria(int $idcategoria, string $titulo, string $img, string $icon, string $sliderDst, string $sliderMbl, string $descSliderOne, string $descSliderTwo, $fatherCategoria, int $status)
         {
             $dataImg;
             $dataIcon;
             $dataSliderDst;
             $dataSliderMbl;
+            $dataDescSliderOne;
+            $dataDescSliderTwo;
 
             $this->intIdCategoria = $idcategoria;
             $this->strCategoria = $titulo;
@@ -108,6 +124,8 @@
             $this->strIcon = $icon;
             $this->strSliderDst = $sliderDst;
             $this->strSliderMbl = $sliderMbl;
+            $this->descSliderOne = $descSliderOne;
+            $this->descSliderTwo = $descSliderTwo;
             $this->intCategoria = $fatherCategoria;
             $this->intStatus = $status;
 
@@ -123,6 +141,15 @@
                 return "bothFull";
             }
 
+            if ($this->strSliderDst != 'NULL' && $this->strSliderMbl != 'NULL') {
+                if ($this->descSliderOne == 'NULL') {
+                    return "addSliderDesc";
+                }
+            }   
+
+            $this->descSliderOne == 'NULL' ? $dataDescSliderOne = $this->descSliderOne: $dataDescSliderOne = "'$this->descSliderOne'";
+            $this->descSliderTwo == 'NULL' ? $dataDescSliderTwo = $this->descSliderTwo: $dataDescSliderTwo = "'$this->descSliderTwo'";  
+
             if ($this->strSliderDst == 'NULL' && $this->strSliderMbl == 'NULL') {
                 $dataSliderDst = $this->strSliderDst;
                 $dataSliderMbl = $this->strSliderMbl;
@@ -135,7 +162,7 @@
             $request = $this->selectAll($sql_exists_categoria);
 
             if (empty($request)) {
-                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria', imgcategoria = $dataImg, icono = $dataIcon, sliderDesktop = $dataSliderDst, sliderMobile = $dataSliderMbl, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
+                $sql_update_categoria = "UPDATE categorias SET nombre = '$this->strCategoria', imgcategoria = $dataImg, icono = $dataIcon, sliderDesktop = $dataSliderDst, sliderMobile = $dataSliderMbl, sliderDscOne = $dataDescSliderOne, sliderDscTwo = $dataDescSliderTwo, categoria_father_id = $this->intCategoria, status = $this->intStatus WHERE idcategoria = $this->intIdCategoria";
                 $request = $this->update($sql_update_categoria);
                 
                 if ($request) {

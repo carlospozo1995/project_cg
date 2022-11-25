@@ -45,4 +45,9 @@
     // define('MAIL_CORREO', 'carlospozo95@gmail.com');
     // define('MAIL_NOMBRE', 'Carlos');
     // --------------------------------------------
+
+
+    // LLAMAR SLIDER CATEGORIAS-PRODUCTOS
+    define("CAT_SLIDER", "1,15");
+    define("PROD_SLIDER", "1,2");
 ?>

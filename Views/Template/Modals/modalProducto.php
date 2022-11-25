@@ -23,12 +23,12 @@
 
                                     <div class="form-group">
                                         <label>Descripción principal<span class="required"> *</span></label>
-                                        <textarea rows="2" style="width: 100%;" id="txtDescPcp" autocomplete="off" name="txtDescPcp" required></textarea>
+                                        <textarea rows="2" class="form-control" id="txtDescPcp" autocomplete="off" name="txtDescPcp" required></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Descripción general</label>
-                                        <textarea style="width: 100%;" id="txtDescGrl" autocomplete="off" name="txtDescGrl"></textarea>
+                                        <textarea class="form-control" id="txtDescGrl" autocomplete="off" name="txtDescGrl"></textarea>
                                     </div>
 
                                      <!-- =========== UPLOAD SLIDER DESKTOP =========== -->
@@ -53,9 +53,19 @@
                                         </div>
                                     </div>
                                     <!-- ============================== -->
+
+                                     <div class="form-group">
+                                        <label>Slider Descripción 1</label>
+                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" type="text" name="sliderDscOne" id="sliderDscOne"></textarea>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Slider Descripción 2</label>
+                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" name="sliderDscTwo" id="sliderDscTwo"></textarea>
+                                    </div>
+                                    
                                     <!-- =========== UPLOAD SLIDER MOBILE =========== -->
                                     <div class="form-group">
                                         <div class="contImgUpload">

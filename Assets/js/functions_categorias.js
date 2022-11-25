@@ -20,7 +20,7 @@ function modalNewCategoria() {
         item.querySelector('.imagen_actual').value = "";
         removeImagen(item);
     });
-
+    document.querySelector('.rqdIcon').innerHTML = "*";
     rowTable = "";
 }
 
@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }   
         })
-
     }
 
     tableCategorias = $("#tableCategorias").DataTable({
@@ -145,21 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
             return false;
         }else{
-
-            // if (valCtgList == 0) {
-            //     if (intIdCategoria == "" && iconActual == "") {
-            //         if (icon == "") {
-            //             Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
-            //             return false;
-            //         }
-            //     }
-            //     // else{
-            //     //     if (icon == "" && iconActual == "") {
-            //     //         Swal.fire("Atención", "Asegúrese de llenar los campos requeridos.", "error");
-            //     //         return false;}
-            //     // }
-            // }
-
+            
             loading.style.display = "flex";
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP'); 
             var ajaxUrl = base_url + 'Categorias/setCategoria';
@@ -234,15 +219,18 @@ function viewCategoria(idCategoria) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
+            let dataCtg = objData.data;
             if (objData.status) {
-                let statusCategoria = objData.data.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
-                document.getElementById('celNombre').innerHTML = objData.data.nombre;
-                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ objData.data.url_imgcategoria +'" alt="">';
-                document.getElementById('celIcono').innerHTML = '<img src="'+ objData.data.url_icono +'" alt="">';
-                document.getElementById('celSlrDesktop').innerHTML = '<img src="'+ objData.data.url_sliderDts +'" alt="">';
-                document.getElementById('celSlrMobile').innerHTML = '<img src="'+ objData.data.url_sliderMbl +'" alt="">';
-                document.getElementById('celFecharegistro').innerHTML = objData.data.datecreate;
-                document.getElementById('celCatPadre').innerHTML = objData.data.fathercatname;
+                let statusCategoria = dataCtg.status == 1 ? '<span class="bg-success p-1 rounded"><i class="fas fa-user"></i> Activo</span>' : '<span class="bg-danger p-1 rounded"><i class="fas fa-user-slash"></i> Inactivo</span>';
+                document.getElementById('celNombre').innerHTML = dataCtg.nombre;
+                document.getElementById('celImagen').innerHTML = '<img id="img" src="'+ dataCtg.url_imgcategoria +'" alt="">';
+                document.getElementById('celIcono').innerHTML = '<img src="'+ dataCtg.url_icono +'" alt="">';
+                document.getElementById('celSlrDesktop').innerHTML = '<img src="'+ dataCtg.url_sliderDts +'" alt="">';
+                document.getElementById('celSlrDscOne').innerHTML = dataCtg.sliderDscOne;
+                document.getElementById('celSlrDscTwo').innerHTML = dataCtg.sliderDscTwo;
+                document.getElementById('celSlrMobile').innerHTML = '<img src="'+ dataCtg.url_sliderMbl +'" alt="">';
+                document.getElementById('celFecharegistro').innerHTML = dataCtg.datecreate;
+                document.getElementById('celCatPadre').innerHTML = dataCtg.fathercatname;
                 document.getElementById('celEstado').innerHTML = statusCategoria;
                 $('#modalViewCategoria').modal('show');
             }else{
@@ -299,6 +287,8 @@ function editCategoria(element, idCategoria) {
 
                 document.getElementById("txtTitulo").value = dataCtg.nombre;
                 document.getElementById("listStatus").value = dataCtg.status;
+                document.getElementById("sliderDscOne").value = dataCtg.sliderDscOne;
+                document.getElementById("sliderDscTwo").value = dataCtg.sliderDscTwo;
 
                 if (dataCtg.categoria_father_id == null) {
                     document.getElementById("listCategorias").value = 0;
