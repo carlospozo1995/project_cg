@@ -52,11 +52,8 @@
                     $name_slrMbl = $sliderMbl['name'];
                     $slrMblBackup = ""; 
 
-                    $descSliderOne = $_POST['sliderDscOne'];
-                    $bkDescSliderOne = "";
-
-                    $descSliderTwo = $_POST['sliderDscTwo'];
-                    $bkDescSliderTwo = "";
+                    $descSlider = $_POST['sliderDsc'];
+                    $bkDescSlider = "";
 
                     $strNotSpace = str_replace(' ', '-', $strNombre);
 
@@ -77,14 +74,12 @@
                             }
 
                             if (!empty($name_slrDst) && !empty($name_slrMbl)) {
-                                $descSliderOne != "" ? $bkDescSliderOne = $descSliderOne : $bkDescSliderOne = 'NULL';
-                                $descSliderTwo != "" ? $bkDescSliderTwo = $descSliderTwo : $bkDescSliderTwo = 'NULL';
+                                $descSlider != "" ? $bkDescSlider = $descSlider : $bkDescSlider = 'NULL';
                             }else{
-                                $bkDescSliderOne = 'NULL';
-                                $bkDescSliderTwo = 'NULL';
+                                $bkDescSlider = 'NULL';
                             }
 
-                            $request_producto = $this->model->insertProducto($strNombre, $strDescPcp, $strDescGrl, $slrDstBackup , $slrMblBackup, $bkDescSliderOne, $bkDescSliderTwo, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
+                            $request_producto = $this->model->insertProducto($strNombre, $strDescPcp, $strDescGrl, $slrDstBackup , $slrMblBackup, $bkDescSlider, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
                         }
                     }else{
                         $option = 2;
@@ -114,14 +109,12 @@
                             }
 
                             if ((!empty($_POST['sliderDst_actual']) && !empty($_POST['sliderMbl_actual'])) || (!empty($name_slrDst) && !empty($name_slrMbl))) {
-                                $descSliderOne != "" ? $bkDescSliderOne = $descSliderOne : $bkDescSliderOne = 'NULL';
-                                $descSliderTwo != "" ? $bkDescSliderTwo = $descSliderTwo : $bkDescSliderTwo = 'NULL';
+                                $descSlider != "" ? $bkDescSlider = $descSlider : $bkDescSlider = 'NULL';
                             }else{
-                                $bkDescSliderOne = 'NULL';
-                                $bkDescSliderTwo = 'NULL';
+                                $bkDescSlider = 'NULL';
                             }
 
-                            $request_producto = $this->model->updateProducto($intIdProducto, $strNombre, $strDescPcp, $strDescGrl, $slrDstBackup , $slrMblBackup, $bkDescSliderOne, $bkDescSliderTwo, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
+                            $request_producto = $this->model->updateProducto($intIdProducto, $strNombre, $strDescPcp, $strDescGrl, $slrDstBackup , $slrMblBackup, $bkDescSlider, $strMarca, $intCodigo, $intStock, $strPrecio, $listCategoria, $listStatus);
                         }   
                     }
 
@@ -144,7 +137,7 @@
                     }else if($request_producto == "bothFull"){
                         $arrResponse = array('status' => false, 'msg' => 'Si quiere ingresar sliders. Debe ingresar ambos(Desktop-Mobile).');
                     }else if($request_producto == "addSliderDesc"){
-                        $arrResponse = array('status' => false, 'msg' => 'Si agrego sliders también debe llenar por lo menos el campo Slider descripcion 1.');
+                        $arrResponse = array('status' => false, 'msg' => 'Si agregó sliders también debe llenar el campo Slider descripcion.');
                     }else if($request_producto == "existe"){
                         $arrResponse = array('status' => false, 'msg' => 'El codigo del producto a ingresar ya existe.');
                     }else{

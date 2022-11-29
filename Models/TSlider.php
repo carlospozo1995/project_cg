@@ -41,15 +41,14 @@
 			if ($idProd != "") {
 				$this->conexion = new Mysql;
 
-				$sql = "SELECT idproducto, nombre, sliderDesktop, sliderMobile, sliderDscOne, sliderDscTwo FROM productos WHERE status = 1 AND sliderDesktop != '' AND idproducto IN ($idProd)";
+				$sql = "SELECT idproducto, nombre, sliderDesktop, sliderMobile, sliderDsc FROM productos WHERE status = 1 AND sliderDesktop != '' AND idproducto IN ($idProd)";
 				$request = $this->conexion->selectAll($sql);
 
 				if (count($request) > 0) {
 				 	for ($p=0; $p < count($request); $p++) {
 				 		$request[$p]['sliderDesktop'] = BASE_URL.'Assets/images/uploadsProduct/'.$request[$p]['sliderDesktop'];
 				 		$request[$p]['sliderMobile'] = BASE_URL.'Assets/images/uploadsProduct/'.$request[$p]['sliderMobile'];
-				 		$request[$p]['sliderDscOne'] = $request[$p]['sliderDscOne'];
-				 		$request[$p]['sliderDscTwo'] = $request[$p]['sliderDscTwo'];
+				 		$request[$p]['sliderDsc'] = $request[$p]['sliderDsc'];
 				 	}
 				} 
 			}

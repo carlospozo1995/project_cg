@@ -413,8 +413,7 @@ function editProducto(element, idProducto){
                     document.getElementById('txtDescGrl').value = "";
                     tinymce.activeEditor.setContent(""); 
                 }
-                document.getElementById("sliderDscOne").value = dataProd.sliderDscOne;
-                document.getElementById("sliderDscTwo").value = dataProd.sliderDscTwo;
+                document.getElementById("sliderDsc").value = dataProd.sliderDsc;
                 document.getElementById('txtMarca').value = dataProd.marca;
                 document.getElementById('txtCodigo').value = dataProd.codproducto;
                 document.getElementById('txtPrecio').value = dataProd.precio;

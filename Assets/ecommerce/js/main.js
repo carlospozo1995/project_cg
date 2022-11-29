@@ -203,4 +203,25 @@ $(document).ready(function() {
     $('#myBtn').on("click", function(){
         $('html, body').animate({scrollTop: 0}, 300);
     });
+
+
+    // -------- RESPONSIVE ADAPTATION PAGE-------- //
+
+    // Slider layer
+
+    if ($(window).width() <= 600) {
+        $('.layer-cut a').text("VER");
+        $('.setTimeLayer').attr("data-delay", "1600");
+    }
+
+    $(window).resize(function() {
+        if ($(window).width() <= 600) {
+            $('.layer-cut a').text("VER");
+        }
+        else {
+            $('.layer-cut a').text("VER PRODUCTO");
+        }
+    });
+    
+    
 });

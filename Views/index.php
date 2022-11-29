@@ -14,46 +14,6 @@
 
                 <div class="splide__track">
                     <ul class="splide__list">
-                    <!-- <div class="splide__slide item-splide1 slider-one">
-                            <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-one-global.png">
-                            <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-one-small.png">
-
-                            <div class="layer-container">
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                    <img class="img-text-slider-one" src="<?= media(); ?>ecommerce/images/text-slider-one.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
-                                    <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-one.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__backInUp" data-delay="1600">
-                                    <a href="">VER PRODUCTO</a>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="splide__slide item-splide1 slider-two">
-                            <img class="img-slide-global" src="<?= media(); ?>ecommerce/images/slider-two-global.png">
-                            <img class="img-slide-small" src="<?= media(); ?>ecommerce/images/slider-two-small.png">
-                            <div class="layer-container">
-                                
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
-                                    <img class="img-text-slider-one" src="<?= media(); ?>ecommerce/images/text-slider-two.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
-                                    <img class="img-text-slider-two" src="<?= media(); ?>ecommerce/images/desc-slider-two.png">
-                                </div>
-
-                                <div class="layer-splide1 animate__animated visible-false view-product" data-appear="animate__backInUp" data-delay="1600">
-                                    <a href="">VER PRODUCTO</a>
-                                </div>
-
-                            </div>
-                        </div> -->
-
                         
                     <?php
                     if ($data['sliderCtg'] != "") {
@@ -64,31 +24,35 @@
                                 <img class="img-slide-global" src="<?= $data['sliderCtg'][$i]['sliderDesktop'] ?>">
                                 <img class="img-slide-small" src="<?= $data['sliderCtg'][$i]['sliderMobile'] ?>">
                                 
-                                <div class="layer-container">
-
-                                    <div class="layer-splide1 animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="0">
-                                        <p><?= $data['sliderCtg'][$i]['sliderDscOne'] ?></p>
-                                    </div>
+                                <div class="layer-container layer-cont-ctg">
 
                                     <?php
                                     if (!empty($data['sliderCtg'][$i]['sliderDscTwo'])) {
                                     ?>
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
+                                        <div class="layer-splide1 layer-one animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="800">
+                                            <h1><?= $data['sliderCtg'][$i]['sliderDscOne'] ?></h1>
+                                        </div>
+
+                                        <div class="layer-splide1 animate__animated visible-false layer-two" data-appear="animate__fadeInUp" data-delay="1600">
                                             <p><?= $data['sliderCtg'][$i]['sliderDscTwo'] ?></p> 
                                         </div>
 
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__backInUp" data-delay="1600">
+                                        <div class="layer-splide1 layer-three setTimeLayer animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="2400">
                                             <a href="">VISITAR</a>
                                         </div>
                                     <?php
                                     }else{
                                     ?>
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__backInUp" data-delay="800">
+                                        <div class="layer-splide1 layer-one animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="800">
+                                            <h1><?= $data['sliderCtg'][$i]['sliderDscOne'] ?></h1>
+                                        </div>
+                                        <div class="layer-splide1 layer-three animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="1600">
                                             <a href="">VISITAR</a>
                                         </div>
                                     <?php
                                     }
                                     ?>
+
                                 </div>
 
                             </div>
@@ -106,31 +70,16 @@
                                 <img class="img-slide-global" src="<?= $data['sliderProd'][$i]['sliderDesktop'] ?>">
                                 <img class="img-slide-small" src="<?= $data['sliderProd'][$i]['sliderMobile'] ?>">
 
-                                <div class="layer-container">
+                                <div class="layer-container layer-cont-prod">
 
-                                    <div class="layer-splide1 animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="0">
-                                        <p><?= $data['sliderProd'][$i]['sliderDscOne'] ?></p>
+                                    <div class="layer-splide1 layer-one animate__animated visible-false" data-appear="animate__fadeInDown" data-delay="800">
+                                        <h1><?= $data['sliderProd'][$i]['sliderDsc'] ?></h1>
                                     </div>
 
-                                    <?php
-                                    if (!empty($data['sliderProd'][$i]['sliderDscTwo'])) {
-                                    ?>
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__zoomIn" data-delay="800">
-                                            <p><?= $data['sliderProd'][$i]['sliderDscTwo'] ?></p> 
-                                        </div>
-
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__backInUp" data-delay="1600">
-                                            <a href="">VER PRODUCTO</a>
-                                        </div>
-                                    <?php
-                                    }else{
-                                    ?>
-                                        <div class="layer-splide1 animate__animated visible-false" data-appear="animate__backInUp" data-delay="800">
-                                            <a href="">VER PRODUCTO</a>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
+                                    <div class="layer-splide1 layer-two layer-cut animate__animated visible-false" data-appear="animate__fadeInUp" data-delay="1600">
+                                        <a href="">VER PRODUCTO</a>
+                                    </div>
+                                
                                 </div>
                             </div>
                     <?php

@@ -55,16 +55,12 @@
                                     <!-- ============================== -->
 
                                      <div class="form-group">
-                                        <label>Slider Descripción 1</label>
-                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" type="text" name="sliderDscOne" id="sliderDscOne"></textarea>
+                                        <label>Slider Descripción</label>
+                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" type="text" name="sliderDsc" id="sliderDsc"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Slider Descripción 2</label>
-                                        <textarea class="form-control" style="max-height: 80px; min-height: 80px;" name="sliderDscTwo" id="sliderDscTwo"></textarea>
-                                    </div>
                                     
                                     <!-- =========== UPLOAD SLIDER MOBILE =========== -->
                                     <div class="form-group">

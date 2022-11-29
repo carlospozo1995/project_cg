@@ -48,6 +48,6 @@
 
 
     // LLAMAR SLIDER CATEGORIAS-PRODUCTOS
-    define("CAT_SLIDER", "1,15");
-    define("PROD_SLIDER", "1,2");
+    define("CAT_SLIDER", "1,26");
+    define("PROD_SLIDER", "2");
 ?>

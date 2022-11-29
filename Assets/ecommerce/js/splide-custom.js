@@ -29,14 +29,15 @@ $(document).ready(function() {
         })        
 
         var banner = new Splide('#slider1', {
-            type    : 'loop',
+            type    : 'fade',
+            rewind : true,
             perPage : 1,
             autoplay: true,
             pauseOnFocus: false,
             focus:false,
             pauseOnHover: false,
             drag: false,
-            interval: 6000,
+            interval: 10000,
             pagination: false,
         });
 
