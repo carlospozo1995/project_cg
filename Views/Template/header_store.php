@@ -124,54 +124,54 @@
 
                 <div class="wrap-menu-desktop container">
                     <?php
-                        // require_once 'Models/CategoriasModel.php';
-                        // $objCategorias = new CategoriasModel();
-                        // $request = $objCategorias->menuCategorias();
-                        
-                        // if (count($request) > 0) {
-                        //     echo '<ul class="menu-desktop">';
-                        //         levelFirst($request);
-                        //     echo '</ul>';
-                        // }
+                        require_once 'Models/CategoriasModel.php';
+                        $objCategorias = new CategoriasModel();
+                        $request = $objCategorias->menuCategorias();
+                        // '.base_url()."store/category/".$value["nombre"].'
+                        if (count($request) > 0) {
+                            echo '<ul class="menu-desktop">';
+                                levelFirst($request);
+                            echo '</ul>';
+                        }
 
-                        // function levelFirst($dataCtg)
-                        // {
-                        //     foreach ($dataCtg as $key => $value) {
-                        //         if($value['categoria_father_id'] == "" && $value['status'] == 1){
-                        //             echo '<li class="item-menu-desktop">';
-                        //                 echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icono'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
-                        //                     echo '<ul class="submenu-desktop">';
-                        //                         levelSecond($dataCtg, $value['idcategoria']);
-                        //                     echo '</ul>';
-                        //             echo  '</li>';
-                        //         }
-                        //     }
-                        // }
+                        function levelFirst($dataCtg)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if($value['categoria_father_id'] == "" && $value['status'] == 1){
+                                    echo '<li class="item-menu-desktop">';
+                                        echo '<a href=""> <div><img src="'.media().'images/uploads/'.$value['icono'].'" alt=""></div> <span>'.$value["nombre"].'</span></a>';
+                                            echo '<ul class="submenu-desktop">';
+                                                levelSecond($dataCtg, $value['idcategoria']);
+                                            echo '</ul>';
+                                    echo  '</li>';
+                                }
+                            }
+                        }
 
-                        // function levelSecond($dataCtg, $fatherId)
-                        // {
-                        //     foreach ($dataCtg as $key => $value) {
-                        //         if ($value['categoria_father_id'] == $fatherId) {
-                        //             echo '<li class="item-submenu-desktop">';
-                        //                 echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
-                        //                 echo '<ul class="next-sub-desktop">';
-                        //                     levelThird($dataCtg, $value['idcategoria']);
-                        //                 echo '</ul>';
-                        //             echo '</li>';
-                        //         }        
-                        //     }       
-                        // }
+                        function levelSecond($dataCtg, $fatherId)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if ($value['categoria_father_id'] == $fatherId) {
+                                    echo '<li class="item-submenu-desktop">';
+                                        echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
+                                        echo '<ul class="next-sub-desktop">';
+                                            levelThird($dataCtg, $value['idcategoria']);
+                                        echo '</ul>';
+                                    echo '</li>';
+                                }        
+                            }       
+                        }
 
-                        // function levelThird($dataCtg, $fatherId)
-                        // {
-                        //     foreach ($dataCtg as $key => $value) {
-                        //         if ($value['categoria_father_id'] == $fatherId) {
-                        //             echo '<li class="item-nextSub-desktop">';
-                        //                 echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
-                        //             echo '</li>';
-                        //         }        
-                        //     }   
-                        // }
+                        function levelThird($dataCtg, $fatherId)
+                        {
+                            foreach ($dataCtg as $key => $value) {
+                                if ($value['categoria_father_id'] == $fatherId) {
+                                    echo '<li class="item-nextSub-desktop">';
+                                        echo '<a href="" class=" scale-link">'.$value['nombre'].'</a>';
+                                    echo '</li>';
+                                }        
+                            }   
+                        }
                     ?>
                 </div>
             </div>

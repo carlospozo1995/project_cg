@@ -38,7 +38,7 @@
                                         </div>
 
                                         <div class="layer-splide1 layer-three setTimeLayer animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="2400">
-                                            <a href="">VISITAR</a>
+                                            <a href="<?= base_url().'store/category/'.$data['sliderCtg'][$i]['nombre']?>">VISITAR</a>
                                         </div>
                                     <?php
                                     }else{
@@ -47,7 +47,7 @@
                                             <h1><?= $data['sliderCtg'][$i]['sliderDscOne'] ?></h1>
                                         </div>
                                         <div class="layer-splide1 layer-three animate__animated visible-false" data-appear="animate__lightSpeedInLeft" data-delay="1600">
-                                            <a href="">VISITAR</a>
+                                            <a href="<?= base_url().'store/category/'.$data['sliderCtg'][$i]['nombre']?>">VISITAR</a>
                                         </div>
                                     <?php
                                     }
