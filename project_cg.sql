@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-11-2022 a las 05:08:04
+-- Tiempo de generación: 26-02-2023 a las 03:02:26
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -81,7 +81,49 @@ INSERT INTO `categorias` (`idcategoria`, `nombre`, `imgcategoria`, `icono`, `sli
 (33, 'Celulares', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-22 19:42:04', 32, 1),
 (34, 'Tablets', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-22 19:42:27', 32, 1),
 (35, 'Proyectores', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-22 19:42:59', 26, 1),
-(36, 'ELECTROMENORES', 'img_ELECTROMENORES_29edecad52d4d7211dad5435fa89ceaf.jpg', 'icono_ELECTROMENORES_29edecad52d4d7211dad5435fa89ceaf.jpg', NULL, NULL, NULL, NULL, '2022-11-22 19:43:41', NULL, 1);
+(36, 'ELECTROMENORES', 'img_ELECTROMENORES_29edecad52d4d7211dad5435fa89ceaf.jpg', 'icono_ELECTROMENORES_29edecad52d4d7211dad5435fa89ceaf.jpg', NULL, NULL, NULL, NULL, '2022-11-22 19:43:41', NULL, 1),
+(37, 'Ayudantes del hogar', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:32:48', 36, 1),
+(38, 'Arroceras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:33:19', 37, 1),
+(39, 'Ollas eléctricas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:33:43', 37, 1),
+(40, 'Exprimidores', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:34:05', 37, 1),
+(41, 'Planchas de ropa', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:34:25', 37, 1),
+(42, 'Licuadoras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:35:19', 37, 1),
+(43, 'Dispensadores', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:35:46', 37, 1),
+(44, 'Air fryer', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:36:08', 37, 1),
+(45, 'Batidoras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:36:27', 37, 1),
+(46, 'Cafeteras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:38:15', 37, 1),
+(47, 'Sanducheras y wafleras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:38:44', 37, 1),
+(48, 'HOGAR', 'img_HOGAR_0eff09bd0f65dcba81e2b9eac8ba54f7.jpg', 'icono_HOGAR_0eff09bd0f65dcba81e2b9eac8ba54f7.jpg', NULL, NULL, NULL, NULL, '2022-11-29 00:48:47', NULL, 1),
+(49, 'Cocina', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:49:32', 48, 1),
+(50, 'Ollas y sartenes', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:50:06', 49, 1),
+(51, 'Utensilios', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:50:25', 49, 1),
+(52, 'Dormitorio', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:50:49', 48, 1),
+(53, 'Colchones', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:51:17', 52, 1),
+(54, 'Base de colchones', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:51:33', 52, 1),
+(55, 'Almohadas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:51:59', 52, 1),
+(56, 'Camas y sofacamas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:52:14', 52, 1),
+(57, 'Aspirado y limpieza', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:54:24', 48, 1),
+(58, 'Aspiradoras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:54:48', 57, 1),
+(59, 'Hidrolavadoras', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:55:05', 57, 1),
+(60, 'Muebles', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:57:35', 48, 1),
+(61, 'Muebles de dormitorio', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 00:58:13', 60, 1),
+(62, 'Muebles de sala', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:01:27', 60, 1),
+(63, 'Muebles de cocina', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:01:44', 60, 1),
+(64, 'MOVILIDAD', 'img_MOVILIDAD_6a52f0ccd8737796ad6b9c44f2eda2fc.jpg', 'icono_MOVILIDAD_6a52f0ccd8737796ad6b9c44f2eda2fc.jpg', NULL, NULL, NULL, NULL, '2022-11-29 01:07:15', NULL, 1),
+(65, 'Motos', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:07:42', 64, 1),
+(66, 'Motos eléctricas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:08:38', 65, 1),
+(67, 'Motos de combustión', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:09:13', 65, 1),
+(68, 'Bicicletas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:10:05', 64, 1),
+(69, 'BMX', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:10:29', 68, 1),
+(70, 'Montaña', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:10:53', 68, 1),
+(71, 'Infantiles', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:11:12', 68, 1),
+(72, 'Accesorios', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:11:39', 64, 1),
+(73, 'Cascos', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:11:56', 72, 1),
+(74, 'CUIDADO PERSONAL', 'img_CUIDADO-PERSONAL_9fed05162e3bb4e92d3ab06fea1b1e19.jpg', 'icono_CUIDADO-PERSONAL_9fed05162e3bb4e92d3ab06fea1b1e19.jpg', NULL, NULL, NULL, NULL, '2022-11-29 01:13:08', NULL, 1),
+(75, 'Belleza', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:13:40', 74, 1),
+(76, 'Rizadores y planchas', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:14:14', 75, 1),
+(77, 'Afeitadoras y cortadoras de pelo', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:14:50', 75, 1),
+(78, 'Secadoras de pelo', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-29 01:15:21', 75, 1);
 
 -- --------------------------------------------------------
 
@@ -250,7 +292,9 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`idproducto`, `categoriaid`, `codproducto`, `nombre`, `descprincipal`, `descgeneral`, `sliderDesktop`, `sliderMobile`, `sliderDsc`, `marca`, `precio`, `stock`, `datacreate`, `status`) VALUES
 (1, 4, 12345678, 'Producto 1 prueba', 'Nuevo producto prueba con cable', '<p style=\"line-height: 1;\">Espacio:</p> <ul> <li style=\"line-height: 1;\">Mucho espcacio</li> <li>Menos espacio</li> </ul>', 'sliderDesktop_Producto-1-prueba_10b1e4eb3ae30403b37227fa17f24595.jpg', 'sliderMobile_Producto-1-prueba_10b1e4eb3ae30403b37227fa17f24595.jpg', 'SLIDER DESCRIPCION', 'Nuevo 1', '145.90', 2, '2022-11-16 12:57:18', 1),
-(2, 13, 64837398, 'Refrigeradora Indurama CR Avant Plus', 'Refrigeradora Indurama RI-375 CR Avant Plus 256 Litros.', '<p style=\"line-height: 1;\">Dimensiones :</p> <ul> <li style=\"line-height: 1;\">Alto: 158 cm. Ancho: 62 cm. Prof.: 67 cm.</li> </ul> <p style=\"line-height: 1;\">Informacion general :</p> <ul> <li style=\"line-height: 1;\">256 Litros</li> <li>Eficiencia energ&eacute;tica A</li> <li>Disponible en croma</li> <li>Sistema No Frost</li> <li>Refrigerante R600a</li> </ul> <p style=\"line-height: 1;\">Zona exterior :</p> <ul> <li style=\"line-height: 1;\">Puertas en l&aacute;mina lisa</li> </ul> <p style=\"line-height: 1;\">Congelador :</p> <ul> <li style=\"line-height: 1;\">Balcones transparentes de gran capacidad y durabilidad</li> <li>Bandeja de vidrio templado</li> <li>Hielo f&aacute;cil</li> </ul> <p style=\"line-height: 1;\">Refrigerador :</p> <ul> <li style=\"line-height: 1;\">Iluminaci&oacute;n LED</li> <li>Legumbrera transparente</li> <li>Bandejas regulables de vidrio templado</li> <li>Balcones transparentes de gran capacidad y durabilidad</li> </ul> <p style=\"line-height: 1;\">Accesorios :</p> <ul> <li style=\"line-height: 1;\">Porta huevos</li> </ul>', 'sliderDesktop_Refrigeradora-Indurama-CR-Avant-Plus_c1703a44e713fd3adb40a04f777335e8.jpg', 'sliderMobile_Refrigeradora-Indurama-CR-Avant-Plus_1faf6397b5c0321e8fd55971e023181b.jpg', 'CONGELADOR  CHALLENGERD', 'Indurama', '489.00', 5, '2022-11-16 13:04:48', 1);
+(2, 13, 64837398, 'Refrigeradora Indurama CR Avant Plus.', 'Refrigeradora Indurama RI-375 CR Avant Plus 256 Litros.', '<p style=\"line-height: 1;\">Dimensiones :</p> <ul> <li style=\"line-height: 1;\">Alto: 158 cm. Ancho: 62 cm. Prof.: 67 cm.</li> </ul> <p style=\"line-height: 1;\">Informacion general :</p> <ul> <li style=\"line-height: 1;\">256 Litros</li> <li>Eficiencia energ&eacute;tica A</li> <li>Disponible en croma</li> <li>Sistema No Frost</li> <li>Refrigerante R600a</li> </ul> <p style=\"line-height: 1;\">Zona exterior :</p> <ul> <li style=\"line-height: 1;\">Puertas en l&aacute;mina lisa</li> </ul> <p style=\"line-height: 1;\">Congelador :</p> <ul> <li style=\"line-height: 1;\">Balcones transparentes de gran capacidad y durabilidad</li> <li>Bandeja de vidrio templado</li> <li>Hielo f&aacute;cil</li> </ul> <p style=\"line-height: 1;\">Refrigerador :</p> <ul> <li style=\"line-height: 1;\">Iluminaci&oacute;n LED</li> <li>Legumbrera transparente</li> <li>Bandejas regulables de vidrio templado</li> <li>Balcones transparentes de gran capacidad y durabilidad</li> </ul> <p style=\"line-height: 1;\">Accesorios :</p> <ul> <li style=\"line-height: 1;\">Porta huevos</li> </ul>', 'sliderDesktop_Refrigeradora-Indurama-CR-Avant-Plus_c1703a44e713fd3adb40a04f777335e8.jpg', 'sliderMobile_Refrigeradora-Indurama-CR-Avant-Plus_1faf6397b5c0321e8fd55971e023181b.jpg', 'REFRIGERADORA INDURAMA', 'Indurama', '489.00', 5, '2022-11-16 13:04:48', 1),
+(3, 77, 545646423, 'Producto 3 prueba', 'Nuevo producto prueba sin cable', '<p style=\"line-height: 1;\">Espacio:</p> <ul> <li style=\"line-height: 1;\">Mucho espcacio</li> <li>Menos espacio</li> </ul>', NULL, NULL, NULL, 'Nuevo 3', '45.25', 45, '2023-02-04 02:50:36', 1),
+(4, 77, 653545454, 'Producto 4 prueba', 'Nuevo producto prueba con cable', '<p style=\"line-height: 1;\">Espacio:</p> <ul> <li style=\"line-height: 1;\">Mucho espcacio</li> <li>Menos espacio</li> </ul>', NULL, NULL, NULL, 'Nuevo 4', '4545.45', 45, '2023-02-04 02:52:16', 1);
 
 -- --------------------------------------------------------
 
@@ -303,7 +347,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `toke`, `rolid`, `datecreate`, `status`) VALUES
 (1, '123', 'Carlos', 'Pozo', 6545498454, 'carlospozo95@gmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 1, '2022-07-23 18:54:53', 1),
 (2, '070671565-3', 'Andres', 'Ramirez', 994603678, 'carlos.pfloger@yahoo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 2, '2022-08-06 18:58:01', 1),
-(3, '789', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
+(3, '070516545', 'Freddy', 'Magallanes', 994603678, 'carlos.pflogger@hotmail.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2022-08-12 20:41:37', 1),
 (4, '1000', 'Isabelle', 'Anibalcar', 12345678, 'isa@isa.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:27:30', 1),
 (5, '1100', 'Pedro', 'Jimenez', 12345678, 'pedro@pedro.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-08-31 01:28:13', 1),
 (6, '1300', 'Camilo', 'Perez', 1231231231, 'camilo@camilo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2022-09-02 17:46:02', 1),
@@ -314,7 +358,10 @@ INSERT INTO `usuario` (`idusuario`, `identificacion`, `nombres`, `apellidos`, `t
 (11, '8732638613', 'Jose', 'Mero', 29386, 'jo@jo.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 16:47:30', 1),
 (12, '5365377', 'Juan', 'Mariscal', 12163178, 'ju@ju.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 16:58:47', 1),
 (13, '9874988', 'Marlon', 'Astudillo', 98237489, 'mar@mar.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-15 17:12:56', 1),
-(14, '3123123', 'Jeniiferr', 'Zambranoo', 2342342, 'jen@jen.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-16 17:37:31', 1);
+(14, '3123123', 'Jeniiferr', 'Zambranoo', 2342342, 'jen@jen.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 5, '2022-10-16 17:37:31', 1),
+(15, '08921532621', 'Test', 'Test', 915415215, 'test@test.com', 'bc7b99afe79a3eef8626846555026d38e0ca7ebfd020f2e4a30781871687e592', NULL, 2, '2023-01-09 21:53:57', 1),
+(16, '65652554', 'Test One', 'Test One', 65451, 'one@one.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 4, '2023-01-11 22:17:52', 1),
+(17, '49846544894', 'Test Prueba', 'Test Pruyeba', 45144654, 'test@ygsj.com', 'ac9c2c34c9f7ad52528c3422af40a66e2e24aaf2a727831255413c9470158984', NULL, 3, '2023-01-14 22:20:11', 1);
 
 --
 -- Índices para tablas volcadas
@@ -398,7 +445,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idcategoria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
@@ -440,7 +487,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -452,7 +499,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idusuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
